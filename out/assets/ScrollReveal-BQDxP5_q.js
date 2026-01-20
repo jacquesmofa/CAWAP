@@ -1,0 +1,2 @@
+import{r as n,j as u}from"./index-7F8qiJJq.js";const f=({children:o,delay:r=0,direction:c="up",className:a=""})=>{const e=n.useRef(null);return n.useEffect(()=>{const s=new IntersectionObserver(i=>{i.forEach(t=>{t.isIntersecting&&setTimeout(()=>{t.target.classList.add("reveal-visible")},r)})},{threshold:.1,rootMargin:"0px 0px -50px 0px"});return e.current&&s.observe(e.current),()=>{e.current&&s.unobserve(e.current)}},[r]),u.jsx("div",{ref:e,className:`reveal reveal-${c} ${a}`,children:o})};export{f as S};
+//# sourceMappingURL=ScrollReveal-BQDxP5_q.js.map
