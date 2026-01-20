@@ -1,19 +1,19 @@
-name: Deploy CAWAP to HostGator
+name: CI-CD Pipeline CAWAP
 
 on:
   push:
     branches:
-      - main
+      - main  # Every time you push to 'main', the pipeline runs
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Checkout Code
         uses: actions/checkout@v4
 
-      - name: 🛠️ Set up Node.js
+      - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -24,8 +24,9 @@ jobs:
           npm install
           npm run build
 
-      - name: 📂 Sync to HostGator via FTP
-        uses: SamKirkland/ftp-deploy-action@4.3.5        with:
+      - name: 📂 Automatic FTP Upload
+        uses: SamKirkland/ftp-deploy-action@4.3.5
+        with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
