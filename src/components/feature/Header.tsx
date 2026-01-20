@@ -182,6 +182,9 @@ const Header = () => {
                     <a href="/upcoming-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
                       Upcoming Events
                     </a>
+                    <a href="/past-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
+                      Past Events
+                    </a>
                     <a href="/christmas-event" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
                       Christmas Event
                     </a>
@@ -321,6 +324,9 @@ const Header = () => {
                 <div className="pl-4 pb-2">
                   <a href="/upcoming-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Upcoming Events
+                  </a>
+                  <a href="/past-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                    Past Events
                   </a>
                   <a href="/christmas-event" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Christmas Event

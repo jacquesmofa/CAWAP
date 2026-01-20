@@ -54,6 +54,44 @@ const GalleryPage = () => {
       title: 'Food Delivery Service'
     },
 
+    // ========================================
+    // 📸 YOUR FOOD BANK PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    // INSTRUCTIONS:
+    // 1. Upload your Food Bank photos to Imgur
+    // 2. Right-click each image → "Copy image address"
+    // 3. Uncomment the lines below (remove the // at the start)
+    // 4. Replace 'IMGUR_URL_HERE' with your actual Imgur URL
+    // 5. Update the title to describe your photo
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'food-bank',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'food-bank',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'food-bank',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'food-bank',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'food-bank',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE FOOD BANK PHOTOS HERE...
+
     // ORIGINAL IMAGES - Community Programs
     {
       url: 'https://readdy.ai/api/search-image?query=diverse%20community%20members%20gathered%20for%20empowerment%20workshop%20in%20bright%20modern%20space%2C%20women%20and%20youth%20engaged%20in%20learning%20and%20discussion%2C%20professional%20photography%20showing%20community%20development%20and%20unity%2C%20warm%20atmosphere%20with%20people%20sitting%20in%20circle%20sharing%20ideas&width=600&height=400&seq=gallery-community-1&orientation=landscape',
@@ -85,6 +123,37 @@ const GalleryPage = () => {
       category: 'community',
       title: 'Newcomers Welcome Event'
     },
+
+    // ========================================
+    // 📸 YOUR COMMUNITY PROGRAMS PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'community',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'community',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'community',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'community',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'community',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE COMMUNITY PHOTOS HERE...
 
     // ORIGINAL IMAGES - Youth Activities
     {
@@ -118,6 +187,37 @@ const GalleryPage = () => {
       title: 'Capital G Girls Program'
     },
 
+    // ========================================
+    // 📸 YOUR YOUTH ACTIVITIES PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'youth',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'youth',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'youth',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'youth',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'youth',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE YOUTH PHOTOS HERE...
+
     // ORIGINAL IMAGES - Awards & Ceremonies
     {
       url: 'https://readdy.ai/api/search-image?query=elegant%20awards%20ceremony%20with%20honored%20community%20leaders%20receiving%20recognition%2C%20formally%20dressed%20attendees%20at%20gala%20event%20celebrating%20achievements%2C%20professional%20photography%20showing%20prestigious%20award%20presentation%2C%20sophisticated%20indoor%20venue%20with%20stage%20lighting%20and%20proud%20award%20recipients&width=600&height=400&seq=gallery-awards-1&orientation=landscape',
@@ -144,6 +244,37 @@ const GalleryPage = () => {
       category: 'awards',
       title: 'Award Presentation Moment'
     },
+
+    // ========================================
+    // 📸 YOUR AWARDS & CEREMONIES PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'awards',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'awards',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'awards',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'awards',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'awards',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE AWARDS PHOTOS HERE...
 
     // ORIGINAL IMAGES - Cultural Events
     {
@@ -177,6 +308,37 @@ const GalleryPage = () => {
       title: 'Storytelling Session'
     },
 
+    // ========================================
+    // 📸 YOUR CULTURAL EVENTS PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'cultural',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'cultural',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'cultural',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'cultural',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'cultural',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE CULTURAL PHOTOS HERE...
+
     // ORIGINAL IMAGES - Workshops & Training
     {
       url: 'https://readdy.ai/api/search-image?query=financial%20literacy%20workshop%20with%20instructor%20teaching%20budgeting%20skills%20to%20diverse%20adults%2C%20engaged%20participants%20learning%20money%20management%20in%20classroom%2C%20professional%20photography%20showing%20financial%20education%20and%20empowerment%2C%20bright%20modern%20training%20room%20with%20presentation%20and%20interactive%20learning&width=600&height=400&seq=gallery-workshop-1&orientation=landscape',
@@ -208,6 +370,52 @@ const GalleryPage = () => {
       category: 'workshops',
       title: 'Parenting Workshop'
     },
+
+    // ========================================
+    // 📸 YOUR WORKSHOPS & TRAINING PHOTOS - ADD IMGUR URLS BELOW
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'workshops',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'workshops',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'workshops',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'workshops',
+    //   title: 'Your Photo Title Here'
+    // },
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'workshops',
+    //   title: 'Your Photo Title Here'
+    // },
+    // ADD MORE WORKSHOP PHOTOS HERE...
+
+    // ========================================
+    // 📸 ADDITIONAL PHOTOS SECTION
+    // ========================================
+    // If you have photos that don't fit the above categories,
+    // or want to add more categories, add them here.
+    // Remember to add the category to the 'categories' array above if needed!
+    // ========================================
+    
+    // {
+    //   url: 'IMGUR_URL_HERE',
+    //   category: 'your-category-here',
+    //   title: 'Your Photo Title Here'
+    // },
+
   ];
 
   // Filter images based on active category

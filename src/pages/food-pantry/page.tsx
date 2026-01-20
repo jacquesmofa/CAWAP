@@ -405,8 +405,8 @@ const FoodPantryPage = () => {
                         <div>
                           <div className="font-semibold text-gray-800 mb-1">Address</div>
                           <div className="text-gray-600">
-                            7700 Hurontario Street, Suite 1005<br />
-                            Brampton, ON L6Y 4M3<br />
+                            101 West Drive, Unit 7<br />
+                            Brampton, ON L6T 5E9<br />
                             Canada
                           </div>
                         </div>
@@ -424,8 +424,8 @@ const FoodPantryPage = () => {
                         <i className="fas fa-envelope text-[#c9b037] text-xl mt-1"></i>
                         <div>
                           <div className="font-semibold text-gray-800 mb-1">Email</div>
-                          <a href="mailto:info@cawap.ca" className="text-gray-600 hover:text-[#c9b037]">
-                            info@cawap.ca
+                          <a href="mailto:cawap2025@gmail.com" className="text-gray-600 hover:text-[#c9b037]">
+                            cawap2025@gmail.com
                           </a>
                         </div>
                       </div>

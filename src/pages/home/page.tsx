@@ -8,8 +8,12 @@ import ImageCarousel from './components/ImageCarousel';
 import FounderMessage from './components/FounderMessage';
 import JavascriptSection from './components/JavascriptSection';
 import ScrollReveal from '../../components/effects/ScrollReveal';
+import { getUpcomingFlyers, getPastFlyers } from '../../data/flyers';
 
 const HomePage = () => {
+  const upcomingFlyers = getUpcomingFlyers();
+  const pastFlyers = getPastFlyers();
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -78,6 +82,66 @@ const HomePage = () => {
       <AboutSection />
       <ProgramsSection />
       
+      {/* Upcoming Events Flyers Section */}
+      {upcomingFlyers.length > 0 && (
+        <section className="py-16 bg-gradient-to-br from-[#8e24aa]/5 to-white">
+          <div className="container mx-auto px-4">
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-[#8e24aa]/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <i className="ri-calendar-event-line text-[#8e24aa] text-3xl"></i>
+                </div>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">Upcoming Events</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Join us at our upcoming programs and events - everyone is welcome!
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {upcomingFlyers.map((flyer, index) => (
+                <ScrollReveal key={flyer.id} delay={index * 0.1}>
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                    <div className="relative h-[400px] overflow-hidden">
+                      <img
+                        src={flyer.imageUrl}
+                        alt={flyer.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute top-4 right-4 bg-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                        {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3">{flyer.title}</h3>
+                      <p className="text-gray-600 leading-relaxed mb-4">{flyer.description}</p>
+                      {flyer.eventLink && (
+                        <a
+                          href={flyer.eventLink}
+                          className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
+                        >
+                          <span>Learn More</span>
+                          <i className="ri-arrow-right-line"></i>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="/upcoming-events"
+                className="inline-block bg-gradient-to-r from-[#8e24aa] to-[#26194f] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
+              >
+                View All Upcoming Events
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+      
       {/* Food Bank Quick Link Section */}
       <section className="py-16 bg-gradient-to-br from-[#c9b037]/10 to-white">
         <div className="container mx-auto px-4">
@@ -124,6 +188,68 @@ const HomePage = () => {
       </section>
 
       <JavascriptSection />
+      
+      {/* Past Programs & Events Flyers Section */}
+      {pastFlyers.length > 0 && (
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-[#26194f]/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <i className="ri-time-line text-[#26194f] text-3xl"></i>
+                </div>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">Past Programs & Events</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Take a look at the amazing programs and events we've hosted for our community
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {pastFlyers.slice(0, 6).map((flyer, index) => (
+                <ScrollReveal key={flyer.id} delay={index * 0.1}>
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                    <div className="relative h-[400px] overflow-hidden">
+                      <img
+                        src={flyer.imageUrl}
+                        alt={flyer.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                        {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3">{flyer.title}</h3>
+                      <p className="text-gray-600 leading-relaxed mb-4">{flyer.description}</p>
+                      {flyer.eventLink && (
+                        <a
+                          href={flyer.eventLink}
+                          className="inline-flex items-center gap-2 text-[#26194f] font-semibold hover:text-[#8e24aa] transition-colors cursor-pointer"
+                        >
+                          <span>View Details</span>
+                          <i className="ri-arrow-right-line"></i>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="/events"
+                className="inline-block bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
+              >
+                View All Past Events
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+      
       <FounderMessage />
       <ImageCarousel />
       <DonationCTA />
