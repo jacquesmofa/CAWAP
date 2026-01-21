@@ -51,7 +51,7 @@ const CapitalGGirlsPage = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">Life skills and personal development workshops</span>
+                    <span className="text-gray-600">Life skills, personal development workshops and more</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
