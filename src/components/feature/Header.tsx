@@ -43,7 +43,7 @@ const Header = () => {
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 cursor-pointer z-50">
               <img 
-                src="https://static.readdy.ai/image/2e117e8c7ffa34e61699363cecaf86d3/fd607243c457d167e4cccda900d6d448.jpeg" 
+                src="https://i.imgur.com/pArmDNQ.png" 
                 alt="CAWAP Logo" 
                 className="h-16 w-16 object-contain"
               />

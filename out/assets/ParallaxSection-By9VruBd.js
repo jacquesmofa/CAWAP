@@ -1,2 +1,0 @@
-import{r as s,j as a}from"./index-7F8qiJJq.js";const f=({children:o,speed:t=.5,className:c=""})=>{const e=s.useRef(null);return s.useEffect(()=>{const r=()=>{if(!e.current)return;const n=e.current.getBoundingClientRect(),l=window.pageYOffset*t;n.top<window.innerHeight&&n.bottom>0&&(e.current.style.transform=`translateY(${l}px)`)};return window.addEventListener("scroll",r,{passive:!0}),()=>window.removeEventListener("scroll",r)},[t]),a.jsx("div",{ref:e,className:`parallax-section ${c}`,children:o})};export{f as P};
-//# sourceMappingURL=ParallaxSection-By9VruBd.js.map
