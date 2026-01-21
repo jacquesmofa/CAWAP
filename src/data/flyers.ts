@@ -37,6 +37,14 @@ export const flyers: Flyer[] = [
     description: 'An amazing summer camp where children experienced outdoor adventures, made lasting friendships, enjoyed swimming, arts and crafts, sports, and created unforgettable memories. Thank you to all participants and volunteers!',
     eventLink: '/children-summer-camp'
   },
+  {
+    id: 'cawap-javascript-2021',
+    title: 'CAWAP JavaScript For Black Women',
+    imageUrl: 'https://i.imgur.com/4QoPyPs.jpeg',
+    date: '2021-08-02',  // Past date - automatically shows in Past Events
+    description: 'A groundbreaking program empowering Afro Black women with JavaScript programming skills and tech career opportunities. This intensive training program provided hands-on coding experience, mentorship, and pathways to success in the technology industry.',
+    eventLink: '/javascript-program'
+  },
   
   // ========================================
   // 📝 ADD YOUR FLYERS BELOW
