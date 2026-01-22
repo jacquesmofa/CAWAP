@@ -1,3 +1,5 @@
+
+import { useState } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
@@ -13,6 +15,34 @@ import { getUpcomingFlyers, getPastFlyers } from '../../data/flyers';
 const HomePage = () => {
   const upcomingFlyers = getUpcomingFlyers();
   const pastFlyers = getPastFlyers();
+  
+  const [upcomingScrollPosition, setUpcomingScrollPosition] = useState(0);
+  const [pastScrollPosition, setPastScrollPosition] = useState(0);
+
+  const scrollFlyers = (direction: 'left' | 'right', type: 'upcoming' | 'past') => {
+    const cardWidth = 380; // Card width + gap
+    const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
+    
+    if (type === 'upcoming') {
+      const container = document.getElementById('upcoming-flyers-container');
+      if (container) {
+        const newPosition = upcomingScrollPosition + scrollAmount;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
+        setUpcomingScrollPosition(clampedPosition);
+        container.scrollTo({ left: clampedPosition, behavior: 'smooth' });
+      }
+    } else {
+      const container = document.getElementById('past-flyers-container');
+      if (container) {
+        const newPosition = pastScrollPosition + scrollAmount;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
+        setPastScrollPosition(clampedPosition);
+        container.scrollTo({ left: clampedPosition, behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -82,7 +112,7 @@ const HomePage = () => {
       <AboutSection />
       <ProgramsSection />
       
-      {/* Upcoming Events Flyers Section */}
+      {/* Upcoming Events Flyers Section - Horizontal Carousel */}
       {upcomingFlyers.length > 0 && (
         <section className="py-16 bg-gradient-to-br from-[#8e24aa]/5 to-white">
           <div className="container mx-auto px-4">
@@ -98,36 +128,65 @@ const HomePage = () => {
               </div>
             </ScrollReveal>
 
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {upcomingFlyers.map((flyer, index) => (
-                <ScrollReveal key={flyer.id} delay={index * 0.1}>
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
-                    <div className="relative h-[400px] overflow-hidden">
-                      <img
-                        src={flyer.imageUrl}
-                        alt={flyer.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute top-4 right-4 bg-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                        {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            {/* Horizontal Carousel Container */}
+            <div className="relative max-w-7xl mx-auto">
+              {/* Left Arrow */}
+              {upcomingFlyers.length > 3 && (
+                <button
+                  onClick={() => scrollFlyers('left', 'upcoming')}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#8e24aa] p-4 rounded-full shadow-2xl hover:shadow-[#8e24aa]/30 transition-all duration-300 hover:scale-110 cursor-pointer -ml-6"
+                  aria-label="Previous events"
+                >
+                  <i className="ri-arrow-left-line text-2xl"></i>
+                </button>
+              )}
+
+              {/* Scrollable Container */}
+              <div
+                id="upcoming-flyers-container"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
+              >
+                {upcomingFlyers.map((flyer, index) => (
+                  <ScrollReveal key={flyer.id} delay={index * 0.1}>
+                    <div className="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                      <div className="relative h-[400px] overflow-hidden">
+                        <img
+                          src={flyer.imageUrl}
+                          alt={flyer.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute top-4 right-4 bg-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                          {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">{flyer.title}</h3>
+                        <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{flyer.description}</p>
+                        {flyer.eventLink && (
+                          <a
+                            href={flyer.eventLink}
+                            className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
+                          >
+                            <span>Learn More</span>
+                            <i className="ri-arrow-right-line"></i>
+                          </a>
+                        )}
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-3">{flyer.title}</h3>
-                      <p className="text-gray-600 leading-relaxed mb-4">{flyer.description}</p>
-                      {flyer.eventLink && (
-                        <a
-                          href={flyer.eventLink}
-                          className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
-                        >
-                          <span>Learn More</span>
-                          <i className="ri-arrow-right-line"></i>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              {/* Right Arrow */}
+              {upcomingFlyers.length > 3 && (
+                <button
+                  onClick={() => scrollFlyers('right', 'upcoming')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#8e24aa] p-4 rounded-full shadow-2xl hover:shadow-[#8e24aa]/30 transition-all duration-300 hover:scale-110 cursor-pointer -mr-6"
+                  aria-label="Next events"
+                >
+                  <i className="ri-arrow-right-line text-2xl"></i>
+                </button>
+              )}
             </div>
 
             <div className="text-center mt-12">
@@ -189,7 +248,7 @@ const HomePage = () => {
 
       <JavascriptSection />
       
-      {/* Past Programs & Events Flyers Section */}
+      {/* Past Programs & Events Flyers Section - Horizontal Carousel */}
       {pastFlyers.length > 0 && (
         <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
@@ -205,37 +264,66 @@ const HomePage = () => {
               </div>
             </ScrollReveal>
 
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {pastFlyers.slice(0, 6).map((flyer, index) => (
-                <ScrollReveal key={flyer.id} delay={index * 0.1}>
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
-                    <div className="relative h-[400px] overflow-hidden">
-                      <img
-                        src={flyer.imageUrl}
-                        alt={flyer.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                        {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+            {/* Horizontal Carousel Container */}
+            <div className="relative max-w-7xl mx-auto">
+              {/* Left Arrow */}
+              {pastFlyers.length > 3 && (
+                <button
+                  onClick={() => scrollFlyers('left', 'past')}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#26194f] p-4 rounded-full shadow-2xl hover:shadow-[#26194f]/30 transition-all duration-300 hover:scale-110 cursor-pointer -ml-6"
+                  aria-label="Previous events"
+                >
+                  <i className="ri-arrow-left-line text-2xl"></i>
+                </button>
+              )}
+
+              {/* Scrollable Container */}
+              <div
+                id="past-flyers-container"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
+              >
+                {pastFlyers.map((flyer, index) => (
+                  <ScrollReveal key={flyer.id} delay={index * 0.1}>
+                    <div className="flex-shrink-0 w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                      <div className="relative h-[400px] overflow-hidden">
+                        <img
+                          src={flyer.imageUrl}
+                          alt={flyer.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                          {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">{flyer.title}</h3>
+                        <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{flyer.description}</p>
+                        {flyer.eventLink && (
+                          <a
+                            href={flyer.eventLink}
+                            className="inline-flex items-center gap-2 text-[#26194f] font-semibold hover:text-[#8e24aa] transition-colors cursor-pointer"
+                          >
+                            <span>View Details</span>
+                            <i className="ri-arrow-right-line"></i>
+                          </a>
+                        )}
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-3">{flyer.title}</h3>
-                      <p className="text-gray-600 leading-relaxed mb-4">{flyer.description}</p>
-                      {flyer.eventLink && (
-                        <a
-                          href={flyer.eventLink}
-                          className="inline-flex items-center gap-2 text-[#26194f] font-semibold hover:text-[#8e24aa] transition-colors cursor-pointer"
-                        >
-                          <span>View Details</span>
-                          <i className="ri-arrow-right-line"></i>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              {/* Right Arrow */}
+              {pastFlyers.length > 3 && (
+                <button
+                  onClick={() => scrollFlyers('right', 'past')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#26194f] p-4 rounded-full shadow-2xl hover:shadow-[#26194f]/30 transition-all duration-300 hover:scale-110 cursor-pointer -mr-6"
+                  aria-label="Next events"
+                >
+                  <i className="ri-arrow-right-line text-2xl"></i>
+                </button>
+              )}
             </div>
 
             <div className="text-center mt-12">
