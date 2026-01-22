@@ -23,6 +23,10 @@ const HomePage = () => {
   const pastTouchStartX = useRef(0);
   const upcomingTouchEndX = useRef(0);
   const pastTouchEndX = useRef(0);
+  const upcomingTouchStartY = useRef(0);
+  const pastTouchStartY = useRef(0);
+  const upcomingTouchEndY = useRef(0);
+  const pastTouchEndY = useRef(0);
 
   const scrollFlyers = (direction: 'left' | 'right', type: 'upcoming' | 'past') => {
     const cardWidth = 380; // Card width + gap
@@ -52,18 +56,23 @@ const HomePage = () => {
   // Touch event handlers for upcoming flyers
   const handleUpcomingTouchStart = (e: React.TouchEvent) => {
     upcomingTouchStartX.current = e.touches[0].clientX;
+    upcomingTouchStartY.current = e.touches[0].clientY;
   };
 
   const handleUpcomingTouchMove = (e: React.TouchEvent) => {
     upcomingTouchEndX.current = e.touches[0].clientX;
+    upcomingTouchEndY.current = e.touches[0].clientY;
   };
 
   const handleUpcomingTouchEnd = () => {
-    const swipeDistance = upcomingTouchStartX.current - upcomingTouchEndX.current;
+    const swipeDistanceX = Math.abs(upcomingTouchStartX.current - upcomingTouchEndX.current);
+    const swipeDistanceY = Math.abs(upcomingTouchStartY.current - upcomingTouchEndY.current);
     const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
 
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0) {
+    // Only handle horizontal swipes (when X movement is greater than Y movement)
+    if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
+      const horizontalSwipe = upcomingTouchStartX.current - upcomingTouchEndX.current;
+      if (horizontalSwipe > 0) {
         // Swiped left - show next (older) flyers
         scrollFlyers('right', 'upcoming');
       } else {
@@ -71,23 +80,29 @@ const HomePage = () => {
         scrollFlyers('left', 'upcoming');
       }
     }
+    // If vertical swipe (Y > X), do nothing - let normal page scroll happen
   };
 
   // Touch event handlers for past flyers
   const handlePastTouchStart = (e: React.TouchEvent) => {
     pastTouchStartX.current = e.touches[0].clientX;
+    pastTouchStartY.current = e.touches[0].clientY;
   };
 
   const handlePastTouchMove = (e: React.TouchEvent) => {
     pastTouchEndX.current = e.touches[0].clientX;
+    pastTouchEndY.current = e.touches[0].clientY;
   };
 
   const handlePastTouchEnd = () => {
-    const swipeDistance = pastTouchStartX.current - pastTouchEndX.current;
+    const swipeDistanceX = Math.abs(pastTouchStartX.current - pastTouchEndX.current);
+    const swipeDistanceY = Math.abs(pastTouchStartY.current - pastTouchEndY.current);
     const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
 
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0) {
+    // Only handle horizontal swipes (when X movement is greater than Y movement)
+    if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
+      const horizontalSwipe = pastTouchStartX.current - pastTouchEndX.current;
+      if (horizontalSwipe > 0) {
         // Swiped left - show next (older) flyers
         scrollFlyers('right', 'past');
       } else {
@@ -95,6 +110,7 @@ const HomePage = () => {
         scrollFlyers('left', 'past');
       }
     }
+    // If vertical swipe (Y > X), do nothing - let normal page scroll happen
   };
 
   return (
