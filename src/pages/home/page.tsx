@@ -59,22 +59,25 @@ const HomePage = () => {
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
     
-    const swipeDistanceX = Math.abs(upcomingTouchStartX.current - touchEndX);
-    const swipeDistanceY = Math.abs(upcomingTouchStartY.current - touchEndY);
-    const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
+    const deltaX = upcomingTouchStartX.current - touchEndX;
+    const deltaY = upcomingTouchStartY.current - touchEndY;
+    
+    const absDeltaX = Math.abs(deltaX);
+    const absDeltaY = Math.abs(deltaY);
+    
+    const minSwipeDistance = 50;
 
-    // Only handle horizontal swipes (when X movement is greater than Y movement)
-    if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
-      const horizontalSwipe = upcomingTouchStartX.current - touchEndX;
-      if (horizontalSwipe > 0) {
-        // Swiped left - show next (older) flyers
+    // Only trigger horizontal scroll if horizontal movement is significantly greater than vertical
+    // AND the horizontal movement exceeds minimum distance
+    if (absDeltaX > absDeltaY * 1.5 && absDeltaX > minSwipeDistance) {
+      e.preventDefault(); // Only prevent default for horizontal swipes
+      if (deltaX > 0) {
         scrollFlyers('right', 'upcoming');
       } else {
-        // Swiped right - show previous (newer) flyers
         scrollFlyers('left', 'upcoming');
       }
     }
-    // If vertical swipe (Y > X), do nothing - let normal page scroll happen
+    // If vertical movement is greater or equal, do nothing - let browser handle vertical scroll
   };
 
   // Touch event handlers for past flyers
@@ -87,22 +90,25 @@ const HomePage = () => {
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
     
-    const swipeDistanceX = Math.abs(pastTouchStartX.current - touchEndX);
-    const swipeDistanceY = Math.abs(pastTouchStartY.current - touchEndY);
-    const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
+    const deltaX = pastTouchStartX.current - touchEndX;
+    const deltaY = pastTouchStartY.current - touchEndY;
+    
+    const absDeltaX = Math.abs(deltaX);
+    const absDeltaY = Math.abs(deltaY);
+    
+    const minSwipeDistance = 50;
 
-    // Only handle horizontal swipes (when X movement is greater than Y movement)
-    if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
-      const horizontalSwipe = pastTouchStartX.current - touchEndX;
-      if (horizontalSwipe > 0) {
-        // Swiped left - show next (older) flyers
+    // Only trigger horizontal scroll if horizontal movement is significantly greater than vertical
+    // AND the horizontal movement exceeds minimum distance
+    if (absDeltaX > absDeltaY * 1.5 && absDeltaX > minSwipeDistance) {
+      e.preventDefault(); // Only prevent default for horizontal swipes
+      if (deltaX > 0) {
         scrollFlyers('right', 'past');
       } else {
-        // Swiped right - show previous (newer) flyers
         scrollFlyers('left', 'past');
       }
     }
-    // If vertical swipe (Y > X), do nothing - let normal page scroll happen
+    // If vertical movement is greater or equal, do nothing - let browser handle vertical scroll
   };
 
   return (
@@ -208,7 +214,6 @@ const HomePage = () => {
                 className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handleUpcomingTouchStart}
                 onTouchEnd={handleUpcomingTouchEnd}
-                style={{ touchAction: 'pan-y pinch-zoom' }}
               >
                 {upcomingFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
@@ -347,7 +352,6 @@ const HomePage = () => {
                 className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handlePastTouchStart}
                 onTouchEnd={handlePastTouchEnd}
-                style={{ touchAction: 'pan-y pinch-zoom' }}
               >
                 {pastFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
