@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
@@ -18,6 +17,12 @@ const HomePage = () => {
   
   const [upcomingScrollPosition, setUpcomingScrollPosition] = useState(0);
   const [pastScrollPosition, setPastScrollPosition] = useState(0);
+
+  // Touch swipe handling
+  const upcomingTouchStartX = useRef(0);
+  const pastTouchStartX = useRef(0);
+  const upcomingTouchEndX = useRef(0);
+  const pastTouchEndX = useRef(0);
 
   const scrollFlyers = (direction: 'left' | 'right', type: 'upcoming' | 'past') => {
     const cardWidth = 380; // Card width + gap
@@ -40,6 +45,54 @@ const HomePage = () => {
         const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
         setPastScrollPosition(clampedPosition);
         container.scrollTo({ left: clampedPosition, behavior: 'smooth' });
+      }
+    }
+  };
+
+  // Touch event handlers for upcoming flyers
+  const handleUpcomingTouchStart = (e: React.TouchEvent) => {
+    upcomingTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleUpcomingTouchMove = (e: React.TouchEvent) => {
+    upcomingTouchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleUpcomingTouchEnd = () => {
+    const swipeDistance = upcomingTouchStartX.current - upcomingTouchEndX.current;
+    const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swiped left - show next (older) flyers
+        scrollFlyers('right', 'upcoming');
+      } else {
+        // Swiped right - show previous (newer) flyers
+        scrollFlyers('left', 'upcoming');
+      }
+    }
+  };
+
+  // Touch event handlers for past flyers
+  const handlePastTouchStart = (e: React.TouchEvent) => {
+    pastTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handlePastTouchMove = (e: React.TouchEvent) => {
+    pastTouchEndX.current = e.touches[0].clientX;
+  };
+
+  const handlePastTouchEnd = () => {
+    const swipeDistance = pastTouchStartX.current - pastTouchEndX.current;
+    const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swiped left - show next (older) flyers
+        scrollFlyers('right', 'past');
+      } else {
+        // Swiped right - show previous (newer) flyers
+        scrollFlyers('left', 'past');
       }
     }
   };
@@ -144,7 +197,10 @@ const HomePage = () => {
               {/* Scrollable Container */}
               <div
                 id="upcoming-flyers-container"
-                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4 touch-pan-x"
+                onTouchStart={handleUpcomingTouchStart}
+                onTouchMove={handleUpcomingTouchMove}
+                onTouchEnd={handleUpcomingTouchEnd}
               >
                 {upcomingFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
@@ -280,7 +336,10 @@ const HomePage = () => {
               {/* Scrollable Container */}
               <div
                 id="past-flyers-container"
-                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4 touch-pan-x"
+                onTouchStart={handlePastTouchStart}
+                onTouchMove={handlePastTouchMove}
+                onTouchEnd={handlePastTouchEnd}
               >
                 {pastFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>

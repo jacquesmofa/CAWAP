@@ -28,17 +28,24 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Prevent content from breaking viewport */
-img, video, iframe, embed, object {
-  max-width: 100%;
-  height: auto;
-}
-
 /* Touch-Optimized Tap Targets (44x44px minimum) */
 button, a, input, select, textarea {
   min-height: 44px;
   min-width: 44px;
   touch-action: manipulation;
+}
+
+/* Touch-friendly horizontal scrolling for carousels */
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Prevent content from breaking viewport */
+img, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Prevent zoom on input focus (iOS) while maintaining accessibility */
