@@ -21,12 +21,8 @@ const HomePage = () => {
   // Touch swipe handling
   const upcomingTouchStartX = useRef(0);
   const pastTouchStartX = useRef(0);
-  const upcomingTouchEndX = useRef(0);
-  const pastTouchEndX = useRef(0);
   const upcomingTouchStartY = useRef(0);
   const pastTouchStartY = useRef(0);
-  const upcomingTouchEndY = useRef(0);
-  const pastTouchEndY = useRef(0);
 
   const scrollFlyers = (direction: 'left' | 'right', type: 'upcoming' | 'past') => {
     const cardWidth = 380; // Card width + gap
@@ -59,19 +55,17 @@ const HomePage = () => {
     upcomingTouchStartY.current = e.touches[0].clientY;
   };
 
-  const handleUpcomingTouchMove = (e: React.TouchEvent) => {
-    upcomingTouchEndX.current = e.touches[0].clientX;
-    upcomingTouchEndY.current = e.touches[0].clientY;
-  };
-
-  const handleUpcomingTouchEnd = () => {
-    const swipeDistanceX = Math.abs(upcomingTouchStartX.current - upcomingTouchEndX.current);
-    const swipeDistanceY = Math.abs(upcomingTouchStartY.current - upcomingTouchEndY.current);
+  const handleUpcomingTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const swipeDistanceX = Math.abs(upcomingTouchStartX.current - touchEndX);
+    const swipeDistanceY = Math.abs(upcomingTouchStartY.current - touchEndY);
     const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
 
     // Only handle horizontal swipes (when X movement is greater than Y movement)
     if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
-      const horizontalSwipe = upcomingTouchStartX.current - upcomingTouchEndX.current;
+      const horizontalSwipe = upcomingTouchStartX.current - touchEndX;
       if (horizontalSwipe > 0) {
         // Swiped left - show next (older) flyers
         scrollFlyers('right', 'upcoming');
@@ -89,19 +83,17 @@ const HomePage = () => {
     pastTouchStartY.current = e.touches[0].clientY;
   };
 
-  const handlePastTouchMove = (e: React.TouchEvent) => {
-    pastTouchEndX.current = e.touches[0].clientX;
-    pastTouchEndY.current = e.touches[0].clientY;
-  };
-
-  const handlePastTouchEnd = () => {
-    const swipeDistanceX = Math.abs(pastTouchStartX.current - pastTouchEndX.current);
-    const swipeDistanceY = Math.abs(pastTouchStartY.current - pastTouchEndY.current);
+  const handlePastTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const swipeDistanceX = Math.abs(pastTouchStartX.current - touchEndX);
+    const swipeDistanceY = Math.abs(pastTouchStartY.current - touchEndY);
     const minSwipeDistance = 50; // Minimum swipe distance to trigger scroll
 
     // Only handle horizontal swipes (when X movement is greater than Y movement)
     if (swipeDistanceX > swipeDistanceY && swipeDistanceX > minSwipeDistance) {
-      const horizontalSwipe = pastTouchStartX.current - pastTouchEndX.current;
+      const horizontalSwipe = pastTouchStartX.current - touchEndX;
       if (horizontalSwipe > 0) {
         // Swiped left - show next (older) flyers
         scrollFlyers('right', 'past');
@@ -213,10 +205,10 @@ const HomePage = () => {
               {/* Scrollable Container */}
               <div
                 id="upcoming-flyers-container"
-                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4 touch-pan-x"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handleUpcomingTouchStart}
-                onTouchMove={handleUpcomingTouchMove}
                 onTouchEnd={handleUpcomingTouchEnd}
+                style={{ touchAction: 'pan-y pinch-zoom' }}
               >
                 {upcomingFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
@@ -352,10 +344,10 @@ const HomePage = () => {
               {/* Scrollable Container */}
               <div
                 id="past-flyers-container"
-                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4 touch-pan-x"
+                className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handlePastTouchStart}
-                onTouchMove={handlePastTouchMove}
                 onTouchEnd={handlePastTouchEnd}
+                style={{ touchAction: 'pan-y pinch-zoom' }}
               >
                 {pastFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
