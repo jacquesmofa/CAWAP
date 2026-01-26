@@ -1,3 +1,4 @@
+
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
@@ -77,16 +78,37 @@ const JavascriptProgramPage = () => {
                 </ul>
               </div>
 
-              <div className="text-center">
+              {/* ========================================
+                  PROMINENT REGISTRATION BUTTON
+                  ========================================
+                  This makes the Google Form registration SUPER OBVIOUS:
+                  - Large size with padding
+                  - Eye-catching gradient colors
+                  - Pulsing animation to draw attention
+                  - Clear "External Link" icon
+                  - Hover effects for interactivity
+                  ======================================== */}
+              <div className="text-center bg-gradient-to-br from-[#26194f] to-[#8e24aa] p-8 rounded-2xl shadow-2xl">
+                <div className="mb-6">
+                  <i className="ri-file-list-3-line text-6xl text-white mb-4 inline-block"></i>
+                  <h3 className="text-2xl font-bold text-white mb-2">Ready to Start Your Tech Journey?</h3>
+                  <p className="text-white/90 text-lg">Register now to secure your spot in the program!</p>
+                </div>
+                
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdDz6ynDpr0wR5ejrSQOvjEBxTm0sb3A_8LaaHYKXKjDgRWDw/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-3 rounded-md text-sm font-medium hover:bg-opacity-90 transition-all whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center gap-4 bg-white text-[#26194f] px-10 py-5 rounded-full text-xl font-bold hover:bg-gray-100 hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-xl animate-pulse hover:animate-none"
                 >
-                  <i className="far fa-arrow-alt-circle-right"></i>
-                  Register Online
+                  <i className="ri-external-link-line text-3xl"></i>
+                  <span>Register Online Now</span>
+                  <i className="ri-arrow-right-line text-2xl"></i>
                 </a>
+                
+                <p className="text-white/80 text-sm mt-4">
+                  <i className="ri-information-line"></i> Opens in a new tab - Google Form
+                </p>
               </div>
             </div>
           </div>

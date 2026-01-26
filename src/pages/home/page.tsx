@@ -8,6 +8,7 @@ import ProgramsSection from './components/ProgramsSection';
 import ImageCarousel from './components/ImageCarousel';
 import FounderMessage from './components/FounderMessage';
 import JavascriptSection from './components/JavascriptSection';
+import ImpactMap from '../../components/feature/ImpactMap';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { getUpcomingFlyers, getPastFlyers } from '../../data/flyers';
 
@@ -408,6 +409,9 @@ const HomePage = () => {
           </div>
         </section>
       )}
+      
+      {/* Interactive Impact Map */}
+      <ImpactMap />
       
       <FounderMessage />
       <ImageCarousel />

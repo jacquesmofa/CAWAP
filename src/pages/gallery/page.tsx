@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
@@ -8,6 +8,19 @@ const GalleryPage = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [expandedCategories, setExpandedCategories] = useState<string[]>(['all']);
+  
+  // ========================================
+  // MOBILE-LIKE GALLERY FEATURES
+  // ========================================
+  // These states handle zoom, pan, and swipe gestures
+  const [scale, setScale] = useState(1); // Zoom level (1 = normal, 2 = 2x zoom, etc.)
+  const [position, setPosition] = useState({ x: 0, y: 0 }); // Pan position when zoomed
+  const [isDragging, setIsDragging] = useState(false); // Is user dragging the image?
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 }); // Where drag started
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 }); // Touch start position for swipe
+  const [touchDistance, setTouchDistance] = useState(0); // Distance between two fingers (pinch zoom)
+  
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Gallery categories - easily expandable
   const categories = [
@@ -22,6 +35,26 @@ const GalleryPage = () => {
 
   // Gallery images with categories - RESTORED ORIGINAL IMAGES + NEW ONES
   const galleryImages = [
+    // ========================================
+    // 🎯 HOW TO ADD YOUR OWN PHOTOS - FOLLOW THIS EXAMPLE:
+    // ========================================
+    // STEP 1: Upload your photo to Imgur.com
+    // STEP 2: Right-click the image → "Copy image address"
+    // STEP 3: Paste the URL below like this example:
+    //
+    // {
+    //   url: 'https://i.imgur.com/YOUR_IMAGE_ID.jpg',  ← Your Imgur URL here
+    //   category: 'food-bank',  ← Choose: food-bank, community, youth, awards, cultural, workshops
+    //   title: 'Food Distribution March 2024'  ← Describe your photo
+    // },
+    //
+    // STEP 4: Remove the // at the start of each line to activate it
+    // STEP 5: Save the file and refresh your website!
+    // 
+    // 📹 FOR VIDEOS: Use the same format! Imgur supports video uploads too.
+    // Just upload your video to Imgur and copy the link the same way.
+    // ========================================
+
     // ORIGINAL IMAGES - Food Bank Events
     {
       url: 'https://readdy.ai/api/search-image?query=welcoming%20community%20food%20bank%20volunteers%20organizing%20fresh%20produce%20and%20groceries%20on%20shelves%2C%20diverse%20team%20working%20together%20in%20bright%20organized%20space%2C%20professional%20photography%20showing%20community%20service%20and%20food%20security%20support%2C%20warm%20lighting%20with%20abundant%20fresh%20vegetables%20and%20nutritious%20food%20items&width=600&height=400&seq=gallery-food-1&orientation=landscape',
@@ -57,40 +90,12 @@ const GalleryPage = () => {
     // ========================================
     // 📸 YOUR FOOD BANK PHOTOS - ADD IMGUR URLS BELOW
     // ========================================
-    // INSTRUCTIONS:
-    // 1. Upload your Food Bank photos to Imgur
-    // 2. Right-click each image → "Copy image address"
-    // 3. Uncomment the lines below (remove the // at the start)
-    // 4. Replace 'IMGUR_URL_HERE' with your actual Imgur URL
-    // 5. Update the title to describe your photo
-    // ========================================
     
     // {
     //   url: 'IMGUR_URL_HERE',
     //   category: 'food-bank',
     //   title: 'Your Photo Title Here'
     // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'food-bank',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'food-bank',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'food-bank',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'food-bank',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE FOOD BANK PHOTOS HERE...
 
     // ORIGINAL IMAGES - Community Programs
     {
@@ -124,37 +129,6 @@ const GalleryPage = () => {
       title: 'Newcomers Welcome Event'
     },
 
-    // ========================================
-    // 📸 YOUR COMMUNITY PROGRAMS PHOTOS - ADD IMGUR URLS BELOW
-    // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'community',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'community',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'community',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'community',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'community',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE COMMUNITY PHOTOS HERE...
-
     // ORIGINAL IMAGES - Youth Activities
     {
       url: 'https://readdy.ai/api/search-image?query=enthusiastic%20youth%20participants%20in%20leadership%20training%20program%2C%20diverse%20teenagers%20engaged%20in%20team%20building%20activities%20and%20discussions%2C%20professional%20photography%20showing%20youth%20empowerment%20and%20skill%20development%2C%20bright%20modern%20classroom%20with%20interactive%20learning%20environment&width=600&height=400&seq=gallery-youth-1&orientation=landscape',
@@ -187,37 +161,6 @@ const GalleryPage = () => {
       title: 'Capital G Girls Program'
     },
 
-    // ========================================
-    // 📸 YOUR YOUTH ACTIVITIES PHOTOS - ADD IMGUR URLS BELOW
-    // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'youth',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'youth',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'youth',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'youth',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'youth',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE YOUTH PHOTOS HERE...
-
     // ORIGINAL IMAGES - Awards & Ceremonies
     {
       url: 'https://readdy.ai/api/search-image?query=elegant%20awards%20ceremony%20with%20honored%20community%20leaders%20receiving%20recognition%2C%20formally%20dressed%20attendees%20at%20gala%20event%20celebrating%20achievements%2C%20professional%20photography%20showing%20prestigious%20award%20presentation%2C%20sophisticated%20indoor%20venue%20with%20stage%20lighting%20and%20proud%20award%20recipients&width=600&height=400&seq=gallery-awards-1&orientation=landscape',
@@ -244,37 +187,6 @@ const GalleryPage = () => {
       category: 'awards',
       title: 'Award Presentation Moment'
     },
-
-    // ========================================
-    // 📸 YOUR AWARDS & CEREMONIES PHOTOS - ADD IMGUR URLS BELOW
-    // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'awards',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'awards',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'awards',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'awards',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'awards',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE AWARDS PHOTOS HERE...
 
     // ORIGINAL IMAGES - Cultural Events
     {
@@ -307,37 +219,6 @@ const GalleryPage = () => {
       category: 'cultural',
       title: 'Storytelling Session'
     },
-
-    // ========================================
-    // 📸 YOUR CULTURAL EVENTS PHOTOS - ADD IMGUR URLS BELOW
-    // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'cultural',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'cultural',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'cultural',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'cultural',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'cultural',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE CULTURAL PHOTOS HERE...
 
     // ORIGINAL IMAGES - Workshops & Training
     {
@@ -372,50 +253,12 @@ const GalleryPage = () => {
     },
 
     // ========================================
-    // 📸 YOUR WORKSHOPS & TRAINING PHOTOS - ADD IMGUR URLS BELOW
+    // 📸 ADD MORE PHOTOS HERE
     // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'workshops',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'workshops',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'workshops',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'workshops',
-    //   title: 'Your Photo Title Here'
-    // },
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'workshops',
-    //   title: 'Your Photo Title Here'
-    // },
-    // ADD MORE WORKSHOP PHOTOS HERE...
-
+    // The gallery can handle HUNDREDS of photos!
+    // Just keep adding them in the same format above.
+    // The page will automatically paginate and load more as needed.
     // ========================================
-    // 📸 ADDITIONAL PHOTOS SECTION
-    // ========================================
-    // If you have photos that don't fit the above categories,
-    // or want to add more categories, add them here.
-    // Remember to add the category to the 'categories' array above if needed!
-    // ========================================
-    
-    // {
-    //   url: 'IMGUR_URL_HERE',
-    //   category: 'your-category-here',
-    //   title: 'Your Photo Title Here'
-    // },
-
   ];
 
   // Filter images based on active category
@@ -432,27 +275,170 @@ const GalleryPage = () => {
     );
   };
 
-  // Open lightbox
+  // ========================================
+  // LIGHTBOX CONTROLS
+  // ========================================
+  
+  // Open lightbox and reset zoom/position
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
+    setScale(1); // Reset zoom
+    setPosition({ x: 0, y: 0 }); // Reset position
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
   };
 
   // Close lightbox
   const closeLightbox = () => {
     setLightboxOpen(false);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
     document.body.style.overflow = 'auto';
   };
 
   // Navigate to next image
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % filteredImages.length);
+    setScale(1); // Reset zoom when changing images
+    setPosition({ x: 0, y: 0 });
   };
 
   // Navigate to previous image
   const previousImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
+    setScale(1); // Reset zoom when changing images
+    setPosition({ x: 0, y: 0 });
+  };
+
+  // ========================================
+  // ZOOM CONTROLS (Like Mobile Photos App)
+  // ========================================
+  
+  // Zoom in (double-click or button)
+  const zoomIn = () => {
+    setScale(prev => Math.min(prev + 0.5, 4)); // Max 4x zoom
+  };
+
+  // Zoom out
+  const zoomOut = () => {
+    setScale(prev => {
+      const newScale = Math.max(prev - 0.5, 1); // Min 1x zoom
+      if (newScale === 1) {
+        setPosition({ x: 0, y: 0 }); // Reset position when fully zoomed out
+      }
+      return newScale;
+    });
+  };
+
+  // Reset zoom to normal
+  const resetZoom = () => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  // ========================================
+  // TOUCH GESTURES (Mobile-like Experience)
+  // ========================================
+  
+  // Handle touch start (for swipe and pinch)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      // Single finger - prepare for swipe
+      setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+      if (scale > 1) {
+        // If zoomed, prepare for pan
+        setIsDragging(true);
+        setDragStart({
+          x: e.touches[0].clientX - position.x,
+          y: e.touches[0].clientY - position.y
+        });
+      }
+    } else if (e.touches.length === 2) {
+      // Two fingers - prepare for pinch zoom
+      const distance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      setTouchDistance(distance);
+    }
+  };
+
+  // Handle touch move (swipe or pinch)
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 1 && scale > 1 && isDragging) {
+      // Pan the zoomed image
+      setPosition({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    } else if (e.touches.length === 2) {
+      // Pinch zoom
+      const distance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const delta = distance - touchDistance;
+      const newScale = Math.max(1, Math.min(4, scale + delta * 0.01));
+      setScale(newScale);
+      setTouchDistance(distance);
+    }
+  };
+
+  // Handle touch end (complete swipe)
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.changedTouches.length === 1 && scale === 1) {
+      // Swipe gesture (only when not zoomed)
+      const touchEnd = { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+      const deltaX = touchEnd.x - touchStart.x;
+      const deltaY = Math.abs(touchEnd.y - touchStart.y);
+      
+      // Horizontal swipe (left/right) - must be more horizontal than vertical
+      if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+        if (deltaX > 0) {
+          previousImage(); // Swipe right = previous
+        } else {
+          nextImage(); // Swipe left = next
+        }
+      }
+    }
+    setIsDragging(false);
+  };
+
+  // ========================================
+  // MOUSE CONTROLS (Desktop)
+  // ========================================
+  
+  // Mouse drag to pan when zoomed
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.clientX - position.x,
+        y: e.clientY - position.y
+      });
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && scale > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Double-click to zoom
+  const handleDoubleClick = () => {
+    if (scale === 1) {
+      zoomIn();
+    } else {
+      resetZoom();
+    }
   };
 
   // Keyboard navigation
@@ -460,11 +446,14 @@ const GalleryPage = () => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') previousImage();
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === '+' || e.key === '=') zoomIn();
+    if (e.key === '-' || e.key === '_') zoomOut();
+    if (e.key === '0') resetZoom();
   };
 
   // Get images to display (limited or all based on expansion)
   const getDisplayImages = () => {
-    const INITIAL_DISPLAY = 8;
+    const INITIAL_DISPLAY = 12; // Show 12 initially
     if (expandedCategories.includes(activeCategory)) {
       return filteredImages;
     }
@@ -556,7 +545,7 @@ const GalleryPage = () => {
           </div>
 
           {/* Load More / Show Less Button */}
-          {filteredImages.length > 8 && (
+          {filteredImages.length > 12 && (
             <div className="text-center mt-12">
               <button
                 onClick={() => toggleCategory(activeCategory)}
@@ -593,21 +582,78 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* ========================================
+          MOBILE-LIKE LIGHTBOX VIEWER
+          ========================================
+          Features:
+          - Swipe left/right to navigate
+          - Pinch to zoom in/out
+          - Double-click/tap to zoom
+          - Drag to pan when zoomed
+          - Keyboard controls (arrows, +/-, ESC)
+          - Smooth animations
+          ======================================== */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
-          onClick={closeLightbox}
+          className="fixed inset-0 bg-black/98 z-50 flex items-center justify-center"
+          onClick={(e) => {
+            // Close only if clicking the background (not the image)
+            if (e.target === e.currentTarget) closeLightbox();
+          }}
           onKeyDown={handleKeyPress}
           tabIndex={0}
         >
-          {/* Close Button */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
-          >
-            <i className="ri-close-line text-white text-2xl"></i>
-          </button>
+          {/* Top Bar with Controls */}
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-6 z-50">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              {/* Image Info */}
+              <div className="text-white">
+                <h3 className="text-xl font-bold mb-1">
+                  {filteredImages[currentImageIndex].title}
+                </h3>
+                <p className="text-white/70 text-sm">
+                  Photo {currentImageIndex + 1} of {filteredImages.length}
+                </p>
+              </div>
+
+              {/* Zoom Controls */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={zoomOut}
+                  disabled={scale <= 1}
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                  title="Zoom Out (-)"
+                >
+                  <i className="ri-zoom-out-line text-white text-xl"></i>
+                </button>
+                <span className="text-white text-sm font-semibold min-w-[60px] text-center">
+                  {Math.round(scale * 100)}%
+                </span>
+                <button
+                  onClick={zoomIn}
+                  disabled={scale >= 4}
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                  title="Zoom In (+)"
+                >
+                  <i className="ri-zoom-in-line text-white text-xl"></i>
+                </button>
+                <button
+                  onClick={resetZoom}
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer"
+                  title="Reset Zoom (0)"
+                >
+                  <i className="ri-fullscreen-exit-line text-white text-xl"></i>
+                </button>
+                <button
+                  onClick={closeLightbox}
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer ml-4"
+                  title="Close (ESC)"
+                >
+                  <i className="ri-close-line text-white text-2xl"></i>
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* Previous Button */}
           <button
@@ -616,6 +662,7 @@ const GalleryPage = () => {
               previousImage();
             }}
             className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+            title="Previous (←)"
           >
             <i className="ri-arrow-left-line text-white text-3xl"></i>
           </button>
@@ -627,46 +674,52 @@ const GalleryPage = () => {
               nextImage();
             }}
             className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+            title="Next (→)"
           >
             <i className="ri-arrow-right-line text-white text-3xl"></i>
           </button>
 
-          {/* Image Container */}
+          {/* Image Container with Zoom & Pan */}
           <div 
-            className="relative max-w-7xl max-h-[90vh] w-full px-20"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-7xl max-h-[90vh] w-full px-20 overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onDoubleClick={handleDoubleClick}
           >
             <img
+              ref={imageRef}
               src={filteredImages[currentImageIndex].url}
               alt={filteredImages[currentImageIndex].title}
-              className="w-full h-full object-contain max-h-[80vh] rounded-lg"
+              className="w-full h-full object-contain max-h-[80vh] rounded-lg select-none"
+              style={{
+                transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
+                transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+                cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+              }}
+              draggable={false}
             />
-            
-            {/* Image Info */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-lg">
-              <h3 className="text-white text-2xl font-bold mb-2">
-                {filteredImages[currentImageIndex].title}
-              </h3>
-              <p className="text-white/80 text-sm">
-                Photo {currentImageIndex + 1} of {filteredImages.length}
-              </p>
-            </div>
           </div>
 
-          {/* Navigation Hint */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 text-white/60 text-sm">
+          {/* Bottom Hint Bar */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/60 text-sm bg-black/50 px-6 py-3 rounded-full backdrop-blur-sm">
             <span className="flex items-center gap-2">
-              <i className="ri-arrow-left-line"></i>
-              <span>Previous</span>
+              <i className="ri-arrow-left-right-line"></i>
+              <span>Swipe or Arrow Keys</span>
             </span>
             <span className="w-px h-4 bg-white/30"></span>
             <span className="flex items-center gap-2">
-              <span>Next</span>
-              <i className="ri-arrow-right-line"></i>
+              <i className="ri-zoom-in-line"></i>
+              <span>Double-click to Zoom</span>
             </span>
             <span className="w-px h-4 bg-white/30"></span>
             <span className="flex items-center gap-2">
-              <span>Press ESC to close</span>
+              <i className="ri-drag-move-line"></i>
+              <span>Drag when Zoomed</span>
             </span>
           </div>
         </div>

@@ -1,9 +1,13 @@
+// Import the Supabase submission hook we created earlier
+// This is the SAME hook used in the contact form - reusable code!
 import { useState } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
+import { useSupabaseSubmit } from '../../hooks/useSupabaseSubmit';
 
 const DonatePage = () => {
+  // Form state - stores all the user's input as they type
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,11 +20,14 @@ const DonatePage = () => {
     message: '',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  // Use our custom Supabase hook - SAME pattern as contact form!
+  // This hook handles: loading state, success/error messages, and database submission
+  const { submitToSupabase, isSubmitting, submitStatus } = useSupabaseSubmit();
 
   const predefinedAmounts = [25, 50, 100, 250, 500, 1000];
 
+  // Handle any input change (text fields, dropdowns, etc.)
+  // This function updates the formData state whenever user types
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -29,62 +36,59 @@ const DonatePage = () => {
     }));
   };
 
+  // Handle clicking on predefined amount buttons ($25, $50, etc.)
+  // When user clicks an amount, we update the form and clear custom amount
   const handleAmountSelect = (amount: number) => {
     setFormData(prev => ({
       ...prev,
       amount: amount.toString(),
-      customAmount: '',
+      customAmount: '', // Clear custom amount when selecting predefined
     }));
   };
 
+  // Handle form submission - this is where the magic happens!
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+    e.preventDefault(); // Prevent page reload (default form behavior)
 
-    try {
-      const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount;
-      
-      const submitData = new URLSearchParams({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        amount: finalAmount,
-        donationType: formData.donationType,
-        paymentMethod: formData.paymentMethod,
-        message: formData.message,
+    // STEP 1: Determine the final donation amount
+    // If user selected "custom", use customAmount, otherwise use selected amount
+    const finalAmount = formData.amount === 'custom' ? formData.customAmount : formData.amount;
+    
+    // STEP 2: Prepare data for Supabase
+    // We create an object with all the donation information
+    // This matches the columns in our "donation_records" table
+    const donationData = {
+      first_name: formData.firstName,      // Donor's first name
+      last_name: formData.lastName,        // Donor's last name
+      email: formData.email,               // Donor's email (for receipt)
+      phone: formData.phone || null,       // Phone is optional, use null if empty
+      amount: parseFloat(finalAmount),     // Convert string to number for database
+      donation_type: formData.donationType, // "one-time" or "monthly"
+      payment_method: formData.paymentMethod, // How they want to pay
+      message: formData.message || null,   // Optional message, null if empty
+      created_at: new Date().toISOString(), // Timestamp of when donation was made
+    };
+
+    // STEP 3: Submit to Supabase using our reusable hook
+    // The hook handles all the complexity: error handling, loading states, etc.
+    const success = await submitToSupabase('donation_records', donationData);
+
+    // STEP 4: If successful, clear the form so user can make another donation
+    if (success) {
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        amount: '',
+        customAmount: '',
+        donationType: 'one-time',
+        paymentMethod: 'credit-card',
+        message: '',
       });
-
-      const response = await fetch('https://readdy.ai/api/form/d4t1ku3rvmocq14jmsd0', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: submitData.toString(),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          amount: '',
-          customAmount: '',
-          donationType: 'one-time',
-          paymentMethod: 'credit-card',
-          message: '',
-        });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
     }
+    // If failed, the hook automatically shows an error message
+    // No need to handle errors here - the hook does it for us!
   };
 
   return (
@@ -118,6 +122,12 @@ const DonatePage = () => {
                 <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
                   <h2 className="text-3xl font-bold text-[#3c1053] mb-6">Donation Information</h2>
                   
+                  {/* 
+                    FORM ELEMENT - The container for all donation inputs
+                    - onSubmit: Calls handleSubmit when user clicks "Complete Donation"
+                    - data-readdy-form: Special attribute for Readdy platform tracking
+                    - id: Unique identifier for this form
+                  */}
                   <form onSubmit={handleSubmit} data-readdy-form id="donation-form">
                     {/* Personal Information */}
                     <div className="mb-8">
@@ -333,6 +343,14 @@ const DonatePage = () => {
                     </div>
 
                     {/* Submit Button */}
+                    {/* 
+                      SUBMIT BUTTON - Triggers form submission
+                      - disabled: Button is disabled if:
+                        1. Form is currently submitting (prevents double-submission)
+                        2. No amount is selected
+                        3. User selected "custom" but didn't enter an amount
+                      - Shows "Processing..." while submitting to give user feedback
+                    */}
                     <button
                       type="submit"
                       disabled={isSubmitting || !formData.amount || (!formData.customAmount && formData.amount === 'custom')}
@@ -341,18 +359,24 @@ const DonatePage = () => {
                       {isSubmitting ? 'Processing...' : 'Complete Donation'}
                     </button>
 
-                    {/* Status Messages */}
+                    {/* 
+                      STATUS MESSAGES - Show success or error feedback
+                      These are controlled by the submitStatus from our hook
+                      - 'success': Shows green message when donation is saved
+                      - 'error': Shows red message if something went wrong
+                      - 'idle': Shows nothing (default state)
+                    */}
                     {submitStatus === 'success' && (
                       <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
                         <p className="text-green-800 font-medium">
-                          Thank you for your generous donation! We've received your information and will contact you shortly.
+                          🎉 Thank you for your generous donation! Your contribution has been recorded and will help transform lives in our community.
                         </p>
                       </div>
                     )}
                     {submitStatus === 'error' && (
                       <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
                         <p className="text-red-800 font-medium">
-                          There was an error processing your donation. Please try again or contact us directly.
+                          ❌ There was an error processing your donation. Please try again or contact us at cawap2005@gmail.com
                         </p>
                       </div>
                     )}

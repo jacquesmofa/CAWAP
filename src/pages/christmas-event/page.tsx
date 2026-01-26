@@ -1,10 +1,66 @@
+// ========================================
+// IMPORTS - Bringing in tools we need
+// ========================================
+import { useState, FormEvent } from 'react'; // React hooks for managing form state
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import ParallaxSection from '../../components/effects/ParallaxSection';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
+import { useSupabaseSubmit } from '../../hooks/useSupabaseSubmit'; // Our custom hook for saving to Supabase
 
 const ChristmasEventPage = () => {
+  // ========================================
+  // FORM STATE MANAGEMENT
+  // ========================================
+  // These variables store what the user types in each field
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [attendees, setAttendees] = useState('');
+  const [children, setChildren] = useState('');
+
+  // Get the Supabase submission function from our custom hook
+  // This handles all the database saving logic for us
+  const { submitToSupabase, submitting, success, error } = useSupabaseSubmit();
+
+  // ========================================
+  // FORM SUBMISSION HANDLER
+  // ========================================
+  /**
+   * This function runs when user clicks "Register Now"
+   * It collects all form data and sends it to Supabase
+   */
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    // STEP 1: Stop the form from refreshing the page (default browser behavior)
+    e.preventDefault();
+
+    // STEP 2: Prepare the data object
+    // This matches the columns in your "event_registrations" table
+    const registrationData = {
+      event_name: 'Christmas Celebration 2024', // Which event they're registering for
+      full_name: fullName,                      // Their name
+      email: email,                             // Their email
+      phone: phone,                             // Their phone number
+      number_of_attendees: parseInt(attendees) || 1, // Convert text to number
+      number_of_children: parseInt(children) || 0,   // Convert text to number
+      registration_date: new Date().toISOString()    // Current date/time
+    };
+
+    // STEP 3: Send to Supabase
+    // The hook handles success/error messages automatically
+    const result = await submitToSupabase('event_registrations', registrationData);
+
+    // STEP 4: Clear the form if successful
+    if (result) {
+      setFullName('');
+      setEmail('');
+      setPhone('');
+      setAttendees('');
+      setChildren('');
+    }
+  };
+
   const eventHighlights = [
     {
       icon: "ri-gift-line",
@@ -190,11 +246,30 @@ const ChristmasEventPage = () => {
             <ScrollReveal direction="right">
               <div className="bg-white p-8 rounded-2xl shadow-xl">
                 <h3 className="text-2xl font-bold text-[#3c1053] mb-6">Register Your Family</h3>
-                <form className="space-y-4">
+                
+                {/* SUCCESS MESSAGE - Shows when registration is saved */}
+                {success && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium">✅ Registration successful! We'll see you at the event!</p>
+                  </div>
+                )}
+
+                {/* ERROR MESSAGE - Shows if something goes wrong */}
+                {error && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">❌ {error}</p>
+                  </div>
+                )}
+
+                {/* THE REGISTRATION FORM */}
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-gray-700 font-medium mb-2">Full Name *</label>
                     <input
                       type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b037] transition-all duration-300"
                       placeholder="Enter your full name"
                     />
@@ -203,6 +278,9 @@ const ChristmasEventPage = () => {
                     <label className="block text-gray-700 font-medium mb-2">Email Address *</label>
                     <input
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b037] transition-all duration-300"
                       placeholder="your.email@example.com"
                     />
@@ -211,6 +289,9 @@ const ChristmasEventPage = () => {
                     <label className="block text-gray-700 font-medium mb-2">Phone Number *</label>
                     <input
                       type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b037] transition-all duration-300"
                       placeholder="(123) 456-7890"
                     />
@@ -220,6 +301,9 @@ const ChristmasEventPage = () => {
                     <input
                       type="number"
                       min="1"
+                      value={attendees}
+                      onChange={(e) => setAttendees(e.target.value)}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b037] transition-all duration-300"
                       placeholder="How many people will attend?"
                     />
@@ -229,15 +313,18 @@ const ChristmasEventPage = () => {
                     <input
                       type="number"
                       min="0"
+                      value={children}
+                      onChange={(e) => setChildren(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b037] transition-all duration-300"
                       placeholder="Number of children attending"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-[#3c1053] to-[#5a1a7a] text-white py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 elite-btn glow-effect whitespace-nowrap cursor-pointer"
+                    disabled={submitting}
+                    className="w-full bg-gradient-to-r from-[#3c1053] to-[#5a1a7a] text-white py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 elite-btn glow-effect whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Register Now
+                    {submitting ? 'Registering...' : 'Register Now'}
                   </button>
                 </form>
               </div>

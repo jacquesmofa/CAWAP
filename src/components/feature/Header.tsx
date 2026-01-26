@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import LanguageSwitcher from './LanguageSwitcher';
+import SmartSearch from './SmartSearch';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -192,6 +194,12 @@ const Header = () => {
                 )}
               </div>
 
+              {/* Smart Search */}
+              <SmartSearch />
+
+              {/* Language Switcher */}
+              <LanguageSwitcher />
+
               <a
                 href="/donate"
                 className="bg-[#c9b037] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b39f2f] transition-all duration-300 elite-btn whitespace-nowrap cursor-pointer"
@@ -215,7 +223,12 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-white z-40 lg:hidden overflow-y-auto">
           <div className="pt-24 px-6 pb-6">
-            {/* ... existing mobile menu content ... */}
+            {/* Mobile Search & Language */}
+            <div className="mb-6 space-y-3">
+              <SmartSearch />
+              <LanguageSwitcher />
+            </div>
+
             <a
               href="/"
               onClick={toggleMobileMenu}
@@ -249,7 +262,6 @@ const Header = () => {
               </button>
               {isMobileProgramsOpen && (
                 <div className="pl-4 pb-2">
-                  {/* ... existing program links ... */}
                   <a href="/youth-leadership" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Youth Leadership
                   </a>

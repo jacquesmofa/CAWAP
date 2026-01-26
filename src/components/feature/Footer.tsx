@@ -1,8 +1,38 @@
 import ScrollReveal from '../effects/ScrollReveal';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, FormEvent } from 'react';
+import { useSupabaseSubmit } from '../../hooks/useSupabaseSubmit'; // For newsletter subscriptions
 
 const Footer = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  // ========================================
+  // NEWSLETTER SUBSCRIPTION STATE
+  // ========================================
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const { submitToSupabase, submitting, success, error } = useSupabaseSubmit();
+
+  /**
+   * NEWSLETTER SUBSCRIPTION HANDLER
+   * Saves email to Supabase when user subscribes
+   */
+  const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Prepare subscription data
+    const subscriptionData = {
+      email: newsletterEmail,
+      subscribed_at: new Date().toISOString(),
+      status: 'active'
+    };
+
+    // Save to Supabase
+    const result = await submitToSupabase('newsletter_subscriptions', subscriptionData);
+
+    // Clear form if successful
+    if (result) {
+      setNewsletterEmail('');
+    }
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -121,6 +151,67 @@ const Footer = () => {
               <p className="text-gray-300 text-sm leading-relaxed">
                 Empowering Afro-Caribbean and Canadian women through economic development, advocacy, and community programs.
               </p>
+              
+              {/* Social Media Icons */}
+              <div className="mt-6">
+                <h4 className="text-sm font-semibold text-[#c9b037] mb-3">Follow Us</h4>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.facebook.com/cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="Facebook"
+                  >
+                    <i className="ri-facebook-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="Twitter"
+                  >
+                    <i className="ri-twitter-x-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="Instagram"
+                  >
+                    <i className="ri-instagram-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="LinkedIn"
+                  >
+                    <i className="ri-linkedin-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="YouTube"
+                  >
+                    <i className="ri-youtube-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@cawap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
+                    aria-label="TikTok"
+                  >
+                    <i className="ri-tiktok-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Quick Links */}
@@ -198,47 +289,21 @@ const Footer = () => {
               <ul className="space-y-3 text-gray-300 text-sm">
                 <li className="flex items-start">
                   <i className="ri-map-pin-line text-[#c9b037] text-lg mr-2 mt-1"></i>
-                  <span>101 West Dr Unit 7<br />Brampton, ON L6T 2J6<br />Canada</span>
+                  <span>101 West Drive, Unit 7<br />Brampton, ON L6T 5E9<br />Canada</span>
                 </li>
                 <li className="flex items-center">
                   <i className="ri-phone-line text-[#c9b037] text-lg mr-2"></i>
                   <a href="tel:+16475815901" className="hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    647-581-5901
+                    +1 (647) 581-5901
                   </a>
                 </li>
                 <li className="flex items-center">
                   <i className="ri-mail-line text-[#c9b037] text-lg mr-2"></i>
-                  <a href="mailto:cawap2005@gmail.com" className="hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    cawap2005@gmail.com
+                  <a href="mailto:cawap2025@gmail.com" className="hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
+                    cawap2025@gmail.com
                   </a>
                 </li>
               </ul>
-              <div className="flex gap-4 mt-6">
-                <a
-                  href="https://www.facebook.com/cawap.ca"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-[#3c1053] rounded-full flex items-center justify-center hover:bg-[#c9b037] transition-all duration-300 cursor-pointer"
-                >
-                  <i className="ri-facebook-fill text-xl"></i>
-                </a>
-                <a
-                  href="https://twitter.com/cawap_ca"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-[#3c1053] rounded-full flex items-center justify-center hover:bg-[#c9b037] transition-all duration-300 cursor-pointer"
-                >
-                  <i className="ri-twitter-fill text-xl"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/cawap.ca"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-[#3c1053] rounded-full flex items-center justify-center hover:bg-[#c9b037] transition-all duration-300 cursor-pointer"
-                >
-                  <i className="ri-instagram-fill text-xl"></i>
-                </a>
-              </div>
             </div>
           </div>
         </div>
