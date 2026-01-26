@@ -266,7 +266,7 @@ const AboutPage = () => {
                   <div className="absolute -inset-4 bg-gradient-to-r from-[#c9b037] to-[#3c1053] rounded-2xl opacity-20 blur-xl"></div>
                   <div className="relative rounded-2xl shadow-2xl overflow-hidden elite-card bg-gradient-to-br from-[#f5f5f5] to-[#e8e8e8]">
                     <img
-                      src="https://static.readdy.ai/image/2e117e8c7ffa34e61699363cecaf86d3/09ff259e537d55e1e2f8dc14ff039c70.png"
+                      src="https://i.imgur.com/Vk7k4LU.png"
                       alt="Rev. Irine Ashu PhD"
                       className="w-full object-contain"
                     />
