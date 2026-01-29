@@ -78,7 +78,7 @@ const Header = () => {
                 About
               </a>
               <a
-                href="/food-pantry"
+                href="/food-bank"
                 className={`font-medium transition-colors cursor-pointer ${
                   isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
                 }`}
@@ -117,7 +117,7 @@ const Header = () => {
                     <a href="/sankofa-royale-awards" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
                       Sankofa Royale Awards
                     </a>
-                    <a href="/food-pantry" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
+                    <a href="/food-bank" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
                       Food Bank
                     </a>
                     <a href="/financial-literacy" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
@@ -247,7 +247,7 @@ const Header = () => {
               About
             </a>
             <a
-              href="/food-pantry"
+              href="/food-bank"
               onClick={toggleMobileMenu}
               className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
             >
@@ -280,7 +280,7 @@ const Header = () => {
                   <a href="/sankofa-royale-awards" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Sankofa Royale Awards
                   </a>
-                  <a href="/food-pantry" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                  <a href="/food-bank" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Food Bank
                   </a>
                   <a href="/financial-literacy" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">

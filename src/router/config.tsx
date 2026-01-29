@@ -93,7 +93,7 @@ const routes: RouteObject[] = [
     element: <SankofaRoyaleAwardsPage />,
   },
   {
-    path: '/food-pantry',
+    path: '/food-bank',
     element: <FoodPantryPage />,
   },
   {

@@ -42,7 +42,7 @@ const InteractiveProgramsHub = () => {
       id: 4,
       title: 'Food Bank',
       icon: 'ri-restaurant-line',
-      link: '/food-pantry',
+      link: '/food-bank',
       color: '#c9b037',
       description: 'Providing essential food support',
     },
