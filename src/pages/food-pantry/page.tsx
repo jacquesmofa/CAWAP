@@ -275,14 +275,15 @@ const FoodPantryPage = () => {
               </ScrollReveal>
 
               <ScrollReveal>
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="CAWAP Food Bank Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-auto" style={{ maxWidth: '600px' }}>
+                  <video
+                    className="w-full h-auto"
+                    controls
+                    preload="metadata"
+                  >
+                    <source src="https://i.imgur.com/yOjIsCg.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </ScrollReveal>
             </div>

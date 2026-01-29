@@ -118,7 +118,7 @@ const Header = () => {
                       Sankofa Royale Awards
                     </a>
                     <a href="/food-pantry" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Food Pantry
+                      Food Bank
                     </a>
                     <a href="/financial-literacy" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
                       Financial Literacy
@@ -281,7 +281,7 @@ const Header = () => {
                     Sankofa Royale Awards
                   </a>
                   <a href="/food-pantry" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Food Pantry
+                    Food Bank
                   </a>
                   <a href="/financial-literacy" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Financial Literacy
