@@ -8,6 +8,7 @@ import ProgramsSection from './components/ProgramsSection';
 import ImageCarousel from './components/ImageCarousel';
 import FounderMessage from './components/FounderMessage';
 import JavascriptSection from './components/JavascriptSection';
+import TrainingsSection from './components/TrainingsSection';
 import ImpactMap from '../../components/feature/ImpactMap';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { getUpcomingFlyers, getPastFlyers } from '../../data/flyers';
@@ -24,6 +25,12 @@ const HomePage = () => {
   const pastTouchStartX = useRef(0);
   const upcomingTouchStartY = useRef(0);
   const pastTouchStartY = useRef(0);
+
+  // Trackpad/touchpad wheel event handling
+  const upcomingWheelTimeout = useRef<NodeJS.Timeout | null>(null);
+  const pastWheelTimeout = useRef<NodeJS.Timeout | null>(null);
+  const upcomingAccumulatedDeltaX = useRef(0);
+  const pastAccumulatedDeltaX = useRef(0);
 
   const scrollFlyers = (direction: 'left' | 'right', type: 'upcoming' | 'past') => {
     const cardWidth = 380; // Card width + gap
@@ -110,6 +117,74 @@ const HomePage = () => {
       }
     }
     // If vertical movement is greater or equal, do nothing - let browser handle vertical scroll
+  };
+
+  // Wheel event handlers for trackpad/touchpad two-finger swipe (upcoming flyers)
+  const handleUpcomingWheel = (e: React.WheelEvent) => {
+    // Detect horizontal scrolling (two-finger swipe left/right on trackpad)
+    const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    
+    if (isHorizontalScroll && Math.abs(e.deltaX) > 5) {
+      e.preventDefault();
+      
+      // Accumulate deltaX for smoother detection
+      upcomingAccumulatedDeltaX.current += e.deltaX;
+      
+      // Clear existing timeout
+      if (upcomingWheelTimeout.current) {
+        clearTimeout(upcomingWheelTimeout.current);
+      }
+      
+      // Set new timeout to trigger scroll after accumulation
+      upcomingWheelTimeout.current = setTimeout(() => {
+        const threshold = 50; // Minimum accumulated delta to trigger scroll
+        
+        if (Math.abs(upcomingAccumulatedDeltaX.current) > threshold) {
+          if (upcomingAccumulatedDeltaX.current > 0) {
+            scrollFlyers('right', 'upcoming');
+          } else {
+            scrollFlyers('left', 'upcoming');
+          }
+        }
+        
+        // Reset accumulated delta
+        upcomingAccumulatedDeltaX.current = 0;
+      }, 100);
+    }
+  };
+
+  // Wheel event handlers for trackpad/touchpad two-finger swipe (past flyers)
+  const handlePastWheel = (e: React.WheelEvent) => {
+    // Detect horizontal scrolling (two-finger swipe left/right on trackpad)
+    const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    
+    if (isHorizontalScroll && Math.abs(e.deltaX) > 5) {
+      e.preventDefault();
+      
+      // Accumulate deltaX for smoother detection
+      pastAccumulatedDeltaX.current += e.deltaX;
+      
+      // Clear existing timeout
+      if (pastWheelTimeout.current) {
+        clearTimeout(pastWheelTimeout.current);
+      }
+      
+      // Set new timeout to trigger scroll after accumulation
+      pastWheelTimeout.current = setTimeout(() => {
+        const threshold = 50; // Minimum accumulated delta to trigger scroll
+        
+        if (Math.abs(pastAccumulatedDeltaX.current) > threshold) {
+          if (pastAccumulatedDeltaX.current > 0) {
+            scrollFlyers('right', 'past');
+          } else {
+            scrollFlyers('left', 'past');
+          }
+        }
+        
+        // Reset accumulated delta
+        pastAccumulatedDeltaX.current = 0;
+      }, 100);
+    }
   };
 
   return (
@@ -215,6 +290,7 @@ const HomePage = () => {
                 className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handleUpcomingTouchStart}
                 onTouchEnd={handleUpcomingTouchEnd}
+                onWheel={handleUpcomingWheel}
               >
                 {upcomingFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>
@@ -270,6 +346,9 @@ const HomePage = () => {
           </div>
         </section>
       )}
+      
+      {/* Ongoing Programs & Trainings Section */}
+      <TrainingsSection />
       
       {/* Food Bank Quick Link Section */}
       <section className="py-16 bg-gradient-to-br from-[#c9b037]/10 to-white">
@@ -353,6 +432,7 @@ const HomePage = () => {
                 className="flex gap-6 overflow-x-hidden scroll-smooth px-2 py-4"
                 onTouchStart={handlePastTouchStart}
                 onTouchEnd={handlePastTouchEnd}
+                onWheel={handlePastWheel}
               >
                 {pastFlyers.map((flyer, index) => (
                   <ScrollReveal key={flyer.id} delay={index * 0.1}>

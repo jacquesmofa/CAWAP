@@ -144,6 +144,9 @@ const Header = () => {
                     <a href="/cultural-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
                       Cultural Events
                     </a>
+                    <a href="/trainings" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
+                      Trainings
+                    </a>
                   </div>
                 )}
               </div>
@@ -303,6 +306,9 @@ const Header = () => {
                   </a>
                   <a href="/cultural-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     Cultural Events
+                  </a>
+                  <a href="/trainings" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                    Trainings
                   </a>
                 </div>
               )}

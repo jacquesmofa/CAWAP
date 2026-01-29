@@ -1,4 +1,3 @@
-
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
@@ -11,6 +10,7 @@ const DonatePage = lazy(() => import('../pages/donate/page'));
 const UpcomingEventsPage = lazy(() => import('../pages/upcoming-events/page'));
 const PastEventsPage = lazy(() => import('../pages/past-events/page'));
 const ChristmasEventPage = lazy(() => import('../pages/christmas-event/page'));
+const TrainingsPage = lazy(() => import('../pages/trainings/page'));
 
 // Program Pages
 const YouthLeadershipPage = lazy(() => import('../pages/youth-leadership/page'));
@@ -66,6 +66,10 @@ const routes: RouteObject[] = [
   {
     path: '/christmas-event',
     element: <ChristmasEventPage />,
+  },
+  {
+    path: '/trainings',
+    element: <TrainingsPage />,
   },
   // Program Routes
   {
