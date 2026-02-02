@@ -18,7 +18,7 @@ const CapitalGGirlsPage = lazy(() => import('../pages/capital-g-girls/page'));
 const HeartWiseSeniorsPage = lazy(() => import('../pages/heart-wise-seniors/page'));
 const WomenEmpowermentPage = lazy(() => import('../pages/women-empowerment/page'));
 const SankofaRoyaleAwardsPage = lazy(() => import('../pages/sankofa-royale-awards/page'));
-const FoodPantryPage = lazy(() => import('../pages/food-pantry/page'));
+const FoodBankPage = lazy(() => import('../pages/food-bank/page'));
 const FinancialLiteracyPage = lazy(() => import('../pages/financial-literacy/page'));
 const JavaScriptProgramPage = lazy(() => import('../pages/javascript-program/page'));
 const ChildrenSummerCampPage = lazy(() => import('../pages/children-summer-camp/page'));
@@ -94,7 +94,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/food-bank',
-    element: <FoodPantryPage />,
+    element: <FoodBankPage />,
   },
   {
     path: '/financial-literacy',

@@ -27,7 +27,7 @@ const SmartSearch = () => {
     { title: 'Heart-Wise Seniors', description: 'Creating a secure and inclusive haven for seniors', path: '/heart-wise-seniors', category: 'program' },
     { title: 'Children Summer Camp', description: 'Affordable and enchanting summer camp for children', path: '/children-summer-camp', category: 'program' },
     { title: 'Sankofa Royale Awards', description: 'Celebrating the black community across various sectors', path: '/sankofa-royale-awards', category: 'program' },
-    { title: 'Food Pantry', description: 'Access to nutritious food for our community', path: '/food-pantry', category: 'program' },
+    { title: 'Food Bank', description: 'Access to nutritious food for our community', path: '/food-bank', category: 'program' },
     { title: 'Women Empowerment', description: 'Equipping women with skills and confidence', path: '/women-empowerment', category: 'program' },
     { title: 'JavaScript Program', description: 'Bridging the diversity gap in tech sector', path: '/javascript-program', category: 'program' },
     { title: 'Financial Literacy', description: 'Guiding path to financial well-being', path: '/financial-literacy', category: 'program' },

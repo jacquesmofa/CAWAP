@@ -18,7 +18,7 @@ const ImpactMap = () => {
       id: 'brampton-central',
       name: 'Brampton Central',
       coordinates: { lat: 43.7315, lng: -79.7624 },
-      programs: ['Youth Leadership', 'Food Pantry', 'Women Empowerment', 'Mental Health', 'JavaScript Program'],
+      programs: ['Youth Leadership', 'Food Bank', 'Women Empowerment', 'Mental Health', 'JavaScript Program'],
       impact: 520,
       color: '#3c1053'
     },
@@ -42,7 +42,7 @@ const ImpactMap = () => {
       id: 'vaughan',
       name: 'Vaughan',
       coordinates: { lat: 43.8361, lng: -79.4983 },
-      programs: ['Youth Leadership', 'Cultural Events', 'Food Pantry', 'Newcomers Settlement'],
+      programs: ['Youth Leadership', 'Cultural Events', 'Food Bank', 'Newcomers Settlement'],
       impact: 290,
       color: '#d4c050'
     },

@@ -113,7 +113,7 @@ export const flyers: Flyer[] = [
     imageUrl: 'https://readdy.ai/api/search-image?query=heartwarming%20thanksgiving%20food%20drive%20poster%20design%20with%20diverse%20volunteers%20distributing%20food%20baskets%20to%20grateful%20families%2C%20warm%20autumn%20theme%20with%20orange%20brown%20and%20gold%20colors%2C%20charity%20event%20flyer%20showing%20fresh%20produce%20turkey%20and%20community%20support%2C%20compassionate%20giving%20atmosphere&width=800&height=1200&seq=thanksgiving-drive-2025&orientation=portrait',
     date: '2025-11-20',
     description: 'Share the spirit of gratitude this Thanksgiving! Join our community food drive providing complete holiday meals to families in need. Volunteer opportunities available for meal preparation, packing, and distribution. Together we can make every table abundant!',
-    eventLink: '/food-pantry'
+    eventLink: '/food-bank'
   },
   
   // ========================================
