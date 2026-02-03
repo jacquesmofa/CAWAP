@@ -13,8 +13,8 @@ interface GalleryMedia {
   url: string;
   category: string;
   title: string;
-  type: MediaType; // 'image', 'video', 'youtube', or 'vimeo'
-  thumbnail?: string; // Optional: custom thumbnail for videos
+  type: MediaType;
+  thumbnail?: string;
 }
 
 const GalleryPage = () => {
@@ -39,17 +39,16 @@ const GalleryPage = () => {
   // ========================================
   // MOBILE-LIKE GALLERY FEATURES
   // ========================================
-  // These states handle zoom, pan, and swipe gestures
-  const [scale, setScale] = useState(1); // Zoom level (1 = normal, 2 = 2x zoom, etc.)
-  const [position, setPosition] = useState({ x: 0, y: 0 }); // Pan position when zoomed
-  const [isDragging, setIsDragging] = useState(false); // Is user dragging the image?
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 }); // Where drag started
-  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 }); // Touch start position for swipe
-  const [touchDistance, setTouchDistance] = useState(0); // Distance between two fingers (pinch zoom)
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
+  const [touchDistance, setTouchDistance] = useState(0);
   
   const imageRef = useRef<HTMLImageElement>(null);
 
-  // Gallery categories - easily expandable
+  // Gallery categories
   const categories = [
     { id: 'all', name: 'All Media', icon: 'ri-grid-line' },
     { id: 'food-bank', name: 'Food Bank Events', icon: 'ri-restaurant-line' },
@@ -61,102 +60,323 @@ const GalleryPage = () => {
   ];
 
   // ========================================
-  // 🎬 GALLERY MEDIA (PHOTOS + VIDEOS)
+  // 🎬 GALLERY MEDIA - SYNCHRONIZED WITH FOOD BANK
   // ========================================
-  // 📝 HOW TO ADD YOUR IMGUR MEDIA:
-  // 1. Upload your image/video to Imgur
-  // 2. Get the direct link (right-click > Copy image address)
-  // 3. Add it to the array below with this format:
-  //
-  // For Images:
-  // {
-  //   url: 'https://i.imgur.com/YOUR_IMAGE_ID.jpg',
-  //   category: 'food-bank', // or 'community', 'youth', 'awards', 'cultural', 'workshops'
-  //   title: 'Your Image Title',
-  //   type: 'image'
-  // },
-  //
-  // For Videos (MP4, WebM, etc.):
-  // {
-  //   url: 'https://i.imgur.com/YOUR_VIDEO_ID.mp4',
-  //   category: 'food-bank',
-  //   title: 'Your Video Title',
-  //   type: 'video',
-  //   thumbnail: 'https://i.imgur.com/YOUR_THUMBNAIL.jpg' // Optional: custom thumbnail
-  // },
-  //
-  // For YouTube Videos:
-  // {
-  //   url: 'VIDEO_ID_ONLY', // Just the ID from youtube.com/watch?v=VIDEO_ID
-  //   category: 'community',
-  //   title: 'YouTube Video Title',
-  //   type: 'youtube'
-  // },
-  //
-  // For Vimeo Videos:
-  // {
-  //   url: 'VIDEO_ID_ONLY', // Just the ID from vimeo.com/VIDEO_ID
-  //   category: 'youth',
-  //   title: 'Vimeo Video Title',
-  //   type: 'vimeo'
-  // },
-
   const galleryMedia: GalleryMedia[] = [
     // ========================================
-    // 🎬 ADD YOUR IMGUR MEDIA HERE
-    // ========================================
-    // EXAMPLE - Replace with your actual Imgur links:
-    // {
-    //   url: 'https://i.imgur.com/yOjIsCg.mp4',
-    //   category: 'food-bank',
-    //   title: 'Food Bank Behind the Scenes',
-    //   type: 'video'
-    // },
-    // {
-    //   url: 'https://i.imgur.com/abc123.jpg',
-    //   category: 'community',
-    //   title: 'Community Event Photo',
-    //   type: 'image'
-    // },
-
-    // ========================================
-    // 📸 EXISTING PHOTOS - Food Bank Events
+    // 🍽️ FOOD BANK MEDIA (SYNCED FROM FOOD BANK PAGE)
     // ========================================
     {
-      url: 'https://readdy.ai/api/search-image?query=welcoming%20community%20food%20bank%20volunteers%20organizing%20fresh%20produce%20and%20groceries%20on%20shelves%2C%20diverse%20team%20working%20together%20in%20bright%20organized%20space%2C%20professional%20photography%20showing%20community%20service%20and%20food%20security%20support%2C%20warm%20lighting%20with%20abundant%20fresh%20vegetables%20and%20nutritious%20food%20items&width=600&height=400&seq=gallery-food-1&orientation=landscape',
+      url: 'https://i.imgur.com/BC1q7BM.mp4',
       category: 'food-bank',
-      title: 'Food Bank Organization',
+      title: 'Food Bank Community Service',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/oR8HMYG.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Distribution',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=volunteers%20distributing%20food%20packages%20to%20grateful%20families%20at%20community%20food%20bank%2C%20heartwarming%20scene%20of%20diverse%20people%20helping%20neighbors%2C%20professional%20photography%20capturing%20compassion%20and%20community%20care%2C%20bright%20welcoming%20atmosphere%20with%20families%20receiving%20nutritious%20food%20assistance&width=600&height=400&seq=gallery-food-2&orientation=landscape',
+      url: 'https://i.imgur.com/17Ulbds.jpeg',
+      category: 'food-bank',
+      title: 'Community Food Support',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/1Ffbe7s.jpeg',
+      category: 'food-bank',
+      title: 'Volunteers Serving Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/170Vb4O.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Operations',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/6ct2avj.jpeg',
+      category: 'food-bank',
+      title: 'Fresh Produce Distribution',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/GzRBUIL.jpeg',
+      category: 'food-bank',
+      title: 'Community Support Program',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/8HywFU0.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Volunteers',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/w3qFtnc.jpeg',
+      category: 'food-bank',
+      title: 'Helping Families in Need',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/WBB46bN.jpeg',
       category: 'food-bank',
       title: 'Food Distribution Day',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=community%20volunteers%20sorting%20and%20packing%20fresh%20vegetables%20and%20canned%20goods%20at%20food%20bank%2C%20organized%20teamwork%20in%20modern%20facility%2C%20professional%20photography%20showing%20efficient%20food%20pantry%20operations%2C%20bright%20clean%20space%20with%20diverse%20volunteers%20working%20together&width=600&height=400&seq=gallery-food-3&orientation=landscape',
+      url: 'https://i.imgur.com/Mg6nAsU.jpeg',
       category: 'food-bank',
-      title: 'Food Sorting & Packing',
+      title: 'Community Food Service',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=community%20food%20drive%20collection%20with%20donated%20groceries%20and%20fresh%20produce%2C%20volunteers%20receiving%20food%20donations%20from%20generous%20community%20members%2C%20professional%20photography%20showing%20charitable%20giving%20and%20community%20support%2C%20bright%20welcoming%20space%20with%20abundant%20food%20donations&width=600&height=400&seq=gallery-food-4&orientation=landscape',
+      url: 'https://i.imgur.com/zbUXd2p.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Team',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/IJS3mqV.jpeg',
+      category: 'food-bank',
+      title: 'Serving Our Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/mLcuQLC.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Support',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/588OQCw.jpeg',
+      category: 'food-bank',
+      title: 'Community Assistance',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/5ot2TK0.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Services',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/rY6UObw.jpeg',
+      category: 'food-bank',
+      title: 'Helping Hands',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/CTmF9im.jpeg',
+      category: 'food-bank',
+      title: 'Food Distribution Center',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/yPxZjRA.jpeg',
+      category: 'food-bank',
+      title: 'Community Care',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/n3Jsz7o.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Outreach',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/qA03Epj.jpeg',
+      category: 'food-bank',
+      title: 'Supporting Families',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/UhAuitr.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Program',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/b3TkBal.jpeg',
       category: 'food-bank',
       title: 'Community Food Drive',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=food%20bank%20warehouse%20with%20shelves%20stocked%20full%20of%20nutritious%20groceries%20and%20canned%20goods%2C%20organized%20inventory%20system%20for%20community%20food%20assistance%2C%20professional%20photography%20showing%20food%20security%20infrastructure%2C%20bright%20warehouse%20with%20volunteers%20managing%20food%20supplies&width=600&height=400&seq=gallery-food-5&orientation=landscape',
+      url: 'https://i.imgur.com/XJZno66.jpeg',
       category: 'food-bank',
-      title: 'Food Bank Warehouse',
+      title: 'Food Bank Initiative',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=volunteers%20loading%20food%20boxes%20into%20delivery%20van%20for%20home%20delivery%20service%2C%20community%20food%20bank%20outreach%20program%20bringing%20groceries%20to%20seniors%2C%20professional%20photography%20showing%20mobile%20food%20assistance%2C%20bright%20outdoor%20scene%20with%20volunteers%20carrying%20food%20boxes&width=600&height=400&seq=gallery-food-6&orientation=landscape',
+      url: 'https://i.imgur.com/RiVzV7Z.jpeg',
       category: 'food-bank',
-      title: 'Food Delivery Service',
+      title: 'Volunteer Service',
       type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/tCDZe9y.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Support Team',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/jYjeSn8.jpeg',
+      category: 'food-bank',
+      title: 'Community Outreach',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/hScsVRj.jpeg',
+      category: 'food-bank',
+      title: 'Food Distribution Event',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/MVVCwt3.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Activities',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/mclwM4z.jpeg',
+      category: 'food-bank',
+      title: 'Community Support Services',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/Y4kDYFn.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Mission',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/2BRYDJH.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/NAMUcJe.mp4',
+      category: 'food-bank',
+      title: 'Food Bank in Action',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/2VczVr3.mp4',
+      category: 'food-bank',
+      title: 'Community Food Service Video',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/QDy0ykb.mp4',
+      category: 'food-bank',
+      title: 'Food Distribution Process',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/7hkuQcS.mp4',
+      category: 'food-bank',
+      title: 'Volunteers at Work',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/yOjIsCg.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Behind the Scenes',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/ZKE4jdk.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Daily Operations',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Wg8u6q7.mp4',
+      category: 'food-bank',
+      title: 'Community Food Distribution',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/39vOfv1.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Volunteer Team',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/b350p61.mp4',
+      category: 'food-bank',
+      title: 'Serving Our Community',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/j9m02xS.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Support Services',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/qU4ZlDY.mp4',
+      category: 'food-bank',
+      title: 'Community Member Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/gCrFr1l.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Impact Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Iz8yKq4.mp4',
+      category: 'food-bank',
+      title: 'Grateful Family Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/dLAEuD1.mp4',
+      category: 'food-bank',
+      title: 'Community Support Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/SoRCEVT.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Client Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/v46xFZk.mp4',
+      category: 'food-bank',
+      title: 'Volunteer Experience Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/olelWob.mp4',
+      category: 'food-bank',
+      title: 'Community Impact Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/sF4KMod.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Success Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Dd4E9qi.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Program Overview',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/QYKpGTw.mp4',
+      category: 'food-bank',
+      title: 'Community Food Support',
+      type: 'video'
     },
 
     // ========================================
@@ -386,49 +606,35 @@ const GalleryPage = () => {
   // ========================================
   // 🎬 VIDEO HELPER FUNCTIONS
   // ========================================
-  
-  // Get video thumbnail
   const getVideoThumbnail = (media: GalleryMedia): string => {
     if (media.thumbnail) return media.thumbnail;
-    
     if (media.type === 'youtube') {
       return `https://img.youtube.com/vi/${media.url}/maxresdefault.jpg`;
     }
-    
-    if (media.type === 'vimeo') {
-      // Vimeo thumbnails require API call, using placeholder
-      return 'https://readdy.ai/api/search-image?query=video%20thumbnail%20placeholder%20with%20play%20button&width=600&height=400&seq=vimeo-thumb&orientation=landscape';
+    // For mp4 videos, return the video URL itself to use as poster
+    if (media.type === 'video' && media.url.endsWith('.mp4')) {
+      return media.url;
     }
-    
-    // For direct video files, use first frame or placeholder
     return 'https://readdy.ai/api/search-image?query=video%20thumbnail%20placeholder%20with%20play%20button&width=600&height=400&seq=video-thumb&orientation=landscape';
   };
 
-  // Get YouTube embed URL
-  const getYouTubeEmbedUrl = (videoId: string): string => {
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  };
-
-  // Get Vimeo embed URL
-  const getVimeoEmbedUrl = (videoId: string): string => {
-    return `https://player.vimeo.com/video/${videoId}?autoplay=1`;
+  // Check if media is a direct video file
+  const isDirectVideo = (media: GalleryMedia): boolean => {
+    return media.type === 'video' && (media.url.endsWith('.mp4') || media.url.endsWith('.webm') || media.url.endsWith('.mov'));
   };
 
   // ========================================
   // LIGHTBOX CONTROLS
   // ========================================
-  
-  // Open lightbox and reset zoom/position
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
-    setScale(1); // Reset zoom
-    setPosition({ x: 0, y: 0 }); // Reset position
-    setIsPlaying(false); // Reset video playing state
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    setIsPlaying(false);
+    document.body.style.overflow = 'hidden';
   };
 
-  // Close lightbox
   const closeLightbox = () => {
     setLightboxOpen(false);
     setScale(1);
@@ -440,10 +646,9 @@ const GalleryPage = () => {
     document.body.style.overflow = 'auto';
   };
 
-  // Navigate to next media
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % filteredMedia.length);
-    setScale(1); // Reset zoom when changing media
+    setScale(1);
     setPosition({ x: 0, y: 0 });
     setIsPlaying(false);
     if (videoRef.current) {
@@ -451,10 +656,9 @@ const GalleryPage = () => {
     }
   };
 
-  // Navigate to previous media
   const previousImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + filteredMedia.length) % filteredMedia.length);
-    setScale(1); // Reset zoom when changing media
+    setScale(1);
     setPosition({ x: 0, y: 0 });
     setIsPlaying(false);
     if (videoRef.current) {
@@ -465,7 +669,6 @@ const GalleryPage = () => {
   // ========================================
   // 🎬 VIDEO CONTROLS
   // ========================================
-  
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -478,42 +681,34 @@ const GalleryPage = () => {
   };
 
   // ========================================
-  // ZOOM CONTROLS (Like Mobile Photos App)
+  // ZOOM CONTROLS
   // ========================================
-  
-  // Zoom in (double-click or button)
   const zoomIn = () => {
-    setScale(prev => Math.min(prev + 0.5, 4)); // Max 4x zoom
+    setScale(prev => Math.min(prev + 0.5, 4));
   };
 
-  // Zoom out
   const zoomOut = () => {
     setScale(prev => {
-      const newScale = Math.max(prev - 0.5, 1); // Min 1x zoom
+      const newScale = Math.max(prev - 0.5, 1);
       if (newScale === 1) {
-        setPosition({ x: 0, y: 0 }); // Reset position when fully zoomed out
+        setPosition({ x: 0, y: 0 });
       }
       return newScale;
     });
   };
 
-  // Reset zoom to normal
   const resetZoom = () => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
   };
 
   // ========================================
-  // TOUCH GESTURES (Mobile-like Experience)
+  // TOUCH GESTURES
   // ========================================
-  
-  // Handle touch start (for swipe and pinch)
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
-      // Single finger - prepare for swipe
       setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
       if (scale > 1) {
-        // If zoomed, prepare for pan
         setIsDragging(true);
         setDragStart({
           x: e.touches[0].clientX - position.x,
@@ -521,7 +716,6 @@ const GalleryPage = () => {
         });
       }
     } else if (e.touches.length === 2) {
-      // Two fingers - prepare for pinch zoom
       const distance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
@@ -530,16 +724,13 @@ const GalleryPage = () => {
     }
   };
 
-  // Handle touch move (swipe or pinch)
   const handleTouchMove = (e: React.TouchEvent) => {
     if (e.touches.length === 1 && scale > 1 && isDragging) {
-      // Pan the zoomed image
       setPosition({
         x: e.touches[0].clientX - dragStart.x,
         y: e.touches[0].clientY - dragStart.y
       });
     } else if (e.touches.length === 2) {
-      // Pinch zoom
       const distance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
@@ -551,20 +742,17 @@ const GalleryPage = () => {
     }
   };
 
-  // Handle touch end (complete swipe)
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (e.changedTouches.length === 1 && scale === 1) {
-      // Swipe gesture (only when not zoomed)
       const touchEnd = { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
       const deltaX = touchEnd.x - touchStart.x;
       const deltaY = Math.abs(touchEnd.y - touchStart.y);
       
-      // Horizontal swipe (left/right) - must be more horizontal than vertical
       if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
         if (deltaX > 0) {
-          previousImage(); // Swipe right = previous
+          previousImage();
         } else {
-          nextImage(); // Swipe left = next
+          nextImage();
         }
       }
     }
@@ -572,10 +760,8 @@ const GalleryPage = () => {
   };
 
   // ========================================
-  // MOUSE CONTROLS (Desktop)
+  // MOUSE CONTROLS
   // ========================================
-  
-  // Mouse drag to pan when zoomed
   const handleMouseDown = (e: React.MouseEvent) => {
     if (scale > 1) {
       setIsDragging(true);
@@ -599,7 +785,6 @@ const GalleryPage = () => {
     setIsDragging(false);
   };
 
-  // Double-click to zoom (only for images)
   const handleDoubleClick = () => {
     const currentMedia = filteredMedia[currentImageIndex];
     if (currentMedia.type === 'image') {
@@ -611,7 +796,6 @@ const GalleryPage = () => {
     }
   };
 
-  // Keyboard navigation
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') previousImage();
@@ -625,9 +809,9 @@ const GalleryPage = () => {
     }
   };
 
-  // Get media to display (limited or all based on expansion)
+  // Get media to display
   const getDisplayMedia = () => {
-    const INITIAL_DISPLAY = 12; // Show 12 initially
+    const INITIAL_DISPLAY = 12;
     if (expandedCategories.includes(activeCategory)) {
       return filteredMedia;
     }
@@ -829,14 +1013,22 @@ const GalleryPage = () => {
                   onClick={() => openLightbox(index)}
                 >
                   <div className="aspect-[3/2] w-full h-full overflow-hidden">
-                    {/* Thumbnail Image */}
-                    <img
-                      src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
-                      alt={media.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {isDirectVideo(media) ? (
+                      <video
+                        src={media.url}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        muted
+                        playsInline
+                        preload="metadata"
+                      />
+                    ) : (
+                      <img
+                        src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
+                        alt={media.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
                     
-                    {/* Video Play Button Overlay */}
                     {media.type !== 'image' && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-all duration-300">
                         <div className="w-20 h-20 flex items-center justify-center bg-white/90 rounded-full shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
@@ -846,7 +1038,6 @@ const GalleryPage = () => {
                     )}
                   </div>
                   
-                  {/* Info Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#26194f]/90 via-[#26194f]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
                     <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <h3 className="text-white font-bold text-lg mb-2">{media.title}</h3>
@@ -856,7 +1047,6 @@ const GalleryPage = () => {
                           {media.type === 'image' ? 'View Image' : 'Watch Video'}
                         </span>
                       </div>
-                      {/* Media Type Badge */}
                       <div className="mt-2">
                         <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-semibold">
                           {media.type === 'image' ? '📸 Photo' : 
@@ -871,7 +1061,6 @@ const GalleryPage = () => {
             ))}
           </div>
 
-          {/* Load More / Show Less Button */}
           {filteredMedia.length > 12 && (
             <div className="text-center mt-12">
               <button
@@ -888,7 +1077,6 @@ const GalleryPage = () => {
             </div>
           )}
 
-          {/* Empty State */}
           {filteredMedia.length === 0 && (
             <div className="text-center py-20">
               <i className="ri-film-line text-6xl text-gray-300 mb-4"></i>
@@ -897,7 +1085,6 @@ const GalleryPage = () => {
             </div>
           )}
 
-          {/* Results Count */}
           <div className="text-center mt-12">
             <p className="text-gray-600 text-lg">
               Showing <strong className="text-[#26194f]">{displayMedia.length}</strong> of <strong className="text-[#26194f]">{filteredMedia.length}</strong> items
@@ -910,37 +1097,23 @@ const GalleryPage = () => {
       </section>
 
       {/* ========================================
-          🎬 MOBILE-LIKE LIGHTBOX VIEWER WITH VIDEO SUPPORT
-          ========================================
-          Features:
-          - Swipe left/right to navigate
-          - Pinch to zoom in/out (images only)
-          - Double-click/tap to zoom (images only)
-          - Drag to pan when zoomed (images only)
-          - Video playback controls
-          - YouTube/Vimeo embedding
-          - Keyboard controls (arrows, space, +/-, ESC)
-          - Smooth animations
+          🎬 ENHANCED LIGHTBOX VIEWER
           ======================================== */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 bg-black/98 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black z-50 flex items-center justify-center"
           onClick={(e) => {
-            // Close only if clicking the background (not the media)
             if (e.target === e.currentTarget) closeLightbox();
           }}
           onKeyDown={handleKeyPress}
           tabIndex={0}
         >
-          {/* Top Bar with Controls */}
-          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-6 z-50">
+          {/* Top Bar */}
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/90 to-transparent p-6 z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-              {/* Media Info */}
               <div className="text-white">
                 <div className="flex items-center gap-3 mb-1">
-                  <h3 className="text-xl font-bold">
-                    {filteredMedia[currentImageIndex].title}
-                  </h3>
+                  <h3 className="text-xl font-bold">{filteredMedia[currentImageIndex].title}</h3>
                   <span className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-semibold">
                     {filteredMedia[currentImageIndex].type === 'image' ? '📸 Photo' : '🎬 Video'}
                   </span>
@@ -957,7 +1130,7 @@ const GalleryPage = () => {
                     <button
                       onClick={zoomOut}
                       disabled={scale <= 1}
-                      className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                       title="Zoom Out (-)"
                     >
                       <i className="ri-zoom-out-line text-white text-xl"></i>
@@ -968,14 +1141,14 @@ const GalleryPage = () => {
                     <button
                       onClick={zoomIn}
                       disabled={scale >= 4}
-                      className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                       title="Zoom In (+)"
                     >
                       <i className="ri-zoom-in-line text-white text-xl"></i>
                     </button>
                     <button
                       onClick={resetZoom}
-                      className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer"
                       title="Reset Zoom (0)"
                     >
                       <i className="ri-fullscreen-exit-line text-white text-xl"></i>
@@ -984,42 +1157,42 @@ const GalleryPage = () => {
                 )}
                 <button
                   onClick={closeLightbox}
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer ml-4"
+                  className="w-10 h-10 flex items-center justify-center bg-white hover:bg-amber-400 rounded-full transition-all duration-300 cursor-pointer ml-4"
                   title="Close (ESC)"
                 >
-                  <i className="ri-close-line text-white text-2xl"></i>
+                  <i className="ri-close-line text-black text-2xl"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Previous Button */}
+          {/* Previous Button - SOLID WHITE FOR VISIBILITY */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               previousImage();
             }}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+            className="absolute left-6 top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center bg-white hover:bg-amber-400 rounded-full transition-all duration-300 cursor-pointer z-50 shadow-2xl"
             title="Previous (←)"
           >
-            <i className="ri-arrow-left-line text-white text-3xl"></i>
+            <i className="ri-arrow-left-s-line text-black text-4xl"></i>
           </button>
 
-          {/* Next Button */}
+          {/* Next Button - SOLID WHITE FOR VISIBILITY */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               nextImage();
             }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+            className="absolute right-6 top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center bg-white hover:bg-amber-400 rounded-full transition-all duration-300 cursor-pointer z-50 shadow-2xl"
             title="Next (→)"
           >
-            <i className="ri-arrow-right-line text-white text-3xl"></i>
+            <i className="ri-arrow-right-s-line text-black text-4xl"></i>
           </button>
 
-          {/* Media Container with Zoom & Pan */}
+          {/* Media Container */}
           <div 
-            className="relative max-w-7xl max-h-[90vh] w-full px-20 overflow-hidden"
+            className="relative max-w-7xl max-h-[90vh] w-full px-24"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -1029,7 +1202,6 @@ const GalleryPage = () => {
             onMouseLeave={handleMouseUp}
             onDoubleClick={handleDoubleClick}
           >
-            {/* Render Image */}
             {filteredMedia[currentImageIndex].type === 'image' && (
               <img
                 ref={imageRef}
@@ -1045,53 +1217,44 @@ const GalleryPage = () => {
               />
             )}
 
-            {/* Render Direct Video (MP4, WebM, etc.) */}
             {filteredMedia[currentImageIndex].type === 'video' && (
-              <div className="relative w-full h-full flex items-center justify-center">
-                <video
-                  ref={videoRef}
-                  src={filteredMedia[currentImageIndex].url}
-                  className="w-full h-full object-contain max-h-[80vh] rounded-lg"
-                  controls
-                  autoPlay
-                  onPlay={() => setIsPlaying(true)}
-                  onPause={() => setIsPlaying(false)}
-                />
-              </div>
+              <video
+                ref={videoRef}
+                src={filteredMedia[currentImageIndex].url}
+                className="w-full h-full object-contain max-h-[80vh] rounded-lg"
+                controls
+                autoPlay
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              />
             )}
 
-            {/* Render YouTube Video */}
             {filteredMedia[currentImageIndex].type === 'youtube' && (
-              <div className="relative w-full h-full flex items-center justify-center">
-                <iframe
-                  src={getYouTubeEmbedUrl(filteredMedia[currentImageIndex].url)}
-                  className="w-full h-full max-h-[80vh] rounded-lg"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ aspectRatio: '16/9' }}
-                />
-              </div>
+              <iframe
+                src={`https://www.youtube.com/embed/${filteredMedia[currentImageIndex].url}?autoplay=1&rel=0`}
+                className="w-full h-full max-h-[80vh] rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ aspectRatio: '16/9' }}
+              />
             )}
 
-            {/* Render Vimeo Video */}
             {filteredMedia[currentImageIndex].type === 'vimeo' && (
-              <div className="relative w-full h-full flex items-center justify-center">
-                <iframe
-                  src={getVimeoEmbedUrl(filteredMedia[currentImageIndex].url)}
-                  className="w-full h-full max-h-[80vh] rounded-lg"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  style={{ aspectRatio: '16/9' }}
-                />
-              </div>
+              <iframe
+                src={`https://player.vimeo.com/video/${filteredMedia[currentImageIndex].url}?autoplay=1`}
+                className="w-full h-full max-h-[80vh] rounded-lg"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                style={{ aspectRatio: '16/9' }}
+              />
             )}
           </div>
 
-          {/* Bottom Hint Bar */}
+          {/* Bottom Hint */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/60 text-sm bg-black/50 px-6 py-3 rounded-full backdrop-blur-sm">
             <span className="flex items-center gap-2">
               <i className="ri-arrow-left-right-line"></i>
-              <span>Arrow Keys to Navigate</span>
+              <span>Swipe or Arrow Keys</span>
             </span>
             {filteredMedia[currentImageIndex].type === 'image' && (
               <>
@@ -1104,15 +1267,6 @@ const GalleryPage = () => {
                 <span className="flex items-center gap-2">
                   <i className="ri-drag-move-line"></i>
                   <span>Drag when Zoomed</span>
-                </span>
-              </>
-            )}
-            {filteredMedia[currentImageIndex].type === 'video' && (
-              <>
-                <span className="w-px h-4 bg-white/30"></span>
-                <span className="flex items-center gap-2">
-                  <i className="ri-play-line"></i>
-                  <span>Space to Play/Pause</span>
                 </span>
               </>
             )}

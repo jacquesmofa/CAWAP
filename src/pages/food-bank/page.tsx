@@ -32,91 +32,238 @@ const FoodBankPage = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showAllMedia, setShowAllMedia] = useState(false);
+  
+  // ========================================
+  // 🔍 ZOOM & PAN STATE (Mobile-like Experience)
+  // ========================================
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
 
   // ========================================
   // 🎬 FOOD BANK GALLERY MEDIA - IMGUR LINKS
   // ========================================
-  // 📝 HOW TO ADD YOUR IMGUR MEDIA:
-  // --------------------------------
-  // 1. Upload your image/video to Imgur (https://imgur.com/upload)
-  // 2. Right-click on the uploaded media and select "Copy image address" or "Copy video address"
-  // 3. Add it to the array below using this format:
-  //
-  // FOR IMAGES:
-  // {
-  //   url: 'https://i.imgur.com/YOUR_IMAGE_ID.jpg',  // Direct Imgur link
-  //   category: 'food-bank',
-  //   title: 'Descriptive Title Here',
-  //   type: 'image'
-  // },
-  //
-  // FOR VIDEOS (MP4):
-  // {
-  //   url: 'https://i.imgur.com/YOUR_VIDEO_ID.mp4',  // Direct Imgur video link
-  //   category: 'food-bank',
-  //   title: 'Video Title Here',
-  //   type: 'video',
-  //   thumbnail: 'https://i.imgur.com/THUMBNAIL_ID.jpg'  // Optional: custom thumbnail
-  // },
-  //
-  // FOR YOUTUBE VIDEOS:
-  // {
-  //   url: 'dQw4w9WgXcQ',  // Just the video ID from youtube.com/watch?v=VIDEO_ID
-  //   category: 'food-bank',
-  //   title: 'YouTube Video Title',
-  //   type: 'youtube'
-  // },
-  //
-  // EXAMPLE WITH REAL IMGUR LINKS:
-  // {
-  //   url: 'https://i.imgur.com/yOjIsCg.mp4',
-  //   category: 'food-bank',
-  //   title: 'Food Bank Behind the Scenes',
-  //   type: 'video'
-  // },
-
   const galleryMedia: GalleryMedia[] = [
     // ========================================
-    // 📸 ADD YOUR IMGUR LINKS HERE
+    // 🆕 YOUR UPLOADED IMGUR MEDIA
     // ========================================
-    // Replace the placeholder images below with your actual Imgur links
-    // Keep the same format: { url: '...', category: 'food-bank', title: '...', type: '...' }
-    
     {
-      url: 'https://readdy.ai/api/search-image?query=welcoming%20community%20food%20bank%20volunteers%20organizing%20fresh%20produce%20and%20groceries%20on%20shelves%2C%20diverse%20team%20working%20together%20in%20bright%20organized%20space%2C%20professional%20photography%20showing%20community%20service%20and%20food%20security%20support%2C%20warm%20lighting%20with%20abundant%20fresh%20vegetables%20and%20nutritious%20food%20items&width=600&height=400&seq=food-bank-gallery-1&orientation=landscape',
+      url: 'https://i.imgur.com/BC1q7BM.mp4',
       category: 'food-bank',
-      title: 'Food Bank Organization',
+      title: 'Food Bank Community Service',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/oR8HMYG.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Distribution',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=volunteers%20distributing%20food%20packages%20to%20grateful%20families%20at%20community%20food%20bank%2C%20heartwarming%20scene%20of%20diverse%20people%20helping%20neighbors%2C%20professional%20photography%20capturing%20compassion%20and%20community%20care%2C%20bright%20welcoming%20atmosphere%20with%20families%20receiving%20nutritious%20food%20assistance&width=600&height=400&seq=food-bank-gallery-2&orientation=landscape',
+      url: 'https://i.imgur.com/17Ulbds.jpeg',
+      category: 'food-bank',
+      title: 'Community Food Support',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/1Ffbe7s.jpeg',
+      category: 'food-bank',
+      title: 'Volunteers Serving Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/170Vb4O.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Operations',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/6ct2avj.jpeg',
+      category: 'food-bank',
+      title: 'Fresh Produce Distribution',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/GzRBUIL.jpeg',
+      category: 'food-bank',
+      title: 'Community Support Program',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/8HywFU0.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Volunteers',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/w3qFtnc.jpeg',
+      category: 'food-bank',
+      title: 'Helping Families in Need',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/WBB46bN.jpeg',
       category: 'food-bank',
       title: 'Food Distribution Day',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=community%20volunteers%20sorting%20and%20packing%20fresh%20vegetables%20and%20canned%20goods%20at%20food%20bank%2C%20organized%20teamwork%20in%20modern%20facility%2C%20professional%20photography%20showing%20efficient%20food%20pantry%20operations%2C%20bright%20clean%20space%20with%20diverse%20volunteers%20working%20together&width=600&height=400&seq=food-bank-gallery-3&orientation=landscape',
+      url: 'https://i.imgur.com/Mg6nAsU.jpeg',
       category: 'food-bank',
-      title: 'Food Sorting & Packing',
+      title: 'Community Food Service',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=community%20food%20drive%20collection%20with%20donated%20groceries%20and%20fresh%20produce%2C%20volunteers%20receiving%20food%20donations%20from%20generous%20community%20members%2C%20professional%20photography%20showing%20charitable%20giving%20and%20community%20support%2C%20bright%20welcoming%20space%20with%20abundant%20food%20donations&width=600&height=400&seq=food-bank-gallery-4&orientation=landscape',
+      url: 'https://i.imgur.com/zbUXd2p.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Team',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/IJS3mqV.jpeg',
+      category: 'food-bank',
+      title: 'Serving Our Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/mLcuQLC.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Support',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/588OQCw.jpeg',
+      category: 'food-bank',
+      title: 'Community Assistance',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/5ot2TK0.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Services',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/rY6UObw.jpeg',
+      category: 'food-bank',
+      title: 'Helping Hands',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/CTmF9im.jpeg',
+      category: 'food-bank',
+      title: 'Food Distribution Center',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/yPxZjRA.jpeg',
+      category: 'food-bank',
+      title: 'Community Care',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/n3Jsz7o.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Outreach',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/qA03Epj.jpeg',
+      category: 'food-bank',
+      title: 'Supporting Families',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/UhAuitr.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Program',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/b3TkBal.jpeg',
       category: 'food-bank',
       title: 'Community Food Drive',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=food%20bank%20warehouse%20with%20shelves%20stocked%20full%20of%20nutritious%20groceries%20and%20canned%20goods%2C%20organized%20inventory%20system%20for%20community%20food%20assistance%2C%20professional%20photography%20showing%20food%20security%20infrastructure%2C%20bright%20warehouse%20with%20volunteers%20managing%20food%20supplies&width=600&height=400&seq=food-bank-gallery-5&orientation=landscape',
+      url: 'https://i.imgur.com/XJZno66.jpeg',
       category: 'food-bank',
-      title: 'Food Bank Warehouse',
+      title: 'Food Bank Initiative',
       type: 'image'
     },
     {
-      url: 'https://readdy.ai/api/search-image?query=volunteers%20loading%20food%20boxes%20into%20delivery%20van%20for%20home%20delivery%20service%2C%20community%20food%20bank%20outreach%20program%20bringing%20groceries%20to%20seniors%2C%20professional%20photography%20showing%20mobile%20food%20assistance%2C%20bright%20outdoor%20scene%20with%20volunteers%20carrying%20food%20boxes&width=600&height=400&seq=food-bank-gallery-6&orientation=landscape',
+      url: 'https://i.imgur.com/RiVzV7Z.jpeg',
       category: 'food-bank',
-      title: 'Food Delivery Service',
+      title: 'Volunteer Service',
       type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/tCDZe9y.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Support Team',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/jYjeSn8.jpeg',
+      category: 'food-bank',
+      title: 'Community Outreach',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/hScsVRj.jpeg',
+      category: 'food-bank',
+      title: 'Food Distribution Event',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/MVVCwt3.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Activities',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/mclwM4z.jpeg',
+      category: 'food-bank',
+      title: 'Community Support Services',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/Y4kDYFn.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Mission',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/2BRYDJH.jpeg',
+      category: 'food-bank',
+      title: 'Food Bank Community',
+      type: 'image'
+    },
+    {
+      url: 'https://i.imgur.com/NAMUcJe.mp4',
+      category: 'food-bank',
+      title: 'Food Bank in Action',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/2VczVr3.mp4',
+      category: 'food-bank',
+      title: 'Community Food Service Video',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/QDy0ykb.mp4',
+      category: 'food-bank',
+      title: 'Food Distribution Process',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/7hkuQcS.mp4',
+      category: 'food-bank',
+      title: 'Volunteers at Work',
+      type: 'video'
     },
     {
       url: 'https://i.imgur.com/yOjIsCg.mp4',
@@ -124,15 +271,102 @@ const FoodBankPage = () => {
       title: 'Food Bank Behind the Scenes',
       type: 'video'
     },
+    {
+      url: 'https://i.imgur.com/ZKE4jdk.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Daily Operations',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Wg8u6q7.mp4',
+      category: 'food-bank',
+      title: 'Community Food Distribution',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/39vOfv1.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Volunteer Team',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/b350p61.mp4',
+      category: 'food-bank',
+      title: 'Serving Our Community',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/j9m02xS.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Support Services',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/qU4ZlDY.mp4',
+      category: 'food-bank',
+      title: 'Community Member Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/gCrFr1l.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Impact Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Iz8yKq4.mp4',
+      category: 'food-bank',
+      title: 'Grateful Family Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/dLAEuD1.mp4',
+      category: 'food-bank',
+      title: 'Community Support Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/SoRCEVT.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Client Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/v46xFZk.mp4',
+      category: 'food-bank',
+      title: 'Volunteer Experience Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/olelWob.mp4',
+      category: 'food-bank',
+      title: 'Community Impact Testimonial',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/sF4KMod.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Success Story',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/Dd4E9qi.mp4',
+      category: 'food-bank',
+      title: 'Food Bank Program Overview',
+      type: 'video'
+    },
+    {
+      url: 'https://i.imgur.com/QYKpGTw.mp4',
+      category: 'food-bank',
+      title: 'Community Food Support',
+      type: 'video'
+    },
   ];
 
   // ========================================
   // 🎬 GALLERY DISPLAY LOGIC
   // ========================================
-  // Filter media by category (all food-bank items)
   const filteredMedia = galleryMedia;
-  
-  // Show first 6 items initially, or all if expanded
   const INITIAL_DISPLAY_COUNT = 6;
   const displayMedia = showAllMedia ? filteredMedia : filteredMedia.slice(0, INITIAL_DISPLAY_COUNT);
   const hasMoreMedia = filteredMedia.length > INITIAL_DISPLAY_COUNT;
@@ -140,56 +374,161 @@ const FoodBankPage = () => {
   // ========================================
   // 🎬 VIDEO HELPER FUNCTIONS
   // ========================================
-  // Generate thumbnail for videos
   const getVideoThumbnail = (media: GalleryMedia): string => {
-    // If custom thumbnail is provided, use it
     if (media.thumbnail) return media.thumbnail;
-    
-    // For YouTube videos, use YouTube's thumbnail service
     if (media.type === 'youtube') {
       return `https://img.youtube.com/vi/${media.url}/maxresdefault.jpg`;
     }
-    
-    // For Vimeo videos, use placeholder (Vimeo requires API for thumbnails)
-    if (media.type === 'vimeo') {
-      return 'https://readdy.ai/api/search-image?query=video%20thumbnail%20placeholder%20with%20play%20button&width=600&height=400&seq=vimeo-thumb&orientation=landscape';
+    // For mp4 videos, return the video URL itself to use as poster
+    if (media.type === 'video' && media.url.endsWith('.mp4')) {
+      return media.url;
     }
-    
-    // For direct video files (MP4, WebM), use placeholder
     return 'https://readdy.ai/api/search-image?query=video%20thumbnail%20placeholder%20with%20play%20button&width=600&height=400&seq=video-thumb&orientation=landscape';
+  };
+
+  // Check if media is a direct video file
+  const isDirectVideo = (media: GalleryMedia): boolean => {
+    return media.type === 'video' && (media.url.endsWith('.mp4') || media.url.endsWith('.webm') || media.url.endsWith('.mov'));
   };
 
   // ========================================
   // 🎬 LIGHTBOX CONTROLS
   // ========================================
-  // Open lightbox viewer
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    document.body.style.overflow = 'hidden';
   };
 
-  // Close lightbox viewer
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    document.body.style.overflow = 'auto';
   };
 
-  // Navigate to next media item
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % filteredMedia.length);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
   };
 
-  // Navigate to previous media item
   const previousImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + filteredMedia.length) % filteredMedia.length);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
   };
 
-  // Keyboard navigation for lightbox
+  // ========================================
+  // 🔍 ZOOM CONTROLS
+  // ========================================
+  const zoomIn = () => {
+    setScale(prev => Math.min(prev + 0.5, 4));
+  };
+
+  const zoomOut = () => {
+    setScale(prev => {
+      const newScale = Math.max(prev - 0.5, 1);
+      if (newScale === 1) {
+        setPosition({ x: 0, y: 0 });
+      }
+      return newScale;
+    });
+  };
+
+  const resetZoom = () => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  // ========================================
+  // 👆 TOUCH GESTURES
+  // ========================================
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+      if (scale > 1) {
+        setIsDragging(true);
+        setDragStart({
+          x: e.touches[0].clientX - position.x,
+          y: e.touches[0].clientY - position.y
+        });
+      }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 1 && scale > 1 && isDragging) {
+      setPosition({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.changedTouches.length === 1 && scale === 1) {
+      const touchEnd = { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+      const deltaX = touchEnd.x - touchStart.x;
+      const deltaY = Math.abs(touchEnd.y - touchStart.y);
+      
+      if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+        if (deltaX > 0) {
+          previousImage();
+        } else {
+          nextImage();
+        }
+      }
+    }
+    setIsDragging(false);
+  };
+
+  // ========================================
+  // 🖱️ MOUSE CONTROLS
+  // ========================================
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.clientX - position.x,
+        y: e.clientY - position.y
+      });
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && scale > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleDoubleClick = () => {
+    const currentMedia = filteredMedia[currentImageIndex];
+    if (currentMedia.type === 'image') {
+      if (scale === 1) {
+        zoomIn();
+      } else {
+        resetZoom();
+      }
+    }
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') previousImage();
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === '+' || e.key === '=') zoomIn();
+    if (e.key === '-' || e.key === '_') zoomOut();
+    if (e.key === '0') resetZoom();
   };
 
   // ========================================
@@ -327,14 +666,7 @@ const FoodBankPage = () => {
         </section>
 
         {/* ========================================
-            📸 FOOD BANK IN PICTURES - HYBRID GALLERY SECTION - NOW SECOND
-            ========================================
-            This section displays both images and videos from Imgur
-            Features:
-            - Mixed media gallery (photos + videos)
-            - Lightbox viewer with navigation
-            - "View Full Gallery" button
-            - Load more functionality
+            📸 FOOD BANK IN PICTURES - ENHANCED GALLERY
             ======================================== */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
@@ -371,13 +703,22 @@ const FoodBankPage = () => {
                       onClick={() => openLightbox(index)}
                     >
                       <div className="aspect-[3/2] w-full h-full overflow-hidden">
-                        <img
-                          src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
-                          alt={media.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                        {isDirectVideo(media) ? (
+                          <video
+                            src={media.url}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            muted
+                            playsInline
+                            preload="metadata"
+                          />
+                        ) : (
+                          <img
+                            src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
+                            alt={media.title}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        )}
                         
-                        {/* Video Play Button Overlay */}
                         {media.type !== 'image' && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-all duration-300">
                             <div className="w-20 h-20 flex items-center justify-center bg-white/90 rounded-full shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
@@ -387,7 +728,6 @@ const FoodBankPage = () => {
                         )}
                       </div>
                       
-                      {/* Info Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#c9b037]/90 via-[#c9b037]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
                         <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                           <h3 className="text-white font-bold text-lg mb-2">{media.title}</h3>
@@ -411,7 +751,6 @@ const FoodBankPage = () => {
 
               {/* Action Buttons Row */}
               <div className="flex flex-wrap items-center justify-center gap-4">
-                {/* Load More / Show Less Button */}
                 {hasMoreMedia && (
                   <button
                     onClick={() => setShowAllMedia(!showAllMedia)}
@@ -426,7 +765,6 @@ const FoodBankPage = () => {
                   </button>
                 )}
 
-                {/* View Full Gallery Button */}
                 <Link
                   to="/gallery"
                   className="inline-flex items-center gap-3 bg-white border-2 border-[#c9b037] text-[#c9b037] px-8 py-4 rounded-full font-semibold hover:bg-[#c9b037] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
@@ -437,7 +775,6 @@ const FoodBankPage = () => {
                 </Link>
               </div>
 
-              {/* Results Count */}
               <div className="text-center mt-8">
                 <p className="text-gray-600 text-lg">
                   Showing <strong className="text-[#c9b037]">{displayMedia.length}</strong> of <strong className="text-[#c9b037]">{filteredMedia.length}</strong> items
@@ -448,18 +785,11 @@ const FoodBankPage = () => {
         </section>
 
         {/* ========================================
-            🎬 LIGHTBOX VIEWER
-            ========================================
-            Full-screen viewer for images and videos
-            Features:
-            - Keyboard navigation (arrows, ESC)
-            - Previous/Next buttons
-            - Video playback support
-            - YouTube/Vimeo embedding
+            🎬 ENHANCED LIGHTBOX VIEWER
             ======================================== */}
         {lightboxOpen && (
           <div 
-            className="fixed inset-0 bg-black/98 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black z-50 flex items-center justify-center"
             onClick={(e) => {
               if (e.target === e.currentTarget) closeLightbox();
             }}
@@ -467,60 +797,113 @@ const FoodBankPage = () => {
             tabIndex={0}
           >
             {/* Top Bar */}
-            <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-6 z-50">
+            <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/90 to-transparent p-6 z-50">
               <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="text-white">
-                  <h3 className="text-xl font-bold mb-1">{filteredMedia[currentImageIndex].title}</h3>
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-xl font-bold">{filteredMedia[currentImageIndex].title}</h3>
+                    <span className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-semibold">
+                      {filteredMedia[currentImageIndex].type === 'image' ? '📸 Photo' : '🎬 Video'}
+                    </span>
+                  </div>
                   <p className="text-white/70 text-sm">
                     {currentImageIndex + 1} of {filteredMedia.length}
                   </p>
                 </div>
-                <button
-                  onClick={closeLightbox}
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer"
-                  title="Close (ESC)"
-                >
-                  <i className="ri-close-line text-white text-2xl"></i>
-                </button>
+
+                {/* Zoom Controls (Images Only) */}
+                <div className="flex items-center gap-3">
+                  {filteredMedia[currentImageIndex].type === 'image' && (
+                    <>
+                      <button
+                        onClick={zoomOut}
+                        disabled={scale <= 1}
+                        className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Zoom Out (-)"
+                      >
+                        <i className="ri-zoom-out-line text-white text-xl"></i>
+                      </button>
+                      <span className="text-white text-sm font-semibold min-w-[60px] text-center">
+                        {Math.round(scale * 100)}%
+                      </span>
+                      <button
+                        onClick={zoomIn}
+                        disabled={scale >= 4}
+                        className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Zoom In (+)"
+                      >
+                        <i className="ri-zoom-in-line text-white text-xl"></i>
+                      </button>
+                      <button
+                        onClick={resetZoom}
+                        className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer"
+                        title="Reset Zoom (0)"
+                      >
+                        <i className="ri-fullscreen-exit-line text-white text-xl"></i>
+                      </button>
+                    </>
+                  )}
+                  <button
+                    onClick={closeLightbox}
+                    className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 cursor-pointer ml-4"
+                    title="Close (ESC)"
+                  >
+                    <i className="ri-close-line text-white text-2xl"></i>
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Previous Button */}
+            {/* Previous Button - More Visible */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 previousImage();
               }}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center bg-white text-gray-800 hover:bg-[#c9b037] hover:text-white rounded-full transition-all duration-300 cursor-pointer z-50 shadow-2xl"
               title="Previous (←)"
             >
-              <i className="ri-arrow-left-line text-white text-3xl"></i>
+              <i className="ri-arrow-left-s-line text-4xl"></i>
             </button>
 
-            {/* Next Button */}
+            {/* Next Button - More Visible */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 cursor-pointer z-50"
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center bg-white text-gray-800 hover:bg-[#c9b037] hover:text-white rounded-full transition-all duration-300 cursor-pointer z-50 shadow-2xl"
               title="Next (→)"
             >
-              <i className="ri-arrow-right-line text-white text-3xl"></i>
+              <i className="ri-arrow-right-s-line text-4xl"></i>
             </button>
 
             {/* Media Container */}
-            <div className="relative max-w-7xl max-h-[90vh] w-full px-20">
-              {/* Render Image */}
+            <div 
+              className="relative max-w-7xl max-h-[90vh] w-full px-24"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onDoubleClick={handleDoubleClick}
+            >
               {filteredMedia[currentImageIndex].type === 'image' && (
                 <img
                   src={filteredMedia[currentImageIndex].url}
                   alt={filteredMedia[currentImageIndex].title}
-                  className="w-full h-full object-contain max-h-[80vh] rounded-lg"
+                  className="w-full h-full object-contain max-h-[80vh] rounded-lg select-none"
+                  style={{
+                    transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
+                    transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+                    cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                  }}
+                  draggable={false}
                 />
               )}
 
-              {/* Render Direct Video (MP4, WebM) */}
               {filteredMedia[currentImageIndex].type === 'video' && (
                 <video
                   src={filteredMedia[currentImageIndex].url}
@@ -530,7 +913,6 @@ const FoodBankPage = () => {
                 />
               )}
 
-              {/* Render YouTube Video */}
               {filteredMedia[currentImageIndex].type === 'youtube' && (
                 <iframe
                   src={`https://www.youtube.com/embed/${filteredMedia[currentImageIndex].url}?autoplay=1&rel=0`}
@@ -541,7 +923,6 @@ const FoodBankPage = () => {
                 />
               )}
 
-              {/* Render Vimeo Video */}
               {filteredMedia[currentImageIndex].type === 'vimeo' && (
                 <iframe
                   src={`https://player.vimeo.com/video/${filteredMedia[currentImageIndex].url}?autoplay=1`}
@@ -554,8 +935,25 @@ const FoodBankPage = () => {
             </div>
 
             {/* Bottom Hint */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm bg-black/50 px-6 py-3 rounded-full backdrop-blur-sm">
-              Use arrow keys to navigate • ESC to close
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/80 text-sm bg-white/10 px-6 py-3 rounded-full backdrop-blur-sm">
+              <span className="flex items-center gap-2">
+                <i className="ri-arrow-left-right-line"></i>
+                <span>Swipe or Arrow Keys</span>
+              </span>
+              {filteredMedia[currentImageIndex].type === 'image' && (
+                <>
+                  <span className="w-px h-4 bg-white/30"></span>
+                  <span className="flex items-center gap-2">
+                    <i className="ri-zoom-in-line"></i>
+                    <span>Double-click to Zoom</span>
+                  </span>
+                  <span className="w-px h-4 bg-white/30"></span>
+                  <span className="flex items-center gap-2">
+                    <i className="ri-drag-move-line"></i>
+                    <span>Drag when Zoomed</span>
+                  </span>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -801,30 +1199,55 @@ const FoodBankPage = () => {
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
                       <i className="fas fa-clock text-3xl"></i>
                     </div>
-                    <h3 className="text-3xl font-bold mb-8">Operating Hours</h3>
+                    <h3 className="text-3xl font-bold mb-8">Food Bank Hours</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                        <span className="font-semibold">Monday - Friday</span>
-                        <span>9:00 AM - 5:00 PM</span>
+                      <div className="pb-4 border-b border-white/20">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="font-semibold text-[#c9b037]">Food Bank Distribution</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span>Every Friday</span>
+                          <span>12:00 PM - 4:00 PM</span>
+                        </div>
+                      </div>
+                      <div className="pb-4 border-b border-white/20">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="font-semibold text-[#c9b037]">Special Weekly Program</span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <Link 
+                            to="/heart-wise-seniors" 
+                            className="hover:text-[#c9b037] transition-colors cursor-pointer underline decoration-white/50 hover:decoration-[#c9b037]"
+                          >
+                            Heart Wise Seniors Day
+                          </Link>
+                          <span className="text-white/80 text-sm">For Seniors Only</span>
+                          <div className="flex justify-between items-center mt-1">
+                            <span>Every Tuesday</span>
+                          </div>
+                        </div>
                       </div>
                       <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                        <span className="font-semibold">Saturday</span>
-                        <span>10:00 AM - 3:00 PM</span>
-                      </div>
-                      <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                        <span className="font-semibold">Sunday</span>
-                        <span>Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-semibold">Emergency Line</span>
-                        <span>24/7 Available</span>
+                        <span className="font-semibold">Phone Inquiries</span>
+                        <a href="tel:+16475815901" className="hover:text-[#c9b037] transition-colors">
+                          +1 (647) 581-5901
+                        </a>
                       </div>
                     </div>
                     <div className="mt-8 p-4 bg-white/10 rounded-lg">
-                      <p className="text-sm">
+                      <p className="text-sm mb-3">
                         <i className="fas fa-info-circle mr-2"></i>
-                        Special holiday hours may apply. Please call ahead to confirm.
+                        Registration is required for food bank services.
                       </p>
+                      <a
+                        href="https://forms.gle/PVfPTUivUHr8tU9n9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#c9b037] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#b39f2f] transition-all whitespace-nowrap cursor-pointer"
+                      >
+                        <i className="fas fa-clipboard-list"></i>
+                        Register for Food Bank
+                      </a>
                     </div>
                   </div>
                 </ScrollReveal>
