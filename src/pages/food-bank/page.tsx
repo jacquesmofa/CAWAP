@@ -555,7 +555,7 @@ const FoodBankPage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://readdy.ai/api/search-image?query=welcoming%20community%20food%20bank%20interior%20with%20organized%20shelves%20full%20of%20fresh%20produce%20vegetables%20fruits%20and%20nutritious%20groceries%2C%20bright%20clean%20modern%20space%20with%20volunteers%20helping%20diverse%20families%2C%20professional%20photography%20showing%20compassion%20dignity%20and%20hope%2C%20warm%20natural%20lighting%20creating%20caring%20supportive%20atmosphere%2C%20high%20quality%20image%20representing%20food%20security%20and%20community%20support%20programs&width=1920&height=600&seq=food-bank-hero-main&orientation=landscape')",
+            backgroundImage: "url('https://i.imgur.com/tCDZe9y.jpeg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"></div>
@@ -604,7 +604,7 @@ const FoodBankPage = () => {
                 <ScrollReveal>
                   <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                     <img
-                      src="https://readdy.ai/api/search-image?query=diverse%20volunteers%20organizing%20fresh%20vegetables%20fruits%20and%20healthy%20food%20donations%20in%20bright%20community%20food%20bank%2C%20people%20working%20together%20sorting%20nutritious%20groceries%2C%20professional%20photography%20showing%20teamwork%20compassion%20and%20community%20spirit%2C%20warm%20lighting%20creating%20welcoming%20supportive%20atmosphere&width=600&height=400&seq=food-bank-volunteers-1&orientation=landscape"
+                      src="https://i.imgur.com/mclwM4z.jpeg"
                       alt="Food Bank Volunteers"
                       className="w-full h-full object-cover"
                     />
