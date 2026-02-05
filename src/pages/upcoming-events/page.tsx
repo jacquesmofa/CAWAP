@@ -1,88 +1,41 @@
 
+import { useState } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
+import { getUpcomingFlyers, Flyer } from '../../data/flyers';
 
 const UpcomingEventsPage = () => {
   // ========================================
-  // UPCOMING EVENTS DATA
+  // 🔄 AUTOMATIC EVENT SYSTEM
   // ========================================
-  // Each event has a registration link (Google Form or internal page)
-  // You can easily update these links when events change
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Christmas Celebration 2024',
-      date: 'December 25, 2024',
-      time: '2:00 PM - 6:00 PM',
-      location: '101 West Dr Unit C2, Brampton, ON L6T 2J6',
-      description: 'Join us for our annual Christmas celebration with food, music, and community fellowship.',
-      image: 'https://readdy.ai/api/search-image?query=joyful%20christmas%20community%20celebration%20with%20diverse%20families%20enjoying%20festive%20decorations%20and%20holiday%20activities%2C%20warm%20indoor%20gathering%20with%20christmas%20tree%20and%20colorful%20lights%2C%20professional%20photography%20showing%20multicultural%20holiday%20celebration%2C%20african%20and%20caribbean%20families%20celebrating%20christmas%20together%20with%20food%20and%20music&width=600&height=400&seq=upcoming-christmas&orientation=landscape',
-      category: 'Community',
-      registrationLink: '/christmas-event', // Internal page
-      registrationType: 'internal'
-    },
-    {
-      id: 2,
-      title: 'Youth Leadership Summit',
-      date: 'January 15, 2025',
-      time: '9:00 AM - 4:00 PM',
-      location: 'Community Center, Brampton',
-      description: 'Empowering young leaders with skills, mentorship, and networking opportunities.',
-      image: 'https://readdy.ai/api/search-image?query=diverse%20youth%20leadership%20conference%20with%20teenagers%20engaged%20in%20workshop%20activities%2C%20inspiring%20young%20leaders%20learning%20skills%20in%20modern%20bright%20venue%2C%20professional%20photography%20showing%20youth%20empowerment%20and%20mentorship%2C%20african%20and%20caribbean%20youth%20participating%20in%20leadership%20training&width=600&height=400&seq=upcoming-youth-summit&orientation=landscape',
-      category: 'Youth',
-      registrationLink: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform', // Google Form
-      registrationType: 'google-form'
-    },
-    {
-      id: 3,
-      title: 'Women Empowerment Workshop',
-      date: 'February 8, 2025',
-      time: '10:00 AM - 2:00 PM',
-      location: 'CAWAP Office, Brampton',
-      description: 'Professional development and networking for women entrepreneurs and professionals.',
-      image: 'https://readdy.ai/api/search-image?query=professional%20women%20empowerment%20workshop%20with%20diverse%20women%20in%20business%20attire%20networking%20and%20learning%2C%20inspiring%20female%20leadership%20development%20seminar%2C%20professional%20photography%20showing%20women%20entrepreneurs%20and%20professionals%2C%20bright%20modern%20conference%20room%20with%20engaged%20participants&width=600&height=400&seq=upcoming-women-workshop&orientation=landscape',
-      category: 'Women',
-      registrationLink: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform', // Google Form
-      registrationType: 'google-form'
-    },
-    {
-      id: 4,
-      title: 'Community Food Drive',
-      date: 'March 20, 2025',
-      time: '8:00 AM - 12:00 PM',
-      location: 'Multiple Locations',
-      description: 'Help us collect and distribute food to families in need. Volunteers welcome!',
-      image: 'https://readdy.ai/api/search-image?query=community%20food%20drive%20volunteers%20collecting%20donations%20and%20organizing%20groceries%2C%20diverse%20volunteers%20working%20together%20at%20food%20bank%20collection%20event%2C%20professional%20photography%20showing%20charitable%20giving%20and%20community%20service%2C%20bright%20outdoor%20scene%20with%20donation%20boxes%20and%20fresh%20produce&width=600&height=400&seq=upcoming-food-drive&orientation=landscape',
-      category: 'Community',
-      registrationLink: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform', // Google Form
-      registrationType: 'google-form'
-    },
-    {
-      id: 5,
-      title: 'Cultural Heritage Festival',
-      date: 'April 12, 2025',
-      time: '12:00 PM - 8:00 PM',
-      location: 'Brampton City Park',
-      description: 'Celebrate African and Caribbean culture with music, dance, food, and traditional performances.',
-      image: 'https://readdy.ai/api/search-image?query=vibrant%20african%20caribbean%20cultural%20festival%20with%20traditional%20dancers%20in%20colorful%20costumes%2C%20outdoor%20celebration%20with%20music%20food%20and%20cultural%20performances%2C%20professional%20photography%20showing%20multicultural%20heritage%20celebration%2C%20energetic%20festival%20atmosphere%20with%20diverse%20community%20enjoying%20traditions&width=600&height=400&seq=upcoming-cultural-festival&orientation=landscape',
-      category: 'Cultural',
-      registrationLink: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform', // Google Form
-      registrationType: 'google-form'
-    },
-    {
-      id: 6,
-      title: 'Financial Literacy Seminar',
-      date: 'May 5, 2025',
-      time: '6:00 PM - 8:30 PM',
-      location: 'CAWAP Office, Brampton',
-      description: 'Learn budgeting, saving, investing, and financial planning strategies.',
-      image: 'https://readdy.ai/api/search-image?query=financial%20literacy%20seminar%20with%20diverse%20adults%20learning%20money%20management%20skills%2C%20professional%20instructor%20teaching%20budgeting%20and%20investing%20strategies%2C%20professional%20photography%20showing%20financial%20education%20workshop%2C%20bright%20modern%20classroom%20with%20engaged%20participants%20taking%20notes&width=600&height=400&seq=upcoming-financial-seminar&orientation=landscape',
-      category: 'Education',
-      registrationLink: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform', // Google Form
-      registrationType: 'google-form'
-    }
-  ];
+  const upcomingFlyers = getUpcomingFlyers();
+  
+  // State for popup modal
+  const [selectedEvent, setSelectedEvent] = useState<Flyer | null>(null);
+
+  // Format date for display
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'long',
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  // Open event details popup
+  const openEventPopup = (flyer: Flyer) => {
+    setSelectedEvent(flyer);
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Close event details popup
+  const closeEventPopup = () => {
+    setSelectedEvent(null);
+    document.body.style.overflow = 'auto';
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -106,134 +59,318 @@ const UpcomingEventsPage = () => {
       </section>
 
       {/* Events Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <ScrollReveal key={event.id} delay={index * 0.1}>
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 group">
-                  {/* Event Image */}
-                  <div className="relative h-64 w-full overflow-hidden">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute top-4 right-4 bg-[#26194f] text-white px-4 py-2 rounded-full text-sm font-semibold">
-                      {event.category}
-                    </div>
-                  </div>
+      {upcomingFlyers.length > 0 ? (
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Don't miss out on these amazing upcoming programs and events. Click on any event to see full details and register!
+                </p>
+              </div>
+            </ScrollReveal>
 
-                  {/* Event Details */}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-3">{event.title}</h3>
-                    
-                    {/* Date & Time */}
-                    <div className="flex items-start gap-3 mb-3">
-                      <i className="ri-calendar-line text-[#8e24aa] text-xl mt-1"></i>
-                      <div>
-                        <p className="text-gray-700 font-semibold">{event.date}</p>
-                        <p className="text-gray-600 text-sm">{event.time}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {upcomingFlyers.map((flyer, index) => (
+                <ScrollReveal key={flyer.id} delay={index * 0.1}>
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 group h-full flex flex-col">
+                    {/* Event Image */}
+                    <div className="relative h-[400px] overflow-hidden">
+                      <img
+                        src={flyer.imageUrl}
+                        alt={flyer.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                        Upcoming
                       </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     </div>
 
-                    {/* Location */}
-                    <div className="flex items-start gap-3 mb-4">
-                      <i className="ri-map-pin-line text-[#8e24aa] text-xl mt-1"></i>
-                      <p className="text-gray-600 text-sm">{event.location}</p>
-                    </div>
+                    {/* Event Details */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-3">{flyer.title}</h3>
+                      
+                      {/* Date */}
+                      <div className="flex items-start gap-3 mb-4">
+                        <div className="w-10 h-10 bg-[#26194f]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <i className="ri-calendar-event-line text-[#8e24aa] text-xl"></i>
+                        </div>
+                        <div>
+                          <p className="text-gray-800 font-semibold">{formatDate(flyer.date)}</p>
+                          {flyer.time && <p className="text-gray-500 text-sm">{flyer.time}</p>}
+                        </div>
+                      </div>
 
-                    {/* Description */}
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                      {event.description}
-                    </p>
+                      {/* Description */}
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
+                        {flyer.description}
+                      </p>
 
-                    {/* ========================================
-                        REGISTRATION BUTTON
-                        ========================================
-                        This is the KEY part that makes registration obvious!
-                        - Large, colorful button
-                        - Clear "Register Now" text
-                        - Icon for visual appeal
-                        - Different styles for Google Forms vs internal pages
-                        ======================================== */}
-                    {event.registrationType === 'google-form' ? (
-                      // Google Form Registration - Opens in new tab
-                      <a
-                        href={event.registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-6 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
-                      >
-                        <i className="ri-external-link-line text-2xl"></i>
-                        <span>Register Now (Google Form)</span>
-                      </a>
-                    ) : (
-                      // Internal Page Registration
-                      <a
-                        href={event.registrationLink}
-                        className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-6 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+                      {/* Learn More & Register Button */}
+                      <button
+                        onClick={() => openEventPopup(flyer)}
+                        className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-6 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl whitespace-nowrap"
                       >
                         <i className="ri-arrow-right-circle-line text-2xl"></i>
-                        <span>Register Now</span>
+                        <span>Learn More & Register</span>
+                      </button>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <ScrollReveal>
+                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <i className="ri-calendar-check-line text-gray-400 text-5xl"></i>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">New Events Coming Soon</h2>
+                <p className="text-lg text-gray-600 mb-8">
+                  We're planning exciting new programs and events. Check back soon or contact us to stay updated!
+                </p>
+                <a
+                  href="/contact"
+                  className="inline-block bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
+                >
+                  Contact Us
+                </a>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================
+          🎯 EVENT DETAILS POPUP MODAL
+          ========================================
+          Shows full event details when user clicks "Learn More & Register"
+          ======================================== */}
+      {selectedEvent && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          onClick={closeEventPopup}
+        >
+          <div 
+            className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header with Image */}
+            <div className="relative">
+              <div className="h-64 md:h-80 overflow-hidden rounded-t-3xl">
+                <img
+                  src={selectedEvent.imageUrl}
+                  alt={selectedEvent.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-t-3xl"></div>
+              
+              {/* Close Button */}
+              <button
+                onClick={closeEventPopup}
+                className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all duration-300 cursor-pointer"
+              >
+                <i className="ri-close-line text-2xl"></i>
+              </button>
+              
+              {/* Event Title Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="inline-block bg-gradient-to-r from-[#8e24aa] to-[#26194f] text-white px-4 py-1 rounded-full text-sm font-semibold mb-3">
+                  Upcoming Event
+                </div>
+                <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedEvent.title}</h2>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 md:p-8">
+              {/* Event Info Grid */}
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i className="ri-calendar-line text-white text-xl"></i>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Date</p>
+                    <p className="text-gray-800 font-bold">{formatDate(selectedEvent.date)}</p>
+                  </div>
+                </div>
+                
+                {selectedEvent.time && (
+                  <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i className="ri-time-line text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Time</p>
+                      <p className="text-gray-800 font-bold">{selectedEvent.time}</p>
+                    </div>
+                  </div>
+                )}
+                
+                {selectedEvent.location && (
+                  <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i className="ri-map-pin-line text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Location</p>
+                      <p className="text-gray-800 font-bold">{selectedEvent.location}</p>
+                    </div>
+                  </div>
+                )}
+                
+                {selectedEvent.cost && (
+                  <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i className="ri-price-tag-3-line text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Cost</p>
+                      <p className="text-gray-800 font-bold text-green-600">{selectedEvent.cost}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Description */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">About This Event</h3>
+                <p className="text-gray-600 leading-relaxed">{selectedEvent.description}</p>
+              </div>
+
+              {/* Who Should Attend */}
+              {selectedEvent.whoShouldAttend && selectedEvent.whoShouldAttend.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Who Should Attend?</h3>
+                  <div className="grid gap-3">
+                    {selectedEvent.whoShouldAttend.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3 bg-gradient-to-r from-[#26194f]/5 to-transparent p-3 rounded-lg">
+                        <div className="w-6 h-6 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <i className="ri-check-line text-white text-sm"></i>
+                        </div>
+                        <p className="text-gray-700">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* What You Will Learn */}
+              {selectedEvent.whatYouWillLearn && selectedEvent.whatYouWillLearn.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">What You Will Learn</h3>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {selectedEvent.whatYouWillLearn.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3 bg-gradient-to-r from-[#8e24aa]/5 to-transparent p-3 rounded-lg">
+                        <div className="w-6 h-6 bg-gradient-to-br from-[#8e24aa] to-[#26194f] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <i className="ri-lightbulb-line text-white text-sm"></i>
+                        </div>
+                        <p className="text-gray-700 text-sm">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Hosts */}
+              {selectedEvent.hosts && selectedEvent.hosts.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Hosted By</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {selectedEvent.hosts.map((host, index) => (
+                      <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#26194f] to-[#8e24aa] rounded-full flex items-center justify-center">
+                            <i className="ri-user-star-line text-white text-xl"></i>
+                          </div>
+                          <h4 className="text-lg font-bold text-gray-800">{host.name}</h4>
+                        </div>
+                        <p className="text-gray-600 text-sm">{host.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Bonuses */}
+              {selectedEvent.bonuses && selectedEvent.bonuses.length > 0 && (
+                <div className="mb-8 bg-gradient-to-br from-[#f0c674]/20 to-[#e6a23c]/10 p-6 rounded-2xl">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i className="ri-gift-line text-[#e6a23c]"></i>
+                    Bonus for Attendees
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {selectedEvent.bonuses.map((bonus, index) => (
+                      <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#f0c674] to-[#e6a23c] rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="ri-checkbox-circle-line text-gray-900 text-sm"></i>
+                        </div>
+                        <p className="text-gray-700 font-medium text-sm">{bonus}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Info */}
+              {(selectedEvent.contactEmail || selectedEvent.contactPhone) && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                  <div className="flex flex-wrap gap-4">
+                    {selectedEvent.contactEmail && (
+                      <a 
+                        href={`mailto:${selectedEvent.contactEmail}`}
+                        className="flex items-center gap-2 text-gray-600 hover:text-[#8e24aa] transition-colors"
+                      >
+                        <i className="ri-mail-line text-[#8e24aa]"></i>
+                        <span>{selectedEvent.contactEmail}</span>
+                      </a>
+                    )}
+                    {selectedEvent.contactPhone && (
+                      <a 
+                        href={`tel:${selectedEvent.contactPhone}`}
+                        className="flex items-center gap-2 text-gray-600 hover:text-[#8e24aa] transition-colors"
+                      >
+                        <i className="ri-phone-line text-[#8e24aa]"></i>
+                        <span>{selectedEvent.contactPhone}</span>
                       </a>
                     )}
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              )}
+
+              {/* Register Button */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                {selectedEvent.registrationLink && (
+                  <a
+                    href={selectedEvent.registrationLink.startsWith('http') ? selectedEvent.registrationLink : selectedEvent.registrationLink}
+                    target={selectedEvent.registrationLink.startsWith('http') ? '_blank' : '_self'}
+                    rel={selectedEvent.registrationLink.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-[#f0c674] to-[#e6a23c] text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl whitespace-nowrap"
+                  >
+                    <i className="ri-external-link-line text-2xl"></i>
+                    <span>Register Now</span>
+                  </a>
+                )}
+                <button
+                  onClick={closeEventPopup}
+                  className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-gray-600 border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                >
+                  <i className="ri-close-line text-xl"></i>
+                  <span>Close</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* ========================================
-          HOW TO UPDATE EVENT REGISTRATION LINKS
-          ========================================
-          
-          STEP 1: Get Your Google Form Link
-          - Go to your Google Form
-          - Click "Send" button
-          - Copy the link (looks like: https://docs.google.com/forms/d/e/ABC123/viewform)
-          
-          STEP 2: Update the Event Above
-          - Find the event in the upcomingEvents array
-          - Replace the registrationLink with your Google Form URL
-          - Make sure registrationType is set to 'google-form'
-          
-          EXAMPLE:
-          {
-            id: 2,
-            title: 'Youth Leadership Summit',
-            registrationLink: 'https://docs.google.com/forms/d/e/YOUR_ACTUAL_FORM_ID/viewform',
-            registrationType: 'google-form'
-          }
-          
-          That's it! The button will automatically show "Register Now (Google Form)"
-          and open in a new tab when clicked.
-          ======================================== */}
-
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-[#26194f] to-[#8e24aa]">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <ScrollReveal>
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
-              <i className="ri-calendar-check-line text-6xl text-white mb-6 inline-block"></i>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Don't Miss Out!
-              </h2>
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                Register early to secure your spot. Spaces are limited for most events.
-              </p>
-              <a
-                href="/contact"
-                className="inline-block bg-white text-[#26194f] px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 whitespace-nowrap cursor-pointer text-lg"
-              >
-                Contact Us for More Info
-              </a>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      )}
 
       <Footer />
     </div>

@@ -308,15 +308,14 @@ const HomePage = () => {
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">{flyer.title}</h3>
                         <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{flyer.description}</p>
-                        {flyer.eventLink && (
-                          <a
-                            href={flyer.eventLink}
-                            className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
-                          >
-                            <span>Learn More</span>
-                            <i className="ri-arrow-right-line"></i>
-                          </a>
-                        )}
+                        {/* 🔗 LINK TO UPCOMING EVENTS PAGE - Changed from flyer.eventLink to /upcoming-events */}
+                        <a
+                          href="/upcoming-events"
+                          className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
+                        >
+                          <span>Learn More</span>
+                          <i className="ri-arrow-right-line"></i>
+                        </a>
                       </div>
                     </div>
                   </ScrollReveal>

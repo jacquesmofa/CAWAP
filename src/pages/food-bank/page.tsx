@@ -19,7 +19,7 @@ interface GalleryMedia {
   thumbnail?: string;
 }
 
-const FoodBankPage = () => {
+export default function FoodBankPage() {
   // ========================================
   // 🔐 ADMIN UPLOAD FUNCTIONALITY
   // ========================================
@@ -547,40 +547,98 @@ const FoodBankPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-white">
+      {/* ========================================
+          🔝 HEADER COMPONENT - NAVIGATION BAR
+          ======================================== */}
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://i.imgur.com/tCDZe9y.jpeg')",
-          }}
-        />
+      {/* 🖼️ HERO SECTION - How to Change the Hero Image:
+          1. Find the line with backgroundImage: 'url(...)'
+          2. Replace the URL with your new Imgur image link
+          3. Save the file
+          Example: backgroundImage: 'url(https://i.imgur.com/YOUR-NEW-IMAGE.jpeg)'
+      */}
+      <section 
+        className="relative h-[70vh] flex items-center justify-center text-white"
+        style={{
+          backgroundImage: 'url(https://i.imgur.com/mclwM4z.jpeg)', // 👈 CHANGE THIS URL
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-6 mx-auto">
-            <i className="fas fa-shopping-basket text-5xl"></i>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-block bg-[#D4AF37]/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-[#D4AF37]/30">
+            <span className="text-[#D4AF37] font-semibold text-sm tracking-wider">COMMUNITY SUPPORT</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">CAWAP Food Bank</h1>
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed">
+          <h1 className="font-['Playfair_Display'] text-6xl md:text-7xl font-bold mb-6 leading-tight">
+            CAWAP Food Bank
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
             Nourishing Our Community with Dignity, Compassion, and Hope
           </p>
-          <a
-            href="tel:+16475815901"
-            className="inline-block bg-[#c9b037] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#b39f2f] transition-all whitespace-nowrap cursor-pointer shadow-2xl"
-          >
-            Get Food Assistance Today
-          </a>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a 
+              href="https://forms.gle/PVfPTUivUHr8tU9n9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#D4AF37] text-black px-8 py-4 rounded-full font-semibold hover:bg-[#B8941F] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 whitespace-nowrap"
+            >
+              Register for Food Bank
+            </a>
+            <a 
+              href="/donate"
+              className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30 whitespace-nowrap"
+            >
+              Support Our Mission
+            </a>
+          </div>
         </div>
-        <button
-          onClick={() => setShowUploadInterface(!showUploadInterface)}
-          className="absolute top-4 right-4 text-white/60 hover:text-white text-xs transition-colors duration-300 cursor-pointer z-20"
-          title="Admin: Upload Media"
+      </section>
+
+      {/* WHY WE EXIST SECTION */}
+      <section className="relative py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://i.imgur.com/rY6UObw.jpeg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <i className="ri-upload-cloud-line text-lg"></i>
-        </button>
+          <div className="absolute inset-0 bg-white/90"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-['Playfair_Display'] text-5xl font-bold text-gray-900 mb-6">
+              Why We Exist
+            </h2>
+            <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-8"></div>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Food insecurity affects thousands of families in our community. Rising costs of living, unexpected job loss, medical emergencies, and systemic barriers can push anyone into a situation where they struggle to put food on the table.
+            </p>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mt-4">
+              CAWAP Food Bank was established to bridge this gap, ensuring that every person in our community has access to fresh, nutritious food regardless of their circumstances. We serve with compassion, respect, and cultural sensitivity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">500+</div>
+              <div className="text-gray-700 font-semibold">Families Served Monthly</div>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">15,000+</div>
+              <div className="text-gray-700 font-semibold">Meals Distributed</div>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">100%</div>
+              <div className="text-gray-700 font-semibold">Free Service</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <main>
@@ -602,9 +660,16 @@ const FoodBankPage = () => {
 
               <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <ScrollReveal>
+                  {/* 🖼️ MISSION SECTION - Food Bank Volunteers Image
+                      HOW TO CHANGE THIS IMAGE:
+                      1. Find the line below with src="..."
+                      2. Replace the URL with your new Imgur image link
+                      3. Save the file
+                      Example: src="https://i.imgur.com/YOUR-NEW-IMAGE.jpeg"
+                  */}
                   <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                     <img
-                      src="https://i.imgur.com/mclwM4z.jpeg"
+                      src="https://i.imgur.com/n3Jsz7o.jpeg"
                       alt="Food Bank Volunteers"
                       className="w-full h-full object-cover"
                     />
@@ -636,7 +701,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* Video Section - NOW FIRST */}
+        {/* Video Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
@@ -665,9 +730,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* ========================================
-            📸 FOOD BANK IN PICTURES - ENHANCED GALLERY
-            ======================================== */}
+        {/* FOOD BANK IN PICTURES */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -784,9 +847,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* ========================================
-            🎬 ENHANCED LIGHTBOX VIEWER
-            ======================================== */}
+        {/* ENHANCED LIGHTBOX VIEWER */}
         {lightboxOpen && (
           <div 
             className="fixed inset-0 bg-black z-50 flex items-center justify-center"
@@ -854,7 +915,7 @@ const FoodBankPage = () => {
               </div>
             </div>
 
-            {/* Previous Button - More Visible */}
+            {/* Navigation Buttons */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -866,7 +927,6 @@ const FoodBankPage = () => {
               <i className="ri-arrow-left-s-line text-4xl"></i>
             </button>
 
-            {/* Next Button - More Visible */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -958,7 +1018,7 @@ const FoodBankPage = () => {
           </div>
         )}
 
-        {/* What We Provide */}
+        {/* WHAT WE PROVIDE */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -971,7 +1031,7 @@ const FoodBankPage = () => {
                 </div>
               </ScrollReveal>
 
-              <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <div className="grid md:grid-cols-3 gap-8">
                 <ScrollReveal>
                   <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
                     <div className="w-16 h-16 bg-[#c9b037]/10 rounded-full flex items-center justify-center mb-6">
@@ -1132,7 +1192,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* How It Works */}
+        {/* HOW IT WORKS */}
         <section className="py-20 bg-gradient-to-br from-[#3c1053]/5 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -1189,7 +1249,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* Operating Hours & Location */}
+        {/* OPERATING HOURS & LOCATION */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -1227,7 +1287,7 @@ const FoodBankPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center pb-4 border-b border-white/20">
+                      <div className="flex justify-between items-center pb-4 border-white/20">
                         <span className="font-semibold">Phone Inquiries</span>
                         <a href="tel:+16475815901" className="hover:text-[#c9b037] transition-colors">
                           +1 (647) 581-5901
@@ -1308,7 +1368,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* Impact Stories */}
+        {/* IMPACT STORIES */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -1404,7 +1464,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* Statistics */}
+        {/* STATISTICS */}
         <section className="py-20 bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -1447,7 +1507,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* How to Help */}
+        {/* HOW TO HELP */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -1519,7 +1579,7 @@ const FoodBankPage = () => {
           </div>
         </section>
 
-        {/* Call to Action */}
+        {/* CALL TO ACTION */}
         <section className="py-20 bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
@@ -1554,6 +1614,4 @@ const FoodBankPage = () => {
       <Footer />
     </div>
   );
-};
-
-export default FoodBankPage;
+}
