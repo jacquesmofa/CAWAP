@@ -50,36 +50,60 @@
     "ext": "mp4"
   },
   
-  "gallery": {
-    "food_bank": {
-      "path": "gallery/food-bank",
-      "count": 20,
-      "ext": "jpeg"
-    },
+  "galleryDeep": {
     "community": {
-      "path": "gallery/community",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
+      "name": "Community Events",
+      "icon": "ri-community-line",
+      "subcategories": {
+        "food_bank": {
+          "name": "Food Bank",
+          "path": "gallery/food-bank",
+          "count": 20,
+          "ext": "jpeg"
+        },
+        "general": {
+          "name": "Community Gatherings",
+          "path": "gallery/community",
+          "count": 10,
+          "ext": "jpeg"
+        }
+      }
     },
-    "youth": {
-      "path": "gallery/youth",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
+    "programs": {
+      "name": "Programs & Workshops",
+      "icon": "ri-book-open-line",
+      "subcategories": {
+        "youth": {
+          "name": "Youth Programs",
+          "path": "gallery/youth",
+          "count": 10,
+          "ext": "jpeg"
+        },
+        "workshops": {
+          "name": "Workshops & Training",
+          "path": "gallery/workshops",
+          "count": 10,
+          "ext": "jpeg"
+        }
+      }
     },
-    "awards": {
-      "path": "gallery/awards",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
-    },
-    "cultural": {
-      "path": "gallery/cultural",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
-    },
-    "workshops": {
-      "path": "gallery/workshops",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
+    "events": {
+      "name": "Special Events",
+      "icon": "ri-calendar-event-line",
+      "subcategories": {
+        "awards": {
+          "name": "Sankofa Royale Awards",
+          "path": "gallery/awards",
+          "count": 10,
+          "ext": "jpeg"
+        },
+        "cultural": {
+          "name": "Cultural Celebrations",
+          "path": "gallery/cultural",
+          "count": 10,
+          "ext": "jpeg"
+        }
+      }
     }
   }
 }

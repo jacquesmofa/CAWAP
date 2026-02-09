@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 // ========================================
@@ -18,6 +17,22 @@ interface BrandingAssets {
   social_card: string;
 }
 
+interface GallerySubcategory {
+  name: string;
+  path: string;
+  count: number;
+  ext?: string;
+  extensions?: string[];
+}
+
+interface GalleryCategory {
+  name: string;
+  icon: string;
+  subcategories: {
+    [key: string]: GallerySubcategory;
+  };
+}
+
 interface SiteAssetsConfig {
   baseUrl: string;
   branding: BrandingAssets;
@@ -28,8 +43,11 @@ interface SiteAssetsConfig {
   trainings: NumberedMediaConfig;
   documents: NumberedMediaConfig;
   videos: NumberedMediaConfig;
-  gallery: {
+  gallery?: {
     [key: string]: NumberedMediaConfig;
+  };
+  galleryDeep?: {
+    [key: string]: GalleryCategory;
   };
 }
 
@@ -110,6 +128,25 @@ function generateNumberedUrls(
 function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAssets {
   const { baseUrl } = config;
 
+  // Handle both gallery and galleryDeep structures
+  let galleryAssets: { [key: string]: string[] } = {};
+  
+  if (config.galleryDeep) {
+    // Flatten galleryDeep structure into simple gallery format
+    Object.entries(config.galleryDeep).forEach(([categoryKey, category]) => {
+      Object.entries(category.subcategories).forEach(([subKey, subConfig]) => {
+        const key = `${categoryKey}_${subKey}`;
+        galleryAssets[key] = generateNumberedUrls(baseUrl, subConfig);
+      });
+    });
+  } else if (config.gallery) {
+    // Use flat gallery structure
+    galleryAssets = Object.entries(config.gallery).reduce((acc, [key, galleryConfig]) => {
+      acc[key] = generateNumberedUrls(baseUrl, galleryConfig);
+      return acc;
+    }, {} as { [key: string]: string[] });
+  }
+
   return {
     baseUrl,
     branding: {
@@ -125,10 +162,7 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
     trainings: generateNumberedUrls(baseUrl, config.trainings),
     documents: generateNumberedUrls(baseUrl, config.documents),
     videos: generateNumberedUrls(baseUrl, config.videos),
-    gallery: Object.entries(config.gallery).reduce((acc, [key, galleryConfig]) => {
-      acc[key] = generateNumberedUrls(baseUrl, galleryConfig);
-      return acc;
-    }, {} as { [key: string]: string[] }),
+    gallery: galleryAssets,
   };
 }
 
