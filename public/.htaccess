@@ -1,3 +1,13 @@
+# ============================================
+# CAWAP PROFESSIONAL .HTACCESS CONFIGURATION
+# ============================================
+# This file optimizes your React website for:
+# - React Router (fixes 404 errors)
+# - Fast loading (caching & compression)
+# - Security (prevents hacking)
+# - Media performance (images, videos, PDFs)
+# ============================================
+
 # 1. REACT ROUTING (Fixes 404 errors on refresh)
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -19,13 +29,15 @@ Options -Indexes
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript image/svg+xml application/pdf
 </IfModule>
 
-# 3. BROWSER CACHING (The "New" Config)
+# 3. BROWSER CACHING (Images, Videos, Documents)
 <IfModule mod_expires.c>
   ExpiresActive On
+  
   # Images - Cache for 1 year
   ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
@@ -33,31 +45,76 @@ Options -Indexes
   # Videos - Cache for 1 year
   ExpiresByType video/mp4 "access plus 1 year"
   ExpiresByType video/webm "access plus 1 year"
+  ExpiresByType video/ogg "access plus 1 year"
   
   # Documents - Cache for 1 month
   ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType text/plain "access plus 1 month"
+  ExpiresByType application/msword "access plus 1 month"
+  ExpiresByType application/vnd.openxmlformats-officedocument.wordprocessingml.document "access plus 1 month"
+  ExpiresByType application/vnd.ms-excel "access plus 1 month"
+  ExpiresByType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet "access plus 1 month"
+  
+  # Default - Cache for 2 days
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
-# 4. HEADERS & CORS (Ensures React can "talk" to your media files)
+# 4. HEADERS & CORS (Ensures React can fetch media files)
 <IfModule mod_headers.c>
-  # Cache Control for Images
-  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+  # Images - Immutable caching
+  <FilesMatch "\\.(jpg|jpeg|png|gif|webp|svg|ico)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
   
-  # Allow React to fetch media without security blocks
+  # Videos - Long-term caching
+  <FilesMatch "\\.(mp4|webm|ogg)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+  
+  # PDFs - Force download + fast viewing
+  <FilesMatch "\\.(pdf)$">
+    Header set Cache-Control "max-age=2592000, public"
+    Header set Content-Disposition "attachment"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Accept-Ranges "bytes"
+  </FilesMatch>
+  
+  # Other Documents - Force download
+  <FilesMatch "\\.(txt|doc|docx|xls|xlsx)$">
+    Header set Cache-Control "max-age=2592000, public"
+    Header set Content-Disposition "attachment"
+  </FilesMatch>
+  
+  # Enable CORS for media files (allows React to fetch)
   Header set Access-Control-Allow-Origin "*"
   Header set Access-Control-Allow-Methods "GET, OPTIONS"
   Header set Access-Control-Allow-Headers "Content-Type"
-
-  # Fast PDF viewing
-  <FilesMatch "\.pdf$">
-    Header set Accept-Ranges "bytes"
-  </FilesMatch>
 </IfModule>
 
-# 5. PHP HANDLER (Keep this at the bottom - cPanel needs it)
+# 5. MIME TYPES (Ensures correct file types)
+<IfModule mod_mime.c>
+  # Images
+  AddType image/jpeg jpg jpeg
+  AddType image/png png
+  AddType image/gif gif
+  AddType image/webp webp
+  AddType image/svg+xml svg
+  
+  # Videos
+  AddType video/mp4 mp4
+  AddType video/webm webm
+  AddType video/ogg ogg
+  
+  # Documents
+  AddType application/pdf pdf
+  AddType text/plain txt
+  AddType application/msword doc
+  AddType application/vnd.openxmlformats-officedocument.wordprocessingml.document docx
+  AddType application/vnd.ms-excel xls
+  AddType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet xlsx
+</IfModule>
+
+# 6. PHP HANDLER (Keep this at the bottom - cPanel needs it)
 # php -- BEGIN cPanel-generated handler, do not edit
-# This domain inherits the “PHP” package.
+# This domain inherits the "PHP" package.
 # php -- END cPanel-generated handler, do not edit
