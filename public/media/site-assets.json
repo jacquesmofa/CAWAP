@@ -1,161 +1,86 @@
+
 {
+  "baseUrl": "https://www.cawap.ca/media",
+  
   "branding": {
-    "logo_main": "https://www.cawap.ca/media/branding/cawap-logo.png",
-    "logo_white": "https://www.cawap.ca/media/branding/cawap-logo-white.png",
-    "favicon": "https://www.cawap.ca/media/branding/favicon.ico",
-    "social_card": "https://www.cawap.ca/media/branding/social-card.jpg"
+    "logo_main": "branding/cawap-logo.png",
+    "logo_white": "branding/cawap-logo-white.png",
+    "favicon": "branding/favicon.ico",
+    "social_card": "branding/social-card.jpg"
   },
+  
   "hero": {
-    "home": "https://www.cawap.ca/media/hero/home-hero.jpg",
-    "about": "https://www.cawap.ca/media/hero/about-hero.jpg",
-    "programs": "https://www.cawap.ca/media/hero/programs-hero.jpg",
-    "contact": "https://www.cawap.ca/media/hero/contact-hero.jpg",
-    "donate": "https://www.cawap.ca/media/hero/donate-hero.jpg",
-    "gallery": "https://www.cawap.ca/media/hero/gallery-hero.jpg"
+    "path": "hero",
+    "count": 10,
+    "ext": "jpg"
   },
+  
   "programs": {
-    "food_bank": "https://www.cawap.ca/media/programs/food-bank.jpg",
-    "youth_leadership": "https://www.cawap.ca/media/programs/youth-leadership.jpg",
-    "women_empowerment": "https://www.cawap.ca/media/programs/women-empowerment.jpg",
-    "mental_health": "https://www.cawap.ca/media/programs/mental-health.jpg",
-    "financial_literacy": "https://www.cawap.ca/media/programs/financial-literacy.jpg",
-    "newcomers_settlement": "https://www.cawap.ca/media/programs/newcomers-settlement.jpg",
-    "capital_g_girls": "https://www.cawap.ca/media/programs/capital-g-girls.jpg",
-    "heart_wise_seniors": "https://www.cawap.ca/media/programs/heart-wise-seniors.jpg",
-    "new_breed_women": "https://www.cawap.ca/media/programs/new-breed-women.jpg",
-    "javascript_program": "https://www.cawap.ca/media/programs/javascript-program.jpg"
+    "path": "programs",
+    "count": 20,
+    "ext": "jpg"
   },
+  
   "events": {
-    "christmas_2024": "https://www.cawap.ca/media/events/christmas-2024.jpg",
-    "summer_camp": "https://www.cawap.ca/media/events/summer-camp.jpg",
-    "sankofa_awards": "https://www.cawap.ca/media/events/sankofa-awards.jpg",
-    "cultural_events": "https://www.cawap.ca/media/events/cultural-events.jpg",
-    "black_business_seminar": "https://www.cawap.ca/media/events/black-business-seminar.jpg"
+    "path": "events",
+    "count": 20,
+    "ext": "jpg"
   },
-  "gallery": {
-    "food_bank": [
-      "https://www.cawap.ca/media/gallery/food-bank/video-01.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-05.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-06.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-07.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-08.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-09.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-10.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-11.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-12.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-13.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-14.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-15.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-16.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-17.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-18.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-19.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-20.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-21.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-22.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-23.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-24.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-25.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-26.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-27.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-28.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-29.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-30.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-31.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/photo-32.jpg",
-      "https://www.cawap.ca/media/gallery/food-bank/video-02.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-03.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-04.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-05.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-06.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-07.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-08.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-09.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-10.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-11.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-12.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-13.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-14.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-15.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-16.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-17.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-18.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-19.mp4",
-      "https://www.cawap.ca/media/gallery/food-bank/video-20.mp4"
-    ],
-    "community": [
-      "https://www.cawap.ca/media/gallery/community/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/community/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/community/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/community/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/community/photo-05.jpg",
-      "https://www.cawap.ca/media/gallery/community/photo-06.jpg"
-    ],
-    "youth": [
-      "https://www.cawap.ca/media/gallery/youth/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/youth/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/youth/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/youth/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/youth/photo-05.jpg",
-      "https://www.cawap.ca/media/gallery/youth/photo-06.jpg"
-    ],
-    "awards": [
-      "https://www.cawap.ca/media/gallery/awards/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/awards/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/awards/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/awards/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/awards/photo-05.jpg"
-    ],
-    "cultural": [
-      "https://www.cawap.ca/media/gallery/cultural/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/cultural/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/cultural/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/cultural/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/cultural/photo-05.jpg",
-      "https://www.cawap.ca/media/gallery/cultural/photo-06.jpg"
-    ],
-    "workshops": [
-      "https://www.cawap.ca/media/gallery/workshops/photo-01.jpg",
-      "https://www.cawap.ca/media/gallery/workshops/photo-02.jpg",
-      "https://www.cawap.ca/media/gallery/workshops/photo-03.jpg",
-      "https://www.cawap.ca/media/gallery/workshops/photo-04.jpg",
-      "https://www.cawap.ca/media/gallery/workshops/photo-05.jpg",
-      "https://www.cawap.ca/media/gallery/workshops/photo-06.jpg"
-    ]
-  },
+  
   "flyers": {
-    "black_business_seminar": "https://www.cawap.ca/media/flyers/black-business-seminar.jpg",
-    "summer_camp_2025": "https://www.cawap.ca/media/flyers/summer-camp-2025.jpg",
-    "christmas_event": "https://www.cawap.ca/media/flyers/christmas-event.jpg"
+    "path": "flyers",
+    "count": 20,
+    "ext": "jpg"
   },
+  
   "trainings": {
-    "mental_health": "https://www.cawap.ca/media/trainings/mental-health.jpg",
-    "financial_literacy": "https://www.cawap.ca/media/trainings/financial-literacy.jpg",
-    "leadership": "https://www.cawap.ca/media/trainings/leadership.jpg"
+    "path": "trainings",
+    "count": 20,
+    "ext": "jpg"
   },
+  
   "documents": {
-    "annual_report_2024": "https://www.cawap.ca/media/documents/annual-report-2024.pdf",
-    "annual_report_2023": "https://www.cawap.ca/media/documents/annual-report-2023.pdf",
-    "program_guide": "https://www.cawap.ca/media/documents/program-guide.pdf",
-    "donation_form": "https://www.cawap.ca/media/documents/donation-form.pdf",
-    "volunteer_application": "https://www.cawap.ca/media/documents/volunteer-application.pdf",
-    "partnership_proposal": "https://www.cawap.ca/media/documents/partnership-proposal.pdf",
-    "community_impact_report": "https://www.cawap.ca/media/documents/community-impact-report.pdf",
-    "financial_statement_2024": "https://www.cawap.ca/media/documents/financial-statement-2024.pdf",
-    "bylaws": "https://www.cawap.ca/media/documents/cawap-bylaws.pdf",
-    "code_of_conduct": "https://www.cawap.ca/media/documents/code-of-conduct.pdf",
-    "privacy_policy": "https://www.cawap.ca/media/documents/privacy-policy.pdf",
-    "terms_of_service": "https://www.cawap.ca/media/documents/terms-of-service.pdf"
+    "path": "documents",
+    "count": 30,
+    "ext": "pdf"
   },
+  
   "videos": {
-    "hero_background": "https://www.cawap.ca/media/videos/hero-bg.mp4",
-    "about_intro": "https://www.cawap.ca/media/videos/about-intro.mp4",
-    "testimonials": "https://www.cawap.ca/media/videos/testimonials.mp4",
-    "program_overview": "https://www.cawap.ca/media/videos/program-overview.mp4",
-    "community_impact": "https://www.cawap.ca/media/videos/community-impact.mp4"
+    "path": "videos",
+    "count": 20,
+    "ext": "mp4"
+  },
+  
+  "gallery": {
+    "food_bank": {
+      "path": "gallery/food-bank",
+      "count": 100,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    },
+    "community": {
+      "path": "gallery/community",
+      "count": 50,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    },
+    "youth": {
+      "path": "gallery/youth",
+      "count": 50,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    },
+    "awards": {
+      "path": "gallery/awards",
+      "count": 50,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    },
+    "cultural": {
+      "path": "gallery/cultural",
+      "count": 50,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    },
+    "workshops": {
+      "path": "gallery/workshops",
+      "count": 50,
+      "extensions": ["jpg", "png", "mp4", "webm", "mov"]
+    }
   }
 }
