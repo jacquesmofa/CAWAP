@@ -51,7 +51,7 @@ export default function FoodBankPage() {
   // ========================================
   // 🎬 FOOD BANK GALLERY MEDIA - FROM CPANEL
   // ========================================
-  const galleryMedia: GalleryMedia[] = (assets.gallery?.food_bank || []).map((url: string, index: number) => ({
+  const galleryMedia: GalleryMedia[] = (assets?.gallery?.food_bank || []).map((url: string, index: number) => ({
     url,
     category: 'food-bank',
     title: `Food Bank ${url.includes('.mp4') ? 'Video' : 'Photo'} ${index + 1}`,

@@ -12,10 +12,8 @@
     "react-i18next": "^15.6.0",
     "react-leaflet": "5.0.0",
     "react-masonry-css": "^1.0.16",
-    "react-photo-album": "^3.4.0",
     "react-router-dom": "^7.6.3",
-    "recharts": "3.2.0",
-    "yarl": "^3.0.0"
+    "recharts": "3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
