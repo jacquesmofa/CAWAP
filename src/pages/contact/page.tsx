@@ -118,7 +118,7 @@ const ContactPage = () => {
                     <h3 className="text-xl font-bold text-[#3c1053] mb-4">Follow Us</h3>
                     <div className="flex gap-4">
                       <a
-                        href="https://facebook.com/cawap"
+                        href="https://www.facebook.com/cawapcommunity"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer"
@@ -142,7 +142,7 @@ const ContactPage = () => {
                         <i className="ri-instagram-fill text-white text-xl"></i>
                       </a>
                       <a
-                        href="https://linkedin.com/company/cawap"
+                        href="https://linkedin.com/company/cawapcanada"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer"

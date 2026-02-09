@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import SmartSearch from './SmartSearch';
+import { useMedia } from '../../context/MediaContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,6 +10,8 @@ const Header = () => {
   const [isEventsOpen, setIsEventsOpen] = useState(false);
   const [isMobileProgramsOpen, setIsMobileProgramsOpen] = useState(false);
   const [isMobileEventsOpen, setIsMobileEventsOpen] = useState(false);
+
+  const { assets, loading } = useMedia();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,11 +47,18 @@ const Header = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 cursor-pointer z-50">
-              <img 
-                src="https://i.imgur.com/pArmDNQ.png" 
-                alt="CAWAP Logo" 
-                className="h-16 w-16 object-contain"
-              />
+              {!loading && assets ? (
+                <img 
+                  src={assets.branding.logo_main} 
+                  alt="CAWAP Logo" 
+                  className="h-16 w-16 object-contain"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://i.imgur.com/pArmDNQ.png';
+                  }}
+                />
+              ) : (
+                <div className="h-16 w-16 bg-gray-200 animate-pulse rounded-lg"></div>
+              )}
               <div className="flex flex-col">
                 <span className={`text-2xl font-bold transition-colors ${isScrolled ? 'text-[#26194f]' : 'text-white'}`}>
                   C.A.W.A.P

@@ -4,6 +4,7 @@ import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { useCloudinaryUpload } from '../../hooks/useCloudinaryUpload';
+import { useMedia } from '../../context/MediaContext';
 import { Link } from 'react-router-dom';
 
 // ========================================
@@ -20,6 +21,11 @@ interface GalleryMedia {
 }
 
 export default function FoodBankPage() {
+  // ========================================
+  // 🎯 MEDIA CONTEXT - LOAD FROM CPANEL
+  // ========================================
+  const { assets, loading: mediaLoading } = useMedia();
+  
   // ========================================
   // 🔐 ADMIN UPLOAD FUNCTIONALITY
   // ========================================
@@ -43,325 +49,14 @@ export default function FoodBankPage() {
   const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
 
   // ========================================
-  // 🎬 FOOD BANK GALLERY MEDIA - IMGUR LINKS
+  // 🎬 FOOD BANK GALLERY MEDIA - FROM CPANEL
   // ========================================
-  const galleryMedia: GalleryMedia[] = [
-    // ========================================
-    // 🆕 YOUR UPLOADED IMGUR MEDIA
-    // ========================================
-    {
-      url: 'https://i.imgur.com/BC1q7BM.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Community Service',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/oR8HMYG.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Distribution',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/17Ulbds.jpeg',
-      category: 'food-bank',
-      title: 'Community Food Support',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/1Ffbe7s.jpeg',
-      category: 'food-bank',
-      title: 'Volunteers Serving Community',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/170Vb4O.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Operations',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/6ct2avj.jpeg',
-      category: 'food-bank',
-      title: 'Fresh Produce Distribution',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/GzRBUIL.jpeg',
-      category: 'food-bank',
-      title: 'Community Support Program',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/8HywFU0.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Volunteers',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/w3qFtnc.jpeg',
-      category: 'food-bank',
-      title: 'Helping Families in Need',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/WBB46bN.jpeg',
-      category: 'food-bank',
-      title: 'Food Distribution Day',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/Mg6nAsU.jpeg',
-      category: 'food-bank',
-      title: 'Community Food Service',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/zbUXd2p.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Team',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/IJS3mqV.jpeg',
-      category: 'food-bank',
-      title: 'Serving Our Community',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/mLcuQLC.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Support',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/588OQCw.jpeg',
-      category: 'food-bank',
-      title: 'Community Assistance',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/5ot2TK0.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Services',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/rY6UObw.jpeg',
-      category: 'food-bank',
-      title: 'Helping Hands',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/CTmF9im.jpeg',
-      category: 'food-bank',
-      title: 'Food Distribution Center',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/yPxZjRA.jpeg',
-      category: 'food-bank',
-      title: 'Community Care',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/n3Jsz7o.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Outreach',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/qA03Epj.jpeg',
-      category: 'food-bank',
-      title: 'Supporting Families',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/UhAuitr.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Program',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/b3TkBal.jpeg',
-      category: 'food-bank',
-      title: 'Community Food Drive',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/XJZno66.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Initiative',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/RiVzV7Z.jpeg',
-      category: 'food-bank',
-      title: 'Volunteer Service',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/tCDZe9y.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Support Team',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/jYjeSn8.jpeg',
-      category: 'food-bank',
-      title: 'Community Outreach',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/hScsVRj.jpeg',
-      category: 'food-bank',
-      title: 'Food Distribution Event',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/MVVCwt3.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Activities',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/mclwM4z.jpeg',
-      category: 'food-bank',
-      title: 'Community Support Services',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/Y4kDYFn.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Mission',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/2BRYDJH.jpeg',
-      category: 'food-bank',
-      title: 'Food Bank Community',
-      type: 'image'
-    },
-    {
-      url: 'https://i.imgur.com/NAMUcJe.mp4',
-      category: 'food-bank',
-      title: 'Food Bank in Action',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/2VczVr3.mp4',
-      category: 'food-bank',
-      title: 'Community Food Service Video',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/QDy0ykb.mp4',
-      category: 'food-bank',
-      title: 'Food Distribution Process',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/7hkuQcS.mp4',
-      category: 'food-bank',
-      title: 'Volunteers at Work',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/yOjIsCg.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Behind the Scenes',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/ZKE4jdk.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Daily Operations',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/Wg8u6q7.mp4',
-      category: 'food-bank',
-      title: 'Community Food Distribution',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/39vOfv1.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Volunteer Team',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/b350p61.mp4',
-      category: 'food-bank',
-      title: 'Serving Our Community',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/j9m02xS.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Support Services',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/qU4ZlDY.mp4',
-      category: 'food-bank',
-      title: 'Community Member Testimonial',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/gCrFr1l.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Impact Story',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/Iz8yKq4.mp4',
-      category: 'food-bank',
-      title: 'Grateful Family Testimonial',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/dLAEuD1.mp4',
-      category: 'food-bank',
-      title: 'Community Support Testimonial',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/SoRCEVT.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Client Story',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/v46xFZk.mp4',
-      category: 'food-bank',
-      title: 'Volunteer Experience Testimonial',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/olelWob.mp4',
-      category: 'food-bank',
-      title: 'Community Impact Testimonial',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/sF4KMod.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Success Story',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/Dd4E9qi.mp4',
-      category: 'food-bank',
-      title: 'Food Bank Program Overview',
-      type: 'video'
-    },
-    {
-      url: 'https://i.imgur.com/QYKpGTw.mp4',
-      category: 'food-bank',
-      title: 'Community Food Support',
-      type: 'video'
-    },
-  ];
+  const galleryMedia: GalleryMedia[] = (assets.gallery?.food_bank || []).map((url: string, index: number) => ({
+    url,
+    category: 'food-bank',
+    title: `Food Bank ${url.includes('.mp4') ? 'Video' : 'Photo'} ${index + 1}`,
+    type: (url.includes('.mp4') || url.includes('.webm') || url.includes('.mov') ? 'video' : 'image') as MediaType
+  }));
 
   // ========================================
   // 🎬 GALLERY DISPLAY LOGIC
@@ -546,6 +241,22 @@ export default function FoodBankPage() {
     }
   };
 
+  // Show loading state while media is loading
+  if (mediaLoading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-[#c9b037] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 text-lg">Loading food bank gallery...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* ========================================
@@ -553,16 +264,11 @@ export default function FoodBankPage() {
           ======================================== */}
       <Header />
 
-      {/* 🖼️ HERO SECTION - How to Change the Hero Image:
-          1. Find the line with backgroundImage: 'url(...)'
-          2. Replace the URL with your new Imgur image link
-          3. Save the file
-          Example: backgroundImage: 'url(https://i.imgur.com/YOUR-NEW-IMAGE.jpeg)'
-      */}
+      {/* 🖼️ HERO SECTION - Load from cPanel */}
       <section 
         className="relative h-[70vh] flex items-center justify-center text-white"
         style={{
-          backgroundImage: 'url(https://i.imgur.com/mclwM4z.jpeg)', // 👈 CHANGE THIS URL
+          backgroundImage: `url('${assets.programs?.food_bank || 'https://readdy.ai/api/search-image?query=community%20food%20bank%20volunteers%20distributing%20fresh%20groceries%20and%20produce%20to%20diverse%20families%20in%20need%2C%20warm%20welcoming%20atmosphere%20with%20volunteers%20helping%20people%2C%20professional%20photography%20showing%20compassion%20dignity%20and%20community%20support%2C%20bright%20modern%20food%20bank%20interior&width=1920&height=800&seq=food-bank-hero&orientation=landscape'}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -714,18 +420,20 @@ export default function FoodBankPage() {
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal>
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-auto" style={{ maxWidth: '600px' }}>
-                  <video
-                    className="w-full h-auto"
-                    controls
-                    preload="metadata"
-                  >
-                    <source src="https://i.imgur.com/yOjIsCg.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </ScrollReveal>
+              {galleryMedia.find(m => m.type === 'video') && (
+                <ScrollReveal>
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-auto" style={{ maxWidth: '600px' }}>
+                    <video
+                      className="w-full h-auto"
+                      controls
+                      preload="metadata"
+                    >
+                      <source src={galleryMedia.find(m => m.type === 'video')?.url} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </ScrollReveal>
+              )}
             </div>
           </div>
         </section>
@@ -758,91 +466,101 @@ export default function FoodBankPage() {
               </ScrollReveal>
 
               {/* Gallery Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {displayMedia.map((media, index) => (
-                  <ScrollReveal key={`${media.category}-${index}`} delay={index * 0.05}>
-                    <div 
-                      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                      onClick={() => openLightbox(index)}
-                    >
-                      <div className="aspect-[3/2] w-full h-full overflow-hidden">
-                        {isDirectVideo(media) ? (
-                          <video
-                            src={media.url}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            muted
-                            playsInline
-                            preload="metadata"
-                          />
-                        ) : (
-                          <img
-                            src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
-                            alt={media.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        )}
-                        
-                        {media.type !== 'image' && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-all duration-300">
-                            <div className="w-20 h-20 flex items-center justify-center bg-white/90 rounded-full shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
-                              <i className="ri-play-fill text-4xl text-[#c9b037] ml-1"></i>
+              {displayMedia.length > 0 ? (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    {displayMedia.map((media, index) => (
+                      <ScrollReveal key={`${media.category}-${index}`} delay={index * 0.05}>
+                        <div 
+                          className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                          onClick={() => openLightbox(index)}
+                        >
+                          <div className="aspect-[3/2] w-full h-full overflow-hidden">
+                            {isDirectVideo(media) ? (
+                              <video
+                                src={media.url}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                muted
+                                playsInline
+                                preload="metadata"
+                              />
+                            ) : (
+                              <img
+                                src={media.type === 'image' ? media.url : getVideoThumbnail(media)}
+                                alt={media.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              />
+                            )}
+                            
+                            {media.type !== 'image' && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-all duration-300">
+                                <div className="w-20 h-20 flex items-center justify-center bg-white/90 rounded-full shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                                  <i className="ri-play-fill text-4xl text-[#c9b037] ml-1"></i>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#c9b037]/90 via-[#c9b037]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
+                            <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                              <h3 className="text-white font-bold text-lg mb-2">{media.title}</h3>
+                              <div className="flex items-center justify-center gap-2">
+                                <i className={`${media.type === 'image' ? 'ri-eye-line' : 'ri-play-circle-line'} text-white`}></i>
+                                <span className="text-white/90 text-sm">
+                                  {media.type === 'image' ? 'View Image' : 'Watch Video'}
+                                </span>
+                              </div>
+                              <div className="mt-2">
+                                <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-semibold">
+                                  {media.type === 'image' ? '📸 Photo' : '🎬 Video'}
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        )}
-                      </div>
-                      
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#c9b037]/90 via-[#c9b037]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                        <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <h3 className="text-white font-bold text-lg mb-2">{media.title}</h3>
-                          <div className="flex items-center justify-center gap-2">
-                            <i className={`${media.type === 'image' ? 'ri-eye-line' : 'ri-play-circle-line'} text-white`}></i>
-                            <span className="text-white/90 text-sm">
-                              {media.type === 'image' ? 'View Image' : 'Watch Video'}
-                            </span>
-                          </div>
-                          <div className="mt-2">
-                            <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-semibold">
-                              {media.type === 'image' ? '📸 Photo' : '🎬 Video'}
-                            </span>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
+                      </ScrollReveal>
+                    ))}
+                  </div>
 
-              {/* Action Buttons Row */}
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                {hasMoreMedia && (
-                  <button
-                    onClick={() => setShowAllMedia(!showAllMedia)}
-                    className="inline-flex items-center gap-3 bg-gradient-to-r from-[#c9b037] to-[#b39f2f] text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg"
-                  >
-                    <i className={`${showAllMedia ? 'ri-arrow-up-line' : 'ri-arrow-down-line'} text-xl`}></i>
-                    <span>
-                      {showAllMedia 
-                        ? 'Show Less' 
-                        : `Load More (${filteredMedia.length - displayMedia.length} more)`}
-                    </span>
-                  </button>
-                )}
+                  {/* Action Buttons Row */}
+                  <div className="flex flex-wrap items-center justify-center gap-4">
+                    {hasMoreMedia && (
+                      <button
+                        onClick={() => setShowAllMedia(!showAllMedia)}
+                        className="inline-flex items-center gap-3 bg-gradient-to-r from-[#c9b037] to-[#b39f2f] text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg"
+                      >
+                        <i className={`${showAllMedia ? 'ri-arrow-up-line' : 'ri-arrow-down-line'} text-xl`}></i>
+                        <span>
+                          {showAllMedia 
+                            ? 'Show Less' 
+                            : `Load More (${filteredMedia.length - displayMedia.length} more)`}
+                        </span>
+                      </button>
+                    )}
 
-                <Link
-                  to="/gallery"
-                  className="inline-flex items-center gap-3 bg-white border-2 border-[#c9b037] text-[#c9b037] px-8 py-4 rounded-full font-semibold hover:bg-[#c9b037] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
-                >
-                  <i className="ri-gallery-line text-xl"></i>
-                  <span>View Full Gallery</span>
-                  <i className="ri-arrow-right-line text-xl"></i>
-                </Link>
-              </div>
+                    <Link
+                      to="/gallery"
+                      className="inline-flex items-center gap-3 bg-white border-2 border-[#c9b037] text-[#c9b037] px-8 py-4 rounded-full font-semibold hover:bg-[#c9b037] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
+                    >
+                      <i className="ri-gallery-line text-xl"></i>
+                      <span>View Full Gallery</span>
+                      <i className="ri-arrow-right-line text-xl"></i>
+                    </Link>
+                  </div>
 
-              <div className="text-center mt-8">
-                <p className="text-gray-600 text-lg">
-                  Showing <strong className="text-[#c9b037]">{displayMedia.length}</strong> of <strong className="text-[#c9b037]">{filteredMedia.length}</strong> items
-                </p>
-              </div>
+                  <div className="text-center mt-8">
+                    <p className="text-gray-600 text-lg">
+                      Showing <strong className="text-[#c9b037]">{displayMedia.length}</strong> of <strong className="text-[#c9b037]">{filteredMedia.length}</strong> items
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-20">
+                  <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
+                  <p className="text-xl text-gray-500">Gallery photos will appear here</p>
+                  <p className="text-gray-400 mt-2">Upload your food bank photos to cPanel to display them</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -1259,7 +977,7 @@ export default function FoodBankPage() {
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
                       <i className="fas fa-clock text-3xl"></i>
                     </div>
-                    <h3 className="text-3xl font-bold mb-8">Food Bank Hours</h3>
+                    <h3 className="text-3xl font-bold mb-6">Food Bank Hours</h3>
                     <div className="space-y-4">
                       <div className="pb-4 border-b border-white/20">
                         <div className="flex justify-between items-center mb-2">

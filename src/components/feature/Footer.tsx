@@ -1,319 +1,210 @@
-import ScrollReveal from '../effects/ScrollReveal';
-import { useEffect, useRef, useState, FormEvent } from 'react';
-import { useSupabaseSubmit } from '../../hooks/useSupabaseSubmit'; // For newsletter subscriptions
+import { useMedia } from '../../context/MediaContext';
 
 const Footer = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  // ========================================
-  // NEWSLETTER SUBSCRIPTION STATE
-  // ========================================
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const { submitToSupabase, submitting, success, error } = useSupabaseSubmit();
-
-  /**
-   * NEWSLETTER SUBSCRIPTION HANDLER
-   * Saves email to Supabase when user subscribes
-   */
-  const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Prepare subscription data
-    const subscriptionData = {
-      email: newsletterEmail,
-      subscribed_at: new Date().toISOString(),
-      status: 'active'
-    };
-
-    // Save to Supabase
-    const result = await submitToSupabase('newsletter_subscriptions', subscriptionData);
-
-    // Clear form if successful
-    if (result) {
-      setNewsletterEmail('');
-    }
-  };
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = 400;
-
-    class Star {
-      x: number;
-      y: number;
-      size: number;
-      speedY: number;
-      opacity: number;
-      pulseSpeed: number;
-      pulsePhase: number;
-
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 100;
-        this.size = Math.random() * 3 + 1;
-        this.speedY = Math.random() * 0.5 + 0.3;
-        this.opacity = Math.random() * 0.5 + 0.5;
-        this.pulseSpeed = Math.random() * 0.02 + 0.01;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-      }
-
-      update() {
-        this.y -= this.speedY;
-        this.pulsePhase += this.pulseSpeed;
-        
-        if (this.y < -10) {
-          this.y = canvas.height + 10;
-          this.x = Math.random() * canvas.width;
-        }
-      }
-
-      draw() {
-        const pulse = Math.sin(this.pulsePhase) * 0.3 + 0.7;
-        const currentOpacity = this.opacity * pulse;
-        
-        // Outer glow
-        const gradient = ctx!.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
-        gradient.addColorStop(0, `rgba(201, 176, 55, ${currentOpacity})`);
-        gradient.addColorStop(0.5, `rgba(201, 176, 55, ${currentOpacity * 0.3})`);
-        gradient.addColorStop(1, 'rgba(201, 176, 55, 0)');
-        
-        ctx!.fillStyle = gradient;
-        ctx!.beginPath();
-        ctx!.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-        ctx!.fill();
-        
-        // Core star
-        ctx!.fillStyle = `rgba(255, 223, 0, ${currentOpacity})`;
-        ctx!.beginPath();
-        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx!.fill();
-        
-        // Star points
-        ctx!.strokeStyle = `rgba(255, 223, 0, ${currentOpacity * 0.8})`;
-        ctx!.lineWidth = 1;
-        ctx!.beginPath();
-        ctx!.moveTo(this.x - this.size * 2, this.y);
-        ctx!.lineTo(this.x + this.size * 2, this.y);
-        ctx!.moveTo(this.x, this.y - this.size * 2);
-        ctx!.lineTo(this.x, this.y + this.size * 2);
-        ctx!.stroke();
-      }
-    }
-
-    const stars: Star[] = [];
-    for (let i = 0; i < 100; i++) {
-      stars.push(new Star());
-    }
-
-    function animate() {
-      ctx!.clearRect(0, 0, canvas.width, canvas.height);
-      
-      stars.forEach(star => {
-        star.update();
-        star.draw();
-      });
-      
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = 400;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const { assets, loading } = useMedia();
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative">
-      {/* Main Footer */}
-      <div className="bg-[#2a0a3d] text-white py-12 relative overflow-hidden">
-        {/* Animated Stars Canvas */}
-        <canvas
-          ref={canvasRef}
-          className="absolute bottom-0 left-0 w-full pointer-events-none"
-          style={{ height: '400px' }}
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* About */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#c9b037]">About CAWAP</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Empowering Afro-Caribbean and Canadian women through economic development, advocacy, and community programs.
-              </p>
-              
-              {/* Social Media Icons */}
-              <div className="mt-6">
-                <h4 className="text-sm font-semibold text-[#c9b037] mb-3">Follow Us</h4>
-                <div className="flex gap-3">
-                  <a
-                    href="https://www.facebook.com/cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="Facebook"
-                  >
-                    <i className="ri-facebook-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                  <a
-                    href="https://twitter.com/cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="Twitter"
-                  >
-                    <i className="ri-twitter-x-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="Instagram"
-                  >
-                    <i className="ri-instagram-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="LinkedIn"
-                  >
-                    <i className="ri-linkedin-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="YouTube"
-                  >
-                    <i className="ri-youtube-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                  <a
-                    href="https://www.tiktok.com/@cawap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 hover:bg-[#c9b037] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group"
-                    aria-label="TikTok"
-                  >
-                    <i className="ri-tiktok-fill text-white text-lg group-hover:scale-110 transition-transform"></i>
-                  </a>
-                </div>
+    <footer className="bg-[#26194f] text-white">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* About Section */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              {!loading && assets ? (
+                <img 
+                  src={assets.branding.logo_white || assets.branding.logo_main} 
+                  alt="CAWAP Logo" 
+                  className="h-12 w-12 object-contain"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://i.imgur.com/pArmDNQ.png';
+                  }}
+                />
+              ) : (
+                <div className="h-12 w-12 bg-white/10 animate-pulse rounded-lg"></div>
+              )}
+              <div>
+                <h3 className="text-xl font-bold">C.A.W.A.P</h3>
+                <p className="text-xs text-white/80">Your Empowerment services</p>
               </div>
             </div>
+            <p className="text-sm text-white/80 leading-relaxed">
+              Empowering communities through comprehensive support programs, cultural initiatives, and dedicated service to African and Caribbean communities in Canada.
+            </p>
+          </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#c9b037]">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="/programs" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Programs
-                  </a>
-                </li>
-                <li>
-                  <a href="/events" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <a href="/gallery" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="/about" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/programs" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Our Programs
+                </a>
+              </li>
+              <li>
+                <a href="/food-bank" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Food Bank
+                </a>
+              </li>
+              <li>
+                <a href="/gallery" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a href="/upcoming-events" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Events
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
 
-            {/* Programs */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#c9b037]">Our Programs</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/youth-leadership" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Youth Leadership
-                  </a>
-                </li>
-                <li>
-                  <a href="/capital-g-girls" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Capital G-Girls
-                  </a>
-                </li>
-                <li>
-                  <a href="/heart-wise-seniors" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Heart-Wise Seniors
-                  </a>
-                </li>
-                <li>
-                  <a href="/women-empowerment" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    Women Empowerment
-                  </a>
-                </li>
-                <li>
-                  <a href="/javascript-program" className="text-gray-300 hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    JavaScript Program
-                  </a>
-                </li>
-              </ul>
-            </div>
+          {/* Programs */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Programs</h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="/youth-leadership" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Youth Leadership
+                </a>
+              </li>
+              <li>
+                <a href="/women-empowerment" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Women Empowerment
+                </a>
+              </li>
+              <li>
+                <a href="/mental-health" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Mental Health Support
+                </a>
+              </li>
+              <li>
+                <a href="/financial-literacy" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Financial Literacy
+                </a>
+              </li>
+              <li>
+                <a href="/newcomers-settlement-program" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Newcomers Settlement
+                </a>
+              </li>
+              <li>
+                <a href="/trainings" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  Training Programs
+                </a>
+              </li>
+            </ul>
+          </div>
 
-            {/* Contact Info */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#c9b037]">Contact Us</h3>
-              <ul className="space-y-3 text-gray-300 text-sm">
-                <li className="flex items-start">
-                  <i className="ri-map-pin-line text-[#c9b037] text-lg mr-2 mt-1"></i>
-                  <span>101 West Drive, Unit 7<br />Brampton, ON L6T 5E9<br />Canada</span>
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-phone-line text-[#c9b037] text-lg mr-2"></i>
-                  <a href="tel:+16475815901" className="hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    +1 (647) 581-5901
-                  </a>
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-mail-line text-[#c9b037] text-lg mr-2"></i>
-                  <a href="mailto:cawap2025@gmail.com" className="hover:text-[#c9b037] transition-colors duration-300 cursor-pointer">
-                    cawap2025@gmail.com
-                  </a>
-                </li>
-              </ul>
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <i className="ri-map-pin-line text-[#c9b037] mt-1"></i>
+                <span className="text-sm text-white/80">
+                  1200 Markham Road, Unit 414<br />
+                  Scarborough, ON M1H 3C3
+                </span>
+              </li>
+              <li>
+                <a href="tel:+16475815901" className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  <i className="ri-phone-line text-[#c9b037]"></i>
+                  647-581-5901
+                </a>
+              </li>
+              <li>
+                <a href="mailto:cawap2005@gmail.com" className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                  <i className="ri-mail-line text-[#c9b037]"></i>
+                  cawap2005@gmail.com
+                </a>
+              </li>
+            </ul>
+
+            {/* Social Media */}
+            <div className="mt-6">
+              <h5 className="text-sm font-semibold mb-3">Follow Us</h5>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.facebook.com/cawapcommunity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                  aria-label="Facebook"
+                >
+                  <i className="ri-facebook-fill text-lg"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/cawapcanada"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                  aria-label="Instagram"
+                >
+                  <i className="ri-instagram-line text-lg"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/cawapcanada"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                  aria-label="LinkedIn"
+                >
+                  <i className="ri-linkedin-fill text-lg"></i>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@aunty.irine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                  aria-label="TikTok"
+                >
+                  <i className="ri-tiktok-fill text-lg"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com/@CAWAP-Canada"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                  aria-label="YouTube"
+                >
+                  <i className="ri-youtube-fill text-lg"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="bg-black text-gray-400 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} Canadian and African Women Aid Program (CAWAP). All rights reserved.</p>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-white/60 text-center md:text-left">
+              © {currentYear} C.A.W.A.P. All rights reserved. | Charitable Registration: 84865 2740 RR0001
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://readdy.ai/?ref=logo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-white/60 hover:text-[#c9b037] transition-colors cursor-pointer"
+              >
+                Website Builder
+              </a>
+            </div>
           </div>
         </div>
       </div>

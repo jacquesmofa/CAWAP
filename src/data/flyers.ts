@@ -1,4 +1,3 @@
-
 // Centralized Flyers Data - Update here and it automatically reflects everywhere
 // Upload your flyers to Imgur and add them here
 // The system automatically determines if an event is upcoming or past based on the date!
@@ -42,7 +41,7 @@ export const flyers: Flyer[] = [
     id: 'black-business-startup-seminar-2026',
     title: 'Black Business Start-Up Seminar - Celebrating Black History Month',
     imageUrl: 'https://i.imgur.com/k5avwfF.jpeg',
-    date: '2026-02-28',  // Saturday Feb 28, 2026
+    date: '2026-02-28',  // ✅ Saturday, February 28, 2026
     description: 'From Idea to Impact: Launching Your Business the Right Way. A FREE empowerment seminar for aspiring Black entrepreneurs.',
     eventLink: '/contact',
     // 📋 FULL EVENT DETAILS FOR POPUP
@@ -332,28 +331,31 @@ export const flyers: Flyer[] = [
     contactPhone: '+1 (647) 581-5901'
   },
   {
-    id: 'spring-wellness-retreat-2026',
-    title: 'Spring Wellness & Mindfulness Retreat',
-    imageUrl: 'https://readdy.ai/api/search-image?query=peaceful%20spring%20wellness%20retreat%20poster%20design%20with%20diverse%20people%20practicing%20yoga%20and%20meditation%20in%20beautiful%20natural%20outdoor%20setting%2C%20calming%20theme%20with%20soft%20green%20blue%20and%20lavender%20colors%2C%20holistic%20health%20event%20flyer%20showing%20mindfulness%20activities%20nature%20and%20serene%20atmosphere%2C%20tranquil%20rejuvenating%20mood&width=800&height=1200&seq=wellness-retreat-2026&orientation=portrait',
-    date: '2026-04-10',
-    description: 'Refresh your mind, body, and spirit! Yoga sessions, meditation workshops, nutrition seminars, and nature walks.',
+    id: 'therapeutic-mental-wellness-2026',
+    title: 'Therapeutic and Mental Wellness',
+    imageUrl: 'https://readdy.ai/api/search-image?query=serene%20therapeutic%20mental%20wellness%20retreat%20poster%20design%20featuring%20diverse%20people%20in%20peaceful%20meditation%20and%20counseling%20sessions%2C%20calming%20professional%20theme%20with%20soft%20teal%20sage%20green%20and%20warm%20beige%20colors%2C%20mental%20health%20event%20flyer%20showing%20therapy%20groups%20mindfulness%20practices%20healing%20circles%20and%20supportive%20community%20atmosphere%2C%20tranquil%20empowering%20mood%20with%20natural%20light%20and%20peaceful%20setting&width=800&height=1200&seq=therapeutic-wellness-2026&orientation=portrait',
+    date: '2026-04-09',
+    description: 'Prioritize your mental health and emotional well-being. Professional therapy sessions, group counseling, mindfulness workshops, and healing circles.',
     eventLink: '/mental-health',
     registrationLink: '/contact',
     time: '8:00 AM - 5:00 PM',
-    location: 'Outdoor Retreat Center',
+    location: 'CAWAP Wellness Center',
     cost: 'Contact for pricing',
     whoShouldAttend: [
-      'Anyone seeking wellness and relaxation',
-      'Individuals interested in mindfulness',
-      'People wanting stress relief',
-      'Health-conscious community members'
+      'Anyone seeking mental health support',
+      'Individuals dealing with stress or anxiety',
+      'People wanting emotional healing',
+      'Community members prioritizing wellness',
+      'Those interested in therapeutic practices'
     ],
     whatYouWillLearn: [
-      'Yoga and stretching techniques',
-      'Meditation and mindfulness practices',
-      'Healthy nutrition habits',
-      'Stress management strategies',
-      'Self-care routines'
+      'Therapeutic techniques for mental wellness',
+      'Stress and anxiety management',
+      'Mindfulness and meditation practices',
+      'Emotional regulation strategies',
+      'Building resilience and coping skills',
+      'Group therapy and peer support',
+      'Self-care and healing practices'
     ],
     contactEmail: 'cawap2025@gmail.com',
     contactPhone: '+1 (647) 581-5901'
