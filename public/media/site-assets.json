@@ -53,8 +53,8 @@
   "gallery": {
     "food_bank": {
       "path": "gallery/food-bank",
-      "count": 10,
-      "extensions": ["jpg", "jpeg", "png", "mp4", "webm", "mov"]
+      "count": 20,
+      "ext": "jpeg"
     },
     "community": {
       "path": "gallery/community",
