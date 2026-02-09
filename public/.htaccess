@@ -1,7 +1,35 @@
-# CAWAP Media Performance & Caching Configuration
-# Place this file in your public_html/media/ directory on cPanel
+# ============================================
+# CAWAP PROFESSIONAL .HTACCESS CONFIGURATION
+# ============================================
+# This file optimizes your React website for:
+# - React Router (fixes 404 errors)
+# - Fast loading (caching & compression)
+# - Security (prevents hacking)
+# - Media performance (images, videos, PDFs)
+# ============================================
 
-# Enable Expires Module
+# 1. REACT ROUTING (Fixes 404 errors on refresh)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# 2. SECURITY & PERFORMANCE
+# Prevent directory browsing
+Options -Indexes
+
+# Enable Compression (Makes text files smaller for faster loading)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript image/svg+xml application/pdf
+</IfModule>
+
+# 3. BROWSER CACHING (Images, Videos, Documents)
 <IfModule mod_expires.c>
   ExpiresActive On
   
@@ -31,82 +59,53 @@
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
-# Enable Compression
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/plain
-  AddOutputFilterByType DEFLATE text/html
-  AddOutputFilterByType DEFLATE text/xml
-  AddOutputFilterByType DEFLATE text/css
-  AddOutputFilterByType DEFLATE application/xml
-  AddOutputFilterByType DEFLATE application/xhtml+xml
-  AddOutputFilterByType DEFLATE application/rss+xml
-  AddOutputFilterByType DEFLATE application/javascript
-  AddOutputFilterByType DEFLATE application/x-javascript
-  AddOutputFilterByType DEFLATE image/svg+xml
-  AddOutputFilterByType DEFLATE application/pdf
-</IfModule>
-
-# Browser Caching with Cache-Control Headers
+# 4. HEADERS & CORS (Ensures React can fetch media files)
 <IfModule mod_headers.c>
-  # Images
+  # Images - Immutable caching
   <FilesMatch "\\.(jpg|jpeg|png|gif|webp|svg|ico)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
   
-  # Videos
+  # Videos - Long-term caching
   <FilesMatch "\\.(mp4|webm|ogg)$">
     Header set Cache-Control "max-age=31536000, public"
   </FilesMatch>
   
-  # Documents - Force download for PDFs in documents folder
+  # PDFs - Force download + fast viewing
   <FilesMatch "\\.(pdf)$">
     Header set Cache-Control "max-age=2592000, public"
     Header set Content-Disposition "attachment"
     Header set X-Content-Type-Options "nosniff"
+    Header set Accept-Ranges "bytes"
   </FilesMatch>
   
-  # Other Documents
+  # Other Documents - Force download
   <FilesMatch "\\.(txt|doc|docx|xls|xlsx)$">
     Header set Cache-Control "max-age=2592000, public"
     Header set Content-Disposition "attachment"
   </FilesMatch>
   
-  # Enable CORS for media files
+  # Enable CORS for media files (allows React to fetch)
   Header set Access-Control-Allow-Origin "*"
   Header set Access-Control-Allow-Methods "GET, OPTIONS"
   Header set Access-Control-Allow-Headers "Content-Type"
 </IfModule>
 
-# Security - Prevent directory browsing
-Options -Indexes
-
-# Security - Protect against hotlinking (optional)
-# Uncomment to prevent other sites from using your images
-# RewriteEngine on
-# RewriteCond %{HTTP_REFERER} !^$
-# RewriteCond %{HTTP_REFERER} !^https://(www\\.)?yourdomain\\.com [NC]
-# RewriteRule \\.(jpg|jpeg|png|gif|webp|mp4|pdf)$ - [F,L]
-
-# Force HTTPS (if SSL is enabled)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Optimize file delivery
+# 5. MIME TYPES (Ensures correct file types)
 <IfModule mod_mime.c>
-  # Proper MIME types for images
+  # Images
   AddType image/jpeg jpg jpeg
   AddType image/png png
   AddType image/gif gif
   AddType image/webp webp
   AddType image/svg+xml svg
   
-  # Proper MIME types for videos
+  # Videos
   AddType video/mp4 mp4
   AddType video/webm webm
   AddType video/ogg ogg
   
-  # Proper MIME types for documents
+  # Documents
   AddType application/pdf pdf
   AddType text/plain txt
   AddType application/msword doc
@@ -115,9 +114,7 @@ Options -Indexes
   AddType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet xlsx
 </IfModule>
 
-# PDF Optimization - Enable linearization for fast web viewing
-<IfModule mod_headers.c>
-  <FilesMatch "\\.pdf$">
-    Header set Accept-Ranges "bytes"
-  </FilesMatch>
-</IfModule>
+# 6. PHP HANDLER (Keep this at the bottom - cPanel needs it)
+# php -- BEGIN cPanel-generated handler, do not edit
+# This domain inherits the "PHP" package.
+# php -- END cPanel-generated handler, do not edit
