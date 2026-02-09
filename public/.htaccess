@@ -7,16 +7,17 @@
   RewriteEngine On
   RewriteBase /
 
-  # --- CRITICAL FIX START ---
-  # If the requested file exists (like 1.jpeg), serve it immediately.
-  # This stops React from showing the "Page not generated" error.
-  RewriteCond %{REQUEST_FILENAME} -f
+  # --- CRITICAL FIX: Serve static files FIRST ---
+  # If the file exists, serve it immediately (no React routing)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-  # --- CRITICAL FIX END ---
 
+  # Special rule for media files - bypass React completely
+  RewriteRule ^media/.*\.(jpg|jpeg|png|gif|webp|svg|mp4|webm|pdf)$ - [L]
+
+  # Only send to React if it's NOT a file and NOT index.html
   RewriteRule ^index\.html$ - [L]
-  
-  # Redirect to index.html only if the file or directory doesn't exist
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
@@ -68,7 +69,7 @@ Options -Indexes
     Header set Cache-Control "max-age=31536000, public"
   </FilesMatch>
   
-  # PDFs - Fast viewing & fast bytes
+  # PDFs
   <FilesMatch "\.(pdf)$">
     Header set Cache-Control "max-age=2592000, public"
     Header set Accept-Ranges "bytes"
