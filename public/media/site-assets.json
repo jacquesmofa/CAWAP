@@ -54,6 +54,7 @@
           "name": "Food Bank Operations",
           "path": "gallery/food-bank",
           "count": 100,
+          "ext": "png",
           "description": "Daily operations, food sorting, and distribution activities"
         }
       }
@@ -67,6 +68,7 @@
           "name": "Community Gatherings",
           "path": "gallery/community",
           "count": 50,
+          "ext": "png",
           "description": "General community events and gatherings"
         }
       }
@@ -80,12 +82,14 @@
           "name": "Youth Programs",
           "path": "gallery/youth",
           "count": 50,
+          "ext": "png",
           "description": "Youth leadership, mentorship, and development programs"
         },
         "workshops": {
           "name": "Workshops & Training",
           "path": "gallery/workshops",
           "count": 50,
+          "ext": "png",
           "description": "Skills training, professional development, and educational workshops"
         }
       }
@@ -99,12 +103,14 @@
           "name": "Sankofa Royale Awards",
           "path": "gallery/awards",
           "count": 50,
+          "ext": "png",
           "description": "Annual awards ceremony celebrating community excellence"
         },
         "cultural": {
           "name": "Cultural Celebrations",
           "path": "gallery/cultural",
           "count": 50,
+          "ext": "png",
           "description": "Cultural festivals, heritage celebrations, and traditional events"
         }
       }
@@ -118,6 +124,7 @@
           "name": "Video Library",
           "path": "videos",
           "count": 50,
+          "ext": "mp4",
           "description": "Official video content and recordings"
         }
       }
