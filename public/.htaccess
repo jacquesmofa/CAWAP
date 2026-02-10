@@ -1,22 +1,21 @@
 # ============================================
-# CAWAP PROFESSIONAL .HTACCESS CONFIGURATION
+# CAWAP FINAL MEDIA BYPASS .HTACCESS
 # ============================================
 
-# 1. REACT ROUTING & STATIC FILE ACCESS
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # --- CRITICAL FIX: Serve static files FIRST ---
-  # If the file exists, serve it immediately (no React routing)
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
+  # STEP 1: FORCE BYPASS FOR MEDIA & CONFIG
+  # This stops React from hijacking images and the site-assets.json file.
+  RewriteRule ^media/.*\.(jpg|jpeg|JPG|JPEG|png|PNG|webp|gif|mp4|webm|json|pdf)$ - [L]
+
+  # STEP 2: PHYSICAL FILE CHECK
+  # If the file exists on the server, serve it immediately.
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  # Special rule for media files - bypass React completely
-  RewriteRule ^media/.*\.(jpg|jpeg|png|gif|webp|svg|mp4|webm|pdf)$ - [L]
-
-  # Only send to React if it's NOT a file and NOT index.html
+  # STEP 3: REACT ROUTING
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -32,6 +31,7 @@ Options -Indexes
   AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
   AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript image/svg+xml application/pdf
+  AddOutputFilterByType DEFLATE application/json
 </IfModule>
 
 # 3. BROWSER CACHING
@@ -54,6 +54,10 @@ Options -Indexes
   
   # Documents - Cache for 1 month
   ExpiresByType application/pdf "access plus 1 month"
+  
+  # JSON - Cache for 1 day
+  ExpiresByType application/json "access plus 1 day"
+  
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
@@ -75,6 +79,11 @@ Options -Indexes
     Header set Accept-Ranges "bytes"
   </FilesMatch>
   
+  # JSON
+  <FilesMatch "\.(json)$">
+    Header set Cache-Control "max-age=86400, public"
+  </FilesMatch>
+  
   # Enable CORS for media files
   Header set Access-Control-Allow-Origin "*"
   Header set Access-Control-Allow-Methods "GET, OPTIONS"
@@ -91,6 +100,7 @@ Options -Indexes
   AddType video/mp4 mp4
   AddType video/webm webm
   AddType application/pdf pdf
+  AddType application/json json
 </IfModule>
 
 # 6. PHP HANDLER (cPanel Specific)

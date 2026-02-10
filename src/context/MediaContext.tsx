@@ -88,12 +88,13 @@ interface MediaProviderProps {
 // ========================================
 // 🔧 MEDIA URL GENERATOR
 // ========================================
+const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'webp'];
 const VIDEO_EXTENSIONS = ['mp4', 'webm', 'mov', 'avi', 'mkv'];
-const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
 /**
- * Generates numbered media URLs
- * Files should be named: 1.jpg, 2.jpg, 3.mp4, etc.
+ * 🌟 UNIVERSAL MEDIA URL GENERATOR
+ * Generates URLs for all common file extensions to handle any format
+ * Files can be: 1.jpg, 1.jpeg, 1.JPG, 1.JPEG, 1.png, 1.webp, etc.
  */
 function generateNumberedUrls(
   baseUrl: string,
@@ -109,11 +110,17 @@ function generateNumberedUrls(
     }
   } else if (extensions && extensions.length > 0) {
     // Multi-extension mode: Try all extensions for each number
-    // This allows mixed media (photos + videos) in same folder
     for (let i = 1; i <= count; i++) {
-      // We'll generate URLs for all possible extensions
-      // The onError handler will hide non-existent files
       for (const extension of extensions) {
+        urls.push(`${baseUrl}/${path}/${i}.${extension}`);
+      }
+    }
+  } else {
+    // 🌟 UNIVERSAL MODE: No extension specified, try ALL common formats
+    // This makes the system resilient to any file type
+    const allExtensions = [...IMAGE_EXTENSIONS, ...VIDEO_EXTENSIONS];
+    for (let i = 1; i <= count; i++) {
+      for (const extension of allExtensions) {
         urls.push(`${baseUrl}/${path}/${i}.${extension}`);
       }
     }
@@ -179,7 +186,8 @@ export function MediaProvider({ children }: MediaProviderProps) {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${__BASE_PATH__}/media/site-assets.json`);
+      // ✅ FIX: Use relative path instead of __BASE_PATH__
+      const response = await fetch('/media/site-assets.json');
       if (!response.ok) {
         throw new Error(`Failed to load media config: ${response.status}`);
       }
