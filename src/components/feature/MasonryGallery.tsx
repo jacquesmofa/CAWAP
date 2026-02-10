@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
-import LazyImage from '@/components/base/LazyImage';
 
 interface MasonryGalleryProps {
   photos: string[];
@@ -9,7 +8,8 @@ interface MasonryGalleryProps {
 }
 
 const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], onPhotoClick }) => {
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
+  const [failedVideos, setFailedVideos] = useState<Set<number>>(new Set());
 
   const breakpointColumns = {
     default: 4,
@@ -20,8 +20,12 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
     640: 1
   };
 
-  const handleImageLoad = (index: number) => {
-    setLoadedImages(prev => new Set(prev).add(index));
+  const handleImageError = (index: number) => {
+    setFailedImages(prev => new Set(prev).add(index));
+  };
+
+  const handleVideoError = (index: number) => {
+    setFailedVideos(prev => new Set(prev).add(index));
   };
 
   return (
@@ -39,14 +43,24 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
                 key={`video-${index}`}
                 className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-gray-900"
               >
-                <video
-                  controls
-                  className="w-full h-auto"
-                  preload="metadata"
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                {failedVideos.has(index) ? (
+                  <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+                    <div className="text-center">
+                      <i className="ri-video-off-line text-4xl text-gray-400 mb-2"></i>
+                      <p className="text-gray-500 text-sm">Video Pending</p>
+                    </div>
+                  </div>
+                ) : (
+                  <video
+                    controls
+                    className="w-full h-auto"
+                    preload="metadata"
+                    onError={() => handleVideoError(index)}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
             ))}
           </div>
@@ -69,18 +83,30 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
               <div
                 key={`photo-${index}`}
                 className="mb-6 cursor-pointer group"
-                onClick={() => onPhotoClick?.(index)}
+                onClick={() => !failedImages.has(index) && onPhotoClick?.(index)}
               >
                 <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                  <LazyImage
-                    src={photoUrl}
-                    alt={`Gallery photo ${index + 1}`}
-                    className="w-full h-auto"
-                    objectFit="cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                    <i className="ri-zoom-in-line text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
-                  </div>
+                  {failedImages.has(index) ? (
+                    <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+                      <div className="text-center">
+                        <i className="ri-image-line text-4xl text-gray-400 mb-2"></i>
+                        <p className="text-gray-500 text-sm">Image Pending</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={photoUrl}
+                        alt={`Gallery photo ${index + 1}`}
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                        onError={() => handleImageError(index)}
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <i className="ri-zoom-in-line text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             ))}

@@ -86,44 +86,31 @@ interface MediaProviderProps {
 }
 
 // ========================================
-// 🔧 MEDIA URL GENERATOR
+// 🔧 SIMPLIFIED MEDIA URL GENERATOR
 // ========================================
-const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'webp'];
-const VIDEO_EXTENSIONS = ['mp4', 'webm', 'mov', 'avi', 'mkv'];
 
 /**
- * 🌟 UNIVERSAL MEDIA URL GENERATOR
- * Generates URLs for all common file extensions to handle any format
- * Files can be: 1.jpg, 1.jpeg, 1.JPG, 1.JPEG, 1.png, 1.webp, etc.
+ * 🎯 STANDARDIZED MEDIA URL GENERATOR
+ * PNG for images, MP4 for videos - NO EXTENSION GUESSING
  */
 function generateNumberedUrls(
   baseUrl: string,
   config: NumberedMediaConfig
 ): string[] {
   const urls: string[] = [];
-  const { path, count, ext, extensions } = config;
+  const { path, count, ext } = config;
 
-  if (ext) {
-    // Single extension mode: 1.jpg, 2.jpg, 3.jpg...
-    for (let i = 1; i <= count; i++) {
-      urls.push(`${baseUrl}/${path}/${i}.${ext}`);
-    }
-  } else if (extensions && extensions.length > 0) {
-    // Multi-extension mode: Try all extensions for each number
-    for (let i = 1; i <= count; i++) {
-      for (const extension of extensions) {
-        urls.push(`${baseUrl}/${path}/${i}.${extension}`);
-      }
-    }
-  } else {
-    // 🌟 UNIVERSAL MODE: No extension specified, try ALL common formats
-    // This makes the system resilient to any file type
-    const allExtensions = [...IMAGE_EXTENSIONS, ...VIDEO_EXTENSIONS];
-    for (let i = 1; i <= count; i++) {
-      for (const extension of allExtensions) {
-        urls.push(`${baseUrl}/${path}/${i}.${extension}`);
-      }
-    }
+  // Determine extension: use specified ext, or default based on path type
+  let extension = ext;
+  
+  if (!extension) {
+    // Default logic: videos folder gets .mp4, everything else gets .png
+    extension = path.includes('video') ? 'mp4' : 'png';
+  }
+
+  // Generate simple numbered URLs: 1.png, 2.png, 3.png...
+  for (let i = 1; i <= count; i++) {
+    urls.push(`${baseUrl}/${path}/${i}.${extension}`);
   }
 
   return urls;
@@ -186,7 +173,7 @@ export function MediaProvider({ children }: MediaProviderProps) {
       setLoading(true);
       setError(null);
 
-      // ✅ FIX: Use relative path instead of __BASE_PATH__
+      // ✅ RELATIVE PATH - No more DNS errors
       const response = await fetch('/media/site-assets.json');
       if (!response.ok) {
         throw new Error(`Failed to load media config: ${response.status}`);
@@ -222,11 +209,12 @@ export function MediaProvider({ children }: MediaProviderProps) {
     const photos: string[] = [];
     const videos: string[] = [];
 
+    // Simple extension check: .mp4 = video, everything else = photo
     allUrls.forEach(url => {
       const extension = url.split('.').pop()?.toLowerCase() || '';
-      if (VIDEO_EXTENSIONS.includes(extension)) {
+      if (extension === 'mp4') {
         videos.push(url);
-      } else if (IMAGE_EXTENSIONS.includes(extension)) {
+      } else {
         photos.push(url);
       }
     });

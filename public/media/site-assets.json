@@ -11,31 +11,31 @@
   "hero": {
     "path": "hero",
     "count": 10,
-    "ext": "jpg"
+    "ext": "png"
   },
   
   "programs": {
     "path": "programs",
     "count": 20,
-    "ext": "jpg"
+    "ext": "png"
   },
   
   "events": {
     "path": "events",
     "count": 20,
-    "ext": "jpg"
+    "ext": "png"
   },
   
   "flyers": {
     "path": "flyers",
     "count": 20,
-    "ext": "jpg"
+    "ext": "png"
   },
   
   "trainings": {
     "path": "trainings",
     "count": 20,
-    "ext": "jpg"
+    "ext": "png"
   },
   
   "documents": {
@@ -59,13 +59,13 @@
           "name": "Food Bank",
           "path": "gallery/food-bank",
           "count": 20,
-          "ext": "jpeg"
+          "ext": "png"
         },
         "general": {
           "name": "Community Gatherings",
           "path": "gallery/community",
           "count": 10,
-          "ext": "jpeg"
+          "ext": "png"
         }
       }
     },
@@ -77,13 +77,13 @@
           "name": "Youth Programs",
           "path": "gallery/youth",
           "count": 10,
-          "ext": "jpeg"
+          "ext": "png"
         },
         "workshops": {
           "name": "Workshops & Training",
           "path": "gallery/workshops",
           "count": 10,
-          "ext": "jpeg"
+          "ext": "png"
         }
       }
     },
@@ -95,13 +95,13 @@
           "name": "Sankofa Royale Awards",
           "path": "gallery/awards",
           "count": 10,
-          "ext": "jpeg"
+          "ext": "png"
         },
         "cultural": {
           "name": "Cultural Celebrations",
           "path": "gallery/cultural",
           "count": 10,
-          "ext": "jpeg"
+          "ext": "png"
         }
       }
     }
