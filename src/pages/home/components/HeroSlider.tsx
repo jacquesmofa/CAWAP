@@ -44,12 +44,18 @@ export default function HeroSlider() {
     setCurrentSlide(index);
   };
 
+  // Get the hero image for current slide (cycle through available hero images)
+  const getCurrentHeroImage = () => {
+    if (!assets?.hero || assets.hero.length === 0) return '';
+    return assets.hero[currentSlide % assets.hero.length];
+  };
+
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={assets?.hero?.home || ''}
+          src={getCurrentHeroImage()}
           alt="CAWAP Hero"
           className="w-full h-full object-cover"
         />

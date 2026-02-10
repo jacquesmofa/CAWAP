@@ -1,25 +1,34 @@
 import { useState, useEffect } from 'react';
 import ScrollReveal from '../../../components/effects/ScrollReveal';
+import { useMedia } from '../../../context/MediaContext';
 
 const ImageCarousel = () => {
+  const { assets } = useMedia();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = [
-    'https://readdy.ai/api/search-image?query=african%20and%20caribbean%20women%20participating%20in%20community%20empowerment%20workshop%20with%20smiling%20faces%20showing%20engagement%20and%20learning%2C%20bright%20modern%20community%20center%20with%20natural%20lighting%2C%20professional%20photography%20capturing%20diversity%20cultural%20celebration%20and%20sisterhood%2C%20women%20of%20various%20ages%20working%20together%20on%20projects%2C%20warm%20welcoming%20atmosphere&width=800&height=600&seq=carousel-1&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=youth%20leadership%20program%20with%20diverse%20teenagers%20engaged%20in%20mentorship%20activities%20and%20skill%20development%2C%20inspiring%20educational%20environment%20showing%20collaboration%20and%20growth%2C%20professional%20photography%20capturing%20determination%20hope%20and%20community%20support%2C%20modern%20facility%20with%20bright%20lighting%2C%20young%20people%20learning%20together&width=800&height=600&seq=carousel-2&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=community%20volunteers%20distributing%20food%20and%20providing%20support%20services%20to%20families%20in%20need%2C%20heartwarming%20scene%20showing%20compassion%20and%20care%2C%20professional%20photography%20capturing%20community%20spirit%20and%20helping%20hands%2C%20diverse%20group%20working%20together%2C%20bright%20welcoming%20community%20center%20atmosphere&width=800&height=600&seq=carousel-3&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=women%20empowerment%20seminar%20with%20african%20and%20caribbean%20women%20attending%20professional%20development%20workshop%2C%20modern%20conference%20room%20setting%20with%20engaged%20participants%2C%20professional%20photography%20showing%20learning%20growth%20and%20networking%2C%20diverse%20women%20taking%20notes%20and%20participating%20actively%2C%20inspiring%20atmosphere&width=800&height=600&seq=carousel-4&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=seniors%20program%20with%20elderly%20african%20and%20caribbean%20community%20members%20enjoying%20social%20activities%20and%20support%20services%2C%20warm%20friendly%20atmosphere%20showing%20care%20and%20respect%2C%20professional%20photography%20capturing%20joy%20wisdom%20and%20community%20connection%2C%20bright%20comfortable%20community%20space%2C%20intergenerational%20support&width=800&height=600&seq=carousel-5&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=children%20summer%20camp%20with%20diverse%20kids%20participating%20in%20fun%20educational%20activities%20and%20games%2C%20colorful%20vibrant%20atmosphere%20showing%20joy%20and%20learning%2C%20professional%20photography%20capturing%20childhood%20happiness%20and%20growth%2C%20modern%20facility%20with%20bright%20lighting%2C%20children%20engaged%20in%20creative%20activities&width=800&height=600&seq=carousel-6&orientation=landscape',
-  ];
+  // Get all gallery images from MediaContext
+  const getAllGalleryImages = (): string[] => {
+    if (!assets?.gallery) return [];
+    
+    const allImages: string[] = [];
+    Object.values(assets.gallery).forEach(categoryImages => {
+      allImages.push(...categoryImages);
+    });
+    
+    return allImages;
+  };
+
+  const images = getAllGalleryImages();
 
   useEffect(() => {
+    if (images.length === 0) return;
+    
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -32,6 +41,19 @@ const ImageCarousel = () => {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
+
+  // Show loading state if no images yet
+  if (images.length === 0) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-500">Loading community images...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50">
