@@ -108,7 +108,7 @@ const ImpactMap = () => {
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#3c1053]"></div>
-                <span className="text-gray-600 font-medium">Very High Impact (500+)</span>
+                <span className="text-gray-600 font-medium">Very High Impact (1,000+)</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#5a1a7a]"></div>

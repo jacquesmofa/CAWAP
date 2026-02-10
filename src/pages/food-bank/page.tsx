@@ -319,12 +319,12 @@ export default function FoodBankPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
-              <div className="text-5xl font-bold text-[#D4AF37] mb-2">500+</div>
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">25,000+</div>
               <div className="text-gray-700 font-semibold">Families Served Monthly</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
-              <div className="text-5xl font-bold text-[#D4AF37] mb-2">15,000+</div>
-              <div className="text-gray-700 font-semibold">Meals Distributed</div>
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">125,000+</div>
+              <div className="text-gray-700 font-semibold">Meals Distributed Monthly</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
               <div className="text-5xl font-bold text-[#D4AF37] mb-2">100%</div>
@@ -372,12 +372,12 @@ export default function FoodBankPage() {
                     </p>
                     <div className="flex items-center gap-4 mt-6">
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-[#c9b037]">500+</div>
+                        <div className="text-4xl font-bold text-[#c9b037]">25,000+</div>
                         <div className="text-sm text-gray-600">Families Served Monthly</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-[#c9b037]">15,000+</div>
-                        <div className="text-sm text-gray-600">Meals Distributed</div>
+                        <div className="text-4xl font-bold text-[#c9b037]">125,000+</div>
+                        <div className="text-sm text-gray-600">Meals Distributed Monthly</div>
                       </div>
                     </div>
                   </div>
@@ -821,7 +821,7 @@ export default function FoodBankPage() {
                         <i className="fas fa-building text-[#c9b037] text-xl mt-1"></i>
                         <div>
                           <div className="font-semibold text-gray-800 mb-1">Address</div>
-                          <div className="text-gray-600">101 West Drive, Unit 7<br />Brampton, ON L6T 5E9<br />Canada</div>
+                          <div className="text-gray-600">101 West Drive, Unit 7<br />Brampton, ON L6T 2J6<br />Canada</div>
                         </div>
                       </div>
                       <div className="flex items-start gap-4">
@@ -840,7 +840,7 @@ export default function FoodBankPage() {
                       </div>
                     </div>
                     <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-lg">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.8234567890123!2d-79.7234567890123!3d43.7234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDQzJzI0LjQiTiA3OcKwNDMnMjQuNCJX!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="CAWAP Food Bank Location"></iframe>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.234567890123!2d-79.7632!3d43.6532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM5JzExLjUiTiA3OcKwNDUnNDcuNSJX!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="CAWAP Food Bank Location"></iframe>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -918,8 +918,8 @@ export default function FoodBankPage() {
                 </div>
               </ScrollReveal>
               <div className="grid md:grid-cols-4 gap-8">
-                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">500+</div><div className="text-lg">Families Served Monthly</div></div></ScrollReveal>
-                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">15,000+</div><div className="text-lg">Meals Distributed</div></div></ScrollReveal>
+                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">25,000+</div><div className="text-lg">Families Served Monthly</div></div></ScrollReveal>
+                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">125,000+</div><div className="text-lg">Meals Distributed Monthly</div></div></ScrollReveal>
                 <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">50+</div><div className="text-lg">Volunteers</div></div></ScrollReveal>
                 <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">100%</div><div className="text-lg">Dignity & Respect</div></div></ScrollReveal>
               </div>

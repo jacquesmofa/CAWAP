@@ -349,6 +349,37 @@ const HomePage = () => {
       {/* Ongoing Programs & Trainings Section */}
       <TrainingsSection />
       
+      {/* IMPACT STATS */}
+      <section className="py-20 bg-gradient-to-br from-[#26194f] to-[#3c1053]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-white mb-4">
+              Our Impact
+            </h2>
+            <div className="w-24 h-1 bg-[#c9b037] mx-auto"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">25,000+</div>
+              <div className="text-lg text-white/90">Lives Impacted</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">25,000+</div>
+              <div className="text-lg text-white/90">Families Served Monthly</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">125,000+</div>
+              <div className="text-lg text-white/90">Meals Distributed Monthly</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">15+</div>
+              <div className="text-lg text-white/90">Years of Service</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Food Bank Quick Link Section */}
       <section className="py-16 bg-gradient-to-br from-[#c9b037]/10 to-white">
         <div className="container mx-auto px-4">

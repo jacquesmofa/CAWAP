@@ -115,8 +115,8 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <i className="ri-map-pin-line text-[#c9b037] mt-1"></i>
                 <span className="text-sm text-white/80">
-                  1200 Markham Road, Unit 414<br />
-                  Scarborough, ON M1H 3C3
+                  101 West Drive, Unit 7<br />
+                  Brampton, ON L6T 2J6
                 </span>
               </li>
               <li>
@@ -191,20 +191,10 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/60 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+            <p className="text-sm text-white/60 text-center">
               © {currentYear} C.A.W.A.P. All rights reserved. | Charitable Registration: 84865 2740 RR0001
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://readdy.ai/?ref=logo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/60 hover:text-[#c9b037] transition-colors cursor-pointer"
-              >
-                Website Builder
-              </a>
-            </div>
           </div>
         </div>
       </div>
