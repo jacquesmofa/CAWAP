@@ -55,16 +55,16 @@
       "name": "Community Events",
       "icon": "ri-community-line",
       "subcategories": {
+        "general": {
+          "name": "Community Gatherings",
+          "path": "gallery/community",
+          "count": 5,
+          "ext": "png"
+        },
         "food_bank": {
           "name": "Food Bank",
           "path": "gallery/food-bank",
           "count": 20,
-          "ext": "png"
-        },
-        "general": {
-          "name": "Community Gatherings",
-          "path": "gallery/community",
-          "count": 10,
           "ext": "png"
         }
       }
