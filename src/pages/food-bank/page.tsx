@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
@@ -56,7 +55,7 @@ export default function FoodBankPage() {
   // 🎬 AUTO-NUMBERED GALLERY MEDIA
   // Get all potential URLs from the numbered system
   // ========================================
-  const galleryUrls = assets?.gallery?.food_bank || [];
+  const galleryUrls = assets?.gallery?.community_food_bank || [];
 
   // ========================================
   // 🎬 GALLERY DISPLAY LOGIC

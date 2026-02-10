@@ -69,6 +69,19 @@ interface GeneratedMediaAssets {
   gallery: {
     [key: string]: string[];
   };
+  galleryDeep?: {
+    [key: string]: {
+      name: string;
+      icon: string;
+      subcategories: {
+        [key: string]: {
+          name: string;
+          photos: string[];
+          videos: string[];
+        };
+      };
+    };
+  };
 }
 
 interface MediaContextType {
@@ -124,13 +137,39 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
 
   // Handle both gallery and galleryDeep structures
   let galleryAssets: { [key: string]: string[] } = {};
+  let galleryDeepAssets: GeneratedMediaAssets['galleryDeep'] = undefined;
   
   if (config.galleryDeep) {
+    galleryDeepAssets = {};
     // Flatten galleryDeep structure into simple gallery format
     Object.entries(config.galleryDeep).forEach(([categoryKey, category]) => {
+      galleryDeepAssets![categoryKey] = {
+        name: category.name,
+        icon: category.icon,
+        subcategories: {},
+      };
       Object.entries(category.subcategories).forEach(([subKey, subConfig]) => {
         const key = `${categoryKey}_${subKey}`;
-        galleryAssets[key] = generateNumberedUrls(baseUrl, subConfig);
+        const urls = generateNumberedUrls(baseUrl, subConfig);
+        galleryAssets[key] = urls;
+
+        // Separate photos and videos
+        const photos: string[] = [];
+        const videos: string[] = [];
+        urls.forEach(url => {
+          const ext = url.split('.').pop()?.toLowerCase() || '';
+          if (ext === 'mp4' || ext === 'webm' || ext === 'mov') {
+            videos.push(url);
+          } else {
+            photos.push(url);
+          }
+        });
+
+        galleryDeepAssets![categoryKey].subcategories[subKey] = {
+          name: subConfig.name,
+          photos,
+          videos,
+        };
       });
     });
   } else if (config.gallery) {
@@ -157,6 +196,7 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
     documents: generateNumberedUrls(baseUrl, config.documents),
     videos: generateNumberedUrls(baseUrl, config.videos),
     gallery: galleryAssets,
+    galleryDeep: galleryDeepAssets,
   };
 }
 

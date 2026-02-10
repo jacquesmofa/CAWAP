@@ -8,6 +8,7 @@
 
   # STEP 1: FORCE BYPASS FOR MEDIA & CONFIG
   # This stops React from hijacking images and the site-assets.json file.
+  RewriteRule ^media/site-assets\.json$ - [L]
   RewriteRule ^media/.*\.(jpg|jpeg|JPG|JPEG|png|PNG|webp|gif|mp4|webm|json|pdf)$ - [L]
 
   # STEP 2: PHYSICAL FILE CHECK

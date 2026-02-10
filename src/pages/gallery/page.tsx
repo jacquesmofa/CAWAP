@@ -136,25 +136,40 @@ const GalleryPage: React.FC = () => {
                     onClick={() => handleCategoryClick(key)}
                     className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 overflow-hidden group"
                   >
-                    <div className="p-8">
-                      <div className="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i className={`${category.icon} text-4xl text-white`}></i>
-                      </div>
+                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200">
+                      {(() => {
+                        const firstSub = Object.values(category.subcategories || {})[0];
+                        const firstPhoto = firstSub?.photos?.[0];
+                        return firstPhoto ? (
+                          <img
+                            src={firstPhoto}
+                            alt={category.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <i className={`${category.icon} text-6xl text-teal-400`}></i>
+                          </div>
+                        );
+                      })()}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div className="p-6">
                       <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover:text-teal-600 transition-colors">
                         {category.name}
                       </h3>
                       <div className="flex items-center text-gray-600 space-x-4">
                         <span className="flex items-center">
-                          <i className="ri-folder-line mr-2"></i>
+                          <i className="ri-folder-line mr-2 w-4 h-4 flex items-center justify-center"></i>
                           {subcategoryCount} {subcategoryCount === 1 ? 'Album' : 'Albums'}
                         </span>
                         <span className="flex items-center">
-                          <i className="ri-image-line mr-2"></i>
+                          <i className="ri-image-line mr-2 w-4 h-4 flex items-center justify-center"></i>
                           {totalPhotos} {totalPhotos === 1 ? 'Photo' : 'Photos'}
                         </span>
                       </div>
                     </div>
-                    <div className="h-2 bg-gradient-to-r from-teal-500 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    <div className="h-1.5 bg-gradient-to-r from-teal-500 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </div>
                 );
               })}
@@ -166,9 +181,9 @@ const GalleryPage: React.FC = () => {
             <>
               <button
                 onClick={handleBackToCategories}
-                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 transition-colors font-medium"
+                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 transition-colors font-medium cursor-pointer"
               >
-                <i className="ri-arrow-left-line mr-2"></i>
+                <i className="ri-arrow-left-line mr-2 w-5 h-5 flex items-center justify-center"></i>
                 Back to All Categories
               </button>
 
@@ -194,15 +209,15 @@ const GalleryPage: React.FC = () => {
                         className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 overflow-hidden group"
                       >
                         {firstPhoto ? (
-                          <div className="h-48 overflow-hidden bg-gray-200">
+                          <div className="h-48 w-full overflow-hidden bg-gray-200">
                             <img
                               src={firstPhoto}
                               alt={subcategory.name}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                              className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                             />
                           </div>
                         ) : (
-                          <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                          <div className="h-48 w-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                             <i className="ri-image-line text-6xl text-gray-400"></i>
                           </div>
                         )}
@@ -211,16 +226,14 @@ const GalleryPage: React.FC = () => {
                             {subcategory.name}
                           </h3>
                           <div className="flex items-center text-sm text-gray-600 space-x-4">
-                            {photoCount > 0 && (
-                              <span className="flex items-center">
-                                <i className="ri-image-line mr-1"></i>
-                                {photoCount}
-                              </span>
-                            )}
+                            <span className="flex items-center">
+                              <i className="ri-image-line mr-1 w-4 h-4 flex items-center justify-center"></i>
+                              {photoCount} {photoCount === 1 ? 'Photo' : 'Photos'}
+                            </span>
                             {videoCount > 0 && (
                               <span className="flex items-center">
-                                <i className="ri-video-line mr-1"></i>
-                                {videoCount}
+                                <i className="ri-video-line mr-1 w-4 h-4 flex items-center justify-center"></i>
+                                {videoCount} {videoCount === 1 ? 'Video' : 'Videos'}
                               </span>
                             )}
                           </div>
