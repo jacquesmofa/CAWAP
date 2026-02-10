@@ -120,61 +120,116 @@ const GalleryPage: React.FC = () => {
           {/* Breadcrumbs */}
           <Breadcrumbs items={getBreadcrumbs()} />
 
-          {/* Category View */}
-          {!selectedCategory && assets?.galleryDeep && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Object.entries(assets.galleryDeep).map(([key, category]) => {
-                const subcategoryCount = Object.keys(category.subcategories || {}).length;
-                const totalPhotos = Object.values(category.subcategories || {}).reduce(
-                  (sum, sub) => sum + (sub.photos?.length || 0),
-                  0
-                );
+          {/* Category Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Object.entries(assets.galleryDeep).map(([categoryKey, category]) => {
+              // Get first available photo from any subcategory for thumbnail
+              const firstPhoto = Object.values(category.subcategories)
+                .find(sub => sub.photos.length > 0)?.photos[0];
+              
+              // Check if entire category is empty
+              const totalPhotos = Object.values(category.subcategories)
+                .reduce((sum, sub) => sum + sub.photos.length, 0);
+              const totalVideos = Object.values(category.subcategories)
+                .reduce((sum, sub) => sum + sub.videos.length, 0);
+              const isEmpty = totalPhotos === 0 && totalVideos === 0;
 
-                return (
-                  <div
-                    key={key}
-                    onClick={() => handleCategoryClick(key)}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 overflow-hidden group"
-                  >
-                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200">
-                      {(() => {
-                        const firstSub = Object.values(category.subcategories || {})[0];
-                        const firstPhoto = firstSub?.photos?.[0];
-                        return firstPhoto ? (
+              return (
+                <div
+                  key={categoryKey}
+                  onClick={() => handleCategoryClick(categoryKey)}
+                  className="group cursor-pointer"
+                >
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                    {/* Thumbnail or Placeholder */}
+                    <div className="relative h-64 w-full overflow-hidden">
+                      {isEmpty ? (
+                        // ✨ NEW: Icon-based placeholder for empty categories
+                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center">
+                          <div className="text-center">
+                            <i className={`${category.icon} text-8xl text-white/90 mb-4`}></i>
+                            <p className="text-white/80 text-sm font-medium px-4">
+                              Content Coming Soon
+                            </p>
+                          </div>
+                        </div>
+                      ) : firstPhoto ? (
+                        <>
                           <img
                             src={firstPhoto}
                             alt={category.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
                           />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <i className={`${category.icon} text-6xl text-teal-400`}></i>
-                          </div>
-                        );
-                      })()}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover:text-teal-600 transition-colors">
-                        {category.name}
-                      </h3>
-                      <div className="flex items-center text-gray-600 space-x-4">
-                        <span className="flex items-center">
-                          <i className="ri-folder-line mr-2 w-4 h-4 flex items-center justify-center"></i>
-                          {subcategoryCount} {subcategoryCount === 1 ? 'Album' : 'Albums'}
-                        </span>
-                        <span className="flex items-center">
-                          <i className="ri-image-line mr-2 w-4 h-4 flex items-center justify-center"></i>
-                          {totalPhotos} {totalPhotos === 1 ? 'Photo' : 'Photos'}
-                        </span>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        </>
+                      ) : (
+                        // Fallback gradient if no photo but has videos
+                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center">
+                          <i className={`${category.icon} text-8xl text-white/90`}></i>
+                        </div>
+                      )}
+                      
+                      {/* Category Icon Badge */}
+                      <div className="absolute top-4 left-4 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
+                        <i className={`${category.icon} text-2xl text-teal-600`}></i>
+                      </div>
+
+                      {/* Media Count Badge - Always Show */}
+                      <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                        <div className="flex items-center gap-3 text-sm font-semibold">
+                          <span className="flex items-center gap-1 text-gray-700">
+                            <i className="ri-image-line"></i>
+                            {totalPhotos}
+                          </span>
+                          <span className="flex items-center gap-1 text-gray-700">
+                            <i className="ri-video-line"></i>
+                            {totalVideos}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div className="h-1.5 bg-gradient-to-r from-teal-500 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+
+                    {/* Category Info */}
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors">
+                        {category.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {category.description || 'Explore our collection of photos and videos'}
+                      </p>
+                      
+                      {/* Subcategories Preview */}
+                      <div className="flex flex-wrap gap-2">
+                        {Object.entries(category.subcategories).map(([subKey, sub]) => {
+                          const subIsEmpty = sub.photos.length === 0 && sub.videos.length === 0;
+                          return (
+                            <span
+                              key={subKey}
+                              className={`text-xs px-3 py-1 rounded-full ${
+                                subIsEmpty 
+                                  ? 'bg-gray-100 text-gray-400' 
+                                  : 'bg-teal-50 text-teal-700'
+                              }`}
+                            >
+                              {sub.name}
+                              {subIsEmpty && ' (Empty)'}
+                            </span>
+                          );
+                        })}
+                      </div>
+
+                      {/* View Button */}
+                      <div className="mt-4 flex items-center text-teal-600 font-semibold group-hover:gap-3 gap-2 transition-all">
+                        <span>{isEmpty ? 'View Album' : 'Explore Gallery'}</span>
+                        <i className="ri-arrow-right-line text-xl"></i>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-          )}
+                </div>
+              );
+            })}
+          </div>
 
           {/* Subcategory View */}
           {selectedCategory && !selectedSubcategory && assets?.galleryDeep?.[selectedCategory] && (

@@ -78,6 +78,7 @@ interface GeneratedMediaAssets {
           name: string;
           photos: string[];
           videos: string[];
+          isEmpty: boolean;
         };
       };
     };
@@ -105,6 +106,9 @@ interface MediaProviderProps {
 /**
  * 🎯 STANDARDIZED MEDIA URL GENERATOR
  * PNG for images, MP4 for videos - NO EXTENSION GUESSING
+ * 
+ * ✨ NEW: "Always Visible" Mode - Generates URLs even if files don't exist
+ * This ensures all categories/albums appear in the UI with placeholders
  */
 function generateNumberedUrls(
   baseUrl: string,
@@ -122,6 +126,8 @@ function generateNumberedUrls(
   }
 
   // Generate simple numbered URLs: 1.png, 2.png, 3.png...
+  // ✨ NEW: Always generate URLs regardless of file existence
+  // The UI will handle empty states with placeholders
   for (let i = 1; i <= count; i++) {
     urls.push(`${baseUrl}/${path}/${i}.${extension}`);
   }
@@ -131,6 +137,11 @@ function generateNumberedUrls(
 
 /**
  * Generates assets from the config
+ * 
+ * ✨ NEW: "Always Visible" Structure
+ * - All categories/subcategories from JSON are ALWAYS included
+ * - Empty albums get isEmpty: true flag for placeholder UI
+ * - No more hidden categories - everything is visible
  */
 function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAssets {
   const { baseUrl } = config;
@@ -141,16 +152,21 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
   
   if (config.galleryDeep) {
     galleryDeepAssets = {};
-    // Flatten galleryDeep structure into simple gallery format
+    
+    // ✨ NEW: Process ALL categories from JSON, even if empty
     Object.entries(config.galleryDeep).forEach(([categoryKey, category]) => {
       galleryDeepAssets![categoryKey] = {
         name: category.name,
         icon: category.icon,
         subcategories: {},
       };
+      
+      // ✨ NEW: Process ALL subcategories, even if count is 0
       Object.entries(category.subcategories).forEach(([subKey, subConfig]) => {
         const key = `${categoryKey}_${subKey}`;
-        const urls = generateNumberedUrls(baseUrl, subConfig);
+        
+        // Generate URLs even if count is 0 (for "Always Visible" structure)
+        const urls = subConfig.count > 0 ? generateNumberedUrls(baseUrl, subConfig) : [];
         galleryAssets[key] = urls;
 
         // Separate photos and videos
@@ -165,10 +181,14 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
           }
         });
 
+        // ✨ NEW: Add isEmpty flag for placeholder UI
+        const isEmpty = subConfig.count === 0 || (photos.length === 0 && videos.length === 0);
+
         galleryDeepAssets![categoryKey].subcategories[subKey] = {
           name: subConfig.name,
           photos,
           videos,
+          isEmpty, // ✨ NEW: Flag for UI to show placeholders
         };
       });
     });
