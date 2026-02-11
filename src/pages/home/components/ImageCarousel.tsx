@@ -9,8 +9,8 @@ const ImageCarousel = () => {
   // Combine all gallery photos into one array
   const images = assets?.gallery 
     ? Object.values(assets.gallery)
-        .flat()
-        .filter(url => url.endsWith('.png')) // Only PNG images
+        .flatMap(category => category.photos) // Get photos from each category
+        .filter(url => url && typeof url === 'string') // Ensure valid URLs
     : [];
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ImageCarousel = () => {
 
   if (images.length === 0) {
     return (
-      <section className="py-20 bg-gradient-to-br from-teal-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
@@ -41,7 +41,7 @@ const ImageCarousel = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-teal-50 to-white">
+    <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Community in Action</h2>
@@ -79,7 +79,7 @@ const ImageCarousel = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex % 10
-                    ? 'bg-teal-600 w-8'
+                    ? 'bg-purple-600 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

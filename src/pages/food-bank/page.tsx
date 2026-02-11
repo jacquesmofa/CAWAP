@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
@@ -31,7 +32,7 @@ export default function FoodBankPage() {
   // ========================================
   // 🎯 MEDIA CONTEXT - AUTO-NUMBERED SYSTEM
   // ========================================
-  const { assets, loading: mediaLoading, getGalleryMedia } = useMedia();
+  const { assets, loading: mediaLoading } = useMedia();
   
   // ========================================
   // 🎬 GALLERY STATE MANAGEMENT
@@ -40,7 +41,6 @@ export default function FoodBankPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showAllMedia, setShowAllMedia] = useState(false);
   const [validMedia, setValidMedia] = useState<GalleryMedia[]>([]);
-  const [mediaChecked, setMediaChecked] = useState(false);
   
   // ========================================
   // 🔍 ZOOM & PAN STATE (Mobile-like Experience)
@@ -52,10 +52,16 @@ export default function FoodBankPage() {
   const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
 
   // ========================================
-  // 🎬 AUTO-NUMBERED GALLERY MEDIA
-  // Get all potential URLs from the numbered system
+  // 🎬 GET MEDIA FROM MAIN GALLERY - food_bank category
+  // This pulls directly from the main gallery's food_bank section
   // ========================================
-  const galleryUrls = assets?.gallery?.community_food_bank || [];
+  const galleryUrls = assets?.gallery?.food_bank?.allMedia || [];
+  
+  // Get hero image from numbered hero folder
+  const heroImage = assets?.hero?.[0] || '/media/hero/1.png';
+  
+  // Get first video from the gallery for the video section
+  const firstVideo = assets?.gallery?.food_bank?.videos?.[0] || assets?.videos?.[0] || null;
 
   // ========================================
   // 🎬 GALLERY DISPLAY LOGIC
@@ -65,8 +71,6 @@ export default function FoodBankPage() {
   const hasMoreMedia = validMedia.length > INITIAL_DISPLAY_COUNT;
 
   // Separate photos and videos for display
-  const displayPhotos = displayMedia.filter(m => m.type === 'image');
-  const displayVideos = displayMedia.filter(m => m.type === 'video');
   const allPhotos = validMedia.filter(m => m.type === 'image');
 
   // ========================================
@@ -76,7 +80,6 @@ export default function FoodBankPage() {
   const handleMediaLoad = (url: string) => {
     setValidMedia(prev => {
       if (prev.some(m => m.url === url)) return prev;
-      const index = galleryUrls.indexOf(url);
       const newMedia: GalleryMedia = {
         url,
         title: `Food Bank ${getMediaType(url) === 'video' ? 'Video' : 'Photo'}`,
@@ -88,9 +91,8 @@ export default function FoodBankPage() {
     });
   };
 
-  const handleMediaError = (url: string) => {
+  const handleMediaError = () => {
     // File doesn't exist - just ignore it (the "Pro Secret")
-    // No action needed - it won't be added to validMedia
   };
 
   // ========================================
@@ -235,7 +237,7 @@ export default function FoodBankPage() {
                 src={url}
                 preload="metadata"
                 onLoadedMetadata={() => handleMediaLoad(url)}
-                onError={() => handleMediaError(url)}
+                onError={() => handleMediaError()}
               />
             );
           }
@@ -244,18 +246,18 @@ export default function FoodBankPage() {
               key={url}
               src={url}
               onLoad={() => handleMediaLoad(url)}
-              onError={() => handleMediaError(url)}
+              onError={() => handleMediaError()}
               alt=""
             />
           );
         })}
       </div>
 
-      {/* 🖼️ HERO SECTION */}
+      {/* 🖼️ HERO SECTION - Using Hero Folder Images */}
       <section 
         className="relative h-[70vh] flex items-center justify-center text-white"
         style={{
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=community%20food%20bank%20volunteers%20distributing%20fresh%20groceries%20and%20produce%20to%20diverse%20families%20in%20need%2C%20warm%20welcoming%20atmosphere%20with%20volunteers%20helping%20people%2C%20professional%20photography%20showing%20compassion%20dignity%20and%20community%20support%2C%20bright%20modern%20food%20bank%20interior&width=1920&height=800&seq=food-bank-hero&orientation=landscape')`,
+          backgroundImage: `url('${heroImage}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -387,7 +389,7 @@ export default function FoodBankPage() {
           </div>
         </section>
 
-        {/* Video Section */}
+        {/* Video Section - WITH ACTUAL VIDEO DISPLAY */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
@@ -400,25 +402,36 @@ export default function FoodBankPage() {
                 </div>
               </ScrollReveal>
 
-              {validMedia.find(m => m.type === 'video') && (
-                <ScrollReveal>
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-auto" style={{ maxWidth: '600px' }}>
+              {/* VIDEO DISPLAY - Always show video player */}
+              <ScrollReveal>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-auto bg-gray-900" style={{ maxWidth: '800px' }}>
+                  {firstVideo ? (
                     <video
                       className="w-full h-auto"
                       controls
                       preload="metadata"
+                      poster={assets?.hero?.[1] || heroImage}
                     >
-                      <source src={validMedia.find(m => m.type === 'video')?.url} type="video/mp4" />
+                      <source src={firstVideo} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  </div>
-                </ScrollReveal>
-              )}
+                  ) : (
+                    <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-[#3c1053] to-[#5a1a7a]">
+                      <div className="text-center text-white p-8">
+                        <i className="ri-video-line text-6xl mb-4 opacity-50"></i>
+                        <p className="text-xl font-semibold mb-2">Video Coming Soon</p>
+                        <p className="text-white/70">Upload a video to /media/gallery/food-bank/ or /media/videos/ folder</p>
+                        <p className="text-white/50 text-sm mt-2">Name it: 1.mp4</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* FOOD BANK IN PICTURES - AUTO-NUMBERED GALLERY */}
+        {/* FOOD BANK IN PICTURES - PULLS FROM MAIN GALLERY food_bank */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -514,7 +527,7 @@ export default function FoodBankPage() {
                     )}
 
                     <Link
-                      to="/gallery"
+                      to="/gallery?category=food_bank"
                       className="inline-flex items-center gap-3 bg-white border-2 border-[#c9b037] text-[#c9b037] px-8 py-4 rounded-full font-semibold hover:bg-[#c9b037] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
                     >
                       <i className="ri-gallery-line text-xl"></i>
@@ -540,7 +553,7 @@ export default function FoodBankPage() {
                 <div className="text-center py-20">
                   <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
                   <p className="text-xl text-gray-500">Gallery photos will appear here</p>
-                  <p className="text-gray-400 mt-2">Upload numbered files (1.jpg, 2.mp4, etc.) to the food-bank folder</p>
+                  <p className="text-gray-400 mt-2">Upload numbered files (1.png, 2.png, etc.) to the gallery/food-bank folder</p>
                 </div>
               )}
             </div>

@@ -17,20 +17,13 @@ interface BrandingAssets {
   social_card: string;
 }
 
-interface GallerySubcategory {
+interface GalleryCategory {
   name: string;
   path: string;
   count: number;
-  ext?: string;
-  extensions?: string[];
-}
-
-interface GalleryCategory {
-  name: string;
   icon: string;
-  subcategories: {
-    [key: string]: GallerySubcategory;
-  };
+  description?: string;
+  ext?: string;
 }
 
 interface SiteAssetsConfig {
@@ -43,10 +36,7 @@ interface SiteAssetsConfig {
   trainings: NumberedMediaConfig;
   documents: NumberedMediaConfig;
   videos: NumberedMediaConfig;
-  gallery?: {
-    [key: string]: NumberedMediaConfig;
-  };
-  galleryDeep?: {
+  gallery: {
     [key: string]: GalleryCategory;
   };
 }
@@ -67,20 +57,13 @@ interface GeneratedMediaAssets {
   documents: string[];
   videos: string[];
   gallery: {
-    [key: string]: string[];
-  };
-  galleryDeep?: {
     [key: string]: {
       name: string;
       icon: string;
-      subcategories: {
-        [key: string]: {
-          name: string;
-          photos: string[];
-          videos: string[];
-          isEmpty: boolean;
-        };
-      };
+      description?: string;
+      photos: string[];
+      videos: string[];
+      allMedia: string[];
     };
   };
 }
@@ -104,25 +87,18 @@ interface MediaProviderProps {
 // ========================================
 
 /**
- * 🎯 STANDARDIZED MEDIA URL GENERATOR
- * PNG for images, MP4 for videos - NO EXTENSION GUESSING
- * 
- * ✨ NEW: "Always Visible" Mode - Generates URLs even if files don't exist
- * This ensures all categories/albums appear in the UI with placeholders
- * 
- * 🛡️ DEFENSIVE: Now handles undefined/null config safely
+ * 🎯 SAFE URL GENERATOR - No more crashes!
  */
 function generateNumberedUrls(
   baseUrl: string,
   config: NumberedMediaConfig | undefined
 ): string[] {
-  // 🛡️ CRITICAL SAFETY: Check BEFORE destructuring
+  // 🛡️ SAFETY CHECK FIRST - before destructuring
   if (!config) {
     console.warn('generateNumberedUrls: config is undefined, returning empty array');
     return [];
   }
   
-  // 🛡️ SAFE DESTRUCTURING: Now guaranteed config exists
   const { path, count, ext } = config;
 
   // 🛡️ SAFETY: Handle missing path
@@ -137,13 +113,10 @@ function generateNumberedUrls(
   let extension = ext;
   
   if (!extension) {
-    // Default logic: videos folder gets .mp4, everything else gets .png
     extension = path.includes('video') ? 'mp4' : 'png';
   }
 
   // Generate simple numbered URLs: 1.png, 2.png, 3.png...
-  // ✨ NEW: Always generate URLs regardless of file existence
-  // The UI will handle empty states with placeholders
   for (let i = 1; i <= count; i++) {
     urls.push(`${baseUrl}/${path}/${i}.${extension}`);
   }
@@ -152,68 +125,44 @@ function generateNumberedUrls(
 }
 
 /**
- * Generates assets from the config
- * 
- * ✨ NEW: "Always Visible" Structure
- * - All categories/subcategories from JSON are ALWAYS included
- * - Empty albums get isEmpty: true flag for placeholder UI
- * - No more hidden categories - everything is visible
+ * Generates assets from the config - SIMPLIFIED FLAT STRUCTURE
  */
 function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAssets {
   const { baseUrl } = config;
 
-  // Handle both gallery and galleryDeep structures
-  let galleryAssets: { [key: string]: string[] } = {};
-  let galleryDeepAssets: GeneratedMediaAssets['galleryDeep'] = undefined;
+  // Process flat gallery structure
+  const galleryAssets: GeneratedMediaAssets['gallery'] = {};
   
-  if (config.galleryDeep) {
-    galleryDeepAssets = {};
-    
-    // ✨ NEW: Process ALL categories from JSON, even if empty
-    Object.entries(config.galleryDeep).forEach(([categoryKey, category]) => {
-      galleryDeepAssets![categoryKey] = {
-        name: category.name,
-        icon: category.icon,
-        subcategories: {},
-      };
-      
-      // ✨ NEW: Process ALL subcategories, even if count is 0
-      Object.entries(category.subcategories).forEach(([subKey, subConfig]) => {
-        const key = `${categoryKey}_${subKey}`;
-        
-        // 🛡️ SAFE: generateNumberedUrls now handles undefined gracefully
-        const urls = generateNumberedUrls(baseUrl, subConfig);
-        galleryAssets[key] = urls;
-
-        // Separate photos and videos
-        const photos: string[] = [];
-        const videos: string[] = [];
-        urls.forEach(url => {
-          const ext = url.split('.').pop()?.toLowerCase() || '';
-          if (ext === 'mp4' || ext === 'webm' || ext === 'mov') {
-            videos.push(url);
-          } else {
-            photos.push(url);
-          }
-        });
-
-        // ✨ NEW: Add isEmpty flag for placeholder UI
-        const isEmpty = subConfig.count === 0 || (photos.length === 0 && videos.length === 0);
-
-        galleryDeepAssets![categoryKey].subcategories[subKey] = {
-          name: subConfig.name,
-          photos,
-          videos,
-          isEmpty, // ✨ NEW: Flag for UI to show placeholders
-        };
+  if (config.gallery) {
+    Object.entries(config.gallery).forEach(([categoryKey, categoryConfig]) => {
+      const urls = generateNumberedUrls(baseUrl, {
+        path: categoryConfig.path,
+        count: categoryConfig.count,
+        ext: categoryConfig.ext || 'png'
       });
+
+      // Separate photos and videos
+      const photos: string[] = [];
+      const videos: string[] = [];
+      
+      urls.forEach(url => {
+        const ext = url.split('.').pop()?.toLowerCase() || '';
+        if (ext === 'mp4' || ext === 'webm' || ext === 'mov') {
+          videos.push(url);
+        } else {
+          photos.push(url);
+        }
+      });
+
+      galleryAssets[categoryKey] = {
+        name: categoryConfig.name,
+        icon: categoryConfig.icon,
+        description: categoryConfig.description,
+        photos,
+        videos,
+        allMedia: urls
+      };
     });
-  } else if (config.gallery) {
-    // Use flat gallery structure
-    galleryAssets = Object.entries(config.gallery).reduce((acc, [key, galleryConfig]) => {
-      acc[key] = generateNumberedUrls(baseUrl, galleryConfig);
-      return acc;
-    }, {} as { [key: string]: string[] });
   }
 
   return {
@@ -232,7 +181,6 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
     documents: generateNumberedUrls(baseUrl, config.documents),
     videos: generateNumberedUrls(baseUrl, config.videos),
     gallery: galleryAssets,
-    galleryDeep: galleryDeepAssets,
   };
 }
 
@@ -257,7 +205,6 @@ export function MediaProvider({ children }: MediaProviderProps) {
         throw new Error(`Failed to load media config: ${response.status}`);
       }
       
-      // Check if response is actually JSON
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
         console.warn('site-assets.json returned non-JSON content, using fallback configuration');
@@ -273,7 +220,7 @@ export function MediaProvider({ children }: MediaProviderProps) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error loading media assets';
       console.warn('Media Context Warning:', errorMessage, '- Using fallback configuration');
       
-      // Use fallback configuration instead of failing
+      // Use fallback configuration
       const fallbackConfig: SiteAssetsConfig = {
         baseUrl: '/media',
         branding: {
@@ -289,97 +236,62 @@ export function MediaProvider({ children }: MediaProviderProps) {
         trainings: { path: 'trainings', count: 20, ext: 'png' },
         documents: { path: 'documents', count: 30, ext: 'pdf' },
         videos: { path: 'videos', count: 50, ext: 'mp4' },
-        galleryDeep: {
+        gallery: {
           food_bank: {
-            name: 'Food Bank Gallery',
+            name: 'Food Bank',
+            path: 'gallery/food-bank',
+            count: 100,
             icon: 'ri-hand-heart-line',
-            description: 'See our food bank in action - from food sorting to distribution',
-            subcategories: {
-              operations: {
-                name: 'Food Bank Operations',
-                path: 'gallery/food-bank',
-                count: 100,
-                ext: 'png',
-                description: 'Daily operations, food sorting, and distribution activities'
-              }
-            }
+            description: 'Our food bank operations and community support'
           },
           community: {
             name: 'Community Events',
+            path: 'gallery/community',
+            count: 50,
             icon: 'ri-community-line',
-            description: 'Community gatherings, celebrations, and local initiatives',
-            subcategories: {
-              general: {
-                name: 'Community Gatherings',
-                path: 'gallery/community',
-                count: 50,
-                ext: 'png',
-                description: 'General community events and gatherings'
-              }
-            }
+            description: 'Community gatherings and celebrations'
           },
-          programs: {
-            name: 'Programs & Workshops',
+          youth: {
+            name: 'Youth Programs',
+            path: 'gallery/youth',
+            count: 50,
+            icon: 'ri-user-smile-line',
+            description: 'Youth leadership and development programs'
+          },
+          workshops: {
+            name: 'Workshops & Training',
+            path: 'gallery/workshops',
+            count: 50,
             icon: 'ri-book-open-line',
-            description: 'Educational programs, training sessions, and skill-building workshops',
-            subcategories: {
-              youth: {
-                name: 'Youth Programs',
-                path: 'gallery/youth',
-                count: 50,
-                ext: 'png',
-                description: 'Youth leadership, mentorship, and development programs'
-              },
-              workshops: {
-                name: 'Workshops & Training',
-                path: 'gallery/workshops',
-                count: 50,
-                ext: 'png',
-                description: 'Skills training, professional development, and educational workshops'
-              }
-            }
+            description: 'Skills training and educational workshops'
           },
-          events: {
-            name: 'Special Events',
-            icon: 'ri-calendar-event-line',
-            description: 'Annual celebrations, award ceremonies, and cultural events',
-            subcategories: {
-              awards: {
-                name: 'Sankofa Royale Awards',
-                path: 'gallery/awards',
-                count: 50,
-                ext: 'png',
-                description: 'Annual awards ceremony celebrating community excellence'
-              },
-              cultural: {
-                name: 'Cultural Celebrations',
-                path: 'gallery/cultural',
-                count: 50,
-                ext: 'png',
-                description: 'Cultural festivals, heritage celebrations, and traditional events'
-              }
-            }
+          awards: {
+            name: 'Awards & Recognition',
+            path: 'gallery/awards',
+            count: 50,
+            icon: 'ri-award-line',
+            description: 'Sankofa Royale Awards and recognition ceremonies'
+          },
+          cultural: {
+            name: 'Cultural Events',
+            path: 'gallery/cultural',
+            count: 50,
+            icon: 'ri-earth-line',
+            description: 'Cultural celebrations and heritage events'
           },
           official_videos: {
             name: 'Official Videos',
+            path: 'videos',
+            count: 50,
             icon: 'ri-video-line',
-            description: 'Official video content, documentaries, and recorded events',
-            subcategories: {
-              main: {
-                name: 'Video Library',
-                path: 'videos',
-                count: 50,
-                ext: 'mp4',
-                description: 'Official video content and recordings'
-              }
-            }
+            description: 'Official video content and recordings'
           }
         }
       };
       
       const generatedAssets = generateAssetsFromConfig(fallbackConfig);
       setAssets(generatedAssets);
-      setError(null); // Don't show error to user since we have fallback
+      setError(null);
     } finally {
       setLoading(false);
     }
@@ -390,28 +302,17 @@ export function MediaProvider({ children }: MediaProviderProps) {
   }, []);
 
   /**
-   * Helper function to separate photos and videos from a gallery category
+   * Helper function to get photos and videos from a gallery category
    */
   const getGalleryMedia = (category: string): { photos: string[]; videos: string[] } => {
     if (!assets?.gallery?.[category]) {
       return { photos: [], videos: [] };
     }
 
-    const allUrls = assets.gallery[category];
-    const photos: string[] = [];
-    const videos: string[] = [];
-
-    // Simple extension check: .mp4 = video, everything else = photo
-    allUrls.forEach(url => {
-      const extension = url.split('.').pop()?.toLowerCase() || '';
-      if (extension === 'mp4') {
-        videos.push(url);
-      } else {
-        photos.push(url);
-      }
-    });
-
-    return { photos, videos };
+    return {
+      photos: assets.gallery[category].photos,
+      videos: assets.gallery[category].videos
+    };
   };
 
   const value: MediaContextType = {

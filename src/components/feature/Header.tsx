@@ -226,7 +226,7 @@ const Header = () => {
               onClick={toggleMobileMenu}
               className="lg:hidden text-3xl z-50 w-12 h-12 flex items-center justify-center cursor-pointer"
             >
-              <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} ${isScrolled ? 'text-[#26194f]' : 'text-white'}`}></i>
+              <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-black`}></i>
             </button>
           </div>
         </nav>
