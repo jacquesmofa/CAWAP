@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useMedia } from '../../context/MediaContext';
 import Header from '../../components/feature/Header';
@@ -16,10 +15,45 @@ export default function GalleryPage() {
 
   // Get current category data
   const currentCategory = category && assets?.gallery?.[category];
-  const mediaItems = currentCategory ? currentCategory.allMedia : [];
+  
+  // State for verified media (only images that actually exist)
+  const [verifiedMedia, setVerifiedMedia] = useState<string[]>([]);
+  const [isChecking, setIsChecking] = useState(false);
 
   // Get hero image from numbered hero folder
   const heroImage = assets?.hero?.[0] || '/media/hero/1.png';
+
+  // Check which images actually exist on the server
+  useEffect(() => {
+    if (!currentCategory) {
+      setVerifiedMedia([]);
+      return;
+    }
+
+    const checkMediaExists = async () => {
+      setIsChecking(true);
+      const mediaToCheck = currentCategory.allMedia;
+      const existingMedia: string[] = [];
+
+      // Check each media URL to see if it exists
+      for (const url of mediaToCheck) {
+        try {
+          const response = await fetch(url, { method: 'HEAD' });
+          if (response.ok) {
+            existingMedia.push(url);
+          }
+        } catch (error) {
+          // Image doesn't exist, skip it
+          console.log(`Media not found: ${url}`);
+        }
+      }
+
+      setVerifiedMedia(existingMedia);
+      setIsChecking(false);
+    };
+
+    checkMediaExists();
+  }, [currentCategory]);
 
   // Navigation handlers
   const handleCategoryClick = (cat: string) => {
@@ -95,7 +129,7 @@ export default function GalleryPage() {
                 {Object.entries(assets.gallery).map(([categoryKey, categoryData]) => {
                   // Get preview images (first 4 items)
                   const previewItems = categoryData.allMedia.slice(0, 4);
-                  const totalCount = categoryData.allMedia.length;
+                  const totalCount = categoryData.count;
 
                   return (
                     <button
@@ -116,6 +150,10 @@ export default function GalleryPage() {
                                       src={url}
                                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                       muted
+                                      onError={(e) => {
+                                        // Hide broken videos
+                                        e.currentTarget.style.display = 'none';
+                                      }}
                                     />
                                   ) : (
                                     <img
@@ -123,6 +161,10 @@ export default function GalleryPage() {
                                       alt=""
                                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                       loading="lazy"
+                                      onError={(e) => {
+                                        // Hide broken images
+                                        e.currentTarget.style.display = 'none';
+                                      }}
                                     />
                                   )}
                                 </div>
@@ -184,17 +226,38 @@ export default function GalleryPage() {
                   {currentCategory.name}
                 </h2>
                 <p className="text-lg text-gray-600">{currentCategory.description}</p>
-                <p className="text-sm text-gray-500 mt-2">{mediaItems.length} items</p>
+                {isChecking ? (
+                  <p className="text-sm text-gray-500 mt-2">
+                    <i className="ri-loader-4-line animate-spin mr-2"></i>
+                    Checking for media...
+                  </p>
+                ) : (
+                  <p className="text-sm text-gray-500 mt-2">{verifiedMedia.length} items found</p>
+                )}
               </div>
 
               {/* Media Grid */}
-              {mediaItems.length > 0 ? (
-                <MasonryGallery items={mediaItems} />
-              ) : (
+              {isChecking ? (
                 <div className="text-center py-16">
+                  <i className="ri-loader-4-line text-6xl text-[#3c1053] animate-spin mb-4"></i>
+                  <p className="text-xl text-gray-600">Loading media...</p>
+                </div>
+              ) : verifiedMedia.length > 0 ? (
+                <MasonryGallery items={verifiedMedia} />
+              ) : (
+                <div className="text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
                   <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
-                  <p className="text-xl text-gray-500">No media available in this category yet</p>
-                  <p className="text-sm text-gray-400 mt-2">Check back soon for updates!</p>
+                  <h3 className="text-2xl font-bold text-gray-700 mb-2">No Media Yet</h3>
+                  <p className="text-lg text-gray-500 mb-4">This album is ready for content</p>
+                  <div className="max-w-md mx-auto text-left bg-white p-6 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">📂 To add media to this category:</p>
+                    <ol className="text-sm text-gray-600 space-y-2">
+                      <li>1. Log in to your cPanel</li>
+                      <li>2. Navigate to: <code className="bg-gray-100 px-2 py-1 rounded text-xs">/public_html/media/{currentCategory.path}</code></li>
+                      <li>3. Upload files named: <code className="bg-gray-100 px-2 py-1 rounded text-xs">1.png, 2.jpg, 3.mp4</code>, etc.</li>
+                      <li>4. Refresh this page to see your media!</li>
+                    </ol>
+                  </div>
                 </div>
               )}
             </div>
