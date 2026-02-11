@@ -44,6 +44,12 @@
     "ext": "pdf"
   },
   
+  "videos": {
+    "path": "videos",
+    "count": 50,
+    "ext": "mp4"
+  },
+  
   "galleryDeep": {
     "food_bank": {
       "name": "Food Bank Gallery",

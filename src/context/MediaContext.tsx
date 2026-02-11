@@ -109,13 +109,29 @@ interface MediaProviderProps {
  * 
  * ✨ NEW: "Always Visible" Mode - Generates URLs even if files don't exist
  * This ensures all categories/albums appear in the UI with placeholders
+ * 
+ * 🛡️ DEFENSIVE: Now handles undefined/null config safely
  */
 function generateNumberedUrls(
   baseUrl: string,
-  config: NumberedMediaConfig
+  config: NumberedMediaConfig | undefined
 ): string[] {
-  const urls: string[] = [];
+  // 🛡️ CRITICAL SAFETY: Check BEFORE destructuring
+  if (!config) {
+    console.warn('generateNumberedUrls: config is undefined, returning empty array');
+    return [];
+  }
+  
+  // 🛡️ SAFE DESTRUCTURING: Now guaranteed config exists
   const { path, count, ext } = config;
+
+  // 🛡️ SAFETY: Handle missing path
+  if (!path || count === 0) {
+    console.warn(`generateNumberedUrls: Invalid path="${path}" or count=${count}, returning empty array`);
+    return [];
+  }
+
+  const urls: string[] = [];
 
   // Determine extension: use specified ext, or default based on path type
   let extension = ext;
@@ -165,8 +181,8 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
       Object.entries(category.subcategories).forEach(([subKey, subConfig]) => {
         const key = `${categoryKey}_${subKey}`;
         
-        // Generate URLs even if count is 0 (for "Always Visible" structure)
-        const urls = subConfig.count > 0 ? generateNumberedUrls(baseUrl, subConfig) : [];
+        // 🛡️ SAFE: generateNumberedUrls now handles undefined gracefully
+        const urls = generateNumberedUrls(baseUrl, subConfig);
         galleryAssets[key] = urls;
 
         // Separate photos and videos
@@ -272,6 +288,7 @@ export function MediaProvider({ children }: MediaProviderProps) {
         flyers: { path: 'flyers', count: 20, ext: 'png' },
         trainings: { path: 'trainings', count: 20, ext: 'png' },
         documents: { path: 'documents', count: 30, ext: 'pdf' },
+        videos: { path: 'videos', count: 50, ext: 'mp4' },
         galleryDeep: {
           food_bank: {
             name: 'Food Bank Gallery',

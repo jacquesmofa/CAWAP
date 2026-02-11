@@ -11,6 +11,11 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
+  // Safety check: if items is undefined or not an array, return null
+  if (!items || !Array.isArray(items) || items.length === 0) {
+    return null;
+  }
+
   return (
     <nav className="flex items-center space-x-2 text-sm mb-6">
       {items.map((item, index) => (

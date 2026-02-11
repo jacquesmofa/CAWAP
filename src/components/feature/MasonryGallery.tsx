@@ -7,7 +7,7 @@ interface MasonryGalleryProps {
   onPhotoClick?: (index: number) => void;
 }
 
-const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], onPhotoClick }) => {
+const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos = [], videos = [], onPhotoClick }) => {
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [failedVideos, setFailedVideos] = useState<Set<number>>(new Set());
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
@@ -63,8 +63,10 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
     setFailedVideos(prev => new Set(prev).add(index));
   };
 
-  // ✨ Check if gallery is completely empty
-  const isEmpty = photos.length === 0 && videos.length === 0;
+  // ✅ SAFE: Ensure arrays exist before checking length
+  const safePhotos = Array.isArray(photos) ? photos : [];
+  const safeVideos = Array.isArray(videos) ? videos : [];
+  const isEmpty = safePhotos.length === 0 && safeVideos.length === 0;
 
   // ✨ Show placeholder if empty
   if (isEmpty) {
@@ -88,14 +90,14 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
   return (
     <div className="w-full">
       {/* Videos Section */}
-      {videos.length > 0 && (
+      {safeVideos.length > 0 && (
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <i className="ri-video-line mr-3 text-teal-600"></i>
-            Videos ({videos.length})
+            Videos ({safeVideos.length})
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((videoUrl, index) => (
+            {safeVideos.map((videoUrl, index) => (
               <LazyVideo
                 key={`video-${index}`}
                 videoUrl={videoUrl}
@@ -111,18 +113,18 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos, videos = [], on
       )}
 
       {/* Photos Section */}
-      {photos.length > 0 && (
+      {safePhotos.length > 0 && (
         <>
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <i className="ri-image-line mr-3 text-teal-600"></i>
-            Photos ({photos.length})
+            Photos ({safePhotos.length})
           </h3>
           <Masonry
             breakpointCols={breakpointColumns}
             className="flex -ml-6 w-auto"
             columnClassName="pl-6 bg-clip-padding"
           >
-            {photos.map((photoUrl, index) => (
+            {safePhotos.map((photoUrl, index) => (
               <LazyImage
                 key={`photo-${index}`}
                 photoUrl={photoUrl}

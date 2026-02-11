@@ -1,350 +1,232 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import Header from '@/components/feature/Header';
-import Footer from '@/components/feature/Footer';
-import { useMedia } from '@/context/MediaContext';
-import Breadcrumbs from '@/components/feature/Breadcrumbs';
-import MasonryGallery from '@/components/feature/MasonryGallery';
-import Lightbox from '@/components/feature/Lightbox';
+import { useMedia } from '../../context/MediaContext';
+import Header from '../../components/feature/Header';
+import Footer from '../../components/feature/Footer';
+import Breadcrumbs from '../../components/feature/Breadcrumbs';
+import MasonryGallery from '../../components/feature/MasonryGallery';
+import { useTranslation } from '../../hooks/useTranslation';
 
-const GalleryPage: React.FC = () => {
-  const { assets, loading } = useMedia();
-  const [searchParams, setSearchParams] = useSearchParams();
+export default function GalleryPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { assets } = useMedia();
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const category = searchParams.get('category');
+  const subcategory = searchParams.get('subcategory');
 
-  // Read URL parameters on mount
-  useEffect(() => {
-    const category = searchParams.get('category');
-    const subcategory = searchParams.get('subcategory');
-    
-    if (category) setSelectedCategory(category);
-    if (subcategory) setSelectedSubcategory(subcategory);
-  }, [searchParams]);
+  // Determine current level
+  const currentLevel = subcategory ? 'media' : category ? 'subcategories' : 'categories';
 
-  const handleCategoryClick = (categoryKey: string) => {
-    setSelectedCategory(categoryKey);
-    setSelectedSubcategory(null);
-    setSearchParams({ category: categoryKey });
+  // Get available categories
+  const availableCategories = assets?.galleryDeep ? Object.keys(assets.galleryDeep) : [];
+
+  // Get subcategories for current category
+  const availableSubcategories = category && assets?.galleryDeep?.[category]
+    ? Object.keys(assets.galleryDeep[category].subcategories)
+    : [];
+
+  // Get media for current subcategory
+  const currentSubcategory = category && subcategory && assets?.galleryDeep?.[category]?.subcategories?.[subcategory];
+  const mediaItems = currentSubcategory ? [...currentSubcategory.photos, ...currentSubcategory.videos] : [];
+
+  // Navigation handlers
+  const handleCategoryClick = (cat: string) => {
+    navigate(`/gallery?category=${cat}`);
   };
 
-  const handleSubcategoryClick = (subcategoryKey: string) => {
-    setSelectedSubcategory(subcategoryKey);
-    if (selectedCategory) {
-      setSearchParams({ category: selectedCategory, subcategory: subcategoryKey });
-    }
+  const handleSubcategoryClick = (subcat: string) => {
+    navigate(`/gallery?category=${category}&subcategory=${subcat}`);
   };
 
   const handleBackToCategories = () => {
-    setSelectedCategory(null);
-    setSelectedSubcategory(null);
-    setSearchParams({});
+    navigate('/gallery');
   };
 
   const handleBackToSubcategories = () => {
-    setSelectedSubcategory(null);
-    if (selectedCategory) {
-      setSearchParams({ category: selectedCategory });
-    }
+    navigate(`/gallery?category=${category}`);
   };
 
-  // Get breadcrumb items
-  const getBreadcrumbs = () => {
-    const items = [{ label: 'Home', path: '/' }, { label: 'Gallery', path: '/gallery' }];
-    
-    if (selectedCategory && assets?.galleryDeep?.[selectedCategory]) {
-      items.push({
-        label: assets.galleryDeep[selectedCategory].name,
-        path: selectedSubcategory ? `/gallery?category=${selectedCategory}` : undefined
-      });
-    }
-    
-    if (selectedSubcategory && selectedCategory && assets?.galleryDeep?.[selectedCategory]?.subcategories?.[selectedSubcategory]) {
-      items.push({
-        label: assets.galleryDeep[selectedCategory].subcategories[selectedSubcategory].name
-      });
-    }
-    
-    return items;
-  };
-
-  // Get current photos and videos
-  const getCurrentMedia = () => {
-    if (!selectedCategory || !selectedSubcategory || !assets?.galleryDeep) {
-      return { photos: [], videos: [] };
-    }
-
-    const subcategory = assets.galleryDeep[selectedCategory]?.subcategories?.[selectedSubcategory];
-    return {
-      photos: subcategory?.photos || [],
-      videos: subcategory?.videos || []
-    };
-  };
-
-  const currentMedia = getCurrentMedia();
-
-  if (loading) {
+  // Loading state
+  if (!assets) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <i className="ri-loader-4-line text-5xl text-teal-600 animate-spin"></i>
-          <p className="mt-4 text-gray-600">Loading gallery...</p>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <i className="ri-loader-4-line text-5xl text-teal-600 animate-spin"></i>
+            <p className="mt-4 text-lg text-gray-600">Loading gallery...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50">
+    <div className="min-h-screen bg-white">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-teal-600 to-teal-700">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto px-6 relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Photo & Video Gallery
-          </h1>
-          <p className="text-xl text-white/90 max-w-3xl">
-            Explore our community moments, events, and programs through photos and videos
-          </p>
+      <section className="relative bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 text-white py-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl font-bold mb-4">Our Gallery</h1>
+            <p className="text-xl text-teal-50">
+              Explore our journey through photos and videos showcasing our programs, events, and community impact
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4 py-4">
+          <Breadcrumbs />
+        </div>
+      </div>
+
+      {/* Main Content - EXCLUSIVE LEVELS */}
       <section className="py-16">
-        <div className="container mx-auto px-6">
-          {/* Breadcrumbs */}
-          <Breadcrumbs items={getBreadcrumbs()} />
+        <div className="container mx-auto px-4">
 
-          {/* Category Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(assets.galleryDeep).map(([categoryKey, category]) => {
-              // Get first available photo from any subcategory for thumbnail
-              const firstPhoto = Object.values(category.subcategories)
-                .find(sub => sub.photos.length > 0)?.photos[0];
-              
-              // Check if entire category is empty
-              const totalPhotos = Object.values(category.subcategories)
-                .reduce((sum, sub) => sum + sub.photos.length, 0);
-              const totalVideos = Object.values(category.subcategories)
-                .reduce((sum, sub) => sum + sub.videos.length, 0);
-              const isEmpty = totalPhotos === 0 && totalVideos === 0;
-
-              return (
-                <div
-                  key={categoryKey}
-                  onClick={() => handleCategoryClick(categoryKey)}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
-                    {/* Thumbnail or Placeholder */}
-                    <div className="relative h-64 w-full overflow-hidden">
-                      {isEmpty ? (
-                        // ✨ NEW: Icon-based placeholder for empty categories
-                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center">
-                          <div className="text-center">
-                            <i className={`${category.icon} text-8xl text-white/90 mb-4`}></i>
-                            <p className="text-white/80 text-sm font-medium px-4">
-                              Content Coming Soon
-                            </p>
-                          </div>
-                        </div>
-                      ) : firstPhoto ? (
-                        <>
-                          <img
-                            src={firstPhoto}
-                            alt={category.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                        </>
-                      ) : (
-                        // Fallback gradient if no photo but has videos
-                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center">
-                          <i className={`${category.icon} text-8xl text-white/90`}></i>
-                        </div>
-                      )}
-                      
-                      {/* Category Icon Badge */}
-                      <div className="absolute top-4 left-4 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
-                        <i className={`${category.icon} text-2xl text-teal-600`}></i>
-                      </div>
-
-                      {/* Media Count Badge - Always Show */}
-                      <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                        <div className="flex items-center gap-3 text-sm font-semibold">
-                          <span className="flex items-center gap-1 text-gray-700">
-                            <i className="ri-image-line"></i>
-                            {totalPhotos}
-                          </span>
-                          <span className="flex items-center gap-1 text-gray-700">
-                            <i className="ri-video-line"></i>
-                            {totalVideos}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Category Info */}
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                        {category.description || 'Explore our collection of photos and videos'}
-                      </p>
-                      
-                      {/* Subcategories Preview */}
-                      <div className="flex flex-wrap gap-2">
-                        {Object.entries(category.subcategories).map(([subKey, sub]) => {
-                          const subIsEmpty = sub.photos.length === 0 && sub.videos.length === 0;
-                          return (
-                            <span
-                              key={subKey}
-                              className={`text-xs px-3 py-1 rounded-full ${
-                                subIsEmpty 
-                                  ? 'bg-gray-100 text-gray-400' 
-                                  : 'bg-teal-50 text-teal-700'
-                              }`}
-                            >
-                              {sub.name}
-                              {subIsEmpty && ' (Empty)'}
-                            </span>
-                          );
-                        })}
-                      </div>
-
-                      {/* View Button */}
-                      <div className="mt-4 flex items-center text-teal-600 font-semibold group-hover:gap-3 gap-2 transition-all">
-                        <span>{isEmpty ? 'View Album' : 'Explore Gallery'}</span>
-                        <i className="ri-arrow-right-line text-xl"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Subcategory View */}
-          {selectedCategory && !selectedSubcategory && assets?.galleryDeep?.[selectedCategory] && (
-            <>
-              <button
-                onClick={handleBackToCategories}
-                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 transition-colors font-medium cursor-pointer"
-              >
-                <i className="ri-arrow-left-line mr-2 w-5 h-5 flex items-center justify-center"></i>
-                Back to All Categories
-              </button>
-
-              <div className="mb-12">
-                <h2 className="text-4xl font-bold text-gray-800 mb-4 flex items-center">
-                  <i className={`${assets.galleryDeep[selectedCategory].icon} mr-4 text-teal-600`}></i>
-                  {assets.galleryDeep[selectedCategory].name}
-                </h2>
-                <p className="text-gray-600 text-lg">Select an album to view photos and videos</p>
+          {/* LEVEL 1: CATEGORIES (The Street) */}
+          {currentLevel === 'categories' && (
+            <div>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Our Categories</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Select a category to view albums and media
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {Object.entries(assets.galleryDeep[selectedCategory].subcategories || {}).map(
-                  ([key, subcategory]) => {
-                    const photoCount = subcategory.photos?.length || 0;
-                    const videoCount = subcategory.videos?.length || 0;
-                    const firstPhoto = subcategory.photos?.[0];
-
-                    return (
-                      <div
-                        key={key}
-                        onClick={() => handleSubcategoryClick(key)}
-                        className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 overflow-hidden group"
-                      >
-                        {firstPhoto ? (
-                          <div className="h-48 w-full overflow-hidden bg-gray-200">
-                            <img
-                              src={firstPhoto}
-                              alt={subcategory.name}
-                              className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
-                            />
-                          </div>
-                        ) : (
-                          <div className="h-48 w-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                            <i className="ri-image-line text-6xl text-gray-400"></i>
-                          </div>
-                        )}
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-teal-600 transition-colors">
-                            {subcategory.name}
-                          </h3>
-                          <div className="flex items-center text-sm text-gray-600 space-x-4">
-                            <span className="flex items-center">
-                              <i className="ri-image-line mr-1 w-4 h-4 flex items-center justify-center"></i>
-                              {photoCount} {photoCount === 1 ? 'Photo' : 'Photos'}
-                            </span>
-                            {videoCount > 0 && (
-                              <span className="flex items-center">
-                                <i className="ri-video-line mr-1 w-4 h-4 flex items-center justify-center"></i>
-                                {videoCount} {videoCount === 1 ? 'Video' : 'Videos'}
-                              </span>
-                            )}
-                          </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {availableCategories.map((cat) => {
+                  const categoryData = assets.galleryDeep![cat];
+                  
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => handleCategoryClick(cat)}
+                      className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden text-left"
+                    >
+                      <div className="bg-gradient-to-br from-teal-500 to-emerald-600 p-8 text-white">
+                        <i className={`${categoryData.icon} text-5xl mb-4 block group-hover:scale-110 transition-transform duration-300`}></i>
+                        <h3 className="text-2xl font-bold mb-2">{categoryData.name}</h3>
+                      </div>
+                      <div className="p-6">
+                        <p className="text-gray-600 mb-4">View albums and media from this category</p>
+                        <div className="flex items-center text-teal-600 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                          <span>View Albums</span>
+                          <i className="ri-arrow-right-line ml-2"></i>
                         </div>
                       </div>
-                    );
-                  }
-                )}
+                    </button>
+                  );
+                })}
               </div>
-            </>
-          )}
-
-          {/* Media View (Photos & Videos) */}
-          {selectedCategory && selectedSubcategory && (
-            <>
-              <button
-                onClick={handleBackToSubcategories}
-                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 transition-colors font-medium"
-              >
-                <i className="ri-arrow-left-line mr-2"></i>
-                Back to Albums
-              </button>
-
-              <MasonryGallery
-                photos={currentMedia.photos}
-                videos={currentMedia.videos}
-                onPhotoClick={(index) => setLightboxIndex(index)}
-              />
-            </>
-          )}
-
-          {/* Empty State */}
-          {!assets?.galleryDeep && !loading && (
-            <div className="text-center py-20">
-              <i className="ri-gallery-line text-8xl text-gray-300 mb-6"></i>
-              <h3 className="text-2xl font-bold text-gray-700 mb-4">Gallery Coming Soon</h3>
-              <p className="text-gray-600 max-w-md mx-auto">
-                We're currently organizing our photo and video collection. Check back soon!
-              </p>
             </div>
           )}
+
+          {/* LEVEL 2: SUBCATEGORIES (The House) */}
+          {currentLevel === 'subcategories' && (
+            <div>
+              {/* Back Button */}
+              <button
+                onClick={handleBackToCategories}
+                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 font-semibold transition-colors duration-200"
+              >
+                <i className="ri-arrow-left-line mr-2 text-xl"></i>
+                <span>Back to All Categories</span>
+              </button>
+
+              {/* Category Header */}
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl mb-4">
+                  <i className={`${assets.galleryDeep![category!].icon} text-4xl text-white`}></i>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  {assets.galleryDeep![category!].name}
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Select an album to view photos and videos
+                </p>
+              </div>
+
+              {/* Subcategory Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {availableSubcategories.map((subcat) => {
+                  const subcatData = assets.galleryDeep![category!].subcategories[subcat];
+                  const itemCount = subcatData.photos.length + subcatData.videos.length;
+
+                  return (
+                    <button
+                      key={subcat}
+                      onClick={() => handleSubcategoryClick(subcat)}
+                      className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden text-left"
+                    >
+                      <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-6 border-b border-gray-300">
+                        <i className="ri-folder-image-line text-4xl text-teal-600 mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{subcatData.name}</h3>
+                      </div>
+                      <div className="p-6">
+                        <p className="text-gray-600 mb-4">View media from this album</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-500">{itemCount} items</span>
+                          <div className="flex items-center text-teal-600 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                            <span>View Media</span>
+                            <i className="ri-arrow-right-line ml-2"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* LEVEL 3: MEDIA GRID (The Room) */}
+          {currentLevel === 'media' && (
+            <div>
+              {/* Back Button */}
+              <button
+                onClick={handleBackToSubcategories}
+                className="mb-8 flex items-center text-teal-600 hover:text-teal-700 font-semibold transition-colors duration-200"
+              >
+                <i className="ri-arrow-left-line mr-2 text-xl"></i>
+                <span>Back to Albums</span>
+              </button>
+
+              {/* Album Header */}
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  {currentSubcategory?.name || subcategory}
+                </h2>
+                <p className="text-lg text-gray-600">
+                  View all media from this album
+                </p>
+                <p className="text-sm text-gray-500 mt-2">{mediaItems.length} items</p>
+              </div>
+
+              {/* Media Grid */}
+              {mediaItems.length > 0 ? (
+                <MasonryGallery items={mediaItems} />
+              ) : (
+                <div className="text-center py-16">
+                  <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
+                  <p className="text-xl text-gray-500">No media available in this album yet</p>
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
       </section>
-
-      {/* Lightbox */}
-      {lightboxIndex !== null && currentMedia.photos.length > 0 && (
-        <Lightbox
-          photos={currentMedia.photos}
-          initialIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
-      )}
 
       <Footer />
     </div>
   );
-};
-
-export default GalleryPage;
+}
