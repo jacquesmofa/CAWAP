@@ -19,7 +19,7 @@ const ImpactMap = () => {
       name: 'Brampton Central',
       coordinates: { lat: 43.7315, lng: -79.7624 },
       programs: ['Youth Leadership', 'Food Bank', 'Women Empowerment', 'Mental Health', 'JavaScript Program'],
-      impact: 520,
+      impact: 850,
       color: '#3c1053'
     },
     {
@@ -27,7 +27,7 @@ const ImpactMap = () => {
       name: 'Brampton North',
       coordinates: { lat: 43.7532, lng: -79.7599 },
       programs: ['Heart-Wise Seniors', 'Cultural Events', 'Newcomers Settlement', 'Financial Literacy'],
-      impact: 380,
+      impact: 520,
       color: '#5a1a7a'
     },
     {
@@ -35,7 +35,7 @@ const ImpactMap = () => {
       name: 'Mississauga',
       coordinates: { lat: 43.5890, lng: -79.6441 },
       programs: ['Capital G-Girls', 'Children Summer Camp', 'Women Empowerment', 'Mental Health'],
-      impact: 340,
+      impact: 450,
       color: '#c9b037'
     },
     {
@@ -43,7 +43,7 @@ const ImpactMap = () => {
       name: 'Vaughan',
       coordinates: { lat: 43.8361, lng: -79.4983 },
       programs: ['Youth Leadership', 'Cultural Events', 'Food Bank', 'Newcomers Settlement'],
-      impact: 290,
+      impact: 380,
       color: '#d4c050'
     },
     {
@@ -51,7 +51,7 @@ const ImpactMap = () => {
       name: 'Brampton South',
       coordinates: { lat: 43.6833, lng: -79.7599 },
       programs: ['JavaScript Program', 'Financial Literacy', 'Women Empowerment', 'Mental Health'],
-      impact: 250,
+      impact: 300,
       color: '#3c1053'
     }
   ];
@@ -104,23 +104,28 @@ const ImpactMap = () => {
 
         {/* Impact Legend - Below Map */}
         <div className="mb-12">
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#3c1053]"></div>
-                <span className="text-gray-600 font-medium">Very High Impact (1,000+)</span>
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+              <i className="ri-map-pin-line text-[#c9b037]"></i>
+              Service Area Impact
+            </h3>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full bg-[#c9b037] shadow-lg"></div>
+                <span className="text-sm text-gray-600">Very High Impact (850+)</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#5a1a7a]"></div>
-                <span className="text-gray-600 font-medium">High Impact (350+)</span>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full bg-[#d4c050] shadow-lg"></div>
+                <span className="text-sm text-gray-600">High Impact (450+)</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#c9b037]"></div>
-                <span className="text-gray-600 font-medium">Medium Impact (250+)</span>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full bg-[#e8d98f] shadow-lg"></div>
+                <span className="text-sm text-gray-600">Medium Impact (300+)</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#d4c050]"></div>
-                <span className="text-gray-600 font-medium">Growing Impact</span>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full bg-[#f5f0d4] shadow-lg"></div>
+                <span className="text-sm text-gray-600">Growing Impact</span>
               </div>
             </div>
           </div>

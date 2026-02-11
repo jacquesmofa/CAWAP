@@ -230,24 +230,139 @@ export function MediaProvider({ children }: MediaProviderProps) {
 
   const fetchAssets = async () => {
     try {
-      setLoading(true);
-      setError(null);
-
-      // ✅ RELATIVE PATH - No more DNS errors
-      const response = await fetch('/media/site-assets.json');
+      const response = await fetch('/media/site-assets.json', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
       if (!response.ok) {
         throw new Error(`Failed to load media config: ${response.status}`);
+      }
+      
+      // Check if response is actually JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        console.warn('site-assets.json returned non-JSON content, using fallback configuration');
+        throw new Error('Invalid content type - expected JSON');
       }
       
       const config: SiteAssetsConfig = await response.json();
       const generatedAssets = generateAssetsFromConfig(config);
       
       setAssets(generatedAssets);
+      setError(null);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error loading media assets';
-      setError(errorMessage);
-      console.error('Media Context Error:', errorMessage);
-      setAssets(null);
+      console.warn('Media Context Warning:', errorMessage, '- Using fallback configuration');
+      
+      // Use fallback configuration instead of failing
+      const fallbackConfig: SiteAssetsConfig = {
+        baseUrl: '/media',
+        branding: {
+          logo_main: 'branding/cawap-logo.png',
+          logo_white: 'branding/cawap-logo-white.png',
+          favicon: 'branding/favicon.ico',
+          social_card: 'branding/social-card.jpg'
+        },
+        hero: { path: 'hero', count: 10, ext: 'png' },
+        programs: { path: 'programs', count: 20, ext: 'png' },
+        events: { path: 'events', count: 20, ext: 'png' },
+        flyers: { path: 'flyers', count: 20, ext: 'png' },
+        trainings: { path: 'trainings', count: 20, ext: 'png' },
+        documents: { path: 'documents', count: 30, ext: 'pdf' },
+        galleryDeep: {
+          food_bank: {
+            name: 'Food Bank Gallery',
+            icon: 'ri-hand-heart-line',
+            description: 'See our food bank in action - from food sorting to distribution',
+            subcategories: {
+              operations: {
+                name: 'Food Bank Operations',
+                path: 'gallery/food-bank',
+                count: 100,
+                ext: 'png',
+                description: 'Daily operations, food sorting, and distribution activities'
+              }
+            }
+          },
+          community: {
+            name: 'Community Events',
+            icon: 'ri-community-line',
+            description: 'Community gatherings, celebrations, and local initiatives',
+            subcategories: {
+              general: {
+                name: 'Community Gatherings',
+                path: 'gallery/community',
+                count: 50,
+                ext: 'png',
+                description: 'General community events and gatherings'
+              }
+            }
+          },
+          programs: {
+            name: 'Programs & Workshops',
+            icon: 'ri-book-open-line',
+            description: 'Educational programs, training sessions, and skill-building workshops',
+            subcategories: {
+              youth: {
+                name: 'Youth Programs',
+                path: 'gallery/youth',
+                count: 50,
+                ext: 'png',
+                description: 'Youth leadership, mentorship, and development programs'
+              },
+              workshops: {
+                name: 'Workshops & Training',
+                path: 'gallery/workshops',
+                count: 50,
+                ext: 'png',
+                description: 'Skills training, professional development, and educational workshops'
+              }
+            }
+          },
+          events: {
+            name: 'Special Events',
+            icon: 'ri-calendar-event-line',
+            description: 'Annual celebrations, award ceremonies, and cultural events',
+            subcategories: {
+              awards: {
+                name: 'Sankofa Royale Awards',
+                path: 'gallery/awards',
+                count: 50,
+                ext: 'png',
+                description: 'Annual awards ceremony celebrating community excellence'
+              },
+              cultural: {
+                name: 'Cultural Celebrations',
+                path: 'gallery/cultural',
+                count: 50,
+                ext: 'png',
+                description: 'Cultural festivals, heritage celebrations, and traditional events'
+              }
+            }
+          },
+          official_videos: {
+            name: 'Official Videos',
+            icon: 'ri-video-line',
+            description: 'Official video content, documentaries, and recorded events',
+            subcategories: {
+              main: {
+                name: 'Video Library',
+                path: 'videos',
+                count: 50,
+                ext: 'mp4',
+                description: 'Official video content and recordings'
+              }
+            }
+          }
+        }
+      };
+      
+      const generatedAssets = generateAssetsFromConfig(fallbackConfig);
+      setAssets(generatedAssets);
+      setError(null); // Don't show error to user since we have fallback
     } finally {
       setLoading(false);
     }

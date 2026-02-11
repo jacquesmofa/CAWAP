@@ -302,7 +302,7 @@ const HomePage = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute top-4 right-4 bg-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                          {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          {new Date(flyer.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </div>
                       </div>
                       <div className="p-6">
@@ -361,15 +361,15 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">25,000+</div>
-              <div className="text-lg text-white/90">Lives Impacted</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">2,500+</div>
+              <div className="text-lg text-white/90">Lives Impacted Monthly</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">25,000+</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">2,500+</div>
               <div className="text-lg text-white/90">Families Served Monthly</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">125,000+</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">12,500+</div>
               <div className="text-lg text-white/90">Meals Distributed Monthly</div>
             </div>
             <div className="text-center">
@@ -404,12 +404,12 @@ const HomePage = () => {
                   </p>
                   <div className="flex items-center gap-6 mb-6">
                     <div>
-                      <div className="text-3xl font-bold text-[#c9b037]">500+</div>
-                      <div className="text-sm text-gray-600">Families Served</div>
+                      <div className="text-3xl font-bold text-[#c9b037]">2,500+</div>
+                      <div className="text-sm text-gray-600">Families Served Monthly</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-[#c9b037]">15,000+</div>
-                      <div className="text-sm text-gray-600">Meals Distributed</div>
+                      <div className="text-3xl font-bold text-[#c9b037]">12,500+</div>
+                      <div className="text-sm text-gray-600">Meals Distributed Monthly</div>
                     </div>
                   </div>
                   <a
@@ -475,7 +475,7 @@ const HomePage = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                          {new Date(flyer.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                          {new Date(flyer.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                         </div>
                       </div>
                       <div className="p-6">

@@ -42,8 +42,8 @@ const AboutSection = () => {
                   <div className="text-sm opacity-90">Active Programs</div>
                 </div>
                 <div className="elite-card bg-gradient-to-br from-[#c9b037] to-[#d4c050] p-6 rounded-xl text-white">
-                  <div className="text-4xl font-bold mb-2">1000+</div>
-                  <div className="text-sm opacity-90">Lives Impacted</div>
+                  <div className="text-4xl font-bold mb-2">2,500+</div>
+                  <div className="text-sm opacity-90">Lives Impacted Monthly</div>
                 </div>
               </div>
               <a

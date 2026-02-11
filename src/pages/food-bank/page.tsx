@@ -319,11 +319,11 @@ export default function FoodBankPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
-              <div className="text-5xl font-bold text-[#D4AF37] mb-2">25,000+</div>
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">2,500+</div>
               <div className="text-gray-700 font-semibold">Families Served Monthly</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
-              <div className="text-5xl font-bold text-[#D4AF37] mb-2">125,000+</div>
+              <div className="text-5xl font-bold text-[#D4AF37] mb-2">12,500+</div>
               <div className="text-gray-700 font-semibold">Meals Distributed Monthly</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg text-center border border-gray-200">
@@ -372,11 +372,11 @@ export default function FoodBankPage() {
                     </p>
                     <div className="flex items-center gap-4 mt-6">
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-[#c9b037]">25,000+</div>
+                        <div className="text-4xl font-bold text-[#c9b037]">2,500+</div>
                         <div className="text-sm text-gray-600">Families Served Monthly</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-[#c9b037]">125,000+</div>
+                        <div className="text-4xl font-bold text-[#c9b037]">12,500+</div>
                         <div className="text-sm text-gray-600">Meals Distributed Monthly</div>
                       </div>
                     </div>
@@ -918,8 +918,8 @@ export default function FoodBankPage() {
                 </div>
               </ScrollReveal>
               <div className="grid md:grid-cols-4 gap-8">
-                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">25,000+</div><div className="text-lg">Families Served Monthly</div></div></ScrollReveal>
-                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">125,000+</div><div className="text-lg">Meals Distributed Monthly</div></div></ScrollReveal>
+                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">2,500+</div><div className="text-lg">Families Served Monthly</div></div></ScrollReveal>
+                <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">12,500+</div><div className="text-lg">Meals Distributed Monthly</div></div></ScrollReveal>
                 <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">50+</div><div className="text-lg">Volunteers</div></div></ScrollReveal>
                 <ScrollReveal><div className="text-center"><div className="text-5xl font-bold text-[#c9b037] mb-3">100%</div><div className="text-lg">Dignity & Respect</div></div></ScrollReveal>
               </div>
