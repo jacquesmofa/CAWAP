@@ -44,9 +44,9 @@ const AboutPage = () => {
       icon: 'ri-award-line'
     },
     {
-      title: 'Food Pantry',
+      title: 'Food Bank',
       description: 'At CAWAP, we recognize that access to nutritious food is a fundamental right that should be available to every individual in our community.',
-      link: '/food-pantry',
+      link: '/food-bank',
       icon: 'ri-restaurant-line'
     },
     {
@@ -74,8 +74,8 @@ const AboutPage = () => {
       icon: 'ri-global-line'
     },
     {
-      title: 'Mental Health',
-      description: 'We believe that mental health is a fundamental aspect of overall well-being, and we are dedicated to eradicating the stigma surrounding mental illnesses.',
+      title: 'Disability Inclusion - Mental Health',
+      description: 'CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, community referrals, and inclusive programming, while also eradicating the stigma surrounding mental health.',
       link: '/mental-health',
       icon: 'ri-mental-health-line'
     },

@@ -140,7 +140,7 @@ const Header = () => {
                       Children Summer Camp
                     </a>
                     <a href="/mental-health" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Mental Health
+                      Disability Inclusion - Mental Health
                     </a>
                     <a href="/new-breed-women-of-substance" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
                       New Breed Women
@@ -303,7 +303,7 @@ const Header = () => {
                     Children Summer Camp
                   </a>
                   <a href="/mental-health" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Mental Health
+                    Disability Inclusion - Mental Health
                   </a>
                   <a href="/new-breed-women-of-substance" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                     New Breed Women

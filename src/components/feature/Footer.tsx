@@ -87,7 +87,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/mental-health" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Mental Health Support
+                  Disability Inclusion - Mental Health
                 </a>
               </li>
               <li>

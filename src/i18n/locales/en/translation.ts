@@ -60,7 +60,7 @@ export default {
         description: 'The Canadian and African Women Aid Program has recognized a concerning lack of celebration and representation of the black community across various sectors.'
       },
       foodPantry: {
-        title: 'Food Pantry',
+        title: 'Food Bank',
         description: 'At CAWAP, we recognize that access to nutritious food is a fundamental right that should be available to every individual in our community.'
       },
       womenEmpowerment: {
@@ -80,8 +80,8 @@ export default {
         description: 'At CAWAP, we firmly believe that culture is not only an integral part of a person\'s identity but also a precious thread that weaves our communities together.'
       },
       mentalHealth: {
-        title: 'Mental Health',
-        description: 'We believe that mental health is a fundamental aspect of overall well-being, and we are dedicated to eradicating the stigma surrounding mental illnesses.'
+        title: 'Disability Inclusion - Mental Health',
+        description: 'CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, community referrals, and inclusive programming, while eradicating the stigma surrounding mental health.'
       },
       homelessness: {
         title: 'Homelessness Support Program',

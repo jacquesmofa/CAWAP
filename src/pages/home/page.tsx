@@ -192,61 +192,101 @@ const HomePage = () => {
       <Header />
       <HeroSlider />
       
-      {/* Important Location Change Announcement */}
-      <section className="py-8 bg-gradient-to-r from-[#8e24aa] via-[#5e35b1] to-[#26194f] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-32 h-32 bg-white rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-40 h-40 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-yellow-300 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+      {/* Sankofa Royale Award Gala 2026 - Event Announcement Banner */}
+      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #2d0b4e 30%, #4a1a00 70%, #1a0a2e 100%)' }}>
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-0 w-64 h-64 rounded-full blur-3xl opacity-20" style={{ background: '#c9b037' }}></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl opacity-15" style={{ background: '#8e24aa' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-5" style={{ background: '#c9b037' }}></div>
+          {/* Gold shimmer lines */}
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #c9b037, transparent)' }}></div>
+          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #c9b037, transparent)' }}></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
+
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-12 relative z-10">
           <ScrollReveal>
-            <div className="flex flex-col md:flex-row items-center gap-6 bg-white/15 backdrop-blur-md rounded-2xl p-6 md:p-8 border-2 border-white/40 shadow-2xl">
-              {/* Animated Icon */}
-              <div className="flex-shrink-0 relative">
-                <div className="absolute inset-0 bg-yellow-300 rounded-full blur-xl animate-pulse"></div>
-                <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-white to-yellow-100 rounded-full flex items-center justify-center shadow-2xl">
-                  <i className="ri-map-pin-line text-[#8e24aa] text-4xl md:text-5xl animate-bounce"></i>
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+
+              {/* Left — Crown / Badge */}
+              <div className="flex-shrink-0 text-center">
+                <div className="relative inline-block">
+                  <div className="absolute inset-0 rounded-full blur-2xl opacity-60" style={{ background: '#c9b037' }}></div>
+                  <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center border-2" style={{ background: 'linear-gradient(135deg, #c9b037, #f0d060, #c9b037)', borderColor: '#f0d060' }}>
+                    <i className="ri-vip-crown-fill text-5xl md:text-6xl" style={{ color: '#1a0a2e' }}></i>
+                  </div>
+                  <div className="mt-3 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(201,176,55,0.2)', color: '#f0d060', border: '1px solid rgba(201,176,55,0.4)' }}>
+                    4th Annual
+                  </div>
                 </div>
               </div>
-              
-              {/* Content */}
-              <div className="flex-grow text-center md:text-left">
-                <div className="flex items-center gap-3 justify-center md:justify-start mb-3 flex-wrap">
-                  <span className="bg-yellow-300 text-[#26194f] text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-lg animate-pulse">
-                    🎉 Exciting News!
-                  </span>
-                  <span className="bg-white/30 text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide">
-                    Coming February 1st, 2026
+
+              {/* Centre — Event Details */}
+              <div className="flex-grow text-center lg:text-left">
+                <div className="mb-2">
+                  <span className="text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full" style={{ background: 'rgba(201,176,55,0.15)', color: '#c9b037', border: '1px solid rgba(201,176,55,0.3)' }}>
+                    Sankofa Royale Award Gala 2026
                   </span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 drop-shadow-lg">
-                  We're Moving to a <span className="text-yellow-300">New Location!</span>
+                <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mt-3 mb-1" style={{ color: '#f0d060', fontFamily: 'Playfair Display, serif' }}>
+                  Crowns of Impact
                 </h3>
-                <p className="text-white/95 text-base md:text-lg leading-relaxed mb-2">
-                  <strong className="text-yellow-300">Mark your calendars!</strong> Starting <strong className="text-yellow-300">February 1st, 2026</strong>, you'll find us at our brand new location:
+                <p className="text-base md:text-lg font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                  Honouring Dominion Through Service
                 </p>
-                <p className="text-white text-lg md:text-xl leading-relaxed">
-                  <span className="inline-block bg-white/20 px-4 py-2 rounded-lg backdrop-blur-sm">
-                    <i className="ri-map-pin-2-fill text-yellow-300 mr-2"></i>
-                    <strong className="text-yellow-300">101 West Drive, Unit 7</strong>
-                  </span>
+                <p className="text-sm italic mb-4" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                  Where Service Becomes Sovereignty
                 </p>
-                <p className="text-white/90 text-sm md:text-base mt-3">
-                  Same building, exciting new unit! We can't wait to welcome you! 🌟
-                </p>
+
+                {/* Event details row */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm">
+                  <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                    <i className="ri-calendar-event-fill" style={{ color: '#c9b037' }}></i>
+                    <span className="font-semibold">Saturday, August 8, 2026</span>
+                  </div>
+                  <div className="hidden sm:block w-px h-4" style={{ background: 'rgba(201,176,55,0.4)' }}></div>
+                  <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                    <i className="ri-time-fill" style={{ color: '#c9b037' }}></i>
+                    <span>5:00 PM &mdash; Red Carpet Begins</span>
+                  </div>
+                  <div className="hidden sm:block w-px h-4" style={{ background: 'rgba(201,176,55,0.4)' }}></div>
+                  <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                    <i className="ri-map-pin-fill" style={{ color: '#c9b037' }}></i>
+                    <span>NOOR Convention Center, Brampton</span>
+                  </div>
+                </div>
+
+                {/* Highlights */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-4">
+                  {['Awards Gala &amp; Dinner', 'Red Carpet Experience', 'Entertainment &amp; Networking'].map((h) => (
+                    <span key={h} className="text-xs px-3 py-1 rounded-full" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.15)' }}
+                      dangerouslySetInnerHTML={{ __html: h }}
+                    />
+                  ))}
+                </div>
               </div>
-              
-              {/* CTA Button */}
-              <div className="flex-shrink-0">
+
+              {/* Right — CTA */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-3">
                 <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-300 to-yellow-400 text-[#26194f] px-6 py-4 rounded-full font-bold hover:from-yellow-400 hover:to-yellow-500 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-2xl hover:shadow-yellow-300/50 hover:scale-105 transform"
+                  href="https://www.zeffy.com/en-CA/ticketing/sankofa-royale-award-gala"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer"
+                  style={{ background: 'linear-gradient(135deg, #c9b037, #f0d060)', color: '#1a0a2e' }}
                 >
-                  <i className="ri-map-pin-2-line text-xl"></i>
-                  <span className="text-sm md:text-base">Get Directions</span>
+                  <i className="ri-ticket-2-fill text-xl"></i>
+                  Get Your Tickets Now
+                </a>
+                <a
+                  href="/sankofa-royale-awards"
+                  className="text-xs font-medium transition-colors whitespace-nowrap cursor-pointer"
+                  style={{ color: 'rgba(201,176,55,0.8)' }}
+                >
+                  View Event Details &rarr;
                 </a>
               </div>
+
             </div>
           </ScrollReveal>
         </div>
@@ -413,10 +453,46 @@ const HomePage = () => {
                     </div>
                   </div>
                   <a
-                    href="/food-pantry"
+                    href="/food-bank"
                     className="inline-block bg-[#c9b037] text-white px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#b39f2f] transition-all whitespace-nowrap cursor-pointer w-fit"
                   >
                     Learn More About Our Food Bank
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Disability Inclusion Program - Subtle Card */}
+      <section className="py-16 bg-gradient-to-br from-[#3c1053]/5 to-white">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-[#c9b037]/20">
+              <div className="grid md:grid-cols-5 gap-0">
+                <div className="md:col-span-2 relative h-[300px] md:h-full">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=diverse%20inclusive%20community%20setting%20with%20people%20of%20all%20abilities%20participating%20together%20in%20educational%20workshop%2C%20warm%20natural%20lighting%20showing%20empowerment%20accessibility%20dignity%20and%20hope%2C%20modern%20accessible%20facility%20with%20inclusive%20design%2C%20African%20and%20Caribbean%20community%20members%20engaged%20in%20skills%20development%2C%20professional%20documentary%20photography%20capturing%20genuine%20moments%20of%20inclusion%20and%20community%20support&width=600&height=400&seq=home-disability-inclusion&orientation=landscape"
+                    alt="Disability Inclusion Program"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#3c1053]/30 to-transparent"></div>
+                </div>
+                <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center">
+                  <div className="w-12 h-12 bg-[#c9b037]/10 rounded-full flex items-center justify-center mb-4">
+                    <i className="ri-wheelchair-line text-[#c9b037] text-2xl"></i>
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-3">Disability Inclusion Program</h2>
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                    CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, and inclusive programming. We are committed to building a society where every person is respected, empowered, included, and given the opportunity to thrive.
+                  </p>
+                  <a
+                    href="/mental-health"
+                    className="inline-flex items-center gap-2 text-[#c9b037] font-semibold hover:text-[#b39f2f] transition-colors cursor-pointer text-sm whitespace-nowrap w-fit"
+                  >
+                    <span>Learn More</span>
+                    <i className="ri-arrow-right-line"></i>
                   </a>
                 </div>
               </div>

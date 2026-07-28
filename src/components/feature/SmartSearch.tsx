@@ -32,7 +32,7 @@ const SmartSearch = () => {
     { title: 'JavaScript Program', description: 'Bridging the diversity gap in tech sector', path: '/javascript-program', category: 'program' },
     { title: 'Financial Literacy', description: 'Guiding path to financial well-being', path: '/financial-literacy', category: 'program' },
     { title: 'Cultural Events', description: 'Celebrating culture and diversity', path: '/cultural-events', category: 'program' },
-    { title: 'Mental Health', description: 'Eradicating stigma surrounding mental illnesses', path: '/mental-health', category: 'program' },
+    { title: 'Disability Inclusion - Mental Health', description: 'Supporting persons with disabilities and eradicating stigma surrounding mental illnesses', path: '/mental-health', category: 'program' },
     { title: 'Newcomers Settlement Program', description: 'Supporting newcomers in their new journey', path: '/newcomers-settlement-program', category: 'program' },
     { title: 'Project and Evaluation', description: 'Bringing impactful projects to life', path: '/project-and-evaluation', category: 'program' },
     

@@ -45,10 +45,10 @@ const ProgramsSection = () => {
       gradient: 'from-[#c9b037] to-[#d4c050]'
     },
     {
-      title: 'Food Pantry',
+      title: 'Food Bank',
       description: 'At CAWAP, we recognize that access to nutritious food is a fundamental right that should be available to every individual in our community.',
       icon: 'ri-restaurant-line',
-      link: '/food-pantry',
+      link: '/food-bank',
       gradient: 'from-[#3c1053] to-[#5a1a7a]'
     },
     {
@@ -80,8 +80,8 @@ const ProgramsSection = () => {
       gradient: 'from-[#3c1053] to-[#5a1a7a]'
     },
     {
-      title: 'Mental Health',
-      description: 'We believe that mental health is a fundamental aspect of overall well-being, and we are dedicated to eradicating the stigma surrounding mental illnesses.',
+      title: 'Disability Inclusion - Mental Health',
+      description: 'CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, and inclusive programming, while also breaking the stigma surrounding mental health.',
       icon: 'ri-mental-health-line',
       link: '/mental-health',
       gradient: 'from-[#c9b037] to-[#d4c050]'

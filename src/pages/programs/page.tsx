@@ -43,10 +43,10 @@ const ProgramsPage = () => {
       image: 'https://www.cawap.ca/wp-content/uploads/2024/12/sankofa-awards.jpg',
     },
     {
-      title: 'Food Pantry',
+      title: 'Food Bank',
       description: 'Providing essential food support to families and individuals in need.',
       icon: 'ri-restaurant-line',
-      link: '/food-pantry',
+      link: '/food-bank',
       image: 'https://www.cawap.ca/wp-content/uploads/2024/12/food-pantry.jpg',
     },
     {
@@ -78,8 +78,8 @@ const ProgramsPage = () => {
       image: 'https://www.cawap.ca/wp-content/uploads/2024/12/cultural-events.jpg',
     },
     {
-      title: 'Mental Health Support',
-      description: 'Providing mental health resources and support services.',
+      title: 'Disability Inclusion - Mental Health',
+      description: 'Supporting persons with disabilities through advocacy, accessibility awareness, skills development, and inclusive programming while providing mental health resources and support.',
       icon: 'ri-mental-health-line',
       link: '/mental-health',
       image: 'https://www.cawap.ca/wp-content/uploads/2024/12/mental-health.jpg',
