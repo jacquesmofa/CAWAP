@@ -1,0 +1,60 @@
+{
+  "about": "Empowering communities through comprehensive support programs, cultural initiatives, and dedicated service to African and Caribbean communities in Canada.",
+  "quickLinksTitle": "Quick Links",
+  "quickLinks": [
+    {
+      "label": "About Us",
+      "link": "/about"
+    },
+    {
+      "label": "Our Programs",
+      "link": "/programs"
+    },
+    {
+      "label": "Food Bank",
+      "link": "/food-bank"
+    },
+    {
+      "label": "Gallery",
+      "link": "/gallery"
+    },
+    {
+      "label": "Events",
+      "link": "/upcoming-events"
+    },
+    {
+      "label": "Contact",
+      "link": "/contact"
+    }
+  ],
+  "programsTitle": "Programs",
+  "programLinks": [
+    {
+      "label": "Youth Leadership",
+      "link": "/youth-leadership"
+    },
+    {
+      "label": "Women Empowerment",
+      "link": "/women-empowerment"
+    },
+    {
+      "label": "Disability Inclusion - Mental Health",
+      "link": "/mental-health"
+    },
+    {
+      "label": "Financial Literacy",
+      "link": "/financial-literacy"
+    },
+    {
+      "label": "Newcomers Settlement",
+      "link": "/newcomers-settlement-program"
+    },
+    {
+      "label": "Training Programs",
+      "link": "/trainings"
+    }
+  ],
+  "contactTitle": "Contact Us",
+  "followTitle": "Follow Us",
+  "copyright": "C.A.W.A.P. All rights reserved. | Charitable Registration: 84865 2740 RR0001"
+}

@@ -1,0 +1,108 @@
+{
+  "links": [
+    {
+      "label": "Home",
+      "link": "/"
+    },
+    {
+      "label": "About",
+      "link": "/about"
+    },
+    {
+      "label": "Food Bank",
+      "link": "/food-bank"
+    }
+  ],
+  "programsLabel": "Programs",
+  "programLinks": [
+    {
+      "label": "Youth Leadership",
+      "link": "/youth-leadership"
+    },
+    {
+      "label": "Capital G Girls",
+      "link": "/capital-g-girls"
+    },
+    {
+      "label": "Heart Wise Seniors",
+      "link": "/heart-wise-seniors"
+    },
+    {
+      "label": "Women Empowerment",
+      "link": "/women-empowerment"
+    },
+    {
+      "label": "Sankofa Royale Awards",
+      "link": "/sankofa-royale-awards"
+    },
+    {
+      "label": "Food Bank",
+      "link": "/food-bank"
+    },
+    {
+      "label": "Financial Literacy",
+      "link": "/financial-literacy"
+    },
+    {
+      "label": "Javascript Program",
+      "link": "/javascript-program"
+    },
+    {
+      "label": "Children Summer Camp",
+      "link": "/children-summer-camp"
+    },
+    {
+      "label": "Disability Inclusion - Mental Health",
+      "link": "/mental-health"
+    },
+    {
+      "label": "New Breed Women",
+      "link": "/new-breed-women-of-substance"
+    },
+    {
+      "label": "Project & Evaluation",
+      "link": "/project-and-evaluation"
+    },
+    {
+      "label": "Newcomers Settlement",
+      "link": "/newcomers-settlement-program"
+    },
+    {
+      "label": "Cultural Events",
+      "link": "/cultural-events"
+    },
+    {
+      "label": "Trainings",
+      "link": "/trainings"
+    }
+  ],
+  "linksAfterPrograms": [
+    {
+      "label": "Gallery",
+      "link": "/gallery"
+    },
+    {
+      "label": "Contact",
+      "link": "/contact"
+    }
+  ],
+  "eventsLabel": "Events",
+  "eventLinks": [
+    {
+      "label": "Upcoming Events",
+      "link": "/upcoming-events"
+    },
+    {
+      "label": "Past Events",
+      "link": "/past-events"
+    },
+    {
+      "label": "Christmas Event",
+      "link": "/christmas-event"
+    }
+  ],
+  "donateButton": {
+    "label": "Donate Now",
+    "link": "/donate"
+  }
+}

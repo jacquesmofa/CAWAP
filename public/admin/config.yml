@@ -12,6 +12,241 @@ backend:
 media_folder: "public/media/uploads"
 public_folder: "/media/uploads"
 collections:
+  - name: "settings"
+    label: "Site settings"
+    files:
+      - name: "site"
+        label: "Contact details & social links"
+        file: "src/content/site.json"
+        format: "json"
+        fields:
+          - name: "brandName"
+            label: "Organization name"
+            required: false
+            widget: "string"
+          - name: "tagline"
+            label: "Tagline (under the name)"
+            required: false
+            widget: "string"
+          - name: "contact"
+            label: "Contact"
+            required: false
+            widget: "object"
+            fields:
+              - name: "phoneDisplay"
+                label: "Phone (as shown)"
+                required: false
+                hint: "e.g. 647-581-5901"
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "email"
+                label: "Email"
+                required: false
+                widget: "string"
+              - name: "addressLine1"
+                label: "Address line 1"
+                required: false
+                widget: "string"
+              - name: "addressLine2"
+                label: "Address line 2"
+                required: false
+                widget: "string"
+          - name: "socials"
+            label: "Social media links"
+            required: false
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - name: "name"
+                label: "Name"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "icon"
+                label: "Icon"
+                required: false
+                hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                widget: "string"
+      - name: "navigation"
+        label: "Main menu"
+        file: "src/content/navigation.json"
+        format: "json"
+        fields:
+          - name: "links"
+            label: "Menu links"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "programsLabel"
+            label: "Programs label"
+            required: false
+            widget: "string"
+          - name: "programLinks"
+            label: "Program links"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "linksAfterPrograms"
+            label: "Links after Programs"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "eventsLabel"
+            label: "Events label"
+            required: false
+            widget: "string"
+          - name: "eventLinks"
+            label: "Event links"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "donateButton"
+            label: "Donate button"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+      - name: "footer"
+        label: "Footer"
+        file: "src/content/footer.json"
+        format: "json"
+        fields:
+          - name: "about"
+            label: "About"
+            required: false
+            widget: "text"
+          - name: "quickLinksTitle"
+            label: "Quick links title"
+            required: false
+            widget: "string"
+          - name: "quickLinks"
+            label: "Quick links"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "programsTitle"
+            label: "Programs title"
+            required: false
+            widget: "string"
+          - name: "programLinks"
+            label: "Program links"
+            required: false
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "contactTitle"
+            label: "Contact title"
+            required: false
+            widget: "string"
+          - name: "followTitle"
+            label: "Follow title"
+            required: false
+            widget: "string"
+          - name: "copyright"
+            label: "Copyright line"
+            required: false
+            hint: "The year is added automatically in front."
+            widget: "string"
+      - name: "donation-banner"
+        label: "Donation banner (bottom of pages)"
+        file: "src/content/donation-banner.json"
+        format: "json"
+        fields:
+          - name: "backgroundImage"
+            label: "Background photo"
+            required: false
+            hint: "Wide landscape photo, under 2 MB."
+            widget: "image"
+          - name: "title"
+            label: "Title"
+            required: false
+            widget: "string"
+          - name: "text"
+            label: "Text"
+            required: false
+            widget: "text"
+          - name: "buttonLabel"
+            label: "Button text"
+            required: false
+            widget: "string"
+          - name: "buttonLink"
+            label: "Button link"
+            required: false
+            widget: "string"
   - name: "events"
     label: "Events & trainings"
     files:

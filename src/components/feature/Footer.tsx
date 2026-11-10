@@ -1,4 +1,8 @@
 import { useMedia } from '../../context/MediaContext';
+import site from '../../content/site.json';
+import footer from '../../content/footer.json';
+
+// Footer text and links: src/content/footer.json. Contact and social links: src/content/site.json.
 
 const Footer = () => {
   const { assets, loading } = useMedia();
@@ -25,163 +29,84 @@ const Footer = () => {
                 <div className="h-12 w-12 bg-white/10 animate-pulse rounded-lg"></div>
               )}
               <div>
-                <h3 className="text-xl font-bold">C.A.W.A.P</h3>
-                <p className="text-xs text-white/80">Your Empowerment services</p>
+                <h3 className="text-xl font-bold">{site.brandName}</h3>
+                <p className="text-xs text-white/80">{site.tagline}</p>
               </div>
             </div>
             <p className="text-sm text-white/80 leading-relaxed">
-              Empowering communities through comprehensive support programs, cultural initiatives, and dedicated service to African and Caribbean communities in Canada.
+              {footer.about}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{footer.quickLinksTitle}</h4>
             <ul className="space-y-2">
-              <li>
-                <a href="/about" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/programs" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Our Programs
-                </a>
-              </li>
-              <li>
-                <a href="/food-bank" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Food Bank
-                </a>
-              </li>
-              <li>
-                <a href="/gallery" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a href="/upcoming-events" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Events
-                </a>
-              </li>
-              <li>
-                <a href="/contact" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Contact
-                </a>
-              </li>
+              {footer.quickLinks.map((item) => (
+                <li key={item.link}>
+                  <a href={item.link} className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Programs */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Programs</h4>
+            <h4 className="text-lg font-semibold mb-4">{footer.programsTitle}</h4>
             <ul className="space-y-2">
-              <li>
-                <a href="/youth-leadership" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Youth Leadership
-                </a>
-              </li>
-              <li>
-                <a href="/women-empowerment" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Women Empowerment
-                </a>
-              </li>
-              <li>
-                <a href="/mental-health" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Disability Inclusion - Mental Health
-                </a>
-              </li>
-              <li>
-                <a href="/financial-literacy" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Financial Literacy
-                </a>
-              </li>
-              <li>
-                <a href="/newcomers-settlement-program" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Newcomers Settlement
-                </a>
-              </li>
-              <li>
-                <a href="/trainings" className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
-                  Training Programs
-                </a>
-              </li>
+              {footer.programLinks.map((item) => (
+                <li key={item.link}>
+                  <a href={item.link} className="text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4">{footer.contactTitle}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <i className="ri-map-pin-line text-[#c9b037] mt-1"></i>
                 <span className="text-sm text-white/80">
-                  101 West Drive, Unit 7<br />
-                  Brampton, ON L6T 2J6
+                  {site.contact.addressLine1}<br />
+                  {site.contact.addressLine2}
                 </span>
               </li>
               <li>
-                <a href="tel:+16475815901" className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                <a href={`tel:${site.contact.phoneLink}`} className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
                   <i className="ri-phone-line text-[#c9b037]"></i>
-                  647-581-5901
+                  {site.contact.phoneDisplay}
                 </a>
               </li>
               <li>
-                <a href="mailto:cawap2005@gmail.com" className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
+                <a href={`mailto:${site.contact.email}`} className="flex items-center gap-2 text-sm text-white/80 hover:text-[#c9b037] transition-colors cursor-pointer">
                   <i className="ri-mail-line text-[#c9b037]"></i>
-                  cawap2005@gmail.com
+                  {site.contact.email}
                 </a>
               </li>
             </ul>
 
             {/* Social Media */}
             <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3">Follow Us</h5>
+              <h5 className="text-sm font-semibold mb-3">{footer.followTitle}</h5>
               <div className="flex gap-3">
-                <a
-                  href="https://www.facebook.com/cawapcommunity"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="Facebook"
-                >
-                  <i className="ri-facebook-fill text-lg"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/cawapcanada"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="Instagram"
-                >
-                  <i className="ri-instagram-line text-lg"></i>
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/cawapcanada"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="LinkedIn"
-                >
-                  <i className="ri-linkedin-fill text-lg"></i>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@aunty.irine"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="TikTok"
-                >
-                  <i className="ri-tiktok-fill text-lg"></i>
-                </a>
-                <a
-                  href="https://www.youtube.com/@CAWAP-Canada"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="YouTube"
-                >
-                  <i className="ri-youtube-fill text-lg"></i>
-                </a>
+                {site.socials.map((social) => (
+                  <a
+                    key={social.url}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#c9b037] rounded-full transition-all duration-300 cursor-pointer"
+                    aria-label={social.name}
+                  >
+                    <i className={`${social.icon} text-lg`}></i>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -193,7 +118,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <p className="text-sm text-white/60 text-center">
-              © {currentYear} C.A.W.A.P. All rights reserved. | Charitable Registration: 84865 2740 RR0001
+              © {currentYear} {footer.copyright}
             </p>
           </div>
         </div>

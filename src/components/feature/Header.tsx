@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import SmartSearch from './SmartSearch';
 import { useMedia } from '../../context/MediaContext';
+import navigation from '../../content/navigation.json';
+import site from '../../content/site.json';
+
+// Menu labels and links: src/content/navigation.json. Brand and contact: src/content/site.json.
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,40 +65,27 @@ const Header = () => {
               )}
               <div className="flex flex-col">
                 <span className={`text-2xl font-bold transition-colors ${isScrolled ? 'text-[#26194f]' : 'text-white'}`}>
-                  C.A.W.A.P
+                  {site.brandName}
                 </span>
                 <span className={`text-xs transition-colors ${isScrolled ? 'text-gray-600' : 'text-white/90'}`}>
-                  Your Empowerment services
+                  {site.tagline}
                 </span>
               </div>
             </a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
-              <a
-                href="/"
-                className={`font-medium transition-colors cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
-                }`}
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className={`font-medium transition-colors cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
-                }`}
-              >
-                About
-              </a>
-              <a
-                href="/food-bank"
-                className={`font-medium transition-colors cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
-                }`}
-              >
-                Food Bank
-              </a>
+              {navigation.links.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
+                  className={`font-medium transition-colors cursor-pointer ${
+                    isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
 
               {/* Programs Dropdown */}
               <div
@@ -107,76 +98,31 @@ const Header = () => {
                     isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
                   }`}
                 >
-                  Programs
+                  {navigation.programsLabel}
                   <i className={`ri-arrow-down-s-line transition-transform ${isProgramsOpen ? 'rotate-180' : ''}`}></i>
                 </button>
                 {isProgramsOpen && (
                   <div className="absolute top-full left-[-200px] mt-2 w-[720px] bg-white rounded-lg shadow-xl py-4 px-2 z-50 grid grid-cols-3 gap-x-2">
-                    <a href="/youth-leadership" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Youth Leadership
-                    </a>
-                    <a href="/capital-g-girls" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Capital G Girls
-                    </a>
-                    <a href="/heart-wise-seniors" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Heart Wise Seniors
-                    </a>
-                    <a href="/women-empowerment" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Women Empowerment
-                    </a>
-                    <a href="/sankofa-royale-awards" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Sankofa Royale Awards
-                    </a>
-                    <a href="/food-bank" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Food Bank
-                    </a>
-                    <a href="/financial-literacy" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Financial Literacy
-                    </a>
-                    <a href="/javascript-program" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Javascript Program
-                    </a>
-                    <a href="/children-summer-camp" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Children Summer Camp
-                    </a>
-                    <a href="/mental-health" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Disability Inclusion - Mental Health
-                    </a>
-                    <a href="/new-breed-women-of-substance" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      New Breed Women
-                    </a>
-                    <a href="/project-and-evaluation" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Project & Evaluation
-                    </a>
-                    <a href="/newcomers-settlement-program" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Newcomers Settlement
-                    </a>
-                    <a href="/cultural-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Cultural Events
-                    </a>
-                    <a href="/trainings" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
-                      Trainings
-                    </a>
+                    {navigation.programLinks.map((item) => (
+                      <a key={item.link} href={item.link} className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer rounded-md">
+                        {item.label}
+                      </a>
+                    ))}
                   </div>
                 )}
               </div>
 
-              <a
-                href="/gallery"
-                className={`font-medium transition-colors cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
-                }`}
-              >
-                Gallery
-              </a>
-              <a
-                href="/contact"
-                className={`font-medium transition-colors cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
-                }`}
-              >
-                Contact
-              </a>
+              {navigation.linksAfterPrograms.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
+                  className={`font-medium transition-colors cursor-pointer ${
+                    isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
 
               {/* Events Dropdown */}
               <div
@@ -189,20 +135,16 @@ const Header = () => {
                     isScrolled ? 'text-gray-700 hover:text-[#26194f]' : 'text-white hover:text-[#c9b037]'
                   }`}
                 >
-                  Events
+                  {navigation.eventsLabel}
                   <i className={`ri-arrow-down-s-line transition-transform ${isEventsOpen ? 'rotate-180' : ''}`}></i>
                 </button>
                 {isEventsOpen && (
                   <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2 z-50">
-                    <a href="/upcoming-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
-                      Upcoming Events
-                    </a>
-                    <a href="/past-events" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
-                      Past Events
-                    </a>
-                    <a href="/christmas-event" className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
-                      Christmas Event
-                    </a>
+                    {navigation.eventLinks.map((item) => (
+                      <a key={item.link} href={item.link} className="block px-4 py-2 text-gray-700 hover:bg-[#26194f]/10 hover:text-[#26194f] transition-colors cursor-pointer">
+                        {item.label}
+                      </a>
+                    ))}
                   </div>
                 )}
               </div>
@@ -214,10 +156,10 @@ const Header = () => {
               <LanguageSwitcher />
 
               <a
-                href="/donate"
+                href={navigation.donateButton.link}
                 className="bg-[#c9b037] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b39f2f] transition-all duration-300 elite-btn whitespace-nowrap cursor-pointer"
               >
-                Donate Now
+                {navigation.donateButton.label}
               </a>
             </div>
 
@@ -242,27 +184,16 @@ const Header = () => {
               <LanguageSwitcher />
             </div>
 
-            <a
-              href="/"
-              onClick={toggleMobileMenu}
-              className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
-            >
-              Home
-            </a>
-            <a
-              href="/about"
-              onClick={toggleMobileMenu}
-              className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
-            >
-              About
-            </a>
-            <a
-              href="/food-bank"
-              onClick={toggleMobileMenu}
-              className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
-            >
-              Food Bank
-            </a>
+            {navigation.links.map((item) => (
+              <a
+                key={item.link}
+                href={item.link}
+                onClick={toggleMobileMenu}
+                className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
+              >
+                {item.label}
+              </a>
+            ))}
 
             {/* Mobile Programs Dropdown */}
             <div className="border-b border-gray-200">
@@ -270,74 +201,30 @@ const Header = () => {
                 onClick={() => setIsMobileProgramsOpen(!isMobileProgramsOpen)}
                 className="w-full flex items-center justify-between py-3 text-gray-700 hover:text-[#26194f] font-medium cursor-pointer"
               >
-                Programs
+                {navigation.programsLabel}
                 <i className={`ri-arrow-down-s-line transition-transform ${isMobileProgramsOpen ? 'rotate-180' : ''}`}></i>
               </button>
               {isMobileProgramsOpen && (
                 <div className="pl-4 pb-2">
-                  <a href="/youth-leadership" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Youth Leadership
-                  </a>
-                  <a href="/capital-g-girls" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Capital G Girls
-                  </a>
-                  <a href="/heart-wise-seniors" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Heart Wise Seniors
-                  </a>
-                  <a href="/women-empowerment" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Women Empowerment
-                  </a>
-                  <a href="/sankofa-royale-awards" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Sankofa Royale Awards
-                  </a>
-                  <a href="/food-bank" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Food Bank
-                  </a>
-                  <a href="/financial-literacy" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Financial Literacy
-                  </a>
-                  <a href="/javascript-program" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Javascript Program
-                  </a>
-                  <a href="/children-summer-camp" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Children Summer Camp
-                  </a>
-                  <a href="/mental-health" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Disability Inclusion - Mental Health
-                  </a>
-                  <a href="/new-breed-women-of-substance" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    New Breed Women
-                  </a>
-                  <a href="/project-and-evaluation" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Project & Evaluation
-                  </a>
-                  <a href="/newcomers-settlement-program" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Newcomers Settlement
-                  </a>
-                  <a href="/cultural-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Cultural Events
-                  </a>
-                  <a href="/trainings" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Trainings
-                  </a>
+                  {navigation.programLinks.map((item) => (
+                    <a key={item.link} href={item.link} onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                      {item.label}
+                    </a>
+                  ))}
                 </div>
               )}
             </div>
 
-            <a
-              href="/gallery"
-              onClick={toggleMobileMenu}
-              className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
-            >
-              Gallery
-            </a>
-            <a
-              href="/contact"
-              onClick={toggleMobileMenu}
-              className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
-            >
-              Contact
-            </a>
+            {navigation.linksAfterPrograms.map((item) => (
+              <a
+                key={item.link}
+                href={item.link}
+                onClick={toggleMobileMenu}
+                className="block py-3 text-gray-700 hover:text-[#26194f] font-medium border-b border-gray-200 cursor-pointer"
+              >
+                {item.label}
+              </a>
+            ))}
 
             {/* Mobile Events Dropdown */}
             <div className="border-b border-gray-200">
@@ -345,42 +232,38 @@ const Header = () => {
                 onClick={() => setIsMobileEventsOpen(!isMobileEventsOpen)}
                 className="w-full flex items-center justify-between py-3 text-gray-700 hover:text-[#26194f] font-medium cursor-pointer"
               >
-                Events
+                {navigation.eventsLabel}
                 <i className={`ri-arrow-down-s-line transition-transform ${isMobileEventsOpen ? 'rotate-180' : ''}`}></i>
               </button>
               {isMobileEventsOpen && (
                 <div className="pl-4 pb-2">
-                  <a href="/upcoming-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Upcoming Events
-                  </a>
-                  <a href="/past-events" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Past Events
-                  </a>
-                  <a href="/christmas-event" onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
-                    Christmas Event
-                  </a>
+                  {navigation.eventLinks.map((item) => (
+                    <a key={item.link} href={item.link} onClick={toggleMobileMenu} className="block py-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                      {item.label}
+                    </a>
+                  ))}
                 </div>
               )}
             </div>
 
             <a
-              href="/donate"
+              href={navigation.donateButton.link}
               onClick={toggleMobileMenu}
               className="block mt-4 text-center bg-[#c9b037] text-white px-6 py-3 rounded-full font-semibold cursor-pointer"
             >
-              Donate Now
+              {navigation.donateButton.label}
             </a>
 
             {/* Mobile Contact Info */}
             <div className="mt-8 pt-6 border-t border-gray-200">
               <div className="space-y-3">
-                <a href="tel:+16475815901" className="flex items-center gap-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                <a href={`tel:${site.contact.phoneLink}`} className="flex items-center gap-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                   <i className="ri-phone-line"></i>
-                  <span className="text-sm">647-581-5901</span>
+                  <span className="text-sm">{site.contact.phoneDisplay}</span>
                 </a>
-                <a href="mailto:cawap2005@gmail.com" className="flex items-center gap-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
+                <a href={`mailto:${site.contact.email}`} className="flex items-center gap-2 text-gray-600 hover:text-[#26194f] cursor-pointer">
                   <i className="ri-mail-line"></i>
-                  <span>cawap2005@gmail.com</span>
+                  <span>{site.contact.email}</span>
                 </a>
               </div>
             </div>

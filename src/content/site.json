@@ -1,0 +1,38 @@
+{
+  "brandName": "C.A.W.A.P",
+  "tagline": "Your Empowerment services",
+  "contact": {
+    "phoneDisplay": "647-581-5901",
+    "phoneLink": "+16475815901",
+    "email": "cawap2005@gmail.com",
+    "addressLine1": "101 West Drive, Unit 7",
+    "addressLine2": "Brampton, ON L6T 2J6"
+  },
+  "socials": [
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/cawapcommunity",
+      "icon": "ri-facebook-fill"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/cawapcanada",
+      "icon": "ri-instagram-line"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/cawapcanada",
+      "icon": "ri-linkedin-fill"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://www.tiktok.com/@aunty.irine",
+      "icon": "ri-tiktok-fill"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@CAWAP-Canada",
+      "icon": "ri-youtube-fill"
+    }
+  ]
+}

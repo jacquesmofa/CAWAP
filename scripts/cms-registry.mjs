@@ -23,6 +23,12 @@ const program = (name, label) => ({
 });
 
 export const ENTRIES = [
+  // ---- Site settings (every page) ----
+  { group: 'settings', name: 'site', label: 'Contact details & social links', file: 'src/content/site.json' },
+  { group: 'settings', name: 'navigation', label: 'Main menu', file: 'src/content/navigation.json' },
+  { group: 'settings', name: 'footer', label: 'Footer', file: 'src/content/footer.json' },
+  { group: 'settings', name: 'donation-banner', label: 'Donation banner (bottom of pages)', file: 'src/content/donation-banner.json' },
+
   // ---- Events & trainings ----
   {
     group: 'events',
@@ -55,6 +61,26 @@ export const ENTRIES = [
 
 /** Labels and help text by field name, used wherever that field name appears. */
 export const FIELD_HINTS = {
+  brandName: { label: 'Organization name' },
+  tagline: { label: 'Tagline (under the name)' },
+  phoneDisplay: { label: 'Phone (as shown)', description: 'e.g. 647-581-5901' },
+  phoneLink: { label: 'Phone (for tap-to-call)', description: 'International format without spaces, e.g. +16475815901' },
+  addressLine1: { label: 'Address line 1' },
+  addressLine2: { label: 'Address line 2' },
+  socials: { label: 'Social media links' },
+  url: { label: 'Link (full https:// address)' },
+  label: { label: 'Text' },
+  link: { label: 'Link', description: 'A page like /about or a full https:// address.' },
+  links: { label: 'Menu links' },
+  programLinks: { label: 'Program links' },
+  eventLinks: { label: 'Event links' },
+  linksAfterPrograms: { label: 'Links after Programs' },
+  quickLinks: { label: 'Quick links' },
+  donateButton: { label: 'Donate button' },
+  buttonLabel: { label: 'Button text' },
+  buttonLink: { label: 'Button link' },
+  backgroundImage: { label: 'Background photo', description: 'Wide landscape photo, under 2 MB.' },
+  copyright: { label: 'Copyright line', description: 'The year is added automatically in front.' },
   id: { label: 'Short ID', description: 'Lowercase words joined by dashes, unique, e.g. summer-camp-2027. Never change it after publishing.' },
   title: { label: 'Title' },
   imageUrl: { label: 'Flyer image', description: 'Portrait flyer (JPG or PNG), under 2 MB.' },
@@ -72,6 +98,7 @@ export const FIELD_HINTS = {
   whatYouWillLearn: { label: 'What you will learn' },
   bonuses: { label: 'Bonuses for attendees' },
   shortDescription: { label: 'Short description (cards)' },
+  name: { label: 'Name' },
   icon: { label: 'Icon', description: 'Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com).' },
   heading: { label: 'Heading' },
   paragraphs: { label: 'Paragraphs', itemName: 'paragraph' },
