@@ -1,0 +1,8 @@
+# The editor's settings must never be cached, or browsers keep an old login setup.
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-store"
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

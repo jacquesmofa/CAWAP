@@ -15,6 +15,7 @@ Bilingual (EN/FR) site for CAWAP, live at https://www.cawap.ca. Originally a Rea
 - Two editors on the same files, keep both configs in sync when adding a field:
   - Pages CMS: `.pages.yml` (people without GitHub; app.pagescms.org).
   - Sveltia CMS: `public/admin/config.yml` (people with GitHub; https://www.cawap.ca/admin/).
+- Sveltia "Sign In with GitHub" runs on HostGator itself: `public/api/auth.php` + `callback.php` (shared code in `oauth-common.php`; canonical origin https://www.cawap.ca, allowed origins www + bare domain). The OAuth App secret is never in the repo: the deploy workflow writes `out/api/oauth-config.php` from Actions secrets `CMS_GITHUB_CLIENT_ID` / `CMS_GITHUB_CLIENT_SECRET`; `public/api/.htaccess` blocks direct access to the helper files. `public/admin/.htaccess` disables caching for the editor. No Netlify anywhere.
 - Uploads from the editors go to `public/media/uploads/` → served at `/media/uploads/...`.
 - Older media lives on the server in `/media/<folder>/<n>.<ext>` (uploaded by FTP, described by `public/media/site-assets.json` and `src/context/MediaContext.tsx`). FTP deploys never delete it.
 

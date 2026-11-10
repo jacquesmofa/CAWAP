@@ -1,0 +1,4 @@
+# Only the two login pages may be opened from a browser.
+<FilesMatch "^(oauth-common|oauth-config)\.php$">
+  Require all denied
+</FilesMatch>

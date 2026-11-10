@@ -1,16 +1,19 @@
 # Sveltia CMS at https://www.cawap.ca/admin/ - editor for people with a GitHub account.
 # Edits the same files as Pages CMS (.pages.yml at the repo root). Keep both in sync.
 #
-# Sign in today: "Sign In Using Access Token" with a fine-grained GitHub token
-# limited to jacquesmofa/CAWAP (Contents: Read and write).
-# "Sign In with GitHub" needs the free Cloudflare Worker (sveltia-cms-auth);
-# once it exists, uncomment base_url and set it to the Worker's address.
+# Two ways to sign in:
+# - "Sign In with GitHub": handled on our own HostGator server by
+#   public/api/auth.php + callback.php (no Netlify, no outside service).
+#   Needs the GitHub OAuth App + the two Actions secrets (see docs/EDITING.md).
+# - "Sign In Using Access Token": a fine-grained GitHub token limited to
+#   jacquesmofa/CAWAP (Contents: Read and write).
 
 backend:
   name: github
   repo: jacquesmofa/CAWAP
   branch: main
-  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
+  base_url: https://www.cawap.ca
+  auth_endpoint: api/auth.php
 
 media_folder: public/media/uploads
 public_folder: /media/uploads
