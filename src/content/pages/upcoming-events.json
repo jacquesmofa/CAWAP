@@ -1,0 +1,49 @@
+{
+  "heroSection": {
+    "title": "Upcoming Events",
+    "text": "Join us for exciting programs and community gatherings. Register today!"
+  },
+  "eventsGrid": {
+    "text": "Don't miss out on these amazing upcoming programs and events. Click on any event to see full details and register!"
+  },
+  "eventImage": {
+    "text": "Upcoming"
+  },
+  "learnMoreAndRegisterButton": {
+    "label": "Learn More & Register",
+    "heading": "New Events Coming Soon",
+    "text": "We're planning exciting new programs and events. Check back soon or contact us to stay updated!",
+    "link": "Contact Us"
+  },
+  "eventTitleOverlay": {
+    "text": "Upcoming Event"
+  },
+  "eventInfoGrid": {
+    "text": "Date",
+    "text2": "Time",
+    "text3": "Location",
+    "text4": "Cost"
+  },
+  "description": {
+    "subheading": "About This Event"
+  },
+  "whoShouldAttend": {
+    "subheading": "Who Should Attend?"
+  },
+  "whatYouWillLearn": {
+    "subheading": "What You Will Learn"
+  },
+  "hosts": {
+    "subheading": "Hosted By"
+  },
+  "bonuses": {
+    "subheading": "Bonus for Attendees"
+  },
+  "contactInfo": {
+    "subheading": "Contact Information"
+  },
+  "registerButton": {
+    "label": "Register Now",
+    "label2": "Close"
+  }
+}

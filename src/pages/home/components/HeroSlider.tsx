@@ -1,35 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMedia } from '@/context/MediaContext';
+import copy from '../../../content/pages/home.json';
+// Text, images and links: src/content/pages/home.json (editable in the website editors).
 
 const HeroSlider = () => {
   const { assets } = useMedia();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
-  const slides = [
-    {
-      title: 'Empowering Communities',
-      subtitle: 'Building Stronger Futures Together',
-      description: 'Join us in creating lasting change through education, support, and community engagement.',
-      cta: 'Explore Our Programs',
-      link: '/programs',
-    },
-    {
-      title: 'Youth Leadership',
-      subtitle: 'Nurturing Tomorrow\'s Leaders',
-      description: 'Empowering young minds with skills, confidence, and opportunities to excel.',
-      cta: 'Learn More',
-      link: '/youth-leadership',
-    },
-    {
-      title: 'Community Support',
-      subtitle: 'Together We Rise',
-      description: 'Providing essential resources and support to families in need across our community.',
-      cta: 'Get Involved',
-      link: '/contact',
-    },
-  ];
+  const slides = copy.heroSlider.slides;
 
   useEffect(() => {
     const timer = setInterval(() => {

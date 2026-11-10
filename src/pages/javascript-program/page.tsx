@@ -3,6 +3,8 @@ import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
 import ScrollReveal from '../../components/effects/ScrollReveal';
+import copy from '../../content/pages/javascript-program.json';
+// Text, images and links: src/content/pages/javascript-program.json (editable in the website editors).
 
 const JavascriptProgramPage = () => {
   return (
@@ -14,7 +16,7 @@ const JavascriptProgramPage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://readdy.ai/api/search-image?query=diverse%20students%20learning%20computer%20programming%20and%20coding%20on%20modern%20laptops%20in%20technology%20training%20center%2C%20bright%20contemporary%20classroom%20with%20multiple%20monitors%20showing%20code%2C%20professional%20photography%20capturing%20tech%20education%20and%20digital%20skills%20development%2C%20african%20and%20caribbean%20youth%20engaged%20in%20software%20development%20learning%2C%20inspiring%20atmosphere%20with%20natural%20lighting%2C%20modern%20facility%20representing%20career%20opportunities%20and%20innovation&width=1920&height=500&seq=javascript-program-hero&orientation=landscape')",
+            backgroundImage: `url('${copy.heroSection.backgroundImage}')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"></div>
@@ -28,52 +30,44 @@ const JavascriptProgramPage = () => {
                 <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
                   <i className="far fa-file-code text-secondary text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">JavaScript for Afro Black Women</h2>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  We are committed to bridging the diversity gap in the tech sector and providing equitable opportunities for underrepresented communities.
-                </p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Our JavaScript program is specifically designed to empower Afro Black women with the technical skills needed to succeed in the technology industry. Through comprehensive training in JavaScript programming, web development, and software engineering, we prepare participants for rewarding careers in tech.
-                </p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  The program includes hands-on projects, mentorship from industry professionals, and job placement assistance to ensure participants can successfully transition into tech careers.
-                </p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">{copy.heroSection.heading}</h2>
+                <p className="text-gray-600 leading-relaxed mb-4">{copy.heroSection.text}</p>
+                <p className="text-gray-600 leading-relaxed mb-4">{copy.heroSection.text2}</p>
+                <p className="text-gray-600 leading-relaxed mb-4">{copy.heroSection.text3}</p>
               </div>
 
               <div className="bg-gray-50 p-8 rounded-lg mb-8">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Program Details</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{copy.heroSection.subheading}</h3>
                 <div className="mb-6">
                   <p className="text-gray-600 mb-2">
-                    <strong>Start Date:</strong> August 2nd, 2021
-                  </p>
+                    <strong>{copy.heroSection.bold}</strong>{copy.heroSection.text4}</p>
                   <p className="text-gray-600 mb-2">
-                    <strong>Location:</strong> 101 West Dr Unit C2, Brampton, ON L6T 2J6, Canada
-                  </p>
+                    <strong>{copy.heroSection.bold2}</strong>{copy.heroSection.text5}</p>
                   <p className="text-gray-600 mb-2">
-                    <strong>Contact:</strong> <a href="tel:647-581-5901" className="text-secondary hover:underline">647-581-5901</a>
+                    <strong>{copy.heroSection.bold3}</strong> <a href={copy.heroSection.phoneLink} className="text-secondary hover:underline">{copy.heroSection.link}</a>
                   </p>
                 </div>
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">What You'll Learn</h4>
+                <h4 className="text-xl font-semibold text-gray-800 mb-3">{copy.heroSection.subheading2}</h4>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">JavaScript fundamentals and advanced concepts</span>
+                    <span className="text-gray-600">{copy.heroSection.label}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">Web development with HTML, CSS, and JavaScript</span>
+                    <span className="text-gray-600">{copy.heroSection.label2}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">Modern frameworks and libraries</span>
+                    <span className="text-gray-600">{copy.heroSection.label3}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">Project-based learning and portfolio development</span>
+                    <span className="text-gray-600">{copy.heroSection.label4}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <i className="fas fa-check-circle text-secondary mt-1"></i>
-                    <span className="text-gray-600">Career preparation and job placement support</span>
+                    <span className="text-gray-600">{copy.heroSection.label5}</span>
                   </li>
                 </ul>
               </div>
@@ -91,24 +85,23 @@ const JavascriptProgramPage = () => {
               <div className="text-center bg-gradient-to-br from-[#26194f] to-[#8e24aa] p-8 rounded-2xl shadow-2xl">
                 <div className="mb-6">
                   <i className="ri-file-list-3-line text-6xl text-white mb-4 inline-block"></i>
-                  <h3 className="text-2xl font-bold text-white mb-2">Ready to Start Your Tech Journey?</h3>
-                  <p className="text-white/90 text-lg">Register now to secure your spot in the program!</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{copy.heroSection.subheading3}</h3>
+                  <p className="text-white/90 text-lg">{copy.heroSection.text6}</p>
                 </div>
                 
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdDz6ynDpr0wR5ejrSQOvjEBxTm0sb3A_8LaaHYKXKjDgRWDw/viewform"
+                  href={copy.heroSection.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-4 bg-white text-[#26194f] px-10 py-5 rounded-full text-xl font-bold hover:bg-gray-100 hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-xl animate-pulse hover:animate-none"
                 >
                   <i className="ri-external-link-line text-3xl"></i>
-                  <span>Register Online Now</span>
+                  <span>{copy.heroSection.label6}</span>
                   <i className="ri-arrow-right-line text-2xl"></i>
                 </a>
                 
                 <p className="text-white/80 text-sm mt-4">
-                  <i className="ri-information-line"></i> Opens in a new tab - Google Form
-                </p>
+                  <i className="ri-information-line"></i>{copy.heroSection.text7}</p>
               </div>
             </div>
           </div>

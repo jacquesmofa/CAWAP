@@ -1,0 +1,16 @@
+{
+  "heroSection": {
+    "label": "Back to Gallery",
+    "label2": " items",
+    "title": "Our Gallery",
+    "text": "Explore our journey through photos and videos showcasing our programs, events, and community impact"
+  },
+  "browseSection": {
+    "heading": "Browse Our Gallery",
+    "text": "Select a category to view all photos and videos"
+  },
+  "categoryInfo": {
+    "label": " items",
+    "label2": "View Gallery"
+  }
+}

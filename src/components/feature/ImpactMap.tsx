@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface ServiceArea {
   id: string;
@@ -75,13 +77,9 @@ const ImpactMap = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#3c1053] mb-4">
-            Our Impact Across Communities
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#3c1053] mb-4">{copy.impactMap.header.heading}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#3c1053] to-[#c9b037] mx-auto mb-6"></div>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Explore the regions we serve and see how CAWAP programs are making a difference in communities across Brampton and the Greater Toronto Area.
-          </p>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">{copy.impactMap.header.text}</p>
         </div>
 
         {/* Large Landscape Map - Full Box */}
@@ -89,14 +87,14 @@ const ImpactMap = () => {
           <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
             <div className="w-full h-[600px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.57909103147!2d-79.86240842343749!3d43.68410799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15eaa5d05abf%3A0x352d7b495cdacc5a!2sBrampton%2C%20ON!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca"
+                src={copy.impactMap.largeLandscapeMapFullBox.embedUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0, display: 'block' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="CAWAP Service Areas Map - Brampton and GTA"
+                title={copy.impactMap.largeLandscapeMapFullBox.title}
               ></iframe>
             </div>
           </div>
@@ -106,26 +104,24 @@ const ImpactMap = () => {
         <div className="mb-12">
           <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-              <i className="ri-map-pin-line text-[#c9b037]"></i>
-              Service Area Impact
-            </h3>
+              <i className="ri-map-pin-line text-[#c9b037]"></i>{copy.impactMap.impactLegendBelowMap.subheading}</h3>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-[#c9b037] shadow-lg"></div>
-                <span className="text-sm text-gray-600">Very High Impact (850+)</span>
+                <span className="text-sm text-gray-600">{copy.impactMap.impactLegendBelowMap.label}</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-[#d4c050] shadow-lg"></div>
-                <span className="text-sm text-gray-600">High Impact (450+)</span>
+                <span className="text-sm text-gray-600">{copy.impactMap.impactLegendBelowMap.label2}</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-[#e8d98f] shadow-lg"></div>
-                <span className="text-sm text-gray-600">Medium Impact (300+)</span>
+                <span className="text-sm text-gray-600">{copy.impactMap.impactLegendBelowMap.label3}</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-[#f5f0d4] shadow-lg"></div>
-                <span className="text-sm text-gray-600">Growing Impact</span>
+                <span className="text-sm text-gray-600">{copy.impactMap.impactLegendBelowMap.label4}</span>
               </div>
             </div>
           </div>
@@ -151,20 +147,19 @@ const ImpactMap = () => {
 
               <div className="flex items-baseline gap-2 mb-3">
                 <span className="text-4xl font-bold text-[#3c1053]">{area.impact}</span>
-                <span className="text-sm text-gray-500">people helped</span>
+                <span className="text-sm text-gray-500">{copy.impactMap.serviceAreasStatisticsGrid.label}</span>
               </div>
 
               <div className="flex items-center gap-2">
                 <span className={`px-4 py-2 rounded-full ${getImpactColor(area.impact)} text-white font-medium text-sm`}>
-                  {getImpactLevel(area.impact)} Impact
-                </span>
+                  {getImpactLevel(area.impact)}{copy.impactMap.serviceAreasStatisticsGrid.label2}</span>
               </div>
 
               {/* Expanded Details */}
               {selectedArea?.id === area.id && (
                 <div className="mt-4 pt-4 border-t border-gray-200 space-y-3 animate-fadeIn">
                   <div>
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Active Programs:</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">{copy.impactMap.expandedDetails.smallHeading}</h5>
                     <div className="flex flex-wrap gap-2">
                       {area.programs.map((program, index) => (
                         <span
@@ -184,28 +179,22 @@ const ImpactMap = () => {
           {/* Total Impact Card */}
           <div className="bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] rounded-xl shadow-2xl p-8 text-white flex flex-col justify-center items-center text-center">
             <i className="ri-community-line text-5xl mb-4 opacity-90"></i>
-            <h4 className="text-xl font-bold mb-3">Total Community Impact</h4>
+            <h4 className="text-xl font-bold mb-3">{copy.impactMap.totalImpactCard.subheading}</h4>
             <div className="text-5xl font-bold mb-2">
               {serviceAreas.reduce((sum, area) => sum + area.impact, 0)}+
             </div>
-            <p className="text-sm opacity-90">Lives touched across all service areas</p>
+            <p className="text-sm opacity-90">{copy.impactMap.totalImpactCard.text}</p>
           </div>
         </div>
 
         {/* Call to Action */}
         <div className="text-center bg-gradient-to-r from-[#3c1053]/5 to-[#c9b037]/5 rounded-2xl p-12">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4">
-            Want to bring CAWAP programs to your neighborhood?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            We're always looking to expand our reach and serve more communities. Get in touch to learn how we can work together.
-          </p>
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">{copy.impactMap.callToAction.subheading}</h3>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">{copy.impactMap.callToAction.text}</p>
           <a
             href="/contact"
             className="inline-block bg-[#c9b037] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#b39f2f] transition-all duration-300 cursor-pointer whitespace-nowrap shadow-lg hover:shadow-xl hover:scale-105"
-          >
-            Contact Us
-          </a>
+          >{copy.impactMap.callToAction.link}</a>
         </div>
       </div>
     </section>

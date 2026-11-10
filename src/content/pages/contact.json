@@ -1,0 +1,60 @@
+{
+  "heroSection": {
+    "backgroundImage": "https://readdy.ai/api/search-image?query=welcoming%20community%20center%20reception%20desk%20with%20friendly%20staff%20ready%20to%20help%2C%20bright%20modern%20office%20space%20with%20warm%20inviting%20atmosphere%2C%20professional%20photography%20showing%20accessibility%20and%20support%2C%20clean%20organized%20environment%20with%20natural%20lighting%2C%20diverse%20people%20communicating%20and%20connecting%2C%20contemporary%20design%20representing%20openness%20and%20community%20engagement&width=1920&height=400&seq=contact-hero&orientation=landscape",
+    "title": "Contact Us",
+    "text": "We'd Love to Hear From You"
+  },
+  "contactInformation": {
+    "heading": "Get In Touch",
+    "text": "We would love to hear from you. Please feel free to reach out to us with any questions, comments, or inquiries.",
+    "subheading": "Address",
+    "text2": "101 West Drive, Unit 7",
+    "text3": "Brampton, ON L6T 5E9",
+    "text4": "Canada",
+    "subheading2": "Phone",
+    "phoneLink": "tel:+16475815901",
+    "link": "+1 (647) 581-5901",
+    "subheading3": "Email",
+    "emailLink": "mailto:cawap2025@gmail.com",
+    "link2": "cawap2025@gmail.com",
+    "subheading4": "Office Hours",
+    "text5": "Monday - Friday: 9:00 AM - 5:00 PM",
+    "text6": "Saturday: 10:00 AM - 3:00 PM",
+    "text7": "Sunday: Closed"
+  },
+  "socialMediaLinks": {
+    "subheading": "Follow Us",
+    "url": "https://www.facebook.com/cawapcommunity",
+    "url2": "https://twitter.com/cawap",
+    "url3": "https://instagram.com/cawap",
+    "url4": "https://linkedin.com/company/cawapcanada"
+  },
+  "contactForm": {
+    "heading": "Send Us a Message",
+    "fieldLabel": "Full Name *",
+    "placeholder": "John Doe",
+    "fieldLabel2": "Email Address *",
+    "placeholder2": "john@example.com",
+    "fieldLabel3": "Phone Number",
+    "placeholder3": "+1 (647) 581-5901",
+    "fieldLabel4": "Subject *",
+    "placeholder4": "How can we help you?",
+    "fieldLabel5": "Message *",
+    "placeholder5": "Tell us more about your inquiry...",
+    "label": "Send Message"
+  },
+  "mapSection": {
+    "heading": "Find Us in Brampton",
+    "text": "Visit us at our Brampton location. We're conveniently located and easily accessible by public transit and car.",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.234567890123!2d-79.7234567890123!3d43.7234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDQzJzI0LjQiTiA3OcKwNDMnMjQuNCJX!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
+    "title": "CAWAP Location in Brampton"
+  },
+  "directions": {
+    "subheading": "By Car",
+    "text": "Free parking available on-site. Easy access from Highway 410 and Queen Street.",
+    "subheading2": "By Transit",
+    "text2": "Accessible via Brampton Transit. Multiple bus routes stop nearby.",
+    "subheading3": "Accessibility",
+    "text3": "Fully wheelchair accessible with barrier-free entrance and facilities."
+  }
+}

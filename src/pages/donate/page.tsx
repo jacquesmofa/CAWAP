@@ -5,6 +5,8 @@ import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { useSupabaseSubmit } from '../../hooks/useSupabaseSubmit';
+import copy from '../../content/pages/donate.json';
+// Text, images and links: src/content/pages/donate.json (editable in the website editors).
 
 const DonatePage = () => {
   // Form state - stores all the user's input as they type
@@ -100,15 +102,13 @@ const DonatePage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://readdy.ai/api/search-image?query=diverse%20Canadian%20and%20African%20hands%20coming%20together%20in%20unity%20and%20support%20showing%20generosity%20and%20giving%2C%20warm%20golden%20lighting%20creating%20hopeful%20inspiring%20atmosphere%2C%20professional%20photography%20with%20soft%20focus%20background%20representing%20community%20philanthropy%20and%20charitable%20giving%2C%20heartwarming%20scene%20of%20people%20helping%20others%2C%20bright%20uplifting%20colors%20symbolizing%20hope%20and%20transformation%2C%20ultra%20HD%208K%20quality&width=1920&height=400&seq=donate-hero-v2&orientation=landscape')",
+            backgroundImage: `url('${copy.heroSection.backgroundImage}')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"></div>
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Make a Difference Today</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Your generosity empowers women and transforms lives in our community
-          </p>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{copy.heroSection.title}</h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">{copy.heroSection.text}</p>
         </div>
       </section>
 
@@ -120,7 +120,7 @@ const DonatePage = () => {
             <div className="lg:col-span-2">
               <ScrollReveal direction="left">
                 <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                  <h2 className="text-3xl font-bold text-[#3c1053] mb-6">Donation Information</h2>
+                  <h2 className="text-3xl font-bold text-[#3c1053] mb-6">{copy.donationForm.heading}</h2>
                   
                   {/* 
                     FORM ELEMENT - The container for all donation inputs
@@ -131,12 +131,10 @@ const DonatePage = () => {
                   <form onSubmit={handleSubmit} data-readdy-form id="donation-form">
                     {/* Personal Information */}
                     <div className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Personal Details</h3>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">{copy.personalInformation.subheading}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            First Name *
-                          </label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">{copy.personalInformation.fieldLabel}</label>
                           <input
                             type="text"
                             name="firstName"
@@ -144,13 +142,11 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             required
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm"
-                            placeholder="Enter your first name"
+                            placeholder={copy.personalInformation.placeholder}
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Last Name *
-                          </label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">{copy.personalInformation.fieldLabel2}</label>
                           <input
                             type="text"
                             name="lastName"
@@ -158,15 +154,13 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             required
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm"
-                            placeholder="Enter your last name"
+                            placeholder={copy.personalInformation.placeholder2}
                           />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address *
-                          </label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">{copy.personalInformation.fieldLabel3}</label>
                           <input
                             type="email"
                             name="email"
@@ -174,20 +168,18 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             required
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm"
-                            placeholder="your.email@example.com"
+                            placeholder={copy.personalInformation.placeholder3}
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Phone Number
-                          </label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">{copy.personalInformation.fieldLabel4}</label>
                           <input
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm"
-                            placeholder="(123) 456-7890"
+                            placeholder={copy.personalInformation.placeholder4}
                           />
                         </div>
                       </div>
@@ -195,7 +187,7 @@ const DonatePage = () => {
 
                     {/* Donation Type */}
                     <div className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Donation Type</h3>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">{copy.donationType.subheading}</h3>
                       <div className="flex gap-4">
                         <label className="flex-1 cursor-pointer">
                           <input
@@ -211,7 +203,7 @@ const DonatePage = () => {
                               ? 'border-[#c9b037] bg-[#c9b037]/10'
                               : 'border-gray-300 hover:border-[#c9b037]/50'
                           }`}>
-                            <div className="font-semibold text-gray-800">One-Time</div>
+                            <div className="font-semibold text-gray-800">{copy.donationType.text}</div>
                           </div>
                         </label>
                         <label className="flex-1 cursor-pointer">
@@ -228,7 +220,7 @@ const DonatePage = () => {
                               ? 'border-[#c9b037] bg-[#c9b037]/10'
                               : 'border-gray-300 hover:border-[#c9b037]/50'
                           }`}>
-                            <div className="font-semibold text-gray-800">Monthly</div>
+                            <div className="font-semibold text-gray-800">{copy.donationType.text2}</div>
                           </div>
                         </label>
                       </div>
@@ -236,7 +228,7 @@ const DonatePage = () => {
 
                     {/* Donation Amount */}
                     <div className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Select Amount *</h3>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">{copy.donationAmount.subheading}</h3>
                       <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-4">
                         {predefinedAmounts.map((amount) => (
                           <button
@@ -254,9 +246,7 @@ const DonatePage = () => {
                         ))}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Or Enter Custom Amount
-                        </label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">{copy.donationAmount.fieldLabel}</label>
                         <div className="relative">
                           <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold">
                             $
@@ -271,7 +261,7 @@ const DonatePage = () => {
                             }}
                             min="1"
                             className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm"
-                            placeholder="Enter amount"
+                            placeholder={copy.donationAmount.placeholder}
                           />
                         </div>
                       </div>
@@ -279,7 +269,7 @@ const DonatePage = () => {
 
                     {/* Payment Method */}
                     <div className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Payment Method</h3>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">{copy.paymentMethod.subheading}</h3>
                       <div className="space-y-3">
                         <label className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-300 hover:border-[#c9b037]">
                           <input
@@ -290,7 +280,7 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             className="w-5 h-5 text-[#c9b037] cursor-pointer"
                           />
-                          <span className="ml-3 font-medium text-gray-800">Credit/Debit Card</span>
+                          <span className="ml-3 font-medium text-gray-800">{copy.paymentMethod.label}</span>
                           <div className="ml-auto flex gap-2">
                             <i className="ri-visa-line text-2xl text-gray-600"></i>
                             <i className="ri-mastercard-line text-2xl text-gray-600"></i>
@@ -305,7 +295,7 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             className="w-5 h-5 text-[#c9b037] cursor-pointer"
                           />
-                          <span className="ml-3 font-medium text-gray-800">PayPal</span>
+                          <span className="ml-3 font-medium text-gray-800">{copy.paymentMethod.label2}</span>
                           <i className="ri-paypal-line text-2xl text-gray-600 ml-auto"></i>
                         </label>
                         <label className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-300 hover:border-[#c9b037]">
@@ -317,7 +307,7 @@ const DonatePage = () => {
                             onChange={handleInputChange}
                             className="w-5 h-5 text-[#c9b037] cursor-pointer"
                           />
-                          <span className="ml-3 font-medium text-gray-800">Bank Transfer</span>
+                          <span className="ml-3 font-medium text-gray-800">{copy.paymentMethod.label3}</span>
                           <i className="ri-bank-line text-2xl text-gray-600 ml-auto"></i>
                         </label>
                       </div>
@@ -325,9 +315,7 @@ const DonatePage = () => {
 
                     {/* Message */}
                     <div className="mb-8">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Message (Optional)
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{copy.message.fieldLabel}</label>
                       <textarea
                         name="message"
                         value={formData.message}
@@ -335,11 +323,10 @@ const DonatePage = () => {
                         maxLength={500}
                         rows={4}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#c9b037] focus:border-transparent text-sm resize-none"
-                        placeholder="Share why you're supporting CAWAP (max 500 characters)"
+                        placeholder={copy.message.placeholder}
                       />
                       <div className="text-right text-sm text-gray-500 mt-1">
-                        {formData.message.length}/500
-                      </div>
+                        {formData.message.length}{copy.message.text}</div>
                     </div>
 
                     {/* Submit Button */}
@@ -368,16 +355,12 @@ const DonatePage = () => {
                     */}
                     {submitStatus === 'success' && (
                       <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                        <p className="text-green-800 font-medium">
-                          🎉 Thank you for your generous donation! Your contribution has been recorded and will help transform lives in our community.
-                        </p>
+                        <p className="text-green-800 font-medium">{copy.submitButton.text}</p>
                       </div>
                     )}
                     {submitStatus === 'error' && (
                       <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                        <p className="text-red-800 font-medium">
-                          ❌ There was an error processing your donation. Please try again or contact us at cawap2005@gmail.com
-                        </p>
+                        <p className="text-red-800 font-medium">{copy.submitButton.text2}</p>
                       </div>
                     )}
                   </form>
@@ -390,19 +373,19 @@ const DonatePage = () => {
               <ScrollReveal direction="right">
                 {/* Impact Stats */}
                 <div className="bg-gradient-to-br from-[#3c1053] to-[#5a1a7a] p-8 rounded-2xl shadow-xl text-white mb-6">
-                  <h3 className="text-2xl font-bold mb-6">Your Impact</h3>
+                  <h3 className="text-2xl font-bold mb-6">{copy.impactStats.subheading}</h3>
                   <div className="space-y-6">
                     <div>
-                      <div className="text-3xl font-bold mb-2">$25</div>
-                      <p className="text-sm opacity-90">Provides educational materials for one youth</p>
+                      <div className="text-3xl font-bold mb-2">{copy.impactStats.text}</div>
+                      <p className="text-sm opacity-90">{copy.impactStats.text2}</p>
                     </div>
                     <div className="border-t border-white/20 pt-6">
-                      <div className="text-3xl font-bold mb-2">$100</div>
-                      <p className="text-sm opacity-90">Supports a family with food assistance for a month</p>
+                      <div className="text-3xl font-bold mb-2">{copy.impactStats.text3}</div>
+                      <p className="text-sm opacity-90">{copy.impactStats.text4}</p>
                     </div>
                     <div className="border-t border-white/20 pt-6">
-                      <div className="text-3xl font-bold mb-2">$500</div>
-                      <p className="text-sm opacity-90">Funds a complete empowerment workshop</p>
+                      <div className="text-3xl font-bold mb-2">{copy.impactStats.text5}</div>
+                      <p className="text-sm opacity-90">{copy.impactStats.text6}</p>
                     </div>
                   </div>
                 </div>
@@ -414,14 +397,10 @@ const DonatePage = () => {
                       <i className="ri-mail-line text-2xl text-[#c9b037]"></i>
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800 mb-2">E-Transfer Option</h3>
-                      <p className="text-sm text-gray-600 mb-3">
-                        You can also send your donation via e-transfer to:
-                      </p>
+                      <h3 className="text-lg font-bold text-gray-800 mb-2">{copy.eTransferOption.subheading}</h3>
+                      <p className="text-sm text-gray-600 mb-3">{copy.eTransferOption.text}</p>
                       <div className="bg-gray-50 p-3 rounded-lg">
-                        <p className="text-sm font-mono text-[#3c1053] font-semibold break-all">
-                          cawap2005@gmail.com
-                        </p>
+                        <p className="text-sm font-mono text-[#3c1053] font-semibold break-all">{copy.eTransferOption.text2}</p>
                       </div>
                     </div>
                   </div>
@@ -433,11 +412,9 @@ const DonatePage = () => {
                     <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                       <i className="ri-shield-check-line text-xl text-green-600"></i>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-800">Secure Donation</h3>
+                    <h3 className="text-lg font-bold text-gray-800">{copy.securityBadge.subheading}</h3>
                   </div>
-                  <p className="text-sm text-gray-600">
-                    Your donation is secure and encrypted. We protect your personal information with industry-standard security measures.
-                  </p>
+                  <p className="text-sm text-gray-600">{copy.securityBadge.text}</p>
                 </div>
               </ScrollReveal>
             </div>

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface Program {
   id: number;
@@ -13,56 +15,7 @@ interface Program {
 const InteractiveProgramsHub = () => {
   const [selectedProgram, setSelectedProgram] = useState<number | null>(null);
 
-  const programs: Program[] = [
-    {
-      id: 1,
-      title: 'Youth Leadership',
-      icon: 'ri-team-line',
-      link: '/youth-leadership',
-      color: '#3c1053',
-      description: 'Empowering young minds to become tomorrow\'s leaders',
-    },
-    {
-      id: 2,
-      title: 'Capital G-Girls',
-      icon: 'ri-women-line',
-      link: '/capital-g-girls',
-      color: '#c9b037',
-      description: 'Building confidence in young women',
-    },
-    {
-      id: 3,
-      title: 'Heart-Wise Seniors',
-      icon: 'ri-heart-pulse-line',
-      link: '/heart-wise-seniors',
-      color: '#3c1053',
-      description: 'Supporting our seniors with health programs',
-    },
-    {
-      id: 4,
-      title: 'Food Bank',
-      icon: 'ri-restaurant-line',
-      link: '/food-bank',
-      color: '#c9b037',
-      description: 'Providing essential food support',
-    },
-    {
-      id: 5,
-      title: 'Women Empowerment',
-      icon: 'ri-user-star-line',
-      link: '/women-empowerment',
-      color: '#3c1053',
-      description: 'Empowering women through education',
-    },
-    {
-      id: 6,
-      title: 'JavaScript Program',
-      icon: 'ri-code-line',
-      link: '/javascript-program',
-      color: '#c9b037',
-      description: 'Tech skills for the digital economy',
-    },
-  ];
+  const programs: Program[] = copy.interactiveProgramsHub.programs;
 
   const radius = 200;
   const centerX = 250;
@@ -89,17 +42,13 @@ const InteractiveProgramsHub = () => {
           y={centerY - 10}
           textAnchor="middle"
           className="text-white font-bold text-lg"
-        >
-          CAWAP
-        </text>
+        >{copy.interactiveProgramsHub.centerCircle.text}</text>
         <text
           x={centerX}
           y={centerY + 10}
           textAnchor="middle"
           className="text-white text-sm"
-        >
-          Programs
-        </text>
+        >{copy.interactiveProgramsHub.centerCircle.text2}</text>
 
         {/* Gradient Definition */}
         <defs>
@@ -172,9 +121,7 @@ const InteractiveProgramsHub = () => {
                 <Link
                   to={program.link}
                   className="inline-block bg-[#c9b037] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#b39f2f] transition-all duration-300 elite-btn whitespace-nowrap"
-                >
-                  Explore Program
-                </Link>
+                >{copy.interactiveProgramsHub.programDetailsPanel.text}</Link>
               </div>
             ))}
         </div>

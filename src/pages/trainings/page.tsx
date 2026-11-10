@@ -4,6 +4,8 @@ import { trainings, Training } from '../../data/trainings';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
+import copy from '../../content/pages/trainings.json';
+// Text, images and links: src/content/pages/trainings.json (editable in the website editors).
 
 const TrainingsPage = () => {
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(null);
@@ -23,8 +25,8 @@ const TrainingsPage = () => {
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://readdy.ai/api/search-image?query=diverse-group-of-people-learning-together-in-modern-bright-training-classroom-with-technology-equipment-and-educational-materials-professional-instructor-teaching-engaged-students-collaborative-learning-environment-natural-lighting-contemporary-educational-setting&width=1920&height=400&seq=trainings-hero-001&orientation=landscape"
-            alt="Training Programs"
+            src={copy.heroSection.image}
+            alt={copy.heroSection.imageAlt}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
@@ -32,12 +34,8 @@ const TrainingsPage = () => {
         
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Ongoing Programs & Trainings
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200">
-              Empower yourself with skills that transform lives and open new opportunities
-            </p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">{copy.heroSection.title}</h1>
+            <p className="text-xl md:text-2xl text-gray-200">{copy.heroSection.text}</p>
           </ScrollReveal>
         </div>
       </section>
@@ -105,19 +103,19 @@ const TrainingsPage = () => {
                           {training.duration && (
                             <div className="flex items-center gap-2 text-sm text-gray-600">
                               <i className="ri-time-line text-teal-600"></i>
-                              <span><strong>Duration:</strong> {training.duration}</span>
+                              <span><strong>{copy.contentSection.bold}</strong> {training.duration}</span>
                             </div>
                           )}
                           {training.schedule && (
                             <div className="flex items-center gap-2 text-sm text-gray-600">
                               <i className="ri-calendar-line text-teal-600"></i>
-                              <span><strong>Schedule:</strong> {training.schedule}</span>
+                              <span><strong>{copy.contentSection.bold2}</strong> {training.schedule}</span>
                             </div>
                           )}
                           {training.level && (
                             <div className="flex items-center gap-2 text-sm text-gray-600">
                               <i className="ri-bar-chart-line text-teal-600"></i>
-                              <span><strong>Level:</strong> {training.level}</span>
+                              <span><strong>{copy.contentSection.bold3}</strong> {training.level}</span>
                             </div>
                           )}
                         </div>
@@ -126,9 +124,7 @@ const TrainingsPage = () => {
                       <button
                         onClick={() => setSelectedTraining(training)}
                         className="w-full px-6 py-3 bg-purple-900 text-white font-semibold rounded-lg hover:bg-purple-800 transition-colors duration-300 whitespace-nowrap cursor-pointer"
-                      >
-                        View Full Details
-                      </button>
+                      >{copy.contentSection.button}</button>
                     </div>
                   </div>
                 </div>
@@ -142,20 +138,14 @@ const TrainingsPage = () => {
       <section className="py-20 bg-gradient-to-br from-purple-900 via-purple-800 to-teal-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Start Your Learning Journey?
-            </h2>
-            <p className="text-xl text-gray-200 mb-8">
-              Join hundreds of community members who have transformed their lives through our training programs
-            </p>
+            <h2 className="text-4xl font-bold text-white mb-6">{copy.ctaSection.heading}</h2>
+            <p className="text-xl text-gray-200 mb-8">{copy.ctaSection.text}</p>
             <a
-              href="https://forms.gle/3Am4uTBzQMHxdbK88"
+              href={copy.ctaSection.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-purple-900 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap cursor-pointer"
-            >
-              Register Now
-              <i className="ri-arrow-right-line"></i>
+            >{copy.ctaSection.link}<i className="ri-arrow-right-line"></i>
             </a>
           </ScrollReveal>
         </div>
@@ -206,7 +196,7 @@ const TrainingsPage = () => {
                       <i className="ri-time-line text-teal-600 text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-semibold">Duration</p>
+                      <p className="text-sm text-gray-500 font-semibold">{copy.modalContent.text}</p>
                       <p className="text-gray-900">{selectedTraining.duration}</p>
                     </div>
                   </div>
@@ -217,7 +207,7 @@ const TrainingsPage = () => {
                       <i className="ri-calendar-line text-teal-600 text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-semibold">Schedule</p>
+                      <p className="text-sm text-gray-500 font-semibold">{copy.modalContent.text2}</p>
                       <p className="text-gray-900">{selectedTraining.schedule}</p>
                     </div>
                   </div>
@@ -228,7 +218,7 @@ const TrainingsPage = () => {
                       <i className="ri-user-line text-teal-600 text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-semibold">Instructor</p>
+                      <p className="text-sm text-gray-500 font-semibold">{copy.modalContent.text3}</p>
                       <p className="text-gray-900">{selectedTraining.instructor}</p>
                     </div>
                   </div>
@@ -236,7 +226,7 @@ const TrainingsPage = () => {
               </div>
 
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">About This Training</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{copy.modalContent.subheading}</h3>
                 <p className="text-gray-600 leading-relaxed">
                   {selectedTraining.description}
                 </p>
@@ -244,7 +234,7 @@ const TrainingsPage = () => {
 
               {selectedTraining.benefits && selectedTraining.benefits.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">What You'll Learn</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{copy.modalContent.subheading2}</h3>
                   <ul className="grid md:grid-cols-2 gap-3">
                     {selectedTraining.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-3">
@@ -258,7 +248,7 @@ const TrainingsPage = () => {
 
               {selectedTraining.requirements && selectedTraining.requirements.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Requirements</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{copy.modalContent.subheading3}</h3>
                   <ul className="space-y-2">
                     {selectedTraining.requirements.map((requirement, index) => (
                       <li key={index} className="flex items-start gap-3">
@@ -275,14 +265,12 @@ const TrainingsPage = () => {
                   <strong>{selectedTraining.contactInfo}</strong>
                 </p>
                 <a
-                  href="https://forms.gle/3Am4uTBzQMHxdbK88"
+                  href={copy.modalContent.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-purple-900 text-white font-semibold rounded-lg hover:bg-purple-800 transition-colors duration-300 whitespace-nowrap cursor-pointer"
                   onClick={() => setSelectedTraining(null)}
-                >
-                  Register for This Training
-                  <i className="ri-arrow-right-line"></i>
+                >{copy.modalContent.link}<i className="ri-arrow-right-line"></i>
                 </a>
               </div>
             </div>

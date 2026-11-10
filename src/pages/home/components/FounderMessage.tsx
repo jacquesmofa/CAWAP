@@ -1,4 +1,6 @@
 import ScrollReveal from '../../../components/effects/ScrollReveal';
+import copy from '../../../content/pages/home.json';
+// Text, images and links: src/content/pages/home.json (editable in the website editors).
 
 const FounderMessage = () => {
   return (
@@ -11,13 +13,9 @@ const FounderMessage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal direction="fade">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#3c1053] mb-4 gradient-text">
-              Founder's Message
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#3c1053] mb-4 gradient-text">{copy.founderMessage.main.heading}</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#3c1053] to-[#c9b037] mx-auto mb-4"></div>
-            <p className="text-lg text-gray-600">
-              Rev. Irine Ashu, PhD - Founder of CAWAP
-            </p>
+            <p className="text-lg text-gray-600">{copy.founderMessage.main.text}</p>
           </div>
         </ScrollReveal>
 
@@ -28,30 +26,24 @@ const FounderMessage = () => {
                 <div className="absolute -inset-4 bg-gradient-to-r from-[#3c1053] to-[#c9b037] rounded-2xl opacity-20 blur-xl"></div>
                 <div className="relative rounded-2xl shadow-2xl w-full overflow-hidden elite-card bg-gradient-to-br from-[#f5f5f5] to-[#e8e8e8]">
                   <img
-                    src="https://i.imgur.com/Vk7k4LU.png"
-                    alt="Rev. Irine Ashu, PhD"
+                    src={copy.founderMessage.main.image}
+                    alt={copy.founderMessage.main.imageAlt}
                     className="w-full object-contain"
                   />
                 </div>
               </div>
               <div className="mt-6 text-center">
-                <h3 className="text-2xl font-bold text-[#3c1053] mb-2">Rev Irine Ashu PhD</h3>
-                <p className="text-lg text-[#c9b037] font-semibold">Founder & CEO, CAWAP</p>
+                <h3 className="text-2xl font-bold text-[#3c1053] mb-2">{copy.founderMessage.main.subheading}</h3>
+                <p className="text-lg text-[#c9b037] font-semibold">{copy.founderMessage.main.text2}</p>
               </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="right">
             <div className="elite-card bg-white p-8 rounded-2xl shadow-xl h-full flex flex-col justify-center">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Rev. Irine Ashu, PhD, is the founder and CEO of Canadian and African Women Aid Program (CAWAP). She is the pastor of Jesus Revival for All Nations. Her journey into philanthropism started in her native country, Cameroun where she formed the Community Aid Center. This was informed by her personal experiences and challenges growing up.
-              </p>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Rev. Ashu, is also an entrepreneur. She is the founder of Heavenly Breeze Cosmetics and Gospel Lane Media Inc. Gospel lane media is a dedicated platform for sharing information, messages, news and education. She leverages her worldwide travels and experiences as a life coach, a mentor, an advocate, a community and social service worker.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Her dynamism has been described as infectious by people around her. Her uncanny leadership abilities are evident in the many organisations she leads at the same time. Rev. Ashu is also a doting mother of four boys.
-              </p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">{copy.founderMessage.main.text3}</p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">{copy.founderMessage.main.text4}</p>
+              <p className="text-lg text-gray-700 leading-relaxed">{copy.founderMessage.main.text5}</p>
             </div>
           </ScrollReveal>
         </div>

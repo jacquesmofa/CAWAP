@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMedia } from '@/context/MediaContext';
+import copy from '../../../content/pages/home.json';
+// Text, images and links: src/content/pages/home.json (editable in the website editors).
 
 const ImageCarousel = () => {
   const { assets } = useMedia();
@@ -33,7 +35,7 @@ const ImageCarousel = () => {
         <div className="container mx-auto px-6">
           <div className="text-center">
             <i className="ri-image-line text-6xl text-gray-300 mb-4"></i>
-            <p className="text-gray-500">Gallery images loading...</p>
+            <p className="text-gray-500">{copy.imageCarousel.main.text}</p>
           </div>
         </div>
       </section>
@@ -44,10 +46,8 @@ const ImageCarousel = () => {
     <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Community in Action</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Witness the transformative impact of our programs through the stories and smiles of our community members.
-          </p>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">{copy.imageCarousel.main.heading}</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{copy.imageCarousel.main.text2}</p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">
@@ -57,7 +57,7 @@ const ImageCarousel = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <i className="ri-image-line text-6xl text-gray-400 mb-4"></i>
-                    <p className="text-gray-500 text-lg">Image Pending</p>
+                    <p className="text-gray-500 text-lg">{copy.imageCarousel.main.text3}</p>
                   </div>
                 </div>
               ) : (

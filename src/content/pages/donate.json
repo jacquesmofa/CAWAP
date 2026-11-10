@@ -1,0 +1,64 @@
+{
+  "heroSection": {
+    "backgroundImage": "https://readdy.ai/api/search-image?query=diverse%20Canadian%20and%20African%20hands%20coming%20together%20in%20unity%20and%20support%20showing%20generosity%20and%20giving%2C%20warm%20golden%20lighting%20creating%20hopeful%20inspiring%20atmosphere%2C%20professional%20photography%20with%20soft%20focus%20background%20representing%20community%20philanthropy%20and%20charitable%20giving%2C%20heartwarming%20scene%20of%20people%20helping%20others%2C%20bright%20uplifting%20colors%20symbolizing%20hope%20and%20transformation%2C%20ultra%20HD%208K%20quality&width=1920&height=400&seq=donate-hero-v2&orientation=landscape",
+    "title": "Make a Difference Today",
+    "text": "Your generosity empowers women and transforms lives in our community"
+  },
+  "donationForm": {
+    "heading": "Donation Information"
+  },
+  "personalInformation": {
+    "subheading": "Personal Details",
+    "fieldLabel": "First Name *",
+    "placeholder": "Enter your first name",
+    "fieldLabel2": "Last Name *",
+    "placeholder2": "Enter your last name",
+    "fieldLabel3": "Email Address *",
+    "placeholder3": "your.email@example.com",
+    "fieldLabel4": "Phone Number",
+    "placeholder4": "(123) 456-7890"
+  },
+  "donationType": {
+    "subheading": "Donation Type",
+    "text": "One-Time",
+    "text2": "Monthly"
+  },
+  "donationAmount": {
+    "subheading": "Select Amount *",
+    "fieldLabel": "Or Enter Custom Amount",
+    "placeholder": "Enter amount"
+  },
+  "paymentMethod": {
+    "subheading": "Payment Method",
+    "label": "Credit/Debit Card",
+    "label2": "PayPal",
+    "label3": "Bank Transfer"
+  },
+  "message": {
+    "fieldLabel": "Message (Optional)",
+    "placeholder": "Share why you're supporting CAWAP (max 500 characters)",
+    "text": "/500"
+  },
+  "submitButton": {
+    "text": "🎉 Thank you for your generous donation! Your contribution has been recorded and will help transform lives in our community.",
+    "text2": "❌ There was an error processing your donation. Please try again or contact us at cawap2005@gmail.com"
+  },
+  "impactStats": {
+    "subheading": "Your Impact",
+    "text": "$25",
+    "text2": "Provides educational materials for one youth",
+    "text3": "$100",
+    "text4": "Supports a family with food assistance for a month",
+    "text5": "$500",
+    "text6": "Funds a complete empowerment workshop"
+  },
+  "eTransferOption": {
+    "subheading": "E-Transfer Option",
+    "text": "You can also send your donation via e-transfer to:",
+    "text2": "cawap2005@gmail.com"
+  },
+  "securityBadge": {
+    "subheading": "Secure Donation",
+    "text": "Your donation is secure and encrypted. We protect your personal information with industry-standard security measures."
+  }
+}

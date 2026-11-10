@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface DownloadButtonProps {
   fileUrl: string;
@@ -76,7 +78,7 @@ export default function DownloadButton({
       {downloading ? (
         <>
           <i className="ri-loader-4-line animate-spin"></i>
-          <span>Downloading...</span>
+          <span>{copy.downloadButton.main.label}</span>
         </>
       ) : (
         <>

@@ -1,0 +1,289 @@
+{
+  "impactMap": {
+    "header": {
+      "heading": "Our Impact Across Communities",
+      "text": "Explore the regions we serve and see how CAWAP programs are making a difference in communities across Brampton and the Greater Toronto Area."
+    },
+    "largeLandscapeMapFullBox": {
+      "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.57909103147!2d-79.86240842343749!3d43.68410799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15eaa5d05abf%3A0x352d7b495cdacc5a!2sBrampton%2C%20ON!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
+      "title": "CAWAP Service Areas Map - Brampton and GTA"
+    },
+    "impactLegendBelowMap": {
+      "subheading": "Service Area Impact",
+      "label": "Very High Impact (850+)",
+      "label2": "High Impact (450+)",
+      "label3": "Medium Impact (300+)",
+      "label4": "Growing Impact"
+    },
+    "serviceAreasStatisticsGrid": {
+      "label": "people helped",
+      "label2": " Impact"
+    },
+    "expandedDetails": {
+      "smallHeading": "Active Programs:"
+    },
+    "totalImpactCard": {
+      "subheading": "Total Community Impact",
+      "text": "Lives touched across all service areas"
+    },
+    "callToAction": {
+      "subheading": "Want to bring CAWAP programs to your neighborhood?",
+      "text": "We're always looking to expand our reach and serve more communities. Get in touch to learn how we can work together.",
+      "link": "Contact Us"
+    }
+  },
+  "smartSearch": {
+    "searchableContent": [
+      {
+        "title": "Youth Leadership Program",
+        "description": "Nurturing the boundless potential of our youth",
+        "path": "/youth-leadership",
+        "category": "program"
+      },
+      {
+        "title": "New Breed Women of Substance",
+        "description": "Empowering women to become strong, self-driven individuals",
+        "path": "/new-breed-women-of-substance",
+        "category": "program"
+      },
+      {
+        "title": "Capital G-Girls",
+        "description": "Mentorship and training program for young girls",
+        "path": "/capital-g-girls",
+        "category": "program"
+      },
+      {
+        "title": "Heart-Wise Seniors",
+        "description": "Creating a secure and inclusive haven for seniors",
+        "path": "/heart-wise-seniors",
+        "category": "program"
+      },
+      {
+        "title": "Children Summer Camp",
+        "description": "Affordable and enchanting summer camp for children",
+        "path": "/children-summer-camp",
+        "category": "program"
+      },
+      {
+        "title": "Sankofa Royale Awards",
+        "description": "Celebrating the black community across various sectors",
+        "path": "/sankofa-royale-awards",
+        "category": "program"
+      },
+      {
+        "title": "Food Bank",
+        "description": "Access to nutritious food for our community",
+        "path": "/food-bank",
+        "category": "program"
+      },
+      {
+        "title": "Women Empowerment",
+        "description": "Equipping women with skills and confidence",
+        "path": "/women-empowerment",
+        "category": "program"
+      },
+      {
+        "title": "JavaScript Program",
+        "description": "Bridging the diversity gap in tech sector",
+        "path": "/javascript-program",
+        "category": "program"
+      },
+      {
+        "title": "Financial Literacy",
+        "description": "Guiding path to financial well-being",
+        "path": "/financial-literacy",
+        "category": "program"
+      },
+      {
+        "title": "Cultural Events",
+        "description": "Celebrating culture and diversity",
+        "path": "/cultural-events",
+        "category": "program"
+      },
+      {
+        "title": "Disability Inclusion - Mental Health",
+        "description": "Supporting persons with disabilities and eradicating stigma surrounding mental illnesses",
+        "path": "/mental-health",
+        "category": "program"
+      },
+      {
+        "title": "Newcomers Settlement Program",
+        "description": "Supporting newcomers in their new journey",
+        "path": "/newcomers-settlement-program",
+        "category": "program"
+      },
+      {
+        "title": "Project and Evaluation",
+        "description": "Bringing impactful projects to life",
+        "path": "/project-and-evaluation",
+        "category": "program"
+      },
+      {
+        "title": "About CAWAP",
+        "description": "Learn about our mission and vision",
+        "path": "/about",
+        "category": "page"
+      },
+      {
+        "title": "Contact Us",
+        "description": "Get in touch with our team",
+        "path": "/contact",
+        "category": "page"
+      },
+      {
+        "title": "Donate",
+        "description": "Support our programs and initiatives",
+        "path": "/donate",
+        "category": "page"
+      },
+      {
+        "title": "Gallery",
+        "description": "View photos from our events and programs",
+        "path": "/gallery",
+        "category": "page"
+      },
+      {
+        "title": "All Programs",
+        "description": "Browse all our programs",
+        "path": "/programs",
+        "category": "page"
+      },
+      {
+        "title": "Upcoming Events",
+        "description": "See what's coming up",
+        "path": "/upcoming-events",
+        "category": "event"
+      },
+      {
+        "title": "Past Events",
+        "description": "View our event history",
+        "path": "/past-events",
+        "category": "event"
+      },
+      {
+        "title": "Christmas Event",
+        "description": "Annual Christmas celebration",
+        "path": "/christmas-event",
+        "category": "event"
+      }
+    ],
+    "searchButton": {
+      "ariaLabel": "Search",
+      "label": "Search",
+      "label2": "Ctrl+K"
+    },
+    "searchInput": {
+      "placeholder": "Search programs, events, resources..."
+    },
+    "results": {
+      "subheading": "Recent Searches",
+      "button": "Clear",
+      "text": "No results found for \"",
+      "text2": "Try different keywords"
+    },
+    "footer": {
+      "label": "Navigate",
+      "text": "Enter",
+      "label2": "Select",
+      "text2": "Esc",
+      "label3": "Close"
+    }
+  },
+  "masonryGallery": {
+    "main": {
+      "subheading": "No Media Yet",
+      "text": "This album is ready for content. Photos and videos will appear here once uploaded."
+    },
+    "videosSection": {
+      "subheading": "Videos "
+    },
+    "photosSection": {
+      "subheading": "Photos ",
+      "text": "Your browser does not support the video tag."
+    }
+  },
+  "lightbox": {
+    "zoomControlsOnlyForImages": {
+      "title": "Zoom Out (-)",
+      "title2": "Zoom In (+)",
+      "title3": "Reset Zoom"
+    },
+    "closeButton": {
+      "title": "Close (ESC)"
+    },
+    "navigationButtons": {
+      "title": "Previous (←)",
+      "title2": "Next (→)"
+    },
+    "bottomInstructionsBar": {
+      "label": " Arrow keys to navigate",
+      "label2": " +/- to zoom",
+      "label3": " Swipe or pinch on mobile",
+      "label4": " ESC to close"
+    }
+  },
+  "interactiveProgramsHub": {
+    "programs": [
+      {
+        "id": 1,
+        "title": "Youth Leadership",
+        "icon": "ri-team-line",
+        "link": "/youth-leadership",
+        "color": "#3c1053",
+        "description": "Empowering young minds to become tomorrow's leaders"
+      },
+      {
+        "id": 2,
+        "title": "Capital G-Girls",
+        "icon": "ri-women-line",
+        "link": "/capital-g-girls",
+        "color": "#c9b037",
+        "description": "Building confidence in young women"
+      },
+      {
+        "id": 3,
+        "title": "Heart-Wise Seniors",
+        "icon": "ri-heart-pulse-line",
+        "link": "/heart-wise-seniors",
+        "color": "#3c1053",
+        "description": "Supporting our seniors with health programs"
+      },
+      {
+        "id": 4,
+        "title": "Food Bank",
+        "icon": "ri-restaurant-line",
+        "link": "/food-bank",
+        "color": "#c9b037",
+        "description": "Providing essential food support"
+      },
+      {
+        "id": 5,
+        "title": "Women Empowerment",
+        "icon": "ri-user-star-line",
+        "link": "/women-empowerment",
+        "color": "#3c1053",
+        "description": "Empowering women through education"
+      },
+      {
+        "id": 6,
+        "title": "JavaScript Program",
+        "icon": "ri-code-line",
+        "link": "/javascript-program",
+        "color": "#c9b037",
+        "description": "Tech skills for the digital economy"
+      }
+    ],
+    "centerCircle": {
+      "text": "CAWAP",
+      "text2": "Programs"
+    },
+    "programDetailsPanel": {
+      "text": "Explore Program"
+    }
+  },
+  "downloadButton": {
+    "main": {
+      "label": "Downloading..."
+    }
+  }
+}

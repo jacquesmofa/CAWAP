@@ -2,6 +2,8 @@ import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { getPastFlyers } from '../../data/flyers';
+import copy from '../../content/pages/past-events.json';
+// Text, images and links: src/content/pages/past-events.json (editable in the website editors).
 
 const EventsPage = () => {
   const pastFlyers = getPastFlyers();
@@ -20,10 +22,8 @@ const EventsPage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#26194f]/80 via-[#26194f]/60 to-[#26194f]/80" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Past Events</h1>
-          <p className="text-xl text-white/90 leading-relaxed">
-            Celebrating our community's journey through memorable programs and events
-          </p>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">{copy.heroSection.title}</h1>
+          <p className="text-xl text-white/90 leading-relaxed">{copy.heroSection.text}</p>
         </div>
       </section>
 
@@ -34,9 +34,7 @@ const EventsPage = () => {
             <div className="max-w-6xl mx-auto">
               <ScrollReveal>
                 <div className="text-center mb-12">
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Take a look at the amazing programs and events we've hosted for our community
-                  </p>
+                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">{copy.flyersGridSection.text}</p>
                 </div>
               </ScrollReveal>
 
@@ -63,7 +61,7 @@ const EventsPage = () => {
                             href={flyer.eventLink}
                             className="inline-flex items-center gap-2 text-[#26194f] font-semibold hover:text-[#8e24aa] transition-colors cursor-pointer"
                           >
-                            <span>View Details</span>
+                            <span>{copy.flyersGridSection.label}</span>
                             <i className="ri-arrow-right-line"></i>
                           </a>
                         )}
@@ -83,16 +81,12 @@ const EventsPage = () => {
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <i className="ri-calendar-check-line text-gray-400 text-5xl"></i>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Events Archive Coming Soon</h2>
-                <p className="text-lg text-gray-600 mb-8">
-                  We're building our events archive. Check back soon to see our past programs and celebrations!
-                </p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">{copy.flyersGridSection.heading}</h2>
+                <p className="text-lg text-gray-600 mb-8">{copy.flyersGridSection.text2}</p>
                 <a
                   href="/gallery"
                   className="inline-block bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
-                >
-                  View Photo Gallery
-                </a>
+                >{copy.flyersGridSection.link}</a>
               </ScrollReveal>
             </div>
           </div>
@@ -106,18 +100,12 @@ const EventsPage = () => {
             <ScrollReveal>
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
                 <i className="ri-calendar-event-line text-6xl text-white mb-6 inline-block"></i>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Join Our Next Event
-                </h2>
-                <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                  Be part of our community story! Check out our upcoming events and programs.
-                </p>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{copy.callToAction.heading}</h2>
+                <p className="text-xl text-white/90 mb-8 leading-relaxed">{copy.callToAction.text}</p>
                 <a
                   href="/upcoming-events"
                   className="inline-block bg-white text-[#26194f] px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 whitespace-nowrap cursor-pointer text-lg"
-                >
-                  View Upcoming Events
-                </a>
+                >{copy.callToAction.link}</a>
               </div>
             </ScrollReveal>
           </div>

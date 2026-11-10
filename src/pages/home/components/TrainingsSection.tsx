@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { trainings } from '../../../data/trainings';
 import ScrollReveal from '../../../components/effects/ScrollReveal';
+import copy from '../../../content/pages/home.json';
+// Text, images and links: src/content/pages/home.json (editable in the website editors).
 
 const TrainingsSection = () => {
   return (
@@ -8,12 +10,8 @@ const TrainingsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Ongoing Programs & Trainings
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Expand your skills and knowledge with our diverse training programs. From life-saving techniques to creative arts and cutting-edge technology, we offer courses designed to empower and equip you for success.
-            </p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{copy.trainingsSection.main.heading}</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">{copy.trainingsSection.main.text}</p>
           </div>
         </ScrollReveal>
 
@@ -59,9 +57,7 @@ const TrainingsSection = () => {
                   <Link
                     to="/trainings"
                     className="block w-full text-center px-4 py-2 bg-teal-600 text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors duration-300 whitespace-nowrap"
-                  >
-                    Learn More
-                  </Link>
+                  >{copy.trainingsSection.main.text2}</Link>
                 </div>
               </div>
             </ScrollReveal>
@@ -73,9 +69,7 @@ const TrainingsSection = () => {
             <Link
               to="/trainings"
               className="inline-flex items-center gap-2 px-8 py-4 bg-purple-900 text-white text-lg font-semibold rounded-lg hover:bg-purple-800 transition-colors duration-300 whitespace-nowrap"
-            >
-              View All Training Programs
-              <i className="ri-arrow-right-line"></i>
+            >{copy.trainingsSection.main.text3}<i className="ri-arrow-right-line"></i>
             </Link>
           </div>
         </ScrollReveal>

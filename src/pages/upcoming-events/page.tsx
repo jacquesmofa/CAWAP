@@ -4,6 +4,8 @@ import Header from '../../components/feature/Header';
 import Footer from '../../components/feature/Footer';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { getUpcomingFlyers, Flyer } from '../../data/flyers';
+import copy from '../../content/pages/upcoming-events.json';
+// Text, images and links: src/content/pages/upcoming-events.json (editable in the website editors).
 
 const UpcomingEventsPage = () => {
   // ========================================
@@ -53,10 +55,8 @@ const UpcomingEventsPage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#26194f]/80 via-[#26194f]/60 to-[#26194f]/80" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Upcoming Events</h1>
-          <p className="text-xl text-white/90 leading-relaxed">
-            Join us for exciting programs and community gatherings. Register today!
-          </p>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">{copy.heroSection.title}</h1>
+          <p className="text-xl text-white/90 leading-relaxed">{copy.heroSection.text}</p>
         </div>
       </section>
 
@@ -66,9 +66,7 @@ const UpcomingEventsPage = () => {
           <div className="max-w-7xl mx-auto px-4">
             <ScrollReveal>
               <div className="text-center mb-12">
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Don't miss out on these amazing upcoming programs and events. Click on any event to see full details and register!
-                </p>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">{copy.eventsGrid.text}</p>
               </div>
             </ScrollReveal>
 
@@ -83,9 +81,7 @@ const UpcomingEventsPage = () => {
                         alt={flyer.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute top-4 right-4 bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                        Upcoming
-                      </div>
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">{copy.eventImage.text}</div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     </div>
 
@@ -115,7 +111,7 @@ const UpcomingEventsPage = () => {
                         className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-6 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl whitespace-nowrap"
                       >
                         <i className="ri-arrow-right-circle-line text-2xl"></i>
-                        <span>Learn More & Register</span>
+                        <span>{copy.learnMoreAndRegisterButton.label}</span>
                       </button>
                     </div>
                   </div>
@@ -132,16 +128,12 @@ const UpcomingEventsPage = () => {
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <i className="ri-calendar-check-line text-gray-400 text-5xl"></i>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">New Events Coming Soon</h2>
-                <p className="text-lg text-gray-600 mb-8">
-                  We're planning exciting new programs and events. Check back soon or contact us to stay updated!
-                </p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">{copy.learnMoreAndRegisterButton.heading}</h2>
+                <p className="text-lg text-gray-600 mb-8">{copy.learnMoreAndRegisterButton.text}</p>
                 <a
                   href="/contact"
                   className="inline-block bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
-                >
-                  Contact Us
-                </a>
+                >{copy.learnMoreAndRegisterButton.link}</a>
               </ScrollReveal>
             </div>
           </div>
@@ -183,9 +175,7 @@ const UpcomingEventsPage = () => {
               
               {/* Event Title Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="inline-block bg-gradient-to-r from-[#8e24aa] to-[#26194f] text-white px-4 py-1 rounded-full text-sm font-semibold mb-3">
-                  Upcoming Event
-                </div>
+                <div className="inline-block bg-gradient-to-r from-[#8e24aa] to-[#26194f] text-white px-4 py-1 rounded-full text-sm font-semibold mb-3">{copy.eventTitleOverlay.text}</div>
                 <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedEvent.title}</h2>
               </div>
             </div>
@@ -199,7 +189,7 @@ const UpcomingEventsPage = () => {
                     <i className="ri-calendar-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Date</p>
+                    <p className="text-gray-500 text-sm">{copy.eventInfoGrid.text}</p>
                     <p className="text-gray-800 font-bold">{formatDate(selectedEvent.date)}</p>
                   </div>
                 </div>
@@ -210,7 +200,7 @@ const UpcomingEventsPage = () => {
                       <i className="ri-time-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-sm">Time</p>
+                      <p className="text-gray-500 text-sm">{copy.eventInfoGrid.text2}</p>
                       <p className="text-gray-800 font-bold">{selectedEvent.time}</p>
                     </div>
                   </div>
@@ -222,7 +212,7 @@ const UpcomingEventsPage = () => {
                       <i className="ri-map-pin-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-sm">Location</p>
+                      <p className="text-gray-500 text-sm">{copy.eventInfoGrid.text3}</p>
                       <p className="text-gray-800 font-bold">{selectedEvent.location}</p>
                     </div>
                   </div>
@@ -234,7 +224,7 @@ const UpcomingEventsPage = () => {
                       <i className="ri-price-tag-3-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-sm">Cost</p>
+                      <p className="text-gray-500 text-sm">{copy.eventInfoGrid.text4}</p>
                       <p className="text-gray-800 font-bold text-green-600">{selectedEvent.cost}</p>
                     </div>
                   </div>
@@ -243,14 +233,14 @@ const UpcomingEventsPage = () => {
 
               {/* Description */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-3">About This Event</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{copy.description.subheading}</h3>
                 <p className="text-gray-600 leading-relaxed">{selectedEvent.description}</p>
               </div>
 
               {/* Who Should Attend */}
               {selectedEvent.whoShouldAttend && selectedEvent.whoShouldAttend.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">Who Should Attend?</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">{copy.whoShouldAttend.subheading}</h3>
                   <div className="grid gap-3">
                     {selectedEvent.whoShouldAttend.map((item, index) => (
                       <div key={index} className="flex items-start gap-3 bg-gradient-to-r from-[#26194f]/5 to-transparent p-3 rounded-lg">
@@ -267,7 +257,7 @@ const UpcomingEventsPage = () => {
               {/* What You Will Learn */}
               {selectedEvent.whatYouWillLearn && selectedEvent.whatYouWillLearn.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">What You Will Learn</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">{copy.whatYouWillLearn.subheading}</h3>
                   <div className="grid md:grid-cols-2 gap-3">
                     {selectedEvent.whatYouWillLearn.map((item, index) => (
                       <div key={index} className="flex items-start gap-3 bg-gradient-to-r from-[#8e24aa]/5 to-transparent p-3 rounded-lg">
@@ -284,7 +274,7 @@ const UpcomingEventsPage = () => {
               {/* Hosts */}
               {selectedEvent.hosts && selectedEvent.hosts.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">Hosted By</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">{copy.hosts.subheading}</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {selectedEvent.hosts.map((host, index) => (
                       <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100">
@@ -305,9 +295,7 @@ const UpcomingEventsPage = () => {
               {selectedEvent.bonuses && selectedEvent.bonuses.length > 0 && (
                 <div className="mb-8 bg-gradient-to-br from-[#f0c674]/20 to-[#e6a23c]/10 p-6 rounded-2xl">
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <i className="ri-gift-line text-[#e6a23c]"></i>
-                    Bonus for Attendees
-                  </h3>
+                    <i className="ri-gift-line text-[#e6a23c]"></i>{copy.bonuses.subheading}</h3>
                   <div className="grid md:grid-cols-2 gap-3">
                     {selectedEvent.bonuses.map((bonus, index) => (
                       <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm">
@@ -324,7 +312,7 @@ const UpcomingEventsPage = () => {
               {/* Contact Info */}
               {(selectedEvent.contactEmail || selectedEvent.contactPhone) && (
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">{copy.contactInfo.subheading}</h3>
                   <div className="flex flex-wrap gap-4">
                     {selectedEvent.contactEmail && (
                       <a 
@@ -358,7 +346,7 @@ const UpcomingEventsPage = () => {
                     className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-[#f0c674] to-[#e6a23c] text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl whitespace-nowrap"
                   >
                     <i className="ri-external-link-line text-2xl"></i>
-                    <span>Register Now</span>
+                    <span>{copy.registerButton.label}</span>
                   </a>
                 )}
                 <button
@@ -366,7 +354,7 @@ const UpcomingEventsPage = () => {
                   className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-gray-600 border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 cursor-pointer whitespace-nowrap"
                 >
                   <i className="ri-close-line text-xl"></i>
-                  <span>Close</span>
+                  <span>{copy.registerButton.label2}</span>
                 </button>
               </div>
             </div>

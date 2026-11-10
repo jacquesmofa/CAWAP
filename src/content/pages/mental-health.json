@@ -1,0 +1,40 @@
+{
+  "main": {
+    "backgroundImage": "https://readdy.ai/api/search-image?query=diverse%20group%20of%20people%20with%20disabilities%20actively%20participating%20in%20community%20activities%2C%20inclusive%20workspace%20and%20social%20environment%20showing%20empowerment%20accessibility%20and%20dignity%2C%20warm%20natural%20lighting%20with%20bright%20hopeful%20atmosphere%2C%20people%20of%20various%20ages%20and%20abilities%20engaged%20in%20skills%20training%20and%20social%20interaction%2C%20modern%20accessible%20community%20center%20with%20ramps%20and%20assistive%20technology%2C%20African%20and%20Caribbean%20individuals%20represented%20in%20inclusive%20community%20setting%2C%20professional%20photography%20capturing%20genuine%20moments%20of%20inclusion%20and%20independence&width=1920&height=500&seq=disability-inclusion-hero&orientation=landscape",
+    "label": "INCLUSIVE COMMUNITY SUPPORT",
+    "title": "Disability Inclusion & Mental Health",
+    "text": "Removing barriers, promoting dignity and independence, and ensuring equal opportunities for persons with disabilities to participate fully in community life.",
+    "heading": "CAWAP Disability Inclusion Program",
+    "text2": "The Canadian and African Women Aid Program (CAWAP) supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, community referrals, and inclusive programming.",
+    "text3": "Our goal is to remove barriers, promote dignity and independence, and ensure that persons with disabilities have equal opportunities to participate fully in community life.",
+    "text4": "CAWAP is committed to building a society where every person is respected, empowered, included, and given the opportunity to thrive."
+  },
+  "servicesGrid": {
+    "subheading": "Advocacy",
+    "text": "Championing the rights of persons with disabilities and raising awareness about accessibility and inclusion within the community.",
+    "subheading2": "Skills Development",
+    "text2": "Providing training and capacity-building opportunities tailored to individual abilities and career aspirations.",
+    "subheading3": "Employment Readiness",
+    "text3": "Equipping individuals with job search skills, resume building, interview preparation, and workplace accommodation guidance.",
+    "subheading4": "Community Referrals",
+    "text4": "Connecting individuals with specialized services, resources, and support networks within the broader community.",
+    "bold": "Our commitment:",
+    "text5": " Building a society where every person is respected, empowered, included, and given the opportunity to thrive.",
+    "phoneLink": "tel:+16475815901",
+    "link": "Contact Us for Support",
+    "heading": "Also: Mental Health Support",
+    "text6": "Breaking the stigma and promoting mental wellness in our community",
+    "heading2": "Breaking the Stigma",
+    "text7": "We believe that mental health is a fundamental aspect of overall well-being, and we are dedicated to eradicating the stigma surrounding mental illnesses.",
+    "text8": "Our Mental Health program provides support, education, and resources to individuals and families affected by mental health challenges. We create a safe, non-judgmental space where people can seek help, share their experiences, and access professional support.",
+    "text9": "Through awareness campaigns, support groups, counseling services, and educational workshops, we work to promote mental wellness and ensure that everyone has access to the mental health care they need.",
+    "subheading5": "Our Services",
+    "label": "Mental health awareness and education",
+    "label2": "Support groups and peer counseling",
+    "label3": "Referrals to professional mental health services",
+    "label4": "Stress management and coping strategies",
+    "label5": "Crisis intervention and emergency support",
+    "phoneLink2": "tel:+16475815901",
+    "link2": "Get Support"
+  }
+}

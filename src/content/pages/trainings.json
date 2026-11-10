@@ -1,0 +1,30 @@
+{
+  "heroSection": {
+    "image": "https://readdy.ai/api/search-image?query=diverse-group-of-people-learning-together-in-modern-bright-training-classroom-with-technology-equipment-and-educational-materials-professional-instructor-teaching-engaged-students-collaborative-learning-environment-natural-lighting-contemporary-educational-setting&width=1920&height=400&seq=trainings-hero-001&orientation=landscape",
+    "imageAlt": "Training Programs",
+    "title": "Ongoing Programs & Trainings",
+    "text": "Empower yourself with skills that transform lives and open new opportunities"
+  },
+  "contentSection": {
+    "bold": "Duration:",
+    "bold2": "Schedule:",
+    "bold3": "Level:",
+    "button": "View Full Details"
+  },
+  "ctaSection": {
+    "heading": "Ready to Start Your Learning Journey?",
+    "text": "Join hundreds of community members who have transformed their lives through our training programs",
+    "url": "https://forms.gle/3Am4uTBzQMHxdbK88",
+    "link": "Register Now"
+  },
+  "modalContent": {
+    "text": "Duration",
+    "text2": "Schedule",
+    "text3": "Instructor",
+    "subheading": "About This Training",
+    "subheading2": "What You'll Learn",
+    "subheading3": "Requirements",
+    "url": "https://forms.gle/3Am4uTBzQMHxdbK88",
+    "link": "Register for This Training"
+  }
+}

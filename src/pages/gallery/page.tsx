@@ -5,6 +5,8 @@ import Footer from '../../components/feature/Footer';
 import MasonryGallery from '../../components/feature/MasonryGallery';
 import Lightbox from '../../components/feature/Lightbox';
 import { useMedia } from '../../context/MediaContext';
+import copy from '../../content/pages/gallery.json';
+// Text, images and links: src/content/pages/gallery.json (editable in the website editors).
 
 export default function GalleryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,7 +50,7 @@ export default function GalleryPage() {
                 className="mb-8 flex items-center text-[#3c1053] hover:text-purple-700 transition-colors group"
               >
                 <i className="ri-arrow-left-line text-2xl mr-2 group-hover:-translate-x-1 transition-transform"></i>
-                <span className="font-semibold">Back to Gallery</span>
+                <span className="font-semibold">{copy.heroSection.label}</span>
               </button>
 
               <div className="max-w-4xl">
@@ -67,7 +69,7 @@ export default function GalleryPage() {
                 </div>
                 <div className="flex items-center text-gray-600 text-lg">
                   <i className="ri-folder-image-line mr-2"></i>
-                  <span className="font-semibold">{allMedia.length} items</span>
+                  <span className="font-semibold">{allMedia.length}{copy.heroSection.label2}</span>
                 </div>
               </div>
             </div>
@@ -116,12 +118,8 @@ export default function GalleryPage() {
                   <i className="ri-gallery-line text-4xl text-white"></i>
                 </div>
               </div>
-              <h1 className="text-6xl font-bold text-gray-900 mb-6">
-                Our Gallery
-              </h1>
-              <p className="text-2xl text-gray-600 leading-relaxed">
-                Explore our journey through photos and videos showcasing our programs, events, and community impact
-              </p>
+              <h1 className="text-6xl font-bold text-gray-900 mb-6">{copy.heroSection.title}</h1>
+              <p className="text-2xl text-gray-600 leading-relaxed">{copy.heroSection.text}</p>
             </div>
           </div>
         </section>
@@ -130,12 +128,8 @@ export default function GalleryPage() {
         <section className="pb-20">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Browse Our Gallery
-              </h2>
-              <p className="text-xl text-gray-600">
-                Select a category to view all photos and videos
-              </p>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{copy.browseSection.heading}</h2>
+              <p className="text-xl text-gray-600">{copy.browseSection.text}</p>
             </div>
 
             {/* Category Grid */}
@@ -194,11 +188,8 @@ export default function GalleryPage() {
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-semibold text-[#3c1053] flex items-center">
                             <i className="ri-folder-image-line mr-2"></i>
-                            {itemCount} items
-                          </span>
-                          <span className="text-[#3c1053] font-semibold flex items-center group-hover:translate-x-2 transition-transform">
-                            View Gallery
-                            <i className="ri-arrow-right-line ml-2"></i>
+                            {itemCount}{copy.categoryInfo.label}</span>
+                          <span className="text-[#3c1053] font-semibold flex items-center group-hover:translate-x-2 transition-transform">{copy.categoryInfo.label2}<i className="ri-arrow-right-line ml-2"></i>
                           </span>
                         </div>
                       </div>

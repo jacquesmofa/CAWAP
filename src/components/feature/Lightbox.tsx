@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface LightboxProps {
   images: string[];
@@ -135,7 +137,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
                 <button
                   onClick={handleZoomOut}
                   className="text-white hover:text-purple-300 transition-colors"
-                  title="Zoom Out (-)"
+                  title={copy.lightbox.zoomControlsOnlyForImages.title}
                 >
                   <i className="ri-zoom-out-line text-xl"></i>
                 </button>
@@ -145,7 +147,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
                 <button
                   onClick={handleZoomIn}
                   className="text-white hover:text-purple-300 transition-colors"
-                  title="Zoom In (+)"
+                  title={copy.lightbox.zoomControlsOnlyForImages.title2}
                 >
                   <i className="ri-zoom-in-line text-xl"></i>
                 </button>
@@ -153,7 +155,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
                   <button
                     onClick={handleZoomReset}
                     className="text-white hover:text-purple-300 transition-colors ml-2"
-                    title="Reset Zoom"
+                    title={copy.lightbox.zoomControlsOnlyForImages.title3}
                   >
                     <i className="ri-refresh-line text-xl"></i>
                   </button>
@@ -166,7 +168,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
           <button
             onClick={onClose}
             className="text-white hover:text-red-400 transition-colors"
-            title="Close (ESC)"
+            title={copy.lightbox.closeButton.title}
           >
             <i className="ri-close-line text-3xl"></i>
           </button>
@@ -177,7 +179,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
       <button
         onClick={handlePrevious}
         className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 backdrop-blur-sm"
-        title="Previous (←)"
+        title={copy.lightbox.navigationButtons.title}
       >
         <i className="ri-arrow-left-line text-2xl"></i>
       </button>
@@ -185,7 +187,7 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
       <button
         onClick={handleNext}
         className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 backdrop-blur-sm"
-        title="Next (→)"
+        title={copy.lightbox.navigationButtons.title2}
       >
         <i className="ri-arrow-right-line text-2xl"></i>
       </button>
@@ -220,10 +222,10 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
       {/* Bottom Instructions Bar */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 z-10">
         <div className="text-center text-white/70 text-sm space-x-6">
-          <span><i className="ri-arrow-left-right-line mr-1"></i> Arrow keys to navigate</span>
-          <span><i className="ri-add-line mr-1"></i><i className="ri-subtract-line mr-1"></i> +/- to zoom</span>
-          <span><i className="ri-hand-finger-line mr-1"></i> Swipe or pinch on mobile</span>
-          <span><i className="ri-close-circle-line mr-1"></i> ESC to close</span>
+          <span><i className="ri-arrow-left-right-line mr-1"></i>{copy.lightbox.bottomInstructionsBar.label}</span>
+          <span><i className="ri-add-line mr-1"></i><i className="ri-subtract-line mr-1"></i>{copy.lightbox.bottomInstructionsBar.label2}</span>
+          <span><i className="ri-hand-finger-line mr-1"></i>{copy.lightbox.bottomInstructionsBar.label3}</span>
+          <span><i className="ri-close-circle-line mr-1"></i>{copy.lightbox.bottomInstructionsBar.label4}</span>
         </div>
       </div>
     </div>

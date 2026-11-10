@@ -247,6 +247,398 @@ collections:
             label: "Button link"
             required: false
             widget: "string"
+      - name: "shared"
+        label: "Shared sections (search, impact map, gallery viewer)"
+        file: "src/content/shared.json"
+        format: "json"
+        fields:
+          - name: "impactMap"
+            label: "Impact map"
+            required: false
+            widget: "object"
+            fields:
+              - name: "header"
+                label: "Header"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+              - name: "largeLandscapeMapFullBox"
+                label: "Large landscape map full box"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "embedUrl"
+                    label: "Embed url"
+                    required: false
+                    widget: "text"
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+              - name: "impactLegendBelowMap"
+                label: "Impact legend below map"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+                  - name: "label3"
+                    label: "Label3"
+                    required: false
+                    widget: "string"
+                  - name: "label4"
+                    label: "Label4"
+                    required: false
+                    widget: "string"
+              - name: "serviceAreasStatisticsGrid"
+                label: "Service areas statistics grid"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+              - name: "expandedDetails"
+                label: "Expanded details"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "smallHeading"
+                    label: "Small heading"
+                    required: false
+                    widget: "string"
+              - name: "totalImpactCard"
+                label: "Total impact card"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+              - name: "callToAction"
+                label: "Call to action"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+          - name: "smartSearch"
+            label: "Smart search"
+            required: false
+            widget: "object"
+            fields:
+              - name: "searchableContent"
+                label: "Searchable content"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "description"
+                    label: "Description"
+                    required: false
+                    widget: "string"
+                  - name: "path"
+                    label: "Path"
+                    required: false
+                    widget: "string"
+                  - name: "category"
+                    label: "Category"
+                    required: false
+                    widget: "string"
+              - name: "searchButton"
+                label: "Search button"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "ariaLabel"
+                    label: "Aria label"
+                    required: false
+                    widget: "string"
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+              - name: "searchInput"
+                label: "Search input"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "placeholder"
+                    label: "Placeholder"
+                    required: false
+                    widget: "string"
+              - name: "results"
+                label: "Results"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "button"
+                    label: "Button"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+              - name: "footer"
+                label: "Footer"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "label3"
+                    label: "Label3"
+                    required: false
+                    widget: "string"
+          - name: "masonryGallery"
+            label: "Masonry gallery"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+              - name: "videosSection"
+                label: "Videos section"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+              - name: "photosSection"
+                label: "Photos section"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+          - name: "lightbox"
+            label: "Lightbox"
+            required: false
+            widget: "object"
+            fields:
+              - name: "zoomControlsOnlyForImages"
+                label: "Zoom controls only for images"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "title2"
+                    label: "Title2"
+                    required: false
+                    widget: "string"
+                  - name: "title3"
+                    label: "Title3"
+                    required: false
+                    widget: "string"
+              - name: "closeButton"
+                label: "Close button"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+              - name: "navigationButtons"
+                label: "Navigation buttons"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "title2"
+                    label: "Title2"
+                    required: false
+                    widget: "string"
+              - name: "bottomInstructionsBar"
+                label: "Bottom instructions bar"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+                  - name: "label3"
+                    label: "Label3"
+                    required: false
+                    widget: "string"
+                  - name: "label4"
+                    label: "Label4"
+                    required: false
+                    widget: "string"
+          - name: "interactiveProgramsHub"
+            label: "Interactive programs hub"
+            required: false
+            widget: "object"
+            fields:
+              - name: "programs"
+                label: "Programs"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "id"
+                    label: "Short ID"
+                    required: false
+                    hint: "Lowercase words joined by dashes, unique, e.g. summer-camp-2027. Never change it after publishing."
+                    widget: "number"
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "icon"
+                    label: "Icon"
+                    required: false
+                    hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+                  - name: "color"
+                    label: "Color"
+                    required: false
+                    widget: "string"
+                  - name: "description"
+                    label: "Description"
+                    required: false
+                    widget: "string"
+              - name: "centerCircle"
+                label: "Center circle"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+              - name: "programDetailsPanel"
+                label: "Program details panel"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+          - name: "downloadButton"
+            label: "Download button"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
   - name: "events"
     label: "Events & trainings"
     files:
@@ -254,7 +646,6 @@ collections:
         label: "Events & flyers"
         file: "src/content/events.json"
         format: "json"
-        description: "Future dates appear under Upcoming Events automatically; past dates move to Past Events."
         fields:
           - name: "items"
             label: "Events"
@@ -449,9 +840,3113 @@ collections:
                 required: false
                 hint: "A Google Form or other full https:// link, or a page like /contact. Leave empty if none."
                 widget: "string"
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "page-home"
+        label: "Home page"
+        file: "src/content/pages/home.json"
+        format: "json"
+        fields:
+          - name: "heroSlider"
+            label: "Hero slider"
+            required: false
+            widget: "object"
+            fields:
+              - name: "slides"
+                label: "Slides"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "subtitle"
+                    label: "Subtitle"
+                    required: false
+                    widget: "string"
+                  - name: "description"
+                    label: "Description"
+                    required: false
+                    widget: "string"
+                  - name: "cta"
+                    label: "Cta"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+          - name: "aboutSection"
+            label: "About section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "image"
+                    label: "Image"
+                    required: false
+                    hint: "JPG or PNG, under 2 MB."
+                    widget: "image"
+                  - name: "imageAlt"
+                    label: "Image alt"
+                    required: false
+                    widget: "string"
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "string"
+                  - name: "text4"
+                    label: "Text4"
+                    required: false
+                    widget: "string"
+                  - name: "text5"
+                    label: "Text5"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+          - name: "programsSection"
+            label: "Programs section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "programs"
+                label: "Programs"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "description"
+                    label: "Description"
+                    required: false
+                    widget: "text"
+                  - name: "icon"
+                    label: "Icon"
+                    required: false
+                    hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+                  - name: "gradient"
+                    label: "Gradient"
+                    required: false
+                    widget: "string"
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+          - name: "imageCarousel"
+            label: "Image carousel"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "text"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "string"
+          - name: "founderMessage"
+            label: "Founder message"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "image"
+                    label: "Image"
+                    required: false
+                    hint: "JPG or PNG, under 2 MB."
+                    widget: "image"
+                  - name: "imageAlt"
+                    label: "Image alt"
+                    required: false
+                    widget: "string"
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "text"
+                  - name: "text4"
+                    label: "Text4"
+                    required: false
+                    widget: "text"
+                  - name: "text5"
+                    label: "Text5"
+                    required: false
+                    widget: "text"
+          - name: "javascriptSection"
+            label: "Javascript section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+                  - name: "label3"
+                    label: "Label3"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+                  - name: "image"
+                    label: "Image"
+                    required: false
+                    hint: "JPG or PNG, under 2 MB."
+                    widget: "image"
+                  - name: "imageAlt"
+                    label: "Image alt"
+                    required: false
+                    widget: "string"
+          - name: "trainingsSection"
+            label: "Trainings section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "main"
+                label: "Main"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "string"
+          - name: "page"
+            label: "Page"
+            required: false
+            widget: "object"
+            fields:
+              - name: "leftCrownBadge"
+                label: "Left crown badge"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+              - name: "centreEventDetails"
+                label: "Centre event details"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "subheading"
+                    label: "Subheading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+              - name: "eventDetailsRow"
+                label: "Event details row"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+                  - name: "label3"
+                    label: "Label3"
+                    required: false
+                    widget: "string"
+              - name: "rightCta"
+                label: "Right cta"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "url"
+                    label: "Link (full https:// address)"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+                  - name: "link2"
+                    label: "Link2"
+                    required: false
+                    widget: "string"
+              - name: "upcomingEventsFlyersSectionHorizontal"
+                label: "Upcoming events flyers section horizontal"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+              - name: "leftArrow"
+                label: "Left arrow"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "ariaLabel"
+                    label: "Aria label"
+                    required: false
+                    widget: "string"
+                  - name: "ariaLabel2"
+                    label: "Aria label2"
+                    required: false
+                    widget: "string"
+              - name: "scrollableContainer"
+                label: "Scrollable container"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "label2"
+                    label: "Label2"
+                    required: false
+                    widget: "string"
+              - name: "rightArrow"
+                label: "Right arrow"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "ariaLabel"
+                    label: "Aria label"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+                  - name: "ariaLabel2"
+                    label: "Aria label2"
+                    required: false
+                    widget: "string"
+                  - name: "link2"
+                    label: "Link2"
+                    required: false
+                    widget: "string"
+              - name: "impactStats"
+                label: "Impact stats"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "string"
+                  - name: "text4"
+                    label: "Text4"
+                    required: false
+                    widget: "string"
+                  - name: "text5"
+                    label: "Text5"
+                    required: false
+                    widget: "string"
+                  - name: "text6"
+                    label: "Text6"
+                    required: false
+                    widget: "string"
+                  - name: "text7"
+                    label: "Text7"
+                    required: false
+                    widget: "string"
+                  - name: "text8"
+                    label: "Text8"
+                    required: false
+                    widget: "string"
+              - name: "foodBankQuickLinkSection"
+                label: "Food bank quick link section"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "image"
+                    label: "Image"
+                    required: false
+                    hint: "JPG or PNG, under 2 MB."
+                    widget: "image"
+                  - name: "imageAlt"
+                    label: "Image alt"
+                    required: false
+                    widget: "string"
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "text2"
+                    label: "Text2"
+                    required: false
+                    widget: "string"
+                  - name: "text3"
+                    label: "Text3"
+                    required: false
+                    widget: "string"
+                  - name: "text4"
+                    label: "Text4"
+                    required: false
+                    widget: "string"
+                  - name: "text5"
+                    label: "Text5"
+                    required: false
+                    widget: "string"
+                  - name: "link"
+                    label: "Link"
+                    required: false
+                    hint: "A page like /about or a full https:// address."
+                    widget: "string"
+              - name: "disabilityInclusionProgramSubtleCard"
+                label: "Disability inclusion program subtle card"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "image"
+                    label: "Image"
+                    required: false
+                    hint: "JPG or PNG, under 2 MB."
+                    widget: "image"
+                  - name: "imageAlt"
+                    label: "Image alt"
+                    required: false
+                    widget: "string"
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+                  - name: "label"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+              - name: "pastProgramsAndEventsFlyers"
+                label: "Past programs and events flyers"
+                required: false
+                widget: "object"
+                fields:
+                  - name: "heading"
+                    label: "Heading"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "string"
+      - name: "page-about"
+        label: "About"
+        file: "src/content/pages/about.json"
+        format: "json"
+        fields:
+          - name: "programs"
+            label: "Programs"
+            required: false
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "description"
+                label: "Description"
+                required: false
+                widget: "text"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "icon"
+                label: "Icon"
+                required: false
+                hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                widget: "string"
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "aboutContent"
+            label: "About content"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+          - name: "additionalContent"
+            label: "Additional content"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+          - name: "missionAndVision"
+            label: "Mission and vision"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+          - name: "values"
+            label: "Values"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+          - name: "programsSection"
+            label: "Programs section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "founderSection"
+            label: "Founder section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+      - name: "page-programs"
+        label: "Programs (overview page)"
+        file: "src/content/pages/programs.json"
+        format: "json"
+        fields:
+          - name: "programs"
+            label: "Programs"
+            required: false
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "description"
+                label: "Description"
+                required: false
+                widget: "text"
+              - name: "icon"
+                label: "Icon"
+                required: false
+                hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "interactiveProgramsHub"
+            label: "Interactive programs hub"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "programsGrid"
+            label: "Programs grid"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+      - name: "page-food-bank"
+        label: "Food Bank"
+        file: "src/content/pages/food-bank.json"
+        format: "json"
+        fields:
+          - name: "VIDEO_EXTENSIONS"
+            label: "Video extensions"
+            required: false
+            widget: "list"
+            field:
+              name: "item"
+              label: "Item"
+              required: false
+              widget: "string"
+          - name: "main"
+            label: "Main"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "heroSectionUsingHeroFolder"
+            label: "Hero section using hero folder"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+          - name: "whyWeExistSection"
+            label: "Why we exist section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "string"
+          - name: "missionStatement"
+            label: "Mission statement"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+          - name: "videoSectionWithActualVideo"
+            label: "Video section with actual video"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "videoDisplayAlwaysShowVideo"
+            label: "Video display always show video"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+          - name: "foodBankInPicturesPulls"
+            label: "Food bank in pictures pulls"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+          - name: "actionButtons"
+            label: "Action buttons"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+          - name: "topBar"
+            label: "Top bar"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "title2"
+                label: "Title2"
+                required: false
+                widget: "string"
+              - name: "title3"
+                label: "Title3"
+                required: false
+                widget: "string"
+              - name: "title4"
+                label: "Title4"
+                required: false
+                widget: "string"
+          - name: "navigation"
+            label: "Navigation"
+            required: false
+            widget: "object"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "title2"
+                label: "Title2"
+                required: false
+                widget: "string"
+          - name: "bottomHint"
+            label: "Bottom hint"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+          - name: "whatWeProvide"
+            label: "What we provide"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "label5"
+                label: "Label5"
+                required: false
+                widget: "string"
+              - name: "label6"
+                label: "Label6"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "text"
+              - name: "label7"
+                label: "Label7"
+                required: false
+                widget: "string"
+              - name: "label8"
+                label: "Label8"
+                required: false
+                widget: "string"
+              - name: "label9"
+                label: "Label9"
+                required: false
+                widget: "string"
+              - name: "subheading4"
+                label: "Subheading4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "text"
+              - name: "label10"
+                label: "Label10"
+                required: false
+                widget: "string"
+              - name: "label11"
+                label: "Label11"
+                required: false
+                widget: "string"
+              - name: "label12"
+                label: "Label12"
+                required: false
+                widget: "string"
+              - name: "subheading5"
+                label: "Subheading5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "text"
+              - name: "label13"
+                label: "Label13"
+                required: false
+                widget: "string"
+              - name: "label14"
+                label: "Label14"
+                required: false
+                widget: "string"
+              - name: "label15"
+                label: "Label15"
+                required: false
+                widget: "string"
+              - name: "subheading6"
+                label: "Subheading6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "text"
+              - name: "label16"
+                label: "Label16"
+                required: false
+                widget: "string"
+              - name: "label17"
+                label: "Label17"
+                required: false
+                widget: "string"
+              - name: "label18"
+                label: "Label18"
+                required: false
+                widget: "string"
+          - name: "howItWorks"
+            label: "How it works"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "text"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "string"
+              - name: "subheading4"
+                label: "Subheading4"
+                required: false
+                widget: "string"
+              - name: "text9"
+                label: "Text9"
+                required: false
+                widget: "string"
+          - name: "operatingHoursAndLocation"
+            label: "Operating hours and location"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label5"
+                label: "Label5"
+                required: false
+                widget: "string"
+              - name: "label6"
+                label: "Label6"
+                required: false
+                widget: "string"
+              - name: "label7"
+                label: "Label7"
+                required: false
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+              - name: "phoneLink2"
+                label: "Phone link2"
+                required: false
+                widget: "string"
+              - name: "link3"
+                label: "Link3"
+                required: false
+                widget: "string"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "string"
+              - name: "emailLink"
+                label: "Email link"
+                required: false
+                widget: "string"
+              - name: "link4"
+                label: "Link4"
+                required: false
+                widget: "string"
+              - name: "embedUrl"
+                label: "Embed url"
+                required: false
+                widget: "text"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+          - name: "impactStories"
+            label: "Impact stories"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "image2"
+                label: "Image2"
+                required: false
+                widget: "image"
+              - name: "imageAlt2"
+                label: "Image alt2"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "text"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+              - name: "image3"
+                label: "Image3"
+                required: false
+                widget: "image"
+              - name: "imageAlt3"
+                label: "Image alt3"
+                required: false
+                widget: "string"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "text"
+              - name: "text9"
+                label: "Text9"
+                required: false
+                widget: "string"
+              - name: "text10"
+                label: "Text10"
+                required: false
+                widget: "string"
+          - name: "statistics"
+            label: "Statistics"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "string"
+              - name: "text9"
+                label: "Text9"
+                required: false
+                widget: "string"
+          - name: "howToHelp"
+            label: "How to help"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "text"
+              - name: "link3"
+                label: "Link3"
+                required: false
+                widget: "string"
+          - name: "callToAction"
+            label: "Call to action"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+      - name: "page-trainings"
+        label: "Trainings page (headings and text)"
+        file: "src/content/pages/trainings.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "contentSection"
+            label: "Content section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "bold"
+                label: "Bold"
+                required: false
+                widget: "string"
+              - name: "bold2"
+                label: "Bold2"
+                required: false
+                widget: "string"
+              - name: "bold3"
+                label: "Bold3"
+                required: false
+                widget: "string"
+              - name: "button"
+                label: "Button"
+                required: false
+                widget: "string"
+          - name: "ctaSection"
+            label: "Cta section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "modalContent"
+            label: "Modal content"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+      - name: "page-upcoming-events"
+        label: "Upcoming Events page (headings and text)"
+        file: "src/content/pages/upcoming-events.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "eventsGrid"
+            label: "Events grid"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "eventImage"
+            label: "Event image"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "learnMoreAndRegisterButton"
+            label: "Learn more and register button"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "eventTitleOverlay"
+            label: "Event title overlay"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "eventInfoGrid"
+            label: "Event info grid"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+          - name: "description"
+            label: "Description"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "whoShouldAttend"
+            label: "Who should attend"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "whatYouWillLearn"
+            label: "What you will learn"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "hosts"
+            label: "Hosts / speakers"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "bonuses"
+            label: "Bonuses for attendees"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "contactInfo"
+            label: "Contact info"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+          - name: "registerButton"
+            label: "Register button"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+      - name: "page-past-events"
+        label: "Past Events page (headings and text)"
+        file: "src/content/pages/past-events.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "flyersGridSection"
+            label: "Flyers grid section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "callToAction"
+            label: "Call to action"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+      - name: "page-christmas-event"
+        label: "Christmas Event"
+        file: "src/content/pages/christmas-event.json"
+        format: "json"
+        fields:
+          - name: "eventHighlights"
+            label: "Event highlights"
+            required: false
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - name: "icon"
+                label: "Icon"
+                required: false
+                hint: "Icon name, e.g. fas fa-users (fontawesome.com) or ri-heart-pulse-line (remixicon.com)."
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "description"
+                label: "Description"
+                required: false
+                widget: "text"
+          - name: "schedule"
+            label: "Schedule"
+            required: false
+            widget: "list"
+            summary: "{{fields.time}}"
+            fields:
+              - name: "time"
+                label: "Time"
+                required: false
+                hint: "e.g. 11:00 AM - 2:00 PM"
+                widget: "string"
+              - name: "activity"
+                label: "Activity"
+                required: false
+                widget: "string"
+          - name: "backgroundImage"
+            label: "Background photo"
+            required: false
+            hint: "Wide landscape photo, under 2 MB."
+            widget: "object"
+            fields:
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+          - name: "eventOverview"
+            label: "Event overview"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "eventSchedule"
+            label: "Event schedule"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+          - name: "locationAndRegistration"
+            label: "Location and registration"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+          - name: "successMessageShowsWhenRegistration"
+            label: "Success message shows when registration"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "theRegistrationForm"
+            label: "The registration form"
+            required: false
+            widget: "object"
+            fields:
+              - name: "fieldLabel"
+                label: "Field label"
+                required: false
+                widget: "string"
+              - name: "placeholder"
+                label: "Placeholder"
+                required: false
+                widget: "string"
+              - name: "fieldLabel2"
+                label: "Field label2"
+                required: false
+                widget: "string"
+              - name: "placeholder2"
+                label: "Placeholder2"
+                required: false
+                widget: "string"
+              - name: "fieldLabel3"
+                label: "Field label3"
+                required: false
+                widget: "string"
+              - name: "placeholder3"
+                label: "Placeholder3"
+                required: false
+                widget: "string"
+              - name: "fieldLabel4"
+                label: "Field label4"
+                required: false
+                widget: "string"
+              - name: "placeholder4"
+                label: "Placeholder4"
+                required: false
+                widget: "string"
+              - name: "fieldLabel5"
+                label: "Field label5"
+                required: false
+                widget: "string"
+              - name: "placeholder5"
+                label: "Placeholder5"
+                required: false
+                widget: "string"
+          - name: "volunteerCta"
+            label: "Volunteer cta"
+            required: false
+            widget: "object"
+            fields:
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageAlt"
+                label: "Image alt"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "button"
+                label: "Button"
+                required: false
+                widget: "string"
+      - name: "page-gallery"
+        label: "Gallery page"
+        file: "src/content/pages/gallery.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "browseSection"
+            label: "Browse section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "categoryInfo"
+            label: "Category info"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+      - name: "page-contact"
+        label: "Contact page"
+        file: "src/content/pages/contact.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "contactInformation"
+            label: "Contact information"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "emailLink"
+                label: "Email link"
+                required: false
+                widget: "string"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+              - name: "subheading4"
+                label: "Subheading4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
+          - name: "socialMediaLinks"
+            label: "Social media links"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "url2"
+                label: "Url2"
+                required: false
+                widget: "string"
+              - name: "url3"
+                label: "Url3"
+                required: false
+                widget: "string"
+              - name: "url4"
+                label: "Url4"
+                required: false
+                widget: "string"
+          - name: "contactForm"
+            label: "Contact form"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "fieldLabel"
+                label: "Field label"
+                required: false
+                widget: "string"
+              - name: "placeholder"
+                label: "Placeholder"
+                required: false
+                widget: "string"
+              - name: "fieldLabel2"
+                label: "Field label2"
+                required: false
+                widget: "string"
+              - name: "placeholder2"
+                label: "Placeholder2"
+                required: false
+                widget: "string"
+              - name: "fieldLabel3"
+                label: "Field label3"
+                required: false
+                widget: "string"
+              - name: "placeholder3"
+                label: "Placeholder3"
+                required: false
+                widget: "string"
+              - name: "fieldLabel4"
+                label: "Field label4"
+                required: false
+                widget: "string"
+              - name: "placeholder4"
+                label: "Placeholder4"
+                required: false
+                widget: "string"
+              - name: "fieldLabel5"
+                label: "Field label5"
+                required: false
+                widget: "string"
+              - name: "placeholder5"
+                label: "Placeholder5"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "mapSection"
+            label: "Map section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "embedUrl"
+                label: "Embed url"
+                required: false
+                widget: "text"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+          - name: "directions"
+            label: "Directions"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+      - name: "page-donate"
+        label: "Donate page"
+        file: "src/content/pages/donate.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "donationForm"
+            label: "Donation form"
+            required: false
+            widget: "object"
+            fields:
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+          - name: "personalInformation"
+            label: "Personal information"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "fieldLabel"
+                label: "Field label"
+                required: false
+                widget: "string"
+              - name: "placeholder"
+                label: "Placeholder"
+                required: false
+                widget: "string"
+              - name: "fieldLabel2"
+                label: "Field label2"
+                required: false
+                widget: "string"
+              - name: "placeholder2"
+                label: "Placeholder2"
+                required: false
+                widget: "string"
+              - name: "fieldLabel3"
+                label: "Field label3"
+                required: false
+                widget: "string"
+              - name: "placeholder3"
+                label: "Placeholder3"
+                required: false
+                widget: "string"
+              - name: "fieldLabel4"
+                label: "Field label4"
+                required: false
+                widget: "string"
+              - name: "placeholder4"
+                label: "Placeholder4"
+                required: false
+                widget: "string"
+          - name: "donationType"
+            label: "Donation type"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+          - name: "donationAmount"
+            label: "Donation amount"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "fieldLabel"
+                label: "Field label"
+                required: false
+                widget: "string"
+              - name: "placeholder"
+                label: "Placeholder"
+                required: false
+                widget: "string"
+          - name: "paymentMethod"
+            label: "Payment method"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+          - name: "message"
+            label: "Message"
+            required: false
+            widget: "object"
+            fields:
+              - name: "fieldLabel"
+                label: "Field label"
+                required: false
+                widget: "string"
+              - name: "placeholder"
+                label: "Placeholder"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "submitButton"
+            label: "Submit button"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+          - name: "impactStats"
+            label: "Impact stats"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+          - name: "eTransferOption"
+            label: "E transfer option"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "string"
+          - name: "securityBadge"
+            label: "Security badge"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+      - name: "page-not-found"
+        label: "Page not found (404)"
+        file: "src/content/pages/not-found.json"
+        format: "json"
+        fields:
+          - name: "main"
+            label: "Main"
+            required: false
+            widget: "object"
+            fields:
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "title2"
+                label: "Title2"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
   - name: "programs"
     label: "Program pages"
     files:
+      - name: "page-heart-wise-seniors"
+        label: "Program: Heart Wise Seniors"
+        file: "src/content/pages/heart-wise-seniors.json"
+        format: "json"
+        fields:
+          - name: "seniorsDayImages"
+            label: "Seniors day images"
+            required: false
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "image"
+              - name: "alt"
+                label: "Alt"
+                required: false
+                widget: "string"
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "label5"
+                label: "Label5"
+                required: false
+                widget: "string"
+          - name: "sectionHeader"
+            label: "Section header"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "scheduleCard"
+            label: "Schedule card"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "timeCard"
+            label: "Time card"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+          - name: "servicesCard"
+            label: "Services card"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "highlightBox"
+            label: "Highlight box"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+          - name: "callToAction"
+            label: "Call to action"
+            required: false
+            widget: "object"
+            fields:
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+          - name: "getInvolvedSection"
+            label: "Get involved section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+      - name: "page-mental-health"
+        label: "Program: Disability Inclusion - Mental Health"
+        file: "src/content/pages/mental-health.json"
+        format: "json"
+        fields:
+          - name: "main"
+            label: "Main"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "text"
+          - name: "servicesGrid"
+            label: "Services grid"
+            required: false
+            widget: "object"
+            fields:
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "subheading4"
+                label: "Subheading4"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "text"
+              - name: "bold"
+                label: "Bold"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "text"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "heading2"
+                label: "Heading2"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "text"
+              - name: "text8"
+                label: "Text8"
+                required: false
+                widget: "text"
+              - name: "text9"
+                label: "Text9"
+                required: false
+                widget: "text"
+              - name: "subheading5"
+                label: "Subheading5"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "label5"
+                label: "Label5"
+                required: false
+                widget: "string"
+              - name: "phoneLink2"
+                label: "Phone link2"
+                required: false
+                widget: "string"
+              - name: "link2"
+                label: "Link2"
+                required: false
+                widget: "string"
+      - name: "page-javascript-program"
+        label: "Program: Javascript for Afro Black Women"
+        file: "src/content/pages/javascript-program.json"
+        format: "json"
+        fields:
+          - name: "heroSection"
+            label: "Hero section"
+            required: false
+            widget: "object"
+            fields:
+              - name: "backgroundImage"
+                label: "Background photo"
+                required: false
+                hint: "Wide landscape photo, under 2 MB."
+                widget: "image"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "text"
+                label: "Text"
+                required: false
+                widget: "text"
+              - name: "text2"
+                label: "Text2"
+                required: false
+                widget: "text"
+              - name: "text3"
+                label: "Text3"
+                required: false
+                widget: "text"
+              - name: "subheading"
+                label: "Subheading"
+                required: false
+                widget: "string"
+              - name: "bold"
+                label: "Bold"
+                required: false
+                widget: "string"
+              - name: "text4"
+                label: "Text4"
+                required: false
+                widget: "string"
+              - name: "bold2"
+                label: "Bold2"
+                required: false
+                widget: "string"
+              - name: "text5"
+                label: "Text5"
+                required: false
+                widget: "string"
+              - name: "bold3"
+                label: "Bold3"
+                required: false
+                widget: "string"
+              - name: "phoneLink"
+                label: "Phone (for tap-to-call)"
+                required: false
+                hint: "International format without spaces, e.g. +16475815901"
+                widget: "string"
+              - name: "link"
+                label: "Link"
+                required: false
+                hint: "A page like /about or a full https:// address."
+                widget: "string"
+              - name: "subheading2"
+                label: "Subheading2"
+                required: false
+                widget: "string"
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "label2"
+                label: "Label2"
+                required: false
+                widget: "string"
+              - name: "label3"
+                label: "Label3"
+                required: false
+                widget: "string"
+              - name: "label4"
+                label: "Label4"
+                required: false
+                widget: "string"
+              - name: "label5"
+                label: "Label5"
+                required: false
+                widget: "string"
+              - name: "subheading3"
+                label: "Subheading3"
+                required: false
+                widget: "string"
+              - name: "text6"
+                label: "Text6"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "text"
+              - name: "label6"
+                label: "Label6"
+                required: false
+                widget: "string"
+              - name: "text7"
+                label: "Text7"
+                required: false
+                widget: "string"
       - name: "program-youth-leadership"
         label: "Program: Youth Leadership"
         file: "src/content/programs/youth-leadership.json"

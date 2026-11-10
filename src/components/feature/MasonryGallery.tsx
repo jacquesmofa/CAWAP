@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Masonry from 'react-masonry-css';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface MasonryGalleryProps {
   photos: string[];
@@ -83,12 +85,8 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos = [], videos = [
           <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
             <i className="ri-gallery-line text-6xl text-gray-400"></i>
           </div>
-          <h3 className="text-3xl font-bold text-gray-700 mb-4">
-            No Media Yet
-          </h3>
-          <p className="text-gray-500 text-lg">
-            This album is ready for content. Photos and videos will appear here once uploaded.
-          </p>
+          <h3 className="text-3xl font-bold text-gray-700 mb-4">{copy.masonryGallery.main.subheading}</h3>
+          <p className="text-gray-500 text-lg">{copy.masonryGallery.main.text}</p>
         </div>
       </div>
     );
@@ -100,8 +98,7 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos = [], videos = [
       {safeVideos.length > 0 && (
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <i className="ri-video-line mr-3 text-[#3c1053]"></i>
-            Videos {visibleVideos.length > 0 && `(${visibleVideos.length})`}
+            <i className="ri-video-line mr-3 text-[#3c1053]"></i>{copy.masonryGallery.videosSection.subheading}{visibleVideos.length > 0 && `(${visibleVideos.length})`}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {safeVideos.map((videoUrl, index) => (
@@ -123,8 +120,7 @@ const MasonryGallery: React.FC<MasonryGalleryProps> = ({ photos = [], videos = [
       {safePhotos.length > 0 && (
         <>
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <i className="ri-image-line mr-3 text-[#3c1053]"></i>
-            Photos {visiblePhotos.length > 0 && `(${visiblePhotos.length})`}
+            <i className="ri-image-line mr-3 text-[#3c1053]"></i>{copy.masonryGallery.photosSection.subheading}{visiblePhotos.length > 0 && `(${visiblePhotos.length})`}
           </h3>
           <Masonry
             breakpointCols={breakpointColumns}
@@ -315,9 +311,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({
               onError(index);
             }}
           >
-            <source src={videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            <source src={videoUrl} type="video/mp4" />{copy.masonryGallery.photosSection.text}</video>
         </>
       )}
     </div>

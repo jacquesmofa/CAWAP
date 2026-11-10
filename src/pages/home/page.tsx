@@ -12,6 +12,8 @@ import TrainingsSection from './components/TrainingsSection';
 import ImpactMap from '../../components/feature/ImpactMap';
 import ScrollReveal from '../../components/effects/ScrollReveal';
 import { getUpcomingFlyers, getPastFlyers } from '../../data/flyers';
+import copy from '../../content/pages/home.json';
+// Text, images and links: src/content/pages/home.json (editable in the website editors).
 
 const HomePage = () => {
   const upcomingFlyers = getUpcomingFlyers();
@@ -215,44 +217,34 @@ const HomePage = () => {
                   <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center border-2" style={{ background: 'linear-gradient(135deg, #c9b037, #f0d060, #c9b037)', borderColor: '#f0d060' }}>
                     <i className="ri-vip-crown-fill text-5xl md:text-6xl" style={{ color: '#1a0a2e' }}></i>
                   </div>
-                  <div className="mt-3 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(201,176,55,0.2)', color: '#f0d060', border: '1px solid rgba(201,176,55,0.4)' }}>
-                    4th Annual
-                  </div>
+                  <div className="mt-3 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(201,176,55,0.2)', color: '#f0d060', border: '1px solid rgba(201,176,55,0.4)' }}>{copy.page.leftCrownBadge.text}</div>
                 </div>
               </div>
 
               {/* Centre — Event Details */}
               <div className="flex-grow text-center lg:text-left">
                 <div className="mb-2">
-                  <span className="text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full" style={{ background: 'rgba(201,176,55,0.15)', color: '#c9b037', border: '1px solid rgba(201,176,55,0.3)' }}>
-                    Sankofa Royale Award Gala 2026
-                  </span>
+                  <span className="text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full" style={{ background: 'rgba(201,176,55,0.15)', color: '#c9b037', border: '1px solid rgba(201,176,55,0.3)' }}>{copy.page.centreEventDetails.label}</span>
                 </div>
-                <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mt-3 mb-1" style={{ color: '#f0d060', fontFamily: 'Playfair Display, serif' }}>
-                  Crowns of Impact
-                </h3>
-                <p className="text-base md:text-lg font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                  Honouring Dominion Through Service
-                </p>
-                <p className="text-sm italic mb-4" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                  Where Service Becomes Sovereignty
-                </p>
+                <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mt-3 mb-1" style={{ color: '#f0d060', fontFamily: 'Playfair Display, serif' }}>{copy.page.centreEventDetails.subheading}</h3>
+                <p className="text-base md:text-lg font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.9)' }}>{copy.page.centreEventDetails.text}</p>
+                <p className="text-sm italic mb-4" style={{ color: 'rgba(255,255,255,0.65)' }}>{copy.page.centreEventDetails.text2}</p>
 
                 {/* Event details row */}
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm">
                   <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
                     <i className="ri-calendar-event-fill" style={{ color: '#c9b037' }}></i>
-                    <span className="font-semibold">Saturday, August 8, 2026</span>
+                    <span className="font-semibold">{copy.page.eventDetailsRow.label}</span>
                   </div>
                   <div className="hidden sm:block w-px h-4" style={{ background: 'rgba(201,176,55,0.4)' }}></div>
                   <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
                     <i className="ri-time-fill" style={{ color: '#c9b037' }}></i>
-                    <span>5:00 PM &mdash; Red Carpet Begins</span>
+                    <span>{copy.page.eventDetailsRow.label2}</span>
                   </div>
                   <div className="hidden sm:block w-px h-4" style={{ background: 'rgba(201,176,55,0.4)' }}></div>
                   <div className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
                     <i className="ri-map-pin-fill" style={{ color: '#c9b037' }}></i>
-                    <span>NOOR Convention Center, Brampton</span>
+                    <span>{copy.page.eventDetailsRow.label3}</span>
                   </div>
                 </div>
 
@@ -269,22 +261,18 @@ const HomePage = () => {
               {/* Right — CTA */}
               <div className="flex-shrink-0 flex flex-col items-center gap-3">
                 <a
-                  href="https://www.zeffy.com/en-CA/ticketing/sankofa-royale-award-gala"
+                  href={copy.page.rightCta.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer"
                   style={{ background: 'linear-gradient(135deg, #c9b037, #f0d060)', color: '#1a0a2e' }}
                 >
-                  <i className="ri-ticket-2-fill text-xl"></i>
-                  Get Your Tickets Now
-                </a>
+                  <i className="ri-ticket-2-fill text-xl"></i>{copy.page.rightCta.link}</a>
                 <a
                   href="/sankofa-royale-awards"
                   className="text-xs font-medium transition-colors whitespace-nowrap cursor-pointer"
                   style={{ color: 'rgba(201,176,55,0.8)' }}
-                >
-                  View Event Details &rarr;
-                </a>
+                >{copy.page.rightCta.link2}</a>
               </div>
 
             </div>
@@ -304,10 +292,8 @@ const HomePage = () => {
                 <div className="w-16 h-16 bg-[#8e24aa]/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <i className="ri-calendar-event-line text-[#8e24aa] text-3xl"></i>
                 </div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-4">Upcoming Events</h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Join us at our upcoming programs and events - everyone is welcome!
-                </p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">{copy.page.upcomingEventsFlyersSectionHorizontal.heading}</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">{copy.page.upcomingEventsFlyersSectionHorizontal.text}</p>
               </div>
             </ScrollReveal>
 
@@ -318,7 +304,7 @@ const HomePage = () => {
                 <button
                   onClick={() => scrollFlyers('left', 'upcoming')}
                   className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#8e24aa] p-4 rounded-full shadow-2xl hover:shadow-[#8e24aa]/30 transition-all duration-300 hover:scale-110 cursor-pointer -ml-6"
-                  aria-label="Previous events"
+                  aria-label={copy.page.leftArrow.ariaLabel}
                 >
                   <i className="ri-arrow-left-line text-2xl"></i>
                 </button>
@@ -353,7 +339,7 @@ const HomePage = () => {
                           href="/upcoming-events"
                           className="inline-flex items-center gap-2 text-[#8e24aa] font-semibold hover:text-[#26194f] transition-colors cursor-pointer"
                         >
-                          <span>Learn More</span>
+                          <span>{copy.page.scrollableContainer.label}</span>
                           <i className="ri-arrow-right-line"></i>
                         </a>
                       </div>
@@ -367,7 +353,7 @@ const HomePage = () => {
                 <button
                   onClick={() => scrollFlyers('right', 'upcoming')}
                   className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#8e24aa] p-4 rounded-full shadow-2xl hover:shadow-[#8e24aa]/30 transition-all duration-300 hover:scale-110 cursor-pointer -mr-6"
-                  aria-label="Next events"
+                  aria-label={copy.page.rightArrow.ariaLabel}
                 >
                   <i className="ri-arrow-right-line text-2xl"></i>
                 </button>
@@ -378,9 +364,7 @@ const HomePage = () => {
               <a
                 href="/upcoming-events"
                 className="inline-block bg-gradient-to-r from-[#8e24aa] to-[#26194f] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
-              >
-                View All Upcoming Events
-              </a>
+              >{copy.page.rightArrow.link}</a>
             </div>
           </div>
         </section>
@@ -393,28 +377,26 @@ const HomePage = () => {
       <section className="py-20 bg-gradient-to-br from-[#26194f] to-[#3c1053]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-white mb-4">
-              Our Impact
-            </h2>
+            <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-white mb-4">{copy.page.impactStats.heading}</h2>
             <div className="w-24 h-1 bg-[#c9b037] mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">2,500+</div>
-              <div className="text-lg text-white/90">Lives Impacted Monthly</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">{copy.page.impactStats.text}</div>
+              <div className="text-lg text-white/90">{copy.page.impactStats.text2}</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">2,500+</div>
-              <div className="text-lg text-white/90">Families Served Monthly</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">{copy.page.impactStats.text3}</div>
+              <div className="text-lg text-white/90">{copy.page.impactStats.text4}</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">12,500+</div>
-              <div className="text-lg text-white/90">Meals Distributed Monthly</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">{copy.page.impactStats.text5}</div>
+              <div className="text-lg text-white/90">{copy.page.impactStats.text6}</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">15+</div>
-              <div className="text-lg text-white/90">Years of Service</div>
+              <div className="text-5xl md:text-6xl font-bold text-[#c9b037] mb-3">{copy.page.impactStats.text7}</div>
+              <div className="text-lg text-white/90">{copy.page.impactStats.text8}</div>
             </div>
           </div>
         </div>
@@ -428,8 +410,8 @@ const HomePage = () => {
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-[400px]">
                   <img
-                    src="https://readdy.ai/api/search-image?query=welcoming%20community%20food%20bank%20with%20volunteers%20helping%20diverse%20families%2C%20organized%20shelves%20of%20fresh%20produce%20and%20nutritious%20groceries%2C%20bright%20caring%20atmosphere%20showing%20food%20security%20and%20community%20support%2C%20professional%20photography%20with%20warm%20lighting&width=800&height=400&seq=home-food-bank-feature&orientation=landscape"
-                    alt="CAWAP Food Bank"
+                    src={copy.page.foodBankQuickLinkSection.image}
+                    alt={copy.page.foodBankQuickLinkSection.imageAlt}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
@@ -438,26 +420,22 @@ const HomePage = () => {
                   <div className="w-16 h-16 bg-[#c9b037]/10 rounded-full flex items-center justify-center mb-6">
                     <i className="fas fa-shopping-basket text-[#c9b037] text-3xl"></i>
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-800 mb-4">CAWAP Food Bank</h2>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    Providing nutritious food assistance to families and individuals facing food insecurity. We serve our community with dignity, compassion, and respect.
-                  </p>
+                  <h2 className="text-3xl font-bold text-gray-800 mb-4">{copy.page.foodBankQuickLinkSection.heading}</h2>
+                  <p className="text-gray-600 leading-relaxed mb-6">{copy.page.foodBankQuickLinkSection.text}</p>
                   <div className="flex items-center gap-6 mb-6">
                     <div>
-                      <div className="text-3xl font-bold text-[#c9b037]">2,500+</div>
-                      <div className="text-sm text-gray-600">Families Served Monthly</div>
+                      <div className="text-3xl font-bold text-[#c9b037]">{copy.page.foodBankQuickLinkSection.text2}</div>
+                      <div className="text-sm text-gray-600">{copy.page.foodBankQuickLinkSection.text3}</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-[#c9b037]">12,500+</div>
-                      <div className="text-sm text-gray-600">Meals Distributed Monthly</div>
+                      <div className="text-3xl font-bold text-[#c9b037]">{copy.page.foodBankQuickLinkSection.text4}</div>
+                      <div className="text-sm text-gray-600">{copy.page.foodBankQuickLinkSection.text5}</div>
                     </div>
                   </div>
                   <a
                     href="/food-bank"
                     className="inline-block bg-[#c9b037] text-white px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#b39f2f] transition-all whitespace-nowrap cursor-pointer w-fit"
-                  >
-                    Learn More About Our Food Bank
-                  </a>
+                  >{copy.page.foodBankQuickLinkSection.link}</a>
                 </div>
               </div>
             </div>
@@ -473,8 +451,8 @@ const HomePage = () => {
               <div className="grid md:grid-cols-5 gap-0">
                 <div className="md:col-span-2 relative h-[300px] md:h-full">
                   <img
-                    src="https://readdy.ai/api/search-image?query=diverse%20inclusive%20community%20setting%20with%20people%20of%20all%20abilities%20participating%20together%20in%20educational%20workshop%2C%20warm%20natural%20lighting%20showing%20empowerment%20accessibility%20dignity%20and%20hope%2C%20modern%20accessible%20facility%20with%20inclusive%20design%2C%20African%20and%20Caribbean%20community%20members%20engaged%20in%20skills%20development%2C%20professional%20documentary%20photography%20capturing%20genuine%20moments%20of%20inclusion%20and%20community%20support&width=600&height=400&seq=home-disability-inclusion&orientation=landscape"
-                    alt="Disability Inclusion Program"
+                    src={copy.page.disabilityInclusionProgramSubtleCard.image}
+                    alt={copy.page.disabilityInclusionProgramSubtleCard.imageAlt}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#3c1053]/30 to-transparent"></div>
@@ -483,15 +461,13 @@ const HomePage = () => {
                   <div className="w-12 h-12 bg-[#c9b037]/10 rounded-full flex items-center justify-center mb-4">
                     <i className="ri-wheelchair-line text-[#c9b037] text-2xl"></i>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-3">Disability Inclusion Program</h2>
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-                    CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, and inclusive programming. We are committed to building a society where every person is respected, empowered, included, and given the opportunity to thrive.
-                  </p>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-3">{copy.page.disabilityInclusionProgramSubtleCard.heading}</h2>
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">{copy.page.disabilityInclusionProgramSubtleCard.text}</p>
                   <a
                     href="/mental-health"
                     className="inline-flex items-center gap-2 text-[#c9b037] font-semibold hover:text-[#b39f2f] transition-colors cursor-pointer text-sm whitespace-nowrap w-fit"
                   >
-                    <span>Learn More</span>
+                    <span>{copy.page.disabilityInclusionProgramSubtleCard.label}</span>
                     <i className="ri-arrow-right-line"></i>
                   </a>
                 </div>
@@ -512,10 +488,8 @@ const HomePage = () => {
                 <div className="w-16 h-16 bg-[#26194f]/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <i className="ri-time-line text-[#26194f] text-3xl"></i>
                 </div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-4">Past Programs & Events</h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Take a look at the amazing programs and events we've hosted for our community
-                </p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">{copy.page.pastProgramsAndEventsFlyers.heading}</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">{copy.page.pastProgramsAndEventsFlyers.text}</p>
               </div>
             </ScrollReveal>
 
@@ -526,7 +500,7 @@ const HomePage = () => {
                 <button
                   onClick={() => scrollFlyers('left', 'past')}
                   className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#26194f] p-4 rounded-full shadow-2xl hover:shadow-[#26194f]/30 transition-all duration-300 hover:scale-110 cursor-pointer -ml-6"
-                  aria-label="Previous events"
+                  aria-label={copy.page.leftArrow.ariaLabel2}
                 >
                   <i className="ri-arrow-left-line text-2xl"></i>
                 </button>
@@ -562,7 +536,7 @@ const HomePage = () => {
                             href={flyer.eventLink}
                             className="inline-flex items-center gap-2 text-[#26194f] font-semibold hover:text-[#8e24aa] transition-colors cursor-pointer"
                           >
-                            <span>View Details</span>
+                            <span>{copy.page.scrollableContainer.label2}</span>
                             <i className="ri-arrow-right-line"></i>
                           </a>
                         )}
@@ -577,7 +551,7 @@ const HomePage = () => {
                 <button
                   onClick={() => scrollFlyers('right', 'past')}
                   className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-[#26194f] p-4 rounded-full shadow-2xl hover:shadow-[#26194f]/30 transition-all duration-300 hover:scale-110 cursor-pointer -mr-6"
-                  aria-label="Next events"
+                  aria-label={copy.page.rightArrow.ariaLabel2}
                 >
                   <i className="ri-arrow-right-line text-2xl"></i>
                 </button>
@@ -588,9 +562,7 @@ const HomePage = () => {
               <a
                 href="/events"
                 className="inline-block bg-gradient-to-r from-[#26194f] to-[#8e24aa] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer shadow-lg"
-              >
-                View All Past Events
-              </a>
+              >{copy.page.rightArrow.link2}</a>
             </div>
           </div>
         </section>

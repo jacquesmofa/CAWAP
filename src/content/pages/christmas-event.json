@@ -1,0 +1,124 @@
+{
+  "eventHighlights": [
+    {
+      "icon": "ri-gift-line",
+      "title": "Gift Distribution",
+      "description": "Toys and gifts for children from families in need, spreading joy and creating magical memories"
+    },
+    {
+      "icon": "ri-restaurant-line",
+      "title": "Community Feast",
+      "description": "Delicious holiday meal featuring traditional dishes from diverse cultures in our community"
+    },
+    {
+      "icon": "ri-music-line",
+      "title": "Live Entertainment",
+      "description": "Festive performances including carol singing, cultural dances, and live music"
+    },
+    {
+      "icon": "ri-cake-line",
+      "title": "Holiday Activities",
+      "description": "Face painting, crafts, games, and photos with Santa for the whole family"
+    },
+    {
+      "icon": "ri-hand-heart-line",
+      "title": "Community Support",
+      "description": "Food hampers and winter essentials for families facing hardship this season"
+    },
+    {
+      "icon": "ri-team-line",
+      "title": "Volunteer Opportunities",
+      "description": "Join our team of volunteers and help make this event special for everyone"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "10:00 AM",
+      "activity": "Doors Open & Registration"
+    },
+    {
+      "time": "10:30 AM",
+      "activity": "Welcome Address & Opening Prayer"
+    },
+    {
+      "time": "11:00 AM",
+      "activity": "Children's Activities & Face Painting Begin"
+    },
+    {
+      "time": "12:00 PM",
+      "activity": "Community Feast Served"
+    },
+    {
+      "time": "1:00 PM",
+      "activity": "Cultural Performances & Carol Singing"
+    },
+    {
+      "time": "2:00 PM",
+      "activity": "Santa's Arrival & Gift Distribution"
+    },
+    {
+      "time": "3:00 PM",
+      "activity": "Photos with Santa"
+    },
+    {
+      "time": "4:00 PM",
+      "activity": "Closing Remarks & Prize Draws"
+    },
+    {
+      "time": "4:30 PM",
+      "activity": "Event Concludes"
+    }
+  ],
+  "backgroundImage": {
+    "image": "https://readdy.ai/api/search-image?query=warm%20festive%20Christmas%20community%20celebration%20with%20diverse%20families%20gathering%20together%20in%20decorated%20hall%2C%20golden%20and%20purple%20holiday%20lights%20creating%20magical%20atmosphere%2C%20joyful%20people%20celebrating%20with%20gifts%20and%20decorations%2C%20professional%20event%20photography%20showing%20unity%20and%20holiday%20spirit&width=1920&height=800&seq=christmas-hero&orientation=landscape",
+    "imageAlt": "Christmas Event",
+    "title": "CAWAP Christmas Celebration",
+    "text": "Spreading Joy, Love & Community Spirit",
+    "label": "December 20, 2024",
+    "label2": "10:00 AM - 4:30 PM"
+  },
+  "eventOverview": {
+    "heading": "Join Us for a Magical Celebration",
+    "text": "CAWAP invites you and your family to our annual Christmas celebration! This special event brings our community together to celebrate the season of giving, share in the joy of the holidays, and support families in need. Experience the warmth of community, enjoy delicious food, entertainment, and create lasting memories with your loved ones."
+  },
+  "eventSchedule": {
+    "heading": "Event Schedule"
+  },
+  "locationAndRegistration": {
+    "heading": "Event Location",
+    "text": "CAWAP Community Center",
+    "text2": "101 West Dr Unit C2",
+    "text3": "Brampton, ON L6T 2J6",
+    "text4": "Canada",
+    "text5": "647-581-5901",
+    "text6": "info@cawap.ca",
+    "subheading": "Important Information",
+    "label": "Free admission for all community members",
+    "label2": "Registration recommended but not required",
+    "label3": "Bring your family and friends",
+    "label4": "Parking available on-site",
+    "subheading2": "Register Your Family"
+  },
+  "successMessageShowsWhenRegistration": {
+    "text": "✅ Registration successful! We'll see you at the event!"
+  },
+  "theRegistrationForm": {
+    "fieldLabel": "Full Name *",
+    "placeholder": "Enter your full name",
+    "fieldLabel2": "Email Address *",
+    "placeholder2": "your.email@example.com",
+    "fieldLabel3": "Phone Number *",
+    "placeholder3": "(123) 456-7890",
+    "fieldLabel4": "Number of Attendees *",
+    "placeholder4": "How many people will attend?",
+    "fieldLabel5": "Number of Children",
+    "placeholder5": "Number of children attending"
+  },
+  "volunteerCta": {
+    "image": "https://readdy.ai/api/search-image?query=diverse%20volunteers%20working%20together%20preparing%20Christmas%20gifts%20and%20decorations%20for%20community%20event%2C%20warm%20collaborative%20atmosphere%20with%20golden%20lighting%2C%20people%20smiling%20and%20helping%20each%20other%2C%20spirit%20of%20giving%20and%20community%20service&width=1920&height=600&seq=volunteer-cta&orientation=landscape",
+    "imageAlt": "Volunteer",
+    "heading": "Volunteer with Us",
+    "text": "Help make this Christmas special for families in our community. We need volunteers for setup, serving food, activities coordination, and more. Join our team and spread the holiday cheer!",
+    "button": "Sign Up to Volunteer"
+  }
+}

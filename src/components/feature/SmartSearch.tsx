@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import copy from '../../content/shared.json';
+// Text, images and links: src/content/shared.json (editable in the website editors).
 
 interface SearchResult {
   title: string;
@@ -19,35 +21,8 @@ const SmartSearch = () => {
   const navigate = useNavigate();
 
   // All searchable content
-  const searchableContent: SearchResult[] = [
-    // Programs
-    { title: 'Youth Leadership Program', description: 'Nurturing the boundless potential of our youth', path: '/youth-leadership', category: 'program' },
-    { title: 'New Breed Women of Substance', description: 'Empowering women to become strong, self-driven individuals', path: '/new-breed-women-of-substance', category: 'program' },
-    { title: 'Capital G-Girls', description: 'Mentorship and training program for young girls', path: '/capital-g-girls', category: 'program' },
-    { title: 'Heart-Wise Seniors', description: 'Creating a secure and inclusive haven for seniors', path: '/heart-wise-seniors', category: 'program' },
-    { title: 'Children Summer Camp', description: 'Affordable and enchanting summer camp for children', path: '/children-summer-camp', category: 'program' },
-    { title: 'Sankofa Royale Awards', description: 'Celebrating the black community across various sectors', path: '/sankofa-royale-awards', category: 'program' },
-    { title: 'Food Bank', description: 'Access to nutritious food for our community', path: '/food-bank', category: 'program' },
-    { title: 'Women Empowerment', description: 'Equipping women with skills and confidence', path: '/women-empowerment', category: 'program' },
-    { title: 'JavaScript Program', description: 'Bridging the diversity gap in tech sector', path: '/javascript-program', category: 'program' },
-    { title: 'Financial Literacy', description: 'Guiding path to financial well-being', path: '/financial-literacy', category: 'program' },
-    { title: 'Cultural Events', description: 'Celebrating culture and diversity', path: '/cultural-events', category: 'program' },
-    { title: 'Disability Inclusion - Mental Health', description: 'Supporting persons with disabilities and eradicating stigma surrounding mental illnesses', path: '/mental-health', category: 'program' },
-    { title: 'Newcomers Settlement Program', description: 'Supporting newcomers in their new journey', path: '/newcomers-settlement-program', category: 'program' },
-    { title: 'Project and Evaluation', description: 'Bringing impactful projects to life', path: '/project-and-evaluation', category: 'program' },
-    
-    // Pages
-    { title: 'About CAWAP', description: 'Learn about our mission and vision', path: '/about', category: 'page' },
-    { title: 'Contact Us', description: 'Get in touch with our team', path: '/contact', category: 'page' },
-    { title: 'Donate', description: 'Support our programs and initiatives', path: '/donate', category: 'page' },
-    { title: 'Gallery', description: 'View photos from our events and programs', path: '/gallery', category: 'page' },
-    { title: 'All Programs', description: 'Browse all our programs', path: '/programs', category: 'page' },
-    
-    // Events
-    { title: 'Upcoming Events', description: 'See what\'s coming up', path: '/upcoming-events', category: 'event' },
-    { title: 'Past Events', description: 'View our event history', path: '/past-events', category: 'event' },
-    { title: 'Christmas Event', description: 'Annual Christmas celebration', path: '/christmas-event', category: 'event' }
-  ];
+  // category must be "program", "event" or "page" (sets the icon and colour of a result).
+  const searchableContent = copy.smartSearch.searchableContent as SearchResult[];
 
   // Load recent searches from localStorage
   useEffect(() => {
@@ -172,13 +147,11 @@ const SmartSearch = () => {
           setTimeout(() => inputRef.current?.focus(), 100);
         }}
         className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-white transition-all duration-300 cursor-pointer group shadow-md border border-gray-200"
-        aria-label="Search"
+        aria-label={copy.smartSearch.searchButton.ariaLabel}
       >
         <i className="ri-search-line text-lg text-[#3c1053]"></i>
-        <span className="hidden md:inline text-sm text-gray-800 font-medium">Search</span>
-        <span className="hidden lg:inline text-xs text-gray-600 ml-2 px-2 py-0.5 rounded bg-gray-100">
-          Ctrl+K
-        </span>
+        <span className="hidden md:inline text-sm text-gray-800 font-medium">{copy.smartSearch.searchButton.label}</span>
+        <span className="hidden lg:inline text-xs text-gray-600 ml-2 px-2 py-0.5 rounded bg-gray-100">{copy.smartSearch.searchButton.label2}</span>
       </button>
 
       {/* Search Modal */}
@@ -201,7 +174,7 @@ const SmartSearch = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Search programs, events, resources..."
+                placeholder={copy.smartSearch.searchInput.placeholder}
                 className="flex-1 text-lg outline-none text-gray-800 placeholder-gray-400"
                 autoComplete="off"
               />
@@ -220,13 +193,11 @@ const SmartSearch = () => {
               {query === '' && recentSearches.length > 0 && (
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase">Recent Searches</h3>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase">{copy.smartSearch.results.subheading}</h3>
                     <button
                       onClick={clearRecent}
                       className="text-xs text-gray-400 hover:text-gray-600 cursor-pointer"
-                    >
-                      Clear
-                    </button>
+                    >{copy.smartSearch.results.button}</button>
                   </div>
                   <div className="space-y-1">
                     {recentSearches.map((search, index) => (
@@ -246,8 +217,8 @@ const SmartSearch = () => {
               {query !== '' && results.length === 0 && (
                 <div className="p-12 text-center">
                   <i className="ri-search-line text-5xl text-gray-300 mb-4"></i>
-                  <p className="text-gray-500">No results found for "{query}"</p>
-                  <p className="text-sm text-gray-400 mt-2">Try different keywords</p>
+                  <p className="text-gray-500">{copy.smartSearch.results.text}{query}"</p>
+                  <p className="text-sm text-gray-400 mt-2">{copy.smartSearch.results.text2}</p>
                 </div>
               )}
 
@@ -287,18 +258,12 @@ const SmartSearch = () => {
               <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1">
                   <kbd className="px-2 py-1 bg-white rounded border border-gray-300">↑</kbd>
-                  <kbd className="px-2 py-1 bg-white rounded border border-gray-300">↓</kbd>
-                  Navigate
-                </span>
+                  <kbd className="px-2 py-1 bg-white rounded border border-gray-300">↓</kbd>{copy.smartSearch.footer.label}</span>
                 <span className="flex items-center gap-1">
-                  <kbd className="px-2 py-1 bg-white rounded border border-gray-300">Enter</kbd>
-                  Select
-                </span>
+                  <kbd className="px-2 py-1 bg-white rounded border border-gray-300">{copy.smartSearch.footer.text}</kbd>{copy.smartSearch.footer.label2}</span>
               </div>
               <span className="flex items-center gap-1">
-                <kbd className="px-2 py-1 bg-white rounded border border-gray-300">Esc</kbd>
-                Close
-              </span>
+                <kbd className="px-2 py-1 bg-white rounded border border-gray-300">{copy.smartSearch.footer.text2}</kbd>{copy.smartSearch.footer.label3}</span>
             </div>
           </div>
         </div>

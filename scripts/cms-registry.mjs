@@ -29,6 +29,25 @@ export const ENTRIES = [
   { group: 'settings', name: 'footer', label: 'Footer', file: 'src/content/footer.json' },
   { group: 'settings', name: 'donation-banner', label: 'Donation banner (bottom of pages)', file: 'src/content/donation-banner.json' },
 
+  { group: 'settings', name: 'shared', label: 'Shared sections (search, impact map, gallery viewer)', file: 'src/content/shared.json' },
+
+  // ---- Pages ----
+  { group: 'pages', name: 'page-home', label: 'Home page', file: 'src/content/pages/home.json' },
+  { group: 'pages', name: 'page-about', label: 'About', file: 'src/content/pages/about.json' },
+  { group: 'pages', name: 'page-programs', label: 'Programs (overview page)', file: 'src/content/pages/programs.json' },
+  { group: 'pages', name: 'page-food-bank', label: 'Food Bank', file: 'src/content/pages/food-bank.json' },
+  { group: 'programs', name: 'page-heart-wise-seniors', label: 'Program: Heart Wise Seniors', file: 'src/content/pages/heart-wise-seniors.json' },
+  { group: 'programs', name: 'page-mental-health', label: 'Program: Disability Inclusion - Mental Health', file: 'src/content/pages/mental-health.json' },
+  { group: 'programs', name: 'page-javascript-program', label: 'Program: Javascript for Afro Black Women', file: 'src/content/pages/javascript-program.json' },
+  { group: 'pages', name: 'page-trainings', label: 'Trainings page (headings and text)', file: 'src/content/pages/trainings.json' },
+  { group: 'pages', name: 'page-upcoming-events', label: 'Upcoming Events page (headings and text)', file: 'src/content/pages/upcoming-events.json' },
+  { group: 'pages', name: 'page-past-events', label: 'Past Events page (headings and text)', file: 'src/content/pages/past-events.json' },
+  { group: 'pages', name: 'page-christmas-event', label: 'Christmas Event', file: 'src/content/pages/christmas-event.json' },
+  { group: 'pages', name: 'page-gallery', label: 'Gallery page', file: 'src/content/pages/gallery.json' },
+  { group: 'pages', name: 'page-contact', label: 'Contact page', file: 'src/content/pages/contact.json' },
+  { group: 'pages', name: 'page-donate', label: 'Donate page', file: 'src/content/pages/donate.json' },
+  { group: 'pages', name: 'page-not-found', label: 'Page not found (404)', file: 'src/content/pages/not-found.json' },
+
   // ---- Events & trainings ----
   {
     group: 'events',

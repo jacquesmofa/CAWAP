@@ -1,0 +1,140 @@
+{
+  "programs": [
+    {
+      "title": "Youth Leadership Program",
+      "description": "The heart and soul of our program lies in its unwavering dedication to nurturing the boundless potential of our youth, propelling them towards a future brimming with endless possibilities and holistic well-being.",
+      "link": "/youth-leadership",
+      "icon": "ri-team-line"
+    },
+    {
+      "title": "New Breed Women of Substance",
+      "description": "Women of Substance, a groundbreaking program dedicated to empowering women to become strong, self-driven individuals who shape their own destinies.",
+      "link": "/new-breed-women-of-substance",
+      "icon": "ri-user-star-line"
+    },
+    {
+      "title": "Capital G-Girls",
+      "description": "A transformative mentorship and training program meticulously crafted to uplift and empower young girls who dare to dream and aspire to achieve remarkable life goals.",
+      "link": "/capital-g-girls",
+      "icon": "ri-women-line"
+    },
+    {
+      "title": "Heart-Wise Seniors",
+      "description": "Our unwavering commitment is to create a secure and inclusive haven for seniors, where meaningful connections flourish, vibrant social activities abound, and knowledge on significant subjects expands.",
+      "link": "/heart-wise-seniors",
+      "icon": "ri-heart-pulse-line"
+    },
+    {
+      "title": "Children Summer Camp",
+      "description": "CAWAP, with a deep commitment to inclusivity and the belief that every child deserves the chance to immerse themselves in the joy and wonder of summer camp, proudly presents our affordable and enchanting children's summer camp.",
+      "link": "/children-summer-camp",
+      "icon": "ri-sun-line"
+    },
+    {
+      "title": "Sankofa Royale Awards",
+      "description": "The Canadian and African Women Aid Program has recognized a concerning lack of celebration and representation of the black community across various sectors.",
+      "link": "/sankofa-royale-awards",
+      "icon": "ri-award-line"
+    },
+    {
+      "title": "Food Bank",
+      "description": "At CAWAP, we recognize that access to nutritious food is a fundamental right that should be available to every individual in our community.",
+      "link": "/food-bank",
+      "icon": "ri-restaurant-line"
+    },
+    {
+      "title": "Women Empowerment",
+      "description": "Our Women Empowerment Program is a beacon of support and opportunity designed to equip women with the skills, confidence, and resources needed to excel in the competitive job market.",
+      "link": "/women-empowerment",
+      "icon": "ri-empathize-line"
+    },
+    {
+      "title": "JavaScript Program",
+      "description": "We are committed to bridging the diversity gap in the tech sector and providing equitable opportunities for underrepresented communities.",
+      "link": "/javascript-program",
+      "icon": "ri-code-line"
+    },
+    {
+      "title": "Financial Literacy",
+      "description": "We understand that financial literacy is the cornerstone of a secure and prosperous future. Our program serves as a guiding light, illuminating the path to financial well-being for individuals from all walks of life.",
+      "link": "/financial-literacy",
+      "icon": "ri-money-dollar-circle-line"
+    },
+    {
+      "title": "Cultural Events",
+      "description": "At CAWAP, we firmly believe that culture is not only an integral part of a person's identity but also a precious thread that weaves our communities together.",
+      "link": "/cultural-events",
+      "icon": "ri-global-line"
+    },
+    {
+      "title": "Disability Inclusion - Mental Health",
+      "description": "CAWAP supports persons with disabilities through advocacy, accessibility awareness, skills development, employment readiness, community referrals, and inclusive programming, while also eradicating the stigma surrounding mental health.",
+      "link": "/mental-health",
+      "icon": "ri-mental-health-line"
+    },
+    {
+      "title": "Homelessness Support Program",
+      "description": "At CAWAP, we believe that every person deserves warmth, comfort, and a sense of belonging, regardless of their circumstances.",
+      "link": "/newcomers-settlement-program",
+      "icon": "ri-home-heart-line"
+    },
+    {
+      "title": "Newcomer's Settlement Program",
+      "description": "At CAWAP, we understand that starting a new life in a foreign land can be both exciting and challenging.",
+      "link": "/newcomers-settlement-program",
+      "icon": "ri-flight-takeoff-line"
+    },
+    {
+      "title": "Project and Evaluation",
+      "description": "At CAWAP, we understand the critical role that funding plays in bringing impactful projects to life.",
+      "link": "/project-and-evaluation",
+      "icon": "ri-file-list-3-line"
+    }
+  ],
+  "heroSection": {
+    "backgroundImage": "https://readdy.ai/api/search-image?query=diverse%20group%20of%20empowered%20african%20and%20caribbean%20women%20standing%20together%20in%20solidarity%20with%20confident%20smiles%2C%20professional%20community%20center%20setting%20with%20warm%20welcoming%20atmosphere%2C%20natural%20lighting%20creating%20inspiring%20uplifting%20mood%2C%20modern%20facility%20showing%20unity%20sisterhood%20and%20cultural%20diversity%2C%20women%20of%20various%20ages%20representing%20community%20strength%20and%20empowerment%2C%20bright%20colors%20symbolizing%20hope%20and%20transformation&width=1920&height=400&seq=about-hero&orientation=landscape",
+    "title": "About CAWAP",
+    "text": "Empowering Communities, Transforming Lives"
+  },
+  "aboutContent": {
+    "heading": "Who We Are",
+    "text": "Canadian and African Women Aid Program (CAWAP) is a non-profit organization dedicated to empowering Afro-Caribbean and Canadian women by fostering skill development, promoting economic growth, advocating for gender equality, celebrating cultural diversity, overcoming poverty, and enhancing community accessibility through a range of programs and services.",
+    "text2": "At CAWAP, we firmly believe in the development and capacity building of all individuals, with a particular focus on young girls, women, and youths. Therefore, a significant portion of our programs is dedicated to youth development, leadership initiatives, girls' advocacy and educational projects, entrepreneurship and vocational skills training, as well as education and financial management programs for women. We also recognize the valuable contributions of our senior citizens and have specific initiatives catered to their welfare. Our ultimate goal at CAWAP is to create a global society that offers equal opportunities for a better life for everyone.",
+    "text3": "To achieve our mission, CAWAP actively engages and collaborates with local communities, like-minded non-profit organizations, and government agencies. We firmly believe in the collective effort to build an inclusive world where no one is left behind.",
+    "image": "https://www.cawap.ca/wp-content/uploads/elementor/thumbs/7cd552c1-702a-4fa9-b28a-70f5452fa71e-oqb2d37mwqq5fpht61935igx5t5ncophr3lndfm0kw.jpg",
+    "imageAlt": "About CAWAP"
+  },
+  "additionalContent": {
+    "text": "Over the years, we have successfully organized and facilitated annual entrepreneurial training programs, empowering individuals with the necessary tools and knowledge to thrive in their business ventures. Additionally, we conduct regular youth leadership and empowerment sessions on a quarterly basis. As part of our financial support initiatives, we have provided capital assistance to women and youths, helping them realize their entrepreneurial aspirations. Furthermore, we prioritize the social, health, and general well-being of our senior citizens by engaging them in various activities that address their specific needs and challenges.",
+    "text2": "At CAWAP, we remain committed to our vision of empowering individuals and fostering positive change within our communities."
+  },
+  "missionAndVision": {
+    "subheading": "Our Mission",
+    "text": "To empower Afro-Caribbean and Canadian women through comprehensive programs that promote economic development, cultural diversity, gender equality, and community accessibility, enabling them to overcome poverty and achieve their full potential.",
+    "subheading2": "Our Vision",
+    "text2": "A world where every woman has equal opportunities to thrive, where cultural diversity is celebrated, and where communities are strengthened through the empowerment of women and youth."
+  },
+  "values": {
+    "heading": "Our Core Values",
+    "subheading": "Empowerment",
+    "text": "We believe in empowering individuals to take control of their lives and achieve their goals.",
+    "subheading2": "Community",
+    "text2": "We foster strong, supportive communities where everyone can thrive together.",
+    "subheading3": "Equality",
+    "text3": "We promote gender equality and equal opportunities for all members of our community."
+  },
+  "programsSection": {
+    "heading": "Our Programs",
+    "text": "CAWAP programs focuses on human development and capacity building for the youths, women and seniors of our communities."
+  },
+  "founderSection": {
+    "image": "https://i.imgur.com/Vk7k4LU.png",
+    "imageAlt": "Rev. Irine Ashu PhD",
+    "heading": "Meet Our Founder",
+    "text": "Rev. Irine Ashu, PhD, is the founder and CEO of Canadian and African Women Aid Program (CAWAP). She is the pastor of Jesus Revival for All Nations. Her journey into philanthropism started in her native country, Cameroun where she formed the Community Aid Center. This was informed by her personal experiences and challenges growing up.",
+    "text2": "Rev. Ashu, is also an entrepreneur. She is the founder of Heavenly Breeze Cosmetics and Gospel Lane Media Inc. Gospel lane media is a dedicated platform for sharing information, messages, news and education. She leverages her worldwide travels and experiences as a life coach, a mentor, an advocate, a community and social service worker.",
+    "text3": "Her dynamism has been described as infectious by people around her. Her uncanny leadership abilities are evident in the many organisations she leads at the same time. Rev. Ashu is also a doting mother of four boys.",
+    "subheading": "Rev Irine Ashu PhD",
+    "text4": "Founder & CEO, CAWAP"
+  }
+}

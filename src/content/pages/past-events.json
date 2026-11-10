@@ -1,0 +1,18 @@
+{
+  "heroSection": {
+    "title": "Past Events",
+    "text": "Celebrating our community's journey through memorable programs and events"
+  },
+  "flyersGridSection": {
+    "text": "Take a look at the amazing programs and events we've hosted for our community",
+    "label": "View Details",
+    "heading": "Events Archive Coming Soon",
+    "text2": "We're building our events archive. Check back soon to see our past programs and celebrations!",
+    "link": "View Photo Gallery"
+  },
+  "callToAction": {
+    "heading": "Join Our Next Event",
+    "text": "Be part of our community story! Check out our upcoming events and programs.",
+    "link": "View Upcoming Events"
+  }
+}
