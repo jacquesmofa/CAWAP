@@ -24,6 +24,8 @@ interface GalleryCategory {
   icon: string;
   description?: string;
   ext?: string;
+  /** Photos uploaded in the website editors (shown before the numbered files). */
+  addedPhotos?: string[];
 }
 
 interface SiteAssetsConfig {
@@ -135,11 +137,15 @@ function generateAssetsFromConfig(config: SiteAssetsConfig): GeneratedMediaAsset
   
   if (config.gallery) {
     Object.entries(config.gallery).forEach(([categoryKey, categoryConfig]) => {
-      const urls = generateNumberedUrls(baseUrl, {
-        path: categoryConfig.path,
-        count: categoryConfig.count,
-        ext: categoryConfig.ext || 'png'
-      });
+      const urls = [
+        // Photos uploaded in the website editors come first (newest content).
+        ...(categoryConfig.addedPhotos ?? []).filter(Boolean),
+        ...generateNumberedUrls(baseUrl, {
+          path: categoryConfig.path,
+          count: categoryConfig.count,
+          ext: categoryConfig.ext || 'png'
+        }),
+      ];
 
       // Separate photos and videos
       const photos: string[] = [];

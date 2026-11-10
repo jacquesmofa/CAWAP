@@ -29,6 +29,13 @@ export const ENTRIES = [
   { group: 'settings', name: 'footer', label: 'Footer', file: 'src/content/footer.json' },
   { group: 'settings', name: 'donation-banner', label: 'Donation banner (bottom of pages)', file: 'src/content/donation-banner.json' },
 
+  {
+    group: 'settings',
+    name: 'media',
+    label: 'Photo gallery & media folders',
+    file: 'public/media/site-assets.json',
+    description: 'Gallery categories. Upload new photos under "Added photos"; older photos are numbered files on the server.',
+  },
   { group: 'settings', name: 'shared', label: 'Shared sections (search, impact map, gallery viewer)', file: 'src/content/shared.json' },
 
   // ---- Pages ----
@@ -80,6 +87,13 @@ export const ENTRIES = [
 
 /** Labels and help text by field name, used wherever that field name appears. */
 export const FIELD_HINTS = {
+  addedPhotos: { label: 'Added photos (upload here)', description: 'Photos uploaded here appear first in this category. Keep each under 2 MB.', itemName: 'photo' },
+  photo: { label: 'Photo', type: 'image' },
+  count: { label: 'How many numbered files are on the server', description: 'Files named 1.png, 2.png ... in the folder below (uploaded by FTP).' },
+  path: { label: 'Server folder (inside /media)' },
+  ext: { label: 'File type of the numbered files', description: 'e.g. png, jpg, mp4, pdf' },
+  baseUrl: { label: 'Media address', description: 'Do not change unless the website address changes.' },
+  slides: { label: 'Slides' },
   brandName: { label: 'Organization name' },
   tagline: { label: 'Tagline (under the name)' },
   phoneDisplay: { label: 'Phone (as shown)', description: 'e.g. 647-581-5901' },

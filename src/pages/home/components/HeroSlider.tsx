@@ -23,11 +23,16 @@ const HeroSlider = () => {
     setFailedImages(prev => new Set(prev).add(index));
   };
 
+  // A photo uploaded for the slide in the editor wins; otherwise the numbered
+  // hero photo on the server (/media/hero/<n>.png) is used.
+  const slideImage = (index: number): string | undefined => slides[index]?.image || assets?.hero?.[index];
+
   const getBackgroundImage = (index: number) => {
-    if (!assets?.hero || failedImages.has(index)) {
+    const image = slideImage(index);
+    if (!image || failedImages.has(index)) {
       return 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)';
     }
-    return `url(${assets.hero[index]})`;
+    return `url(${image})`;
   };
 
   return (
@@ -49,9 +54,9 @@ const HeroSlider = () => {
             }}
           >
             {/* Load image to detect errors */}
-            {assets?.hero?.[index] && !failedImages.has(index) && (
+            {slideImage(index) && !failedImages.has(index) && (
               <img
-                src={assets.hero[index]}
+                src={slideImage(index)}
                 alt=""
                 className="hidden"
                 onError={() => handleImageError(index)}

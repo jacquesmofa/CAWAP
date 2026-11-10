@@ -6,21 +6,24 @@
         "subtitle": "Building Stronger Futures Together",
         "description": "Join us in creating lasting change through education, support, and community engagement.",
         "cta": "Explore Our Programs",
-        "link": "/programs"
+        "link": "/programs",
+        "image": ""
       },
       {
         "title": "Youth Leadership",
         "subtitle": "Nurturing Tomorrow's Leaders",
         "description": "Empowering young minds with skills, confidence, and opportunities to excel.",
         "cta": "Learn More",
-        "link": "/youth-leadership"
+        "link": "/youth-leadership",
+        "image": ""
       },
       {
         "title": "Community Support",
         "subtitle": "Together We Rise",
         "description": "Providing essential resources and support to families in need across our community.",
         "cta": "Get Involved",
-        "link": "/contact"
+        "link": "/contact",
+        "image": ""
       }
     ]
   },
