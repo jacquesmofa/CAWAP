@@ -1,13 +1,22 @@
 name: 🚀 Build and Deploy CAWAP Website
 
+# Runs on every push to main, including every save made in the website
+# editors (Pages CMS or Sveltia CMS at /admin). If the build fails, nothing
+# is uploaded and the live site stays as it was.
 on:
   push:
     branches:
-      - main  # Runs every time you push to the main branch
+      - main
+  workflow_dispatch: # "Run workflow" button for a manual redeploy
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false # queue back-to-back saves instead of cutting an upload short
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: 🚚 Checkout code
         uses: actions/checkout@v4
@@ -16,9 +25,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: 📦 Install dependencies
-        run: npm install
+      - name: 📦 Install exact dependency versions
+        run: npm ci
 
       - name: 🔨 Build project
         run: npm run build
@@ -29,5 +39,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/  # Vite puts the final website here
-          server-dir: ./      # This maps to the directory you set in HostGator
+          local-dir: ./out/ # Vite puts the final website here
+          server-dir: ./ # The directory set for this FTP account in HostGator

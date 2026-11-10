@@ -1,0 +1,83 @@
+# Sveltia CMS at https://www.cawap.ca/admin/ - editor for people with a GitHub account.
+# Edits the same files as Pages CMS (.pages.yml at the repo root). Keep both in sync.
+#
+# Sign in today: "Sign In Using Access Token" with a fine-grained GitHub token
+# limited to jacquesmofa/CAWAP (Contents: Read and write).
+# "Sign In with GitHub" needs the free Cloudflare Worker (sveltia-cms-auth);
+# once it exists, uncomment base_url and set it to the Worker's address.
+
+backend:
+  name: github
+  repo: jacquesmofa/CAWAP
+  branch: main
+  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
+
+media_folder: public/media/uploads
+public_folder: /media/uploads
+
+collections:
+  - name: content
+    label: Website content
+    files:
+      - name: events
+        label: Events & flyers
+        file: src/content/events.json
+        format: json
+        fields:
+          - name: items
+            label: Events
+            label_singular: Event
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            hint: Future dates appear under Upcoming Events automatically; past dates move to Past Events.
+            fields:
+              - { name: id, label: Short ID, widget: string, hint: "Lowercase words joined by dashes, unique, e.g. summer-camp-2027. Never change it after publishing." }
+              - { name: title, label: Event title, widget: string }
+              - { name: imageUrl, label: Flyer image, widget: image, hint: "Portrait flyer (JPG or PNG), under 2 MB." }
+              - { name: date, label: Date, widget: datetime, time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
+              - { name: description, label: Short description, widget: text }
+              - { name: time, label: Time, widget: string, required: false }
+              - { name: location, label: Location, widget: string, required: false }
+              - { name: cost, label: Cost, widget: string, required: false }
+              - { name: registrationLink, label: Registration link, widget: string, required: false }
+              - { name: eventLink, label: Related page on this site, widget: string, required: false }
+              - name: hosts
+                label: Hosts / speakers
+                widget: list
+                required: false
+                fields:
+                  - { name: name, label: Name, widget: string }
+                  - { name: title, label: Role or organization, widget: string }
+              - { name: whoShouldAttend, label: Who should attend, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+              - { name: whatYouWillLearn, label: What you will learn, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+              - { name: bonuses, label: Bonuses for attendees, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+              - { name: contactEmail, label: Contact email, widget: string, required: false }
+              - { name: contactPhone, label: Contact phone, widget: string, required: false }
+
+      - name: trainings
+        label: Trainings
+        file: src/content/trainings.json
+        format: json
+        fields:
+          - name: items
+            label: Trainings
+            label_singular: Training
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: id, label: Short ID, widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: shortDescription, label: Short description (cards), widget: string }
+              - { name: description, label: Full description, widget: text }
+              - { name: category, label: Category, widget: string }
+              - { name: image, label: Card image, widget: image }
+              - { name: bannerImage, label: Banner image (optional), widget: image, required: false }
+              - { name: icon, label: Icon (Remix Icon name), widget: string, required: false }
+              - { name: duration, label: Duration, widget: string, required: false }
+              - { name: schedule, label: Schedule, widget: string, required: false }
+              - { name: instructor, label: Instructor, widget: string, required: false }
+              - { name: level, label: Level, widget: string, required: false }
+              - { name: benefits, label: Benefits, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+              - { name: requirements, label: Requirements, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+              - { name: contactInfo, label: Contact note, widget: string, required: false }
+              - { name: registrationLink, label: Registration link, widget: string, required: false }

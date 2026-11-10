@@ -1,0 +1,98 @@
+# Pages CMS (https://app.pagescms.org): editor for people without a GitHub account.
+# Edits the same files as Sveltia CMS at /admin. Every save goes live on cawap.ca
+# about 2 minutes later (GitHub Actions builds and uploads to HostGator).
+
+media:
+  input: public/media/uploads
+  output: /media/uploads
+  rename: safe
+  categories: [image, document]
+
+settings:
+  commit:
+    identity: user
+
+content:
+  - name: events
+    label: Events & flyers
+    type: file
+    path: src/content/events.json
+    format: json
+    fields:
+      - name: items
+        label: Events
+        type: object
+        list: true
+        description: Future dates appear under Upcoming Events automatically; past dates move to Past Events.
+        fields:
+          - name: id
+            label: Short ID
+            type: string
+            required: true
+            description: Lowercase words joined by dashes, unique, e.g. summer-camp-2027. Never change it after publishing.
+          - { name: title, label: Event title, type: string, required: true }
+          - name: imageUrl
+            label: Flyer image
+            type: image
+            required: true
+            description: Portrait flyer (JPG or PNG), under 2 MB.
+          - { name: date, label: Date, type: date, required: true }
+          - { name: description, label: Short description, type: text, required: true }
+          - { name: time, label: Time, type: string, description: "e.g. 11:00 AM - 2:00 PM" }
+          - { name: location, label: Location, type: string }
+          - { name: cost, label: Cost, type: string, description: "e.g. FREE (Registration Required)" }
+          - name: registrationLink
+            label: Registration link
+            type: string
+            description: A Google Form or other full https:// link. Leave empty if no registration.
+          - name: eventLink
+            label: Related page on this site
+            type: string
+            description: Optional, e.g. /contact or /cultural-events
+          - name: hosts
+            label: Hosts / speakers
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: title, label: Role or organization, type: string }
+          - { name: whoShouldAttend, label: Who should attend, type: string, list: true }
+          - { name: whatYouWillLearn, label: What you will learn, type: string, list: true }
+          - { name: bonuses, label: Bonuses for attendees, type: string, list: true }
+          - { name: contactEmail, label: Contact email, type: string }
+          - { name: contactPhone, label: Contact phone, type: string }
+
+  - name: trainings
+    label: Trainings
+    type: file
+    path: src/content/trainings.json
+    format: json
+    fields:
+      - name: items
+        label: Trainings
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: Short ID
+            type: string
+            required: true
+            description: Lowercase words joined by dashes, unique, e.g. cpr-first-aid.
+          - { name: title, label: Title, type: string, required: true }
+          - { name: shortDescription, label: Short description (cards), type: string, required: true }
+          - { name: description, label: Full description, type: text, required: true }
+          - { name: category, label: Category, type: string, required: true, description: "e.g. Health & Safety" }
+          - { name: image, label: Card image, type: image, required: true }
+          - { name: bannerImage, label: Banner image (optional), type: image }
+          - name: icon
+            label: Icon
+            type: string
+            description: A Remix Icon name, e.g. ri-heart-pulse-line (see remixicon.com).
+          - { name: duration, label: Duration, type: string }
+          - { name: schedule, label: Schedule, type: string }
+          - { name: instructor, label: Instructor, type: string }
+          - { name: level, label: Level, type: string }
+          - { name: benefits, label: Benefits, type: string, list: true }
+          - { name: requirements, label: Requirements, type: string, list: true }
+          - { name: contactInfo, label: Contact note, type: string }
+          - { name: registrationLink, label: Registration link, type: string, description: "A full https:// link or a page like /contact" }
