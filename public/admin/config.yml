@@ -675,6 +675,34 @@ collections:
                       label: "Item"
                       required: false
                       widget: "image"
+      - name: "seo"
+        label: "Google: page titles & descriptions"
+        file: "src/content/seo.json"
+        format: "json"
+        fields:
+          - name: "siteUrl"
+            label: "Website address"
+            required: false
+            hint: "Do not change unless the domain changes."
+            widget: "string"
+          - name: "pages"
+            label: "Pages"
+            required: false
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - name: "path"
+                label: "Server folder (inside /media)"
+                required: false
+                widget: "string"
+              - name: "title"
+                label: "Title"
+                required: false
+                widget: "text"
+              - name: "description"
+                label: "Description"
+                required: false
+                widget: "text"
       - name: "shared"
         label: "Shared sections (search, impact map, gallery viewer)"
         file: "src/content/shared.json"

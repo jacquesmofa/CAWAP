@@ -36,6 +36,13 @@ export const ENTRIES = [
     file: 'public/media/site-assets.json',
     description: 'Gallery categories. Upload new photos under "Added photos"; older photos are numbered files on the server.',
   },
+  {
+    group: 'settings',
+    name: 'seo',
+    label: 'Google: page titles & descriptions',
+    file: 'src/content/seo.json',
+    description: 'What Google and social media show for each page. Titles under 65 characters, descriptions under 160.',
+  },
   { group: 'settings', name: 'shared', label: 'Shared sections (search, impact map, gallery viewer)', file: 'src/content/shared.json' },
 
   // ---- Pages ----
@@ -87,6 +94,8 @@ export const ENTRIES = [
 
 /** Labels and help text by field name, used wherever that field name appears. */
 export const FIELD_HINTS = {
+  siteUrl: { label: 'Website address', description: 'Do not change unless the domain changes.' },
+  pages: { label: 'Pages' },
   addedPhotos: { label: 'Added photos (upload here)', description: 'Photos uploaded here appear first in this category. Keep each under 2 MB.', itemName: 'photo' },
   photo: { label: 'Photo', type: 'image' },
   count: { label: 'How many numbered files are on the server', description: 'Files named 1.png, 2.png ... in the folder below (uploaded by FTP).' },

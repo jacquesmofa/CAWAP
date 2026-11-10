@@ -4,11 +4,13 @@ import { MediaProvider } from './context/MediaContext';
 import CustomCursor from './components/effects/CustomCursor';
 import InteractiveBackground from './components/effects/InteractiveBackground';
 import ScrollProgressBar from './components/effects/ScrollProgressBar';
+import PageSeo from './components/feature/PageSeo';
 
 function App() {
   return (
     <BrowserRouter basename={__BASE_PATH__}>
       <MediaProvider>
+        <PageSeo />
         <ScrollProgressBar />
         <CustomCursor />
         <InteractiveBackground />

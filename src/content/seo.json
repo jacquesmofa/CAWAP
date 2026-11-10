@@ -1,0 +1,125 @@
+{
+  "siteUrl": "https://www.cawap.ca",
+  "pages": [
+    {
+      "path": "/",
+      "title": "Brampton Community Empowerment & Food Bank Services | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "C.A.W.A.P provides comprehensive community empowerment and Food Bank services in Brampton serving 2,500+ families monthly. Our Food Bank offers nutritious food assistance alongside youth leadership, women empowerment, disability inclusion, mental health support, financial literacy, and newcomer settlement programs for African and Caribbean communities in Ontario."
+    },
+    {
+      "path": "/about",
+      "title": "About Us | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Canadian and African Women Aid Program (CAWAP) is a not-for-profit/charitable organization that is set to empower Afro-Caribbean and Canadian women in…"
+    },
+    {
+      "path": "/programs",
+      "title": "Our Programs | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "CAWAP focus on human development and capacity building for the youth, women, seniors for the development of our communities."
+    },
+    {
+      "path": "/gallery",
+      "title": "Gallery | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Explore our journey through photos and videos showcasing our programs, events, and community impact"
+    },
+    {
+      "path": "/contact",
+      "title": "Contact Us | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "We would love to hear from you. Please feel free to reach out to us with any questions, comments, or inquiries."
+    },
+    {
+      "path": "/donate",
+      "title": "Donate | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Support CAWAP's work with women, youth, seniors and families in Brampton. Your donation funds the food bank, trainings and community programs."
+    },
+    {
+      "path": "/upcoming-events",
+      "title": "Upcoming Events | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Don't miss out on these amazing upcoming programs and events. Click on any event to see full details and register!"
+    },
+    {
+      "path": "/past-events",
+      "title": "Past Events | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Take a look at the amazing programs and events we've hosted for our community"
+    },
+    {
+      "path": "/christmas-event",
+      "title": "Christmas Event | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Toys and gifts for children from families in need, spreading joy and creating magical memories"
+    },
+    {
+      "path": "/trainings",
+      "title": "Trainings | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Join hundreds of community members who have transformed their lives through our training programs"
+    },
+    {
+      "path": "/youth-leadership",
+      "title": "Youth Leadership Program | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "The heart and soul of our program lies in its unwavering dedication to nurturing the boundless potential of our youth, propelling them towards a future…"
+    },
+    {
+      "path": "/capital-g-girls",
+      "title": "Capital G-Girls | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "A transformative mentorship and training program meticulously crafted to uplift and empower young girls who dare to dream and aspire to achieve remarkable…"
+    },
+    {
+      "path": "/heart-wise-seniors",
+      "title": "Heart-Wise Seniors | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Our unwavering commitment is to create a secure and inclusive haven for seniors, where meaningful connections flourish, vibrant social activities abound, and…"
+    },
+    {
+      "path": "/women-empowerment",
+      "title": "Women Empowerment | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Our Women Empowerment Program is a beacon of support and opportunity designed to equip women with the skills, confidence, and resources needed to excel in…"
+    },
+    {
+      "path": "/sankofa-royale-awards",
+      "title": "Sankofa Royale Awards | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "The Canadian and African Women Aid Program has recognized a concerning lack of celebration and representation of the black community across various sectors."
+    },
+    {
+      "path": "/food-bank",
+      "title": "Food Bank in Brampton | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Food insecurity affects thousands of families in our community. Rising costs of living, unexpected job loss, medical emergencies, and systemic barriers can…"
+    },
+    {
+      "path": "/financial-literacy",
+      "title": "Financial Literacy | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "We understand that financial literacy is the cornerstone of a secure and prosperous future. Our program serves as a guiding light, illuminating the path to…"
+    },
+    {
+      "path": "/javascript-program",
+      "title": "JavaScript for Afro Black Women | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "We are committed to bridging the diversity gap in the tech sector and providing equitable opportunities for underrepresented communities."
+    },
+    {
+      "path": "/children-summer-camp",
+      "title": "Children Summer Camp | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "CAWAP, with a deep commitment to inclusivity and the belief that every child deserves the chance to immerse themselves in the joy and wonder of summer camp…"
+    },
+    {
+      "path": "/mental-health",
+      "title": "Disability Inclusion & Mental Health | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Removing barriers, promoting dignity and independence, and ensuring equal opportunities for persons with disabilities to participate fully in community life."
+    },
+    {
+      "path": "/new-breed-women-of-substance",
+      "title": "New Breed Women of Substance | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "Women of Substance, a groundbreaking program dedicated to empowering women to become strong, self-driven individuals who shape their own destinies."
+    },
+    {
+      "path": "/project-and-evaluation",
+      "title": "Project & Evaluation | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "At CAWAP, we understand the critical role that funding plays in bringing impactful projects to life."
+    },
+    {
+      "path": "/newcomers-settlement-program",
+      "title": "Newcomers Settlement Program | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "At CAWAP, we understand that starting a new life in a foreign land can be both exciting and challenging."
+    },
+    {
+      "path": "/cultural-events",
+      "title": "Cultural Events | C.A.W.A.P - Canadian African Women Aid Program",
+      "description": "At CAWAP, we firmly believe that culture is not only an integral part of a person's identity but also a precious thread that weaves our communities together."
+    }
+  ]
+}
