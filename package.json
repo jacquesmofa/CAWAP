@@ -41,7 +41,9 @@
     "dev": "vite",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit --project tsconfig.app.json"
+    "type-check": "tsc --noEmit --project tsconfig.app.json",
+    "cms:config": "node scripts/cms-config.mjs",
+    "cms:check": "node scripts/cms-config.mjs --check"
   },
   "type": "module",
   "version": "0.0.0"
