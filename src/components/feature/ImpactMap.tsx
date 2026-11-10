@@ -15,48 +15,7 @@ const ImpactMap = () => {
   const [selectedArea, setSelectedArea] = useState<ServiceArea | null>(null);
 
   // Service areas with impact data - Updated for Brampton and surrounding areas
-  const serviceAreas: ServiceArea[] = [
-    {
-      id: 'brampton-central',
-      name: 'Brampton Central',
-      coordinates: { lat: 43.7315, lng: -79.7624 },
-      programs: ['Youth Leadership', 'Food Bank', 'Women Empowerment', 'Mental Health', 'JavaScript Program'],
-      impact: 850,
-      color: '#3c1053'
-    },
-    {
-      id: 'brampton-north',
-      name: 'Brampton North',
-      coordinates: { lat: 43.7532, lng: -79.7599 },
-      programs: ['Heart-Wise Seniors', 'Cultural Events', 'Newcomers Settlement', 'Financial Literacy'],
-      impact: 520,
-      color: '#5a1a7a'
-    },
-    {
-      id: 'mississauga',
-      name: 'Mississauga',
-      coordinates: { lat: 43.5890, lng: -79.6441 },
-      programs: ['Capital G-Girls', 'Children Summer Camp', 'Women Empowerment', 'Mental Health'],
-      impact: 450,
-      color: '#c9b037'
-    },
-    {
-      id: 'vaughan',
-      name: 'Vaughan',
-      coordinates: { lat: 43.8361, lng: -79.4983 },
-      programs: ['Youth Leadership', 'Cultural Events', 'Food Bank', 'Newcomers Settlement'],
-      impact: 380,
-      color: '#d4c050'
-    },
-    {
-      id: 'brampton-south',
-      name: 'Brampton South',
-      coordinates: { lat: 43.6833, lng: -79.7599 },
-      programs: ['JavaScript Program', 'Financial Literacy', 'Women Empowerment', 'Mental Health'],
-      impact: 300,
-      color: '#3c1053'
-    }
-  ];
+  const serviceAreas: ServiceArea[] = copy.impactMap.serviceAreas;
 
   const getImpactLevel = (impact: number): string => {
     if (impact >= 500) return 'Very High';

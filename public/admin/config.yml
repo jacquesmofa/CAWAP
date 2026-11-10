@@ -817,6 +817,52 @@ collections:
                     required: false
                     hint: "A page like /about or a full https:// address."
                     widget: "string"
+              - name: "serviceAreas"
+                label: "Service areas (impact map)"
+                required: false
+                widget: "list"
+                summary: "{{fields.name}}"
+                fields:
+                  - name: "id"
+                    label: "Short ID"
+                    required: false
+                    hint: "Lowercase words joined by dashes, unique, e.g. summer-camp-2027. Never change it after publishing."
+                    widget: "string"
+                  - name: "name"
+                    label: "Name"
+                    required: false
+                    widget: "string"
+                  - name: "coordinates"
+                    label: "Coordinates"
+                    required: false
+                    widget: "object"
+                    fields:
+                      - name: "lat"
+                        label: "Latitude"
+                        required: false
+                        widget: "number"
+                      - name: "lng"
+                        label: "Longitude"
+                        required: false
+                        widget: "number"
+                  - name: "programs"
+                    label: "Programs"
+                    required: false
+                    widget: "list"
+                    field:
+                      name: "item"
+                      label: "Item"
+                      required: false
+                      widget: "string"
+                  - name: "impact"
+                    label: "People helped"
+                    required: false
+                    widget: "number"
+                  - name: "color"
+                    label: "Colour"
+                    required: false
+                    hint: "Hex colour, e.g. #3c1053"
+                    widget: "string"
           - name: "smartSearch"
             label: "Smart search"
             required: false
@@ -1052,8 +1098,9 @@ collections:
                     hint: "A page like /about or a full https:// address."
                     widget: "string"
                   - name: "color"
-                    label: "Color"
+                    label: "Colour"
                     required: false
+                    hint: "Hex colour, e.g. #3c1053"
                     widget: "string"
                   - name: "description"
                     label: "Description"

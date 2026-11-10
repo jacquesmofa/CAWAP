@@ -94,6 +94,11 @@ export const ENTRIES = [
 
 /** Labels and help text by field name, used wherever that field name appears. */
 export const FIELD_HINTS = {
+  serviceAreas: { label: 'Service areas (impact map)' },
+  impact: { label: 'People helped' },
+  color: { label: 'Colour', description: 'Hex colour, e.g. #3c1053' },
+  lat: { label: 'Latitude' },
+  lng: { label: 'Longitude' },
   siteUrl: { label: 'Website address', description: 'Do not change unless the domain changes.' },
   pages: { label: 'Pages' },
   addedPhotos: { label: 'Added photos (upload here)', description: 'Photos uploaded here appear first in this category. Keep each under 2 MB.', itemName: 'photo' },
