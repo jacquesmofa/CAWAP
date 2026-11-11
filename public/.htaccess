@@ -11,6 +11,16 @@
   RewriteRule ^media/site-assets\.json$ - [L]
   RewriteRule ^media/.*\.(jpg|jpeg|JPG|JPEG|png|PNG|webp|gif|mp4|webm|json|pdf)$ - [L]
 
+  # STEP 1b: ONE CLEAN ADDRESS PER PAGE, EACH WITH ITS OWN SHARE PREVIEW
+  # (about.html, food-bank.html... are written at build time by scripts/social-pages.mjs)
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html[\s?]
+  RewriteCond %1 !(^|/)index$
+  RewriteRule ^ /%1 [R=301,L]
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*[^/])$ $1.html [L]
+
   # STEP 2: PHYSICAL FILE CHECK
   # If the file exists on the server, serve it immediately.
   RewriteCond %{REQUEST_FILENAME} -f
@@ -25,7 +35,7 @@
 
 # 2. SECURITY & PERFORMANCE
 # Prevent directory browsing
-Options -Indexes
+Options -Indexes -MultiViews
 
 # Enable Compression
 <IfModule mod_deflate.c>

@@ -17,6 +17,11 @@ Everything client-facing is in `src/content/` and editable in both editors:
 - `public/media/site-assets.json` (fetched at runtime by `MediaContext`): numbered server media (`/media/<folder>/<n>.<ext>`, uploaded by FTP, never deleted by deploys) plus `addedPhotos` per gallery category uploaded in the editors (shown first). Home hero slides have an optional `image` that overrides `/media/hero/<n>.png`.
 - `public/sitemap.xml`, `public/robots.txt` (update the sitemap when routes change).
 
+## Share previews (11 Nov 2026)
+- `src/content/seo.json`: `site` (name, address, default share picture: /media/hero/4.png, 1600×1200) + `pages` (title, description, optional `image`). Editable in both editors ("Google: page titles & descriptions").
+- `scripts/social-pages.mjs` runs inside `npm run build`: writes one HTML file per page (e.g. `out/food-bank.html`) with that page's title, description, canonical and picture, plus `sitemap.xml`. Social apps never run JavaScript, so this is what they show. `public/.htaccess` STEP 1b serves /food-bank → food-bank.html and redirects /x.html and /x/ to /x. `PageSeo.tsx` sets the same tags in the browser.
+- Keep titles under 65 characters and descriptions 120–160.
+
 ## Editors
 - Pages CMS (`.pages.yml`, people without GitHub; app.pagescms.org) and Sveltia CMS (`public/admin/config.yml`, people with GitHub; https://www.cawap.ca/admin/). BOTH ARE GENERATED: `npm run cms:config` builds them from the JSON files (types inferred) + `scripts/cms-registry.mjs` (which files, groups, labels, help text). `npm run cms:check` fails if they are stale. Never edit the two configs by hand.
 - Adding content: new JSON file (top level must be an object) → entry in `cms-registry.mjs` → `npm run cms:config` → commit all.

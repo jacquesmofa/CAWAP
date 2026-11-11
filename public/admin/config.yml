@@ -685,6 +685,42 @@ collections:
             required: false
             hint: "Do not change unless the domain changes."
             widget: "string"
+          - name: "site"
+            label: "Share preview defaults (Facebook, WhatsApp, LinkedIn, X)"
+            required: false
+            hint: "Used for every page that has no picture of its own."
+            widget: "object"
+            fields:
+              - name: "name"
+                label: "Name"
+                required: false
+                widget: "string"
+              - name: "url"
+                label: "Link (full https:// address)"
+                required: false
+                widget: "string"
+              - name: "locale"
+                label: "Language code"
+                required: false
+                hint: "en_CA"
+                widget: "string"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
+              - name: "imageWidth"
+                label: "Picture width in pixels"
+                required: false
+                widget: "number"
+              - name: "imageHeight"
+                label: "Picture height in pixels"
+                required: false
+                widget: "number"
+              - name: "imageAlt"
+                label: "Picture description (for blind visitors and social apps)"
+                required: false
+                widget: "string"
           - name: "pages"
             label: "Pages"
             required: false
@@ -698,11 +734,16 @@ collections:
               - name: "title"
                 label: "Title"
                 required: false
-                widget: "text"
+                widget: "string"
               - name: "description"
                 label: "Description"
                 required: false
                 widget: "text"
+              - name: "image"
+                label: "Image"
+                required: false
+                hint: "JPG or PNG, under 2 MB."
+                widget: "image"
       - name: "shared"
         label: "Shared sections (search, impact map, gallery viewer)"
         file: "src/content/shared.json"
@@ -1404,7 +1445,7 @@ collections:
                     hint: "JPG or PNG, under 2 MB."
                     widget: "image"
                   - name: "imageAlt"
-                    label: "Image alt"
+                    label: "Picture description (for blind visitors and social apps)"
                     required: false
                     widget: "string"
                   - name: "heading"
@@ -1536,7 +1577,7 @@ collections:
                     hint: "JPG or PNG, under 2 MB."
                     widget: "image"
                   - name: "imageAlt"
-                    label: "Image alt"
+                    label: "Picture description (for blind visitors and social apps)"
                     required: false
                     widget: "string"
                   - name: "subheading"
@@ -1596,7 +1637,7 @@ collections:
                     hint: "JPG or PNG, under 2 MB."
                     widget: "image"
                   - name: "imageAlt"
-                    label: "Image alt"
+                    label: "Picture description (for blind visitors and social apps)"
                     required: false
                     widget: "string"
           - name: "trainingsSection"
@@ -1808,7 +1849,7 @@ collections:
                     hint: "JPG or PNG, under 2 MB."
                     widget: "image"
                   - name: "imageAlt"
-                    label: "Image alt"
+                    label: "Picture description (for blind visitors and social apps)"
                     required: false
                     widget: "string"
                   - name: "heading"
@@ -1851,7 +1892,7 @@ collections:
                     hint: "JPG or PNG, under 2 MB."
                     widget: "image"
                   - name: "imageAlt"
-                    label: "Image alt"
+                    label: "Picture description (for blind visitors and social apps)"
                     required: false
                     widget: "string"
                   - name: "heading"
@@ -2061,7 +2102,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
           - name: "additionalContent"
@@ -2155,7 +2196,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "heading"
@@ -2369,7 +2410,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "subheading"
@@ -2877,7 +2918,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "text2"
@@ -3070,7 +3111,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "title"
@@ -3430,7 +3471,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "title"
@@ -3593,7 +3634,7 @@ collections:
                 hint: "JPG or PNG, under 2 MB."
                 widget: "image"
               - name: "imageAlt"
-                label: "Image alt"
+                label: "Picture description (for blind visitors and social apps)"
                 required: false
                 widget: "string"
               - name: "heading"
