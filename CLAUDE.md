@@ -40,4 +40,4 @@ Everything client-facing is in `src/content/` and editable in both editors:
 ## Rules
 - No new hard-coded client text, images or links in components: put them in `src/content/`.
 - Never push without a passing build. Never commit secrets.
-- Design changes need the owner's approval; this site keeps its own brand identity.
+- Design changes need the owner's approval; this site keeps its own brand identity, recorded in `brand-dna.md`.
