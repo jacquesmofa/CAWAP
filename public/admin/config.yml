@@ -1879,6 +1879,114 @@ collections:
                     label: "Text"
                     required: false
                     widget: "string"
+          - name: "foodBankSpotlight"
+            label: "Food bank spotlight"
+            required: false
+            widget: "object"
+            fields:
+              - name: "label"
+                label: "Text"
+                required: false
+                widget: "string"
+              - name: "heading"
+                label: "Heading"
+                required: false
+                widget: "string"
+              - name: "intro"
+                label: "Intro"
+                required: false
+                widget: "text"
+              - name: "statsNote"
+                label: "Stats note"
+                required: false
+                widget: "string"
+              - name: "videosHeading"
+                label: "Videos heading"
+                required: false
+                widget: "string"
+              - name: "videos"
+                label: "Videos"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "video"
+                    label: "Video"
+                    required: false
+                    widget: "image"
+              - name: "howHeading"
+                label: "How heading"
+                required: false
+                widget: "string"
+              - name: "how"
+                label: "How"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+              - name: "fundHeading"
+                label: "Fund heading"
+                required: false
+                widget: "string"
+              - name: "fund"
+                label: "Fund"
+                required: false
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - name: "title"
+                    label: "Title"
+                    required: false
+                    widget: "string"
+                  - name: "text"
+                    label: "Text"
+                    required: false
+                    widget: "text"
+              - name: "partnersHeading"
+                label: "Partners heading"
+                required: false
+                widget: "string"
+              - name: "partners"
+                label: "Partners"
+                required: false
+                widget: "list"
+                field:
+                  name: "item"
+                  label: "Item"
+                  required: false
+                  widget: "string"
+              - name: "ctaLine"
+                label: "Cta line"
+                required: false
+                widget: "string"
+              - name: "ctaDonate"
+                label: "Cta donate"
+                required: false
+                widget: "string"
+              - name: "ctaVisit"
+                label: "Cta visit"
+                required: false
+                widget: "string"
+              - name: "ctaPackage"
+                label: "Cta package"
+                required: false
+                widget: "string"
+              - name: "packageSubject"
+                label: "Package subject"
+                required: false
+                widget: "string"
       - name: "page-about"
         label: "About"
         file: "src/content/pages/about.json"

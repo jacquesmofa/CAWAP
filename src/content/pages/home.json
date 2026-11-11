@@ -265,5 +265,80 @@
       "heading": "Past Programs & Events",
       "text": "Take a look at the amazing programs and events we've hosted for our community"
     }
+  },
+  "foodBankSpotlight": {
+    "label": "CAWAP Food Bank · For funders & partners",
+    "heading": "Hunger is solvable. We see it every week.",
+    "intro": "Every week our Brampton food bank turns donations, partnerships and grants into fresh groceries for families facing food insecurity, served with dignity, cultural respect and no judgement. A food visit is often a family's first step to everything else CAWAP offers: tax clinics, skills training, youth programs and mental-health support.",
+    "statsNote": "Figures from the CAWAP Food Bank.",
+    "videosHeading": "Inside the food bank",
+    "videos": [
+      {
+        "title": "Distribution day",
+        "video": "https://res.cloudinary.com/hxhakwbe/video/upload/v1794320903/WhatsApp_Video_2026-11-08_at_18.06.01_2_or9hfl.mp4"
+      },
+      {
+        "title": "Volunteers at work",
+        "video": "https://res.cloudinary.com/hxhakwbe/video/upload/v1794320904/WhatsApp_Video_2026-11-08_at_18.45.55_sdmsqf.mp4"
+      },
+      {
+        "title": "Families served with dignity",
+        "video": "https://res.cloudinary.com/hxhakwbe/video/upload/v1794320899/WhatsApp_Video_2026-11-08_at_18.45.52_1_xjc4mf.mp4"
+      },
+      {
+        "title": "Community BBQ",
+        "video": "https://res.cloudinary.com/hxhakwbe/video/upload/v1794320899/WhatsApp_Video_2026-11-08_at_18.45.51_oxebtu.mp4"
+      }
+    ],
+    "howHeading": "How your support travels",
+    "how": [
+      {
+        "title": "Rescue & purchase",
+        "text": "Donated, rescued and purchased food comes in, with priority on fresh produce and the culturally familiar staples our families actually cook."
+      },
+      {
+        "title": "Sort & pack",
+        "text": "Volunteers check, sort and pack hampers so every family receives safe, balanced groceries."
+      },
+      {
+        "title": "Distribute with dignity",
+        "text": "Families are welcomed, registered and served in a respectful, judgement-free space."
+      },
+      {
+        "title": "Connect to more",
+        "text": "Each visit opens a door to CAWAP's tax clinics, training, youth, seniors' and wellness programs."
+      }
+    ],
+    "fundHeading": "What your grant makes possible",
+    "fund": [
+      {
+        "title": "Fresh, culturally familiar food",
+        "text": "Produce, proteins and staples purchased in bulk to stretch every dollar further."
+      },
+      {
+        "title": "Cold storage & transport",
+        "text": "Refrigeration, shelving and delivery capacity so more donations can be accepted and seniors can be reached at home."
+      },
+      {
+        "title": "Volunteer power",
+        "text": "Food-safety training, coordination and supplies for the volunteers behind every distribution."
+      },
+      {
+        "title": "Wraparound support",
+        "text": "Staff time that turns emergency food into longer-term stability for the whole family."
+      }
+    ],
+    "partnersHeading": "What funders receive",
+    "partners": [
+      "Regular reports on families served and food distributed",
+      "Photo and video documentation of the work you fund",
+      "Financial reporting and charitable receipts on request",
+      "Recognition at CAWAP events and across our channels"
+    ],
+    "ctaLine": "Stand with us so no family in our community goes hungry.",
+    "ctaDonate": "Fund the food bank",
+    "ctaVisit": "Visit the Food Bank page",
+    "ctaPackage": "Request our funding package",
+    "packageSubject": "Food bank funding package request"
   }
 }

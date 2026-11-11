@@ -4,6 +4,7 @@ import Footer from '../../components/feature/Footer';
 import DonationCTA from '../../components/feature/DonationCTA';
 import HeroSlider from './components/HeroSlider';
 import AboutSection from './components/AboutSection';
+import FoodBankSpotlight from './components/FoodBankSpotlight';
 import ProgramsSection from './components/ProgramsSection';
 import ImageCarousel from './components/ImageCarousel';
 import FounderMessage from './components/FounderMessage';
@@ -281,6 +282,7 @@ const HomePage = () => {
       </section>
 
       <AboutSection />
+      <FoodBankSpotlight />
       <ProgramsSection />
       
       {/* Upcoming Events Flyers Section - Horizontal Carousel */}
