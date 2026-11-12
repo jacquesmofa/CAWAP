@@ -118,3 +118,8 @@ Options -Indexes -MultiViews
 # php -- BEGIN cPanel-generated handler, do not edit
 # This domain inherits the "PHP" package.
 # php -- END cPanel-generated handler, do not edit
+
+# The upload tool's bookkeeping file stays private
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>
