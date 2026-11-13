@@ -1,4 +1,4 @@
-# Brand DNA: CAWAP: Canadian African Women Aid Program
+# Brand DNA: CAWAP: Canadian and African Women Aid Program
 
 **Status: DRAFT, extracted from the current site on 10 Nov 2026. Not yet approved by the client.**
 Everything marked ❓ must come from the client or Jacques. Method: the studio's brand-dna.md (PRO Website Builder project).
