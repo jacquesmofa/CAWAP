@@ -267,9 +267,9 @@
     }
   },
   "foodBankSpotlight": {
-    "label": "CAWAP Food Bank · For funders & partners",
+    "label": "CAWAP Food Bank · For donors & partners",
     "heading": "Hunger is solvable. We see it every week.",
-    "intro": "Every week our Brampton food bank turns donations, partnerships and grants into fresh groceries for families facing food insecurity, served with dignity, cultural respect and no judgement. A food visit is often a family's first step to everything else CAWAP offers: tax clinics, skills training, youth programs and mental-health support.",
+    "intro": "Every week our Brampton food bank turns donations and partnerships into fresh groceries for families facing food insecurity, served with dignity, cultural respect and no judgement. A food visit is often a family's first step to everything else CAWAP offers: tax clinics, skills training, youth programs and mental-health support.",
     "statsNote": "Figures from the CAWAP Food Bank.",
     "videosHeading": "Inside the food bank",
     "videos": [
@@ -309,7 +309,7 @@
         "text": "Each visit opens a door to CAWAP's tax clinics, training, youth, seniors' and wellness programs."
       }
     ],
-    "fundHeading": "What your grant makes possible",
+    "fundHeading": "What your donation makes possible",
     "fund": [
       {
         "title": "Fresh, culturally familiar food",
@@ -328,17 +328,17 @@
         "text": "Staff time that turns emergency food into longer-term stability for the whole family."
       }
     ],
-    "partnersHeading": "What funders receive",
+    "partnersHeading": "What donors receive",
     "partners": [
       "Regular reports on families served and food distributed",
-      "Photo and video documentation of the work you fund",
+      "Photo and video documentation of the work you support",
       "Financial reporting and charitable receipts on request",
       "Recognition at CAWAP events and across our channels"
     ],
     "ctaLine": "Stand with us so no family in our community goes hungry.",
-    "ctaDonate": "Fund the food bank",
+    "ctaDonate": "Donate to the food bank",
     "ctaVisit": "Visit the Food Bank page",
-    "ctaPackage": "Request our funding package",
-    "packageSubject": "Food bank funding package request"
+    "ctaPackage": "Request our donor package",
+    "packageSubject": "Food bank donor package request"
   }
 }
